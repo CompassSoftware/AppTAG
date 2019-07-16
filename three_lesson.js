@@ -1,8 +1,9 @@
-
 class three_lesson extends Phaser.Scene {
 
   constructor() {
-    super({key: "three_Lesson"});
+    super({
+      key: "three_Lesson"
+    });
     this.quizActive = false;
     this.activatedQuiz = false;
     this.unlocked = false;
@@ -18,7 +19,7 @@ class three_lesson extends Phaser.Scene {
 
   //when scene is created
   create() {
-    
+
     this.createImages();
     this.setAlphas();
     this.setDepths();
@@ -33,7 +34,7 @@ class three_lesson extends Phaser.Scene {
     //TEMPORARY FOR TESTING
     //vvvvvvvvvvvvvvvvvvv//
     if (this.key_H.isDown) {
-    	this.helpMenu();
+      this.helpMenu();
     }
 
     if (this.activityOneOpened) {
@@ -79,30 +80,33 @@ class three_lesson extends Phaser.Scene {
     }
 
     if (this.quizActive == false) {
-        this.movePlayer();
-        this.checkInteractValidity();
+      this.movePlayer();
+      this.checkInteractValidity();
     } else {
 
       if (this.paperCount == 1) {
         this.movePaper(this.paper);
         this.checkCorrectPaperOne();
       } else if (this.paperCount == 2) {
-          this.movePaper(this.paperTwo);
-          this.checkCorrectPaperTwo();
+        this.movePaper(this.paperTwo);
+        this.checkCorrectPaperTwo();
       } else if (this.paperCount == 3) {
-          this.movePaper(this.paperThree);
-          this.checkCorrectPaperThree();
-        }
+        this.movePaper(this.paperThree);
+        this.checkCorrectPaperThree();
       }
     }
+  }
 
 
-/***********************************************************************************************
-======================================HELPER METHODS============================================
-*///////////////////////////////////////////////////////////////////////////////////////////////
+  /***********************************************************************************************
+  ======================================HELPER METHODS============================================
+  */ //////////////////////////////////////////////////////////////////////////////////////////////
   loadAssets() {
     this.load.image('one_lesson_BG', 'assets/one_lesson_BG.png');
-    this.load.image('character', 'assets/tempCharacter.png');
+    this.load.image('character_north', 'assets/character-north.gif');
+    this.load.image('character_east', 'assets/character-east.gif');
+    this.load.image('character_south', 'assets/character-south.gif');
+    this.load.image('character_west', 'assets/character-west.gif');
     this.load.image('redCharacter', 'assets/redCharacter.png');
     this.load.image('activity1', 'assets/Activity1.png');
     this.load.image('activity1Page2', 'assets/Activity2.png');
@@ -132,8 +136,11 @@ class three_lesson extends Phaser.Scene {
     this.e_pressed = false;
     this.papers_moved = false;
     this.background = this.add.image(768, 432, 'one_lesson_BG');
-    this.character = this.add.image(768, 432, 'character');
-    this.E_KeyImg = this.add.image(this.character.x+40, this.character.y+40, 'E_KeyImg');
+    this.character_north = this.add.image(768, 432, 'character_north');
+    this.character_east = this.add.image(768, 432, 'character_east');
+    this.character_south = this.add.image(768, 432, 'character_south');
+    this.character_west = this.add.image(768, 432, 'character_west');
+    this.E_KeyImg = this.add.image(this.character_north.x + 40, this.character_north.y + 40, 'E_KeyImg');
     this.activity1 = this.add.image(768, 432, 'activity1');
     this.activity1Page2 = this.add.image(768, 432, 'activity1Page2');
     this.activity2 = this.add.image(768, 432, 'activity2');
@@ -169,7 +176,10 @@ class three_lesson extends Phaser.Scene {
 
   setDepths() {
     this.floor.setDepth(0);
-    this.character.setDepth(50);
+    this.character_north.setDepth(50);
+    this.character_east.setDepth(50);
+    this.character_south.setDepth(50);
+    this.character_west.setDepth(50);
     this.E_KeyImg.setDepth(49);
     this.activity1.setDepth(100);
     this.activity1Page2.setDepth(100);
@@ -211,45 +221,50 @@ class three_lesson extends Phaser.Scene {
 
 
   createInteractionZones() {
-    this.graphics = this.add.graphics({fillStyle: {color: 0xFFFFFF, alpha: 0.0}});
+    this.graphics = this.add.graphics({
+      fillStyle: {
+        color: 0xFFFFFF,
+        alpha: 0.0
+      }
+    });
     //this.graphicsTest = this.add.graphics({fillStyle: {color: 0x4F4F4F, alpha: 1.0}});
     //TOP ZONES
-                                                //xpos ypos x   y
-    this.top_left_info = new Phaser.Geom.Rectangle(175,150,240,150);
+    //xpos ypos x   y
+    this.top_left_info = new Phaser.Geom.Rectangle(175, 150, 240, 150);
     this.graphics.fillRectShape(this.top_left_info);
-                                                //xpos ypos x  y
-    this.top_mid_info = new Phaser.Geom.Rectangle(650,150,240,150);
+    //xpos ypos x  y
+    this.top_mid_info = new Phaser.Geom.Rectangle(650, 150, 240, 150);
     this.graphics.fillRectShape(this.top_mid_info);
-                                                 //xpos ypos x   y
-    this.top_right_info = new Phaser.Geom.Rectangle(1120,150,240,150);
+    //xpos ypos x   y
+    this.top_right_info = new Phaser.Geom.Rectangle(1120, 150, 240, 150);
     this.graphics.fillRectShape(this.top_right_info);
 
     //BOTTOM ZONES
 
-    this.bot_left_info = new Phaser.Geom.Rectangle(175,565,240,150);
+    this.bot_left_info = new Phaser.Geom.Rectangle(175, 565, 240, 150);
     this.graphics.fillRectShape(this.bot_left_info);
 
-    this.bot_mid_info = new Phaser.Geom.Rectangle(650,565,240,150);
+    this.bot_mid_info = new Phaser.Geom.Rectangle(650, 565, 240, 150);
     this.graphics.fillRectShape(this.bot_mid_info);
 
-    this.bot_right_info = new Phaser.Geom.Rectangle(1120,565,240,150);
+    this.bot_right_info = new Phaser.Geom.Rectangle(1120, 565, 240, 150);
     this.graphics.fillRectShape(this.bot_right_info);
 
-    this.quiz1 = new Phaser.Geom.Rectangle(1120,308,240,250);
+    this.quiz1 = new Phaser.Geom.Rectangle(1120, 308, 240, 250);
     this.graphics.fillRectShape(this.quiz1);
 
-    this.box_1_zone = new Phaser.Geom.Rectangle(925,50,200,200);
+    this.box_1_zone = new Phaser.Geom.Rectangle(925, 50, 200, 200);
     this.graphics.fillRectShape(this.box_1_zone);
 
-    this.box_2_zone = new Phaser.Geom.Rectangle(1250,325,200,200);
+    this.box_2_zone = new Phaser.Geom.Rectangle(1250, 325, 200, 200);
     this.graphics.fillRectShape(this.box_2_zone);
 
-    this.box_3_zone = new Phaser.Geom.Rectangle(925,550,200,200);
+    this.box_3_zone = new Phaser.Geom.Rectangle(925, 550, 200, 200);
     this.graphics.fillRectShape(this.box_3_zone);
   }
 
   assignKeybinds() {
-        //KEYBOARD INPUT
+    //KEYBOARD INPUT
     this.key_W = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
     this.key_A = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
     this.key_S = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
@@ -266,19 +281,19 @@ class three_lesson extends Phaser.Scene {
   }
 
   imagesDraggable() {
-    this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
+    this.input.on('drag', function(pointer, gameObject, dragX, dragY) {
 
-        gameObject.x = dragX;
-        gameObject.y = dragY;
+      gameObject.x = dragX;
+      gameObject.y = dragY;
 
     });
 
   }
 
   checkInteractValidity() {
-    if (Phaser.Geom.Rectangle.ContainsPoint(this.top_right_info, this.character)) {
-      this.E_KeyImg.x = this.character.x;
-      this.E_KeyImg.y = this.character.y-75;
+    if (Phaser.Geom.Rectangle.ContainsPoint(this.top_right_info, this.character_north)) {
+      this.E_KeyImg.x = this.character_north.x;
+      this.E_KeyImg.y = this.character_north.y - 75;
       this.E_KeyImg.alpha = 1.0;
       if (this.key_E.isDown) {
         this.activity1.alpha = 1.0;
@@ -286,70 +301,70 @@ class three_lesson extends Phaser.Scene {
         this.activityOneOpened = true;
       }
 
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.bot_mid_info, this.character)) {
-      this.E_KeyImg.x = this.character.x;
-      this.E_KeyImg.y = this.character.y-75;
+    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.bot_mid_info, this.character_north)) {
+      this.E_KeyImg.x = this.character_north.x;
+      this.E_KeyImg.y = this.character_north.y - 75;
       this.E_KeyImg.alpha = 1.0;
-        if (this.key_E.isDown && activity2Locked == false) {
+      if (this.key_E.isDown && activity2Locked == false) {
         this.activity2.alpha = 1.0;
-        } else if (this.key_E.isDown && activity2Locked == true) {
-          this.activityLocked.alpha = 1.0;
-          this.characterMoveable = false;
-          }
-
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.top_mid_info, this.character)) {
-      this.E_KeyImg.x = this.character.x;
-      this.E_KeyImg.y = this.character.y-75;
-      this.E_KeyImg.alpha = 1.0;
-      if (this.key_E.isDown && activity3Locked == false) {
-        this.activity3.alpha = 1.0;
-      } else if (this.key_E.isDown && activity3Locked == true){
-        this.activityLocked.alpha = 1.0;
-        this.characterMoveable = false;
-        }
-
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.bot_right_info, this.character)) {
-      this.E_KeyImg.x = this.character.x;
-      this.E_KeyImg.y = this.character.y+75;
-      this.E_KeyImg.alpha = 1.0;
-      if (this.key_E.isDown && activity4Locked == false) {
-      this.activity4.alpha = 1.0;
-      } else if (this.key_E.isDown && activity4Locked == true){
-        this.activityLocked.alpha = 1.0;
-        this.characterMoveable = false;
-        }
-
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.top_left_info, this.character)) {
-      this.E_KeyImg.x = this.character.x;
-      this.E_KeyImg.y = this.character.y+75;
-      this.E_KeyImg.alpha = 1.0;
-      if (this.key_E.isDown && activity5Locked == false) {
-        this.activity5.alpha = 1.0;
-      } else if (this.key_E.isDown && activity5Locked == true){
-          this.activityLocked.alpha = 1.0;
-          this.characterMoveable = false;
-        }
-
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.bot_left_info, this.character)) {
-      this.E_KeyImg.x = this.character.x;
-      this.E_KeyImg.y = this.character.y+75;
-      this.E_KeyImg.alpha = 1.0;
-      if (this.key_E.isDown && activity6Locked == false) {
-        this.activity6.alpha = 1.0;
-      } else if (this.key_E.isDown && activity6Locked == true){
+      } else if (this.key_E.isDown && activity2Locked == true) {
         this.activityLocked.alpha = 1.0;
         this.characterMoveable = false;
       }
 
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.quiz1, this.character)){
-      this.E_KeyImg.x = this.character.x+75;
-      this.E_KeyImg.y = this.character.y;
+    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.top_mid_info, this.character_north)) {
+      this.E_KeyImg.x = this.character_north.x;
+      this.E_KeyImg.y = this.character_north.y - 75;
+      this.E_KeyImg.alpha = 1.0;
+      if (this.key_E.isDown && activity3Locked == false) {
+        this.activity3.alpha = 1.0;
+      } else if (this.key_E.isDown && activity3Locked == true) {
+        this.activityLocked.alpha = 1.0;
+        this.characterMoveable = false;
+      }
+
+    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.bot_right_info, this.character_north)) {
+      this.E_KeyImg.x = this.character_north.x;
+      this.E_KeyImg.y = this.character_north.y + 75;
+      this.E_KeyImg.alpha = 1.0;
+      if (this.key_E.isDown && activity4Locked == false) {
+        this.activity4.alpha = 1.0;
+      } else if (this.key_E.isDown && activity4Locked == true) {
+        this.activityLocked.alpha = 1.0;
+        this.characterMoveable = false;
+      }
+
+    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.top_left_info, this.character_north)) {
+      this.E_KeyImg.x = this.character_north.x;
+      this.E_KeyImg.y = this.character_north.y + 75;
+      this.E_KeyImg.alpha = 1.0;
+      if (this.key_E.isDown && activity5Locked == false) {
+        this.activity5.alpha = 1.0;
+      } else if (this.key_E.isDown && activity5Locked == true) {
+        this.activityLocked.alpha = 1.0;
+        this.characterMoveable = false;
+      }
+
+    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.bot_left_info, this.character_north)) {
+      this.E_KeyImg.x = this.character_north.x;
+      this.E_KeyImg.y = this.character_north.y + 75;
+      this.E_KeyImg.alpha = 1.0;
+      if (this.key_E.isDown && activity6Locked == false) {
+        this.activity6.alpha = 1.0;
+      } else if (this.key_E.isDown && activity6Locked == true) {
+        this.activityLocked.alpha = 1.0;
+        this.characterMoveable = false;
+      }
+
+    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.quiz1, this.character_north)) {
+      this.E_KeyImg.x = this.character_north.x + 75;
+      this.E_KeyImg.y = this.character_north.y;
       this.E_KeyImg.alpha = 1.0;
       if (this.key_E.isDown && activity6Complete == true) {
         this.quizActive = true;
-      } else if (this.key_E.isDown && activity6Complete == false){
-          this.activityLocked.alpha = 1.0;
-        }
+      } else if (this.key_E.isDown && activity6Complete == false) {
+        this.activityLocked.alpha = 1.0;
+      }
     } else {
       this.hideActivities();
       this.E_KeyImg.alpha = 0.0;
@@ -357,34 +372,77 @@ class three_lesson extends Phaser.Scene {
   }
 
   movePlayer() {
-    if(this.key_W.isDown && characterMoveable == true) {
-      this.character.y -= 5;
-    } if (this.key_A.isDown && characterMoveable == true) {
-      this.character.x -= 5;
-    } if (this.key_S.isDown && characterMoveable == true) {
-      this.character.y += 5;
-    } if (this.key_D.isDown && characterMoveable == true) {
-      this.character.x += 5;
-    }    
+    if (this.key_W.isDown && characterMoveable == true) {
+      this.character_north.y -= 5;
+      this.character_east.y -= 5;
+      this.character_south.y -= 5;
+      this.character_west.y -= 5;
+
+      this.character_north.alpha = 1;
+      this.character_east.alpha = 0;
+      this.character_south.alpha = 0;
+      this.character_west.alpha = 0;
+
+    }
+    if (this.key_A.isDown && characterMoveable == true) {
+      this.character_west.x -= 5;
+      this.character_north.x -= 5;
+      this.character_east.x -= 5;
+      this.character_south.x -= 5;
+
+      this.character_west.alpha = 1;
+      this.character_east.alpha = 0;
+      this.character_south.alpha = 0;
+      this.character_north.alpha = 0;
+
+    }
+    if (this.key_S.isDown && characterMoveable == true) {
+      this.character_south.y += 5;
+      this.character_north.y += 5;
+      this.character_west.y += 5;
+      this.character_east.y += 5;
+
+      this.character_south.alpha = 1;
+      this.character_east.alpha = 0;
+      this.character_north.alpha = 0;
+      this.character_west.alpha = 0;
+    }
+    if (this.key_D.isDown && characterMoveable == true) {
+      this.character_east.x += 5;
+      this.character_west.x += 5;
+      this.character_north.x += 5;
+      this.character_south.x += 5;
+
+      this.character_east.alpha = 1;
+      this.character_north.alpha = 0;
+      this.character_south.alpha = 0;
+      this.character_west.alpha = 0;
+    }
   }
 
   movePaper(moveThisPaper) {
-    if(this.key_W.isDown && this.paperMoveable == true) {
+    if (this.key_W.isDown && this.paperMoveable == true) {
       moveThisPaper.y -= 7;
-    } if (this.key_A.isDown && this.paperMoveable == true) {
+    }
+    if (this.key_A.isDown && this.paperMoveable == true) {
       moveThisPaper.x -= 7;
-    } if (this.key_S.isDown && this.paperMoveable == true) {
+    }
+    if (this.key_S.isDown && this.paperMoveable == true) {
       moveThisPaper.y += 7;
-    } if (this.key_D.isDown && this.paperMoveable == true) {
+    }
+    if (this.key_D.isDown && this.paperMoveable == true) {
       moveThisPaper.x += 7;
-    } 
+    }
   }
 
   quitQuiz() {
     this.papers_moved = false;
     this.quizActive = false;
     this.background.alpha = 1.0;
-    this.character.alpha = 1.0;
+    this.character_north.alpha = 1.0;
+    this.character_east.alpha = 1.0;
+    this.character_south.alpha = 1.0;
+    this.character_west.alpha = 1.0;
     this.E_KeyImg.alpha = 1.0;
     this.cardboard_box_1.setScale(0.39);
     this.cardboard_box_2.setScale(0.39);
@@ -415,7 +473,7 @@ class three_lesson extends Phaser.Scene {
     this.paperMoveable = true;
     this.paperCount = 1;
 
-    if(this.papers_moved == false) {
+    if (this.papers_moved == false) {
       this.paper_stack.x -= 1025;
       this.paper_stack.y -= 275;
       this.papers_moved = true;
@@ -435,11 +493,14 @@ class three_lesson extends Phaser.Scene {
     this.paperTwo.setDepth(100);
     this.paperThree.setDepth(100);
 
-    this.box1_frame = new Phaser.Geom.Rectangle(this.cardboard_box_1.x,this.cardboard_box_1.y,240,250);
+    this.box1_frame = new Phaser.Geom.Rectangle(this.cardboard_box_1.x, this.cardboard_box_1.y, 240, 250);
     this.graphics.fillRectShape(this.box1_frame);
 
     this.background.alpha = 0.0;
-    this.character.alpha = 0.0;
+    this.character_north.alpha = 0.0;
+    this.character_east.alpha = 0.0;
+    this.character_south.alpha = 0.0;
+    this.character_west.alpha = 0.0;
     this.E_KeyImg.alpha = 0.0;
     this.cardboard_box_1.setScale(1.3);
     this.cardboard_box_2.setScale(1.3);
@@ -472,7 +533,10 @@ class three_lesson extends Phaser.Scene {
     this.notebook.alpha = 0.0;
     this.hideActivities();
     this.activityLocked.alpha = 0.0;
-    this.character.alpha = 1.0;
+    this.character_north.alpha = 1.0;
+    this.character_east.alpha = 1.0;
+    this.character_south.alpha = 1.0;
+    this.character_west.alpha = 1.0;
     this.characterMoveable = true;
     this.activityOneOpened = false;
     this.help_menu.alpha = 0.0;
@@ -494,9 +558,9 @@ class three_lesson extends Phaser.Scene {
   }
 
   checkCorrectPaperOne() {
-  	if (this.key_R.isDown) {
-		//functionality to read paper
-  	}
+    if (this.key_R.isDown) {
+      //functionality to read paper
+    }
     if (Phaser.Geom.Rectangle.ContainsPoint(this.box_1_zone, this.paper) && this.paperCount == 1) {
       this.paper.setVisible(false);
       this.paperTwo.setVisible(true);
@@ -512,9 +576,9 @@ class three_lesson extends Phaser.Scene {
   }
 
   checkCorrectPaperTwo() {
-  	if (this.key_R.isDown) {
-  		//functionality to read paper
-  	}
+    if (this.key_R.isDown) {
+      //functionality to read paper
+    }
     if (Phaser.Geom.Rectangle.ContainsPoint(this.box_2_zone, this.paperTwo) && this.paperCount == 2) {
       this.paperTwo.setVisible(false);
       this.paperThree.setVisible(true);
@@ -530,9 +594,9 @@ class three_lesson extends Phaser.Scene {
   }
 
   checkCorrectPaperThree() {
-  	if (this.key_R.isDown) {
-  		//functionality to read paper
-  	}
+    if (this.key_R.isDown) {
+      //functionality to read paper
+    }
     if (Phaser.Geom.Rectangle.ContainsPoint(this.box_3_zone, this.paperThree) && this.paperCount == 3) {
       this.paperThree.setVisible(false);
       this.paperCount++;
@@ -557,8 +621,7 @@ class three_lesson extends Phaser.Scene {
   }
 
   helpMenu() {
-      this.help_menu.alpha = 1.0;
-      this.helpOpen = true;
+    this.help_menu.alpha = 1.0;
+    this.helpOpen = true;
   }
 }
-
