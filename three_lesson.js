@@ -358,16 +358,25 @@ class three_lesson extends Phaser.Scene {
 
   movePlayer() {
     if(this.key_W.isDown && characterMoveable == true) {
-      this.character.y -= 5;
+	if(this.character.y > 185){
+      		this.character.y -= 5;
+		}
     } if (this.key_A.isDown && characterMoveable == true) {
-      this.character.x -= 5;
+      	if(this.character.x > 210){
+      		this.character.x -= 5;
+	}
+
     } if (this.key_S.isDown && characterMoveable == true) {
-      this.character.y += 5;
+	if(this.character.y < 680){
+      		this.character.y += 5;
+		}
+
     } if (this.key_D.isDown && characterMoveable == true) {
-      this.character.x += 5;
+      	if(this.character.x < 1325){
+      		this.character.x += 5;
+		}
     }    
   }
-
   movePaper(moveThisPaper) {
     if(this.key_W.isDown && this.paperMoveable == true) {
       moveThisPaper.y -= 7;
