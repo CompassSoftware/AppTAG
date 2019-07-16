@@ -494,6 +494,7 @@ class three_lesson extends Phaser.Scene {
 
   hideActivities() {
     this.activity1.alpha = 0.0;
+	this.activityLocked.alpha = 0.0;
     this.activity2.alpha = 0.0;
     this.activity3.alpha = 0.0;
     this.activity4.alpha = 0.0;
