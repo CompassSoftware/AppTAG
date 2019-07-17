@@ -108,10 +108,10 @@ class three_lesson extends Phaser.Scene {
 *///////////////////////////////////////////////////////////////////////////////////////////////
   loadAssets() {
     this.load.image('one_lesson_BG', 'assets/one_lesson_BG.png');
-    this.load.image('character_north', 'assets/character-north.gif');
-    this.load.image('character_east', 'assets/character-east.gif');
-    this.load.image('character_south', 'assets/character-south.gif');
-    this.load.image('character_west', 'assets/character-west.gif');
+    this.load.image('character_north', 'assets/character_north.png');
+    this.load.image('character_east', 'assets/character_east.png');
+    this.load.image('character_south', 'assets/character_south.png');
+    this.load.image('character_west', 'assets/character_west.png');
     this.load.image('redCharacter', 'assets/redCharacter.png');
     this.load.image('activity1', 'assets/Activity1.png');
     this.load.image('activity1Page2', 'assets/Activity2.png');
@@ -213,6 +213,10 @@ class three_lesson extends Phaser.Scene {
     this.cardboard_box_2.setScale(0.39);
     this.cardboard_box_3.setScale(0.39);
     this.paper_stack.setScale(0.35);
+    this.character_north.setScale(3);
+    this.character_south.setScale(3);
+    this.character_west.setScale(3);
+    this.character_east.setScale(3);
   }
 
   setRotations() {
@@ -375,6 +379,12 @@ class three_lesson extends Phaser.Scene {
   }
 
   movePlayer() {
+
+    this.character_north.alpha = 0;
+    this.character_east.alpha = 0;
+    this.character_west.alpha = 0;
+    this.character_south.alpha =1;
+
     if(this.key_W.isDown && characterMoveable == true) {
 	if(this.character_north.y > 185){
       		this.character_north.y -= 5;
@@ -384,7 +394,7 @@ class three_lesson extends Phaser.Scene {
 
           this.character_north.alpha = 1;
           this.character_east.alpha = 0;
-          this.character_west.alpha = 0
+          this.character_west.alpha = 0;
           this.character_south.alpha =0;
 
 
@@ -398,7 +408,7 @@ class three_lesson extends Phaser.Scene {
 
           this.character_west.alpha = 1;
           this.character_east.alpha = 0;
-          this.character_north.alpha = 0
+          this.character_north.alpha = 0;
           this.character_south.alpha =0;
 	}
 
@@ -411,7 +421,7 @@ class three_lesson extends Phaser.Scene {
 
           this.character_south.alpha = 1;
           this.character_east.alpha = 0;
-          this.character_west.alpha = 0
+          this.character_west.alpha = 0;
           this.character_north.alpha =0;
 		}
 
@@ -424,7 +434,7 @@ class three_lesson extends Phaser.Scene {
 
           this.character_east.alpha = 1;
           this.character_north.alpha = 0;
-          this.character_west.alpha = 0
+          this.character_west.alpha = 0;
           this.character_south.alpha =0;
 		}
     }
