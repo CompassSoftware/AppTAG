@@ -53,14 +53,20 @@ class three_lesson extends Phaser.Scene {
 
     if (this.key_M.isDown) {
       this.map.alpha = 1.0;
-      //characterMoveable = false;
-      this.character.alpha = 0.0;
+      characterMoveable = false;
+      this.character_north.alpha = 0.0;
+      this.character_east.alpha = 0.0;
+      this.character_south.alpha = 0.0;
+      this.character_west.alpha = 0.0;
     }
 
     if (this.key_B.isDown) {
       this.notebook.alpha = 1.0;
-      //characterMoveable = false;
-      this.character.alpha = 0.0;
+      characterMoveable = false;
+      this.character_north.alpha = 0.0;
+      this.character_east.alpha = 0.0;
+      this.character_south.alpha = 0.0;
+      this.character_west.alpha = 0.0;
     }
 
 
