@@ -15,6 +15,10 @@ class zero_lesson extends Phaser.Scene {
   preload() {
     this.loadAssets();
   }
+  /*
+  Welcome to The Accounting Game(TAG) Tutorial!
+Info Panels like these contain important information and lessons that help you progress through the game. To interact with future panels and activities press the Interact Button ‘E’. If you have not unlocked a panel yet, a message will appear in screen saying “Activity Locked”. These Activities are locked until you read the required information from the Info Panels
+*/
 
   //when scene is created
   create() {
@@ -121,12 +125,7 @@ class zero_lesson extends Phaser.Scene {
     this.load.image('activity5', 'assets/Activity5.png');
     this.load.image('activity6', 'assets/Activity6.png');
     this.load.image('E_KeyImg', 'assets/E_Key.png');
-    this.load.image('wall_info_1', 'assets/wall_art.png');
     this.load.image('wall_info_2', 'assets/wall_art.png');
-    this.load.image('wall_info_3', 'assets/wall_art.png');
-    this.load.image('wall_info_4', 'assets/wall_art.png');
-    this.load.image('wall_info_5', 'assets/wall_art.png');
-    this.load.image('wall_info_6', 'assets/wall_art.png');
     this.load.image('floor', 'assets/floor_0.jpg');
     this.load.image('paper', 'assets/single_paper.png');
     this.load.image('map', 'assets/map.png');
@@ -153,12 +152,7 @@ class zero_lesson extends Phaser.Scene {
     this.activity4 = this.add.image(768, 432, 'activity4');
     this.activity5 = this.add.image(768, 432, 'activity5');
     this.activity6 = this.add.image(768, 432, 'activity6');
-    this.wall_info_1 = this.add.image(305, 75, 'wall_info_1');
     this.wall_info_2 = this.add.image(768, 75, 'wall_info_2');
-    this.wall_info_3 = this.add.image(1232, 75, 'wall_info_3');
-    this.wall_info_4 = this.add.image(305, 790, 'wall_info_4');
-    this.wall_info_5 = this.add.image(768, 790, 'wall_info_5');
-    this.wall_info_6 = this.add.image(1232, 790, 'wall_info_6');
     this.floor = this.add.image(769, 433, 'floor');
     this.map = this.add.image(768, 432, 'map');
     this.notebook = this.add.image(768, 432, 'notebook');
@@ -199,20 +193,12 @@ class zero_lesson extends Phaser.Scene {
 
   setScales() {
     this.E_KeyImg.setScale(0.4);
-    this.wall_info_1.setScale(0.75);
     this.wall_info_2.setScale(0.75);
-    this.wall_info_3.setScale(0.75);
-    this.wall_info_4.setScale(0.75);
-    this.wall_info_5.setScale(0.75);
-    this.wall_info_6.setScale(0.75);
     this.notebook.setScale(0.75);
     this.map.setScale(0.75);
   }
 
   setRotations() {
-    this.wall_info_4.rotation = 3.14;
-    this.wall_info_5.rotation = 3.14;
-    this.wall_info_6.rotation = 3.14;
   }
 
 
@@ -220,44 +206,15 @@ class zero_lesson extends Phaser.Scene {
     this.graphics = this.add.graphics({fillStyle: {color: 0xFFFFFF, alpha: 0.0}});
     //this.graphicsTest = this.add.graphics({fillStyle: {color: 0x4F4F4F, alpha: 1.0}});
     //TOP ZONES
-                                                //xpos ypos x   y
-    this.top_left_info = new Phaser.Geom.Rectangle(175,150,240,150);
-    this.graphics.fillRectShape(this.top_left_info);
+
                                                 //xpos ypos x  y
     this.top_mid_info = new Phaser.Geom.Rectangle(650,150,240,150);
     this.graphics.fillRectShape(this.top_mid_info);
-                                                 //xpos ypos x   y
-    this.top_right_info = new Phaser.Geom.Rectangle(1120,150,240,150);
-    this.graphics.fillRectShape(this.top_right_info);
-	
-	
+    
 	//MIDDLE ZONE
 	
 	this.middle_info = new Phaser.Geom.Rectangle(700,350,200,200);
-    this.graphics.fillRectShape(this.top_right_info);
-
-    //BOTTOM ZONES
-
-    this.bot_left_info = new Phaser.Geom.Rectangle(175,565,240,150);
-    this.graphics.fillRectShape(this.bot_left_info);
-
-    this.bot_mid_info = new Phaser.Geom.Rectangle(650,565,240,150);
-    this.graphics.fillRectShape(this.bot_mid_info);
-
-    this.bot_right_info = new Phaser.Geom.Rectangle(1120,565,240,150);
-    this.graphics.fillRectShape(this.bot_right_info);
-
-    this.quiz1 = new Phaser.Geom.Rectangle(1120,308,240,250);
-    this.graphics.fillRectShape(this.quiz1);
-
-    this.box_1_zone = new Phaser.Geom.Rectangle(925,50,200,200);
-    this.graphics.fillRectShape(this.box_1_zone);
-
-    this.box_2_zone = new Phaser.Geom.Rectangle(1250,325,200,200);
-    this.graphics.fillRectShape(this.box_2_zone);
-
-    this.box_3_zone = new Phaser.Geom.Rectangle(925,550,200,200);
-    this.graphics.fillRectShape(this.box_3_zone);
+    this.graphics.fillRectShape(this.middle_info);
   }
 
   assignKeybinds() {
@@ -288,79 +245,20 @@ class zero_lesson extends Phaser.Scene {
   }
 
   checkInteractValidity() {
-    if (Phaser.Geom.Rectangle.ContainsPoint(this.top_right_info, this.character_north)) {
+    if (Phaser.Geom.Rectangle.ContainsPoint(this.top_mid_info, this.character_north)) {
       this.E_KeyImg.x = this.character_north.x;
       this.E_KeyImg.y = this.character_north.y-75;
       this.E_KeyImg.alpha = 1.0;
       if (this.key_E.isDown) {
-        this.activity1.alpha = 1.0;
-        this.characterMoveable = false;
-        this.activityOneOpened = true;
+        this.helpMenu();
       }
-
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.bot_mid_info, this.character_north)) {
-      this.E_KeyImg.x = this.character_north.x;
-      this.E_KeyImg.y = this.character_north.y+75;
-
-      this.E_KeyImg.alpha = 1.0;
-        if (this.key_E.isDown && activity2Locked == false) {
-        this.activity2.alpha = 1.0;
-        } else if (this.key_E.isDown && activity2Locked == true) {
-          this.activityLocked.alpha = 1.0;
-          this.characterMoveable = false;
-          }
-
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.top_mid_info, this.character_north)) {
-      this.E_KeyImg.x = this.character_north.x;
-      this.E_KeyImg.y = this.character_north.y-75;
-      this.E_KeyImg.alpha = 1.0;
-      if (this.key_E.isDown && activity3Locked == false) {
-        this.activity3.alpha = 1.0;
-      } else if (this.key_E.isDown && activity3Locked == true){
-        this.activityLocked.alpha = 1.0;
-        this.characterMoveable = false;
-        }
-
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.bot_right_info, this.character_north)) {
-      this.E_KeyImg.x = this.character_north.x;
-      this.E_KeyImg.y = this.character_north.y+75;
-      this.E_KeyImg.alpha = 1.0;
-      if (this.key_E.isDown && activity4Locked == false) {
-      this.activity4.alpha = 1.0;
-      } else if (this.key_E.isDown && activity4Locked == true){
-        this.activityLocked.alpha = 1.0;
-        this.characterMoveable = false;
-        }
-
-
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.top_left_info, this.character_north)) {
-      this.E_KeyImg.x = this.character_north.x;
-      this.E_KeyImg.y = this.character_north.y-75;
-
-      this.E_KeyImg.alpha = 1.0;
-      if (this.key_E.isDown && activity5Locked == false) {
-        this.activity5.alpha = 1.0;
-      } else if (this.key_E.isDown && activity5Locked == true){
-          this.activityLocked.alpha = 1.0;
-          this.characterMoveable = false;
-        }
-
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.bot_left_info, this.character_north)) {
-      this.E_KeyImg.x = this.character_north.x;
-      this.E_KeyImg.y = this.character_north.y+75;
-      this.E_KeyImg.alpha = 1.0;
-      if (this.key_E.isDown && activity6Locked == false) {
-        this.activity6.alpha = 1.0;
-      } else if (this.key_E.isDown && activity6Locked == true){
-        this.activityLocked.alpha = 1.0;
-        this.characterMoveable = false;
-      }
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.middle_info, this.character_north)) {
+    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.middle_info, this.character_north))
+	{
       this.approachImg.x = this.character_north.x;
       this.approachImg.y = this.character_north.y-75;
       this.approachImg.alpha = 1.0;
-      
-    } else {
+	}
+    else {
       this.hideActivities();
       this.E_KeyImg.alpha = 0.0;
 	  this.approachImg.alpha = 0.0;
@@ -447,12 +345,8 @@ class zero_lesson extends Phaser.Scene {
 	this.approachImg.alpha = 1.0;
 
 
-    this.wall_info_1.alpha = 1;
+
     this.wall_info_2.alpha = 1;
-    this.wall_info_3.alpha = 1;
-    this.wall_info_4.alpha = 1;
-    this.wall_info_5.alpha = 1;
-    this.wall_info_6.alpha = 1;
     this.floor.scaleX = 1.0;
     this.floor.scaleY = 1.0;
     this.paperCount = 1;
@@ -487,12 +381,7 @@ class zero_lesson extends Phaser.Scene {
     this.E_KeyImg.alpha = 0.0;
 	this.approachImg.alpha = 0.0;
 	this.approachImg.alpha = 0.0;
-    this.wall_info_1.alpha = 0.0;
     this.wall_info_2.alpha = 0.0;
-    this.wall_info_3.alpha = 0.0;
-    this.wall_info_4.alpha = 0.0;
-    this.wall_info_5.alpha = 0.0;
-    this.wall_info_6.alpha = 0.0;
     this.floor.scaleX = 1.5;
     this.floor.scaleY = 2.0;
 
