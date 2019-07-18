@@ -127,8 +127,15 @@ class three_lesson extends Phaser.Scene {
     this.load.image('notebook', 'assets/notebook.png');
     this.load.image('activityLocked', 'assets/activityLocked.png');
     this.load.image('help_menu', 'assets/help_menu.png');
-	this.load.image('correctPlacements', 'assets/placements0.png');
-	this.load.image('wrong1', 'assets/wrong1.png');
+	this.load.image('correctPlacements0', 'assets/placements0.png');
+	this.load.image('correctPlacements1', 'assets/placements1.png');
+	this.load.image('correctPlacements2', 'assets/placements2.png');
+	this.load.image('incomeStatement' , 'assets/incomeStatement.png');
+	this.load.image('balanceSheet', 'assets/balanceSheet.png');
+	this.load.image('retainedEarnings' , 'assets/retainedEarnings.png');
+	this.load.image('incomeStatementText' ,'assets/incomeStatementText.png');
+	this.load.image('balanceSheetText', 'assets/balanceSheetText.png');
+	this.load.image('retainedEarningsText' , 'assets/retainedEarningsText.png');
   }
 
   createImages() {
@@ -434,17 +441,21 @@ class three_lesson extends Phaser.Scene {
     this.paper_stack.y = 432;
     this.paperCount = 1;
     this.paperMoveable = false;
+	this.placements0.setVisible(false);
+	this.placements1.setVisible(false);
+	this.placements2.setVisible(false);
+	this.pressr.setVisible(false);
+	this.incomeStatementText.setVisible(false);
+	this.retainedEarningsText.setVisible(false);
+	this.balanceSheetText.setVisible(false);
   }
 
   activateQuiz() {
     this.paperMoveable = true;
     this.paperCount = 1;
 
-    this.pressr = this.add.image(650, 40, 'pressr');
-	this.pressr.setScale(.8);
-
-	this.placements = this.add.image(240, 800, 'correctPlacements');
-	this.placements.setScale(.7);
+	this.loadQuizImages();
+	this.updateCorrectImage();
 
     if(this.papers_moved == false) {
       this.paper_stack.x -= 1025;
@@ -490,15 +501,15 @@ class three_lesson extends Phaser.Scene {
     this.floor.scaleX = 1.5;
     this.floor.scaleY = 2.0;
 
-    this.box1_frame = new Phaser.Geom.Rectangle(this.cardboard_box_1.x, this.cardboard_box_1.y, 600,600);
+    this.box1_frame = new Phaser.Geom.Rectangle(this.cardboard_box_1.x, this.cardboard_box_1.y, 240,240);
     this.graphics.fillRectShape(this.box1_frame);
 
 
   	this.box2_frame = new Phaser.Geom.Rectangle(this.cardboard_box_2.x,this.cardboard_box_2.y,240,200);
     this.graphics.fillRectShape(this.box2_frame);
 
-   	//this.box3_frame = new Phaser.Geom.Rectangle(this.cardboard_box_3.x,this.cardboard_box_3.y,240,200);
-    //this.graphics.fillRectShape(this.box3_frame);
+   	this.box3_frame = new Phaser.Geom.Rectangle(this.cardboard_box_3.x,this.cardboard_box_3.y,240,200);
+    this.graphics.fillRectShape(this.box3_frame);
 
     this.paper.on('pointerdown', function(pointer, localX, localY, event) {
       console.log("click");
@@ -535,50 +546,67 @@ class three_lesson extends Phaser.Scene {
 
   checkCorrectPaperOne() {
   	if (this.key_R.isDown) {
-		//functionality to read paper
+		this.incomeStatement.setVisible(true);
   	}
+	else 	
+		this.incomeStatement.setVisible(false);
 	//THE RIGHT BOX
-    if (Phaser.Geom.Rectangle.ContainsPoint(this.box_1_zone, this.paper) && this.paperCount == 1) {
+    if (Phaser.Geom.Rectangle.ContainsPoint(this.box_1_zone, this.paper) /* && this.paperCount == 1*/) {
       this.paper.setVisible(false);
       this.paperTwo.setVisible(true);
       this.paperTwo.setInteractive();
-	
       this.paperCount++;
-	  //this.cardboard_box_3.setVisible(false);
+			this.updateCorrectImage();
 
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_2_zone, this.paper) && this.paperCount == 1) {
+    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_2_zone, this.paper) /*&& this.paperCount == 1*/) {
       this.paper.x = this.paper_stack.x;
       this.paper.y = this.paper_stack.y + 600;
+		this.updateCorrectImage();
 		
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_3_zone, this.paper) && this.paperCount == 1) {
+    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_3_zone, this.paper)/* && this.paperCount == 1*/) {
       this.paper.x = this.paper_stack.x;
       this.paper.y = this.paper_stack.y + 600;
+		this.updateCorrectImage();
     }
+
   }
 
   checkCorrectPaperTwo() {
+	this.incomeStatement.setVisible(false);
   	if (this.key_R.isDown) {
-  		//functionality to read paper
-  	}
-    if (Phaser.Geom.Rectangle.ContainsPoint(this.box_2_zone, this.paperTwo) && this.paperCount == 2) {
+		this.retainedEarnings.setVisible(true);
+  	} else
+		this.retainedEarnings.setVisible(false);
+	
+    if (Phaser.Geom.Rectangle.ContainsPoint(this.box_2_zone, this.paperTwo) /*&& this.paperCount == 2*/) {
       this.paperTwo.setVisible(false);
       this.paperThree.setVisible(true);
       this.paperThree.setInteractive();
       this.paperCount++;
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_1_zone, this.paperTwo) && this.paperCount == 2) {
+		this.updateCorrectImage();
+
+    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_1_zone, this.paperTwo) /*&& this.paperCount == 2*/) {
       this.paperTwo.x = this.paper_stack.x;
       this.paperTwo.y = this.paper_stack.y + 600;
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_3_zone, this.paperTwo) && this.paperCount == 2) {
+			this.updateCorrectImage();
+
+    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_3_zone, this.paperTwo) /*&& this.paperCount == 2*/) {
       this.paperTwo.x = this.paper_stack.x;
       this.paperTwo.y = this.paper_stack.y + 600;
+			this.updateCorrectImage();
+
 		//this.cardboard_box_3.setVisible(true);
     }
+	this.updateCorrectImage();
   }
 
   checkCorrectPaperThree() {
+	this.retainedEarnings.setVisible(false);
   	if (this.key_R.isDown) {
-  		//functionality to read paper
-  	}
+  		this.balanceSheet.setVisible(true);
+  	}	else
+		this.balanceSheet.setVisible(false);
+	
     if (Phaser.Geom.Rectangle.ContainsPoint(this.box_3_zone, this.paperThree) && this.paperCount == 3) {
       this.paperThree.setVisible(false);
       this.paperCount++;
@@ -591,6 +619,61 @@ class three_lesson extends Phaser.Scene {
       this.paperThree.y = this.paper_stack.y + 600;
     }
   }
+	
+	loadQuizImages(){
+    	this.pressr = this.add.image(650, 40, 'pressr');
+		this.pressr.setScale(.8);
+
+		this.placements0 = this.add.image(240, 800, 'correctPlacements0');
+		this.placements0.setScale(.7);
+		this.placements0.setVisible(false);
+
+		this.placements1 = this.add.image(240, 800, 'correctPlacements1');
+		this.placements1.setScale(.7);
+
+		this.placements2 = this.add.image(240, 800, 'correctPlacements2');
+		this.placements2.setScale(.7);
+
+		this.incomeStatement = this.add.image(675, 350, 'incomeStatement');
+		this.incomeStatement.setVisible(false);
+		this.incomeStatement.setDepth(500);
+
+		this.incomeStatementText = this.add.image(1350, 30, 'incomeStatementText');
+		this.incomeStatementText.setScale(.6);
+
+		this.balanceSheet = this.add.image(675, 410, 'balanceSheet');
+		this.balanceSheet.setVisible(false);
+		this.balanceSheet.setDepth(500);
+		this.balanceSheet.setScale(.85);
+
+		this.balanceSheetText = this.add.image(1350, 630, 'balanceSheetText');
+		this.balanceSheetText.setScale(.6);
+		
+		this.retainedEarnings = this.add.image(675, 210, 'retainedEarnings');
+		this.retainedEarnings.setVisible(false);
+		this.retainedEarnings.setDepth(500);
+
+		this.retainedEarningsText = this.add.image(1350, 325, 'retainedEarningsText');
+		this.retainedEarningsText.setScale(.6);
+	}
+
+	updateCorrectImage() {
+		console.log(this.paperCount);
+		if (this.paperCount == 1) {
+			this.placements0.setVisible(true);
+			this.placements1.setVisible(false);
+			this.placements2.setVisible(false);
+		}	else if (this.paperCount == 2) {
+			this.placements0.setVisible(false);
+			this.placements1.setVisible(true);
+			this.placements2.setVisible(false);
+		}	else if (this.paperCount == 3) {
+			this.placements0.setVisible(false);
+			this.placements1.setVisible(false);
+			this.placements2.setVisible(true);
+		}
+
+	}
 
   checkNextPage() {
     if (this.activityOneOpened == true && this.key_2.isDown) {
