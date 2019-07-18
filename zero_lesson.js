@@ -127,12 +127,13 @@ class zero_lesson extends Phaser.Scene {
     this.load.image('wall_info_4', 'assets/wall_art.png');
     this.load.image('wall_info_5', 'assets/wall_art.png');
     this.load.image('wall_info_6', 'assets/wall_art.png');
-    this.load.image('floor', 'assets/floor_3.png');
+    this.load.image('floor', 'assets/floor_0.jpg');
     this.load.image('paper', 'assets/single_paper.png');
     this.load.image('map', 'assets/map.png');
     this.load.image('notebook', 'assets/notebook.png');
     this.load.image('activityLocked', 'assets/activityLocked.png');
     this.load.image('help_menu', 'assets/help_menu.png');
+	this.load.image('approachImg', 'assets/tutorial_1.jpg');
   }
 
   createImages() {
@@ -144,6 +145,7 @@ class zero_lesson extends Phaser.Scene {
     this.character_south = this.add.image(768, 432, 'character_south');
     this.character_west = this.add.image(768, 432, 'character_west');
     this.E_KeyImg = this.add.image(this.character_north.x+40, this.character_north.y+40, 'E_KeyImg');
+	this.approachImg = this.add.image(this.character_north.x+40, this.character_north.y+40, 'approachImg');
     this.activity1 = this.add.image(768, 432, 'activity1');
     this.activity1Page2 = this.add.image(768, 432, 'activity1Page2');
     this.activity2 = this.add.image(768, 432, 'activity2');
@@ -157,7 +159,7 @@ class zero_lesson extends Phaser.Scene {
     this.wall_info_4 = this.add.image(305, 790, 'wall_info_4');
     this.wall_info_5 = this.add.image(768, 790, 'wall_info_5');
     this.wall_info_6 = this.add.image(1232, 790, 'wall_info_6');
-    this.floor = this.add.image(768, 432, 'floor');
+    this.floor = this.add.image(769, 433, 'floor');
     this.map = this.add.image(768, 432, 'map');
     this.notebook = this.add.image(768, 432, 'notebook');
     this.activityLocked = this.add.image(768, 432, 'activityLocked');
@@ -169,6 +171,7 @@ class zero_lesson extends Phaser.Scene {
     this.notebook.alpha = 0.0;
     this.activityLocked.alpha = 0.0;
     this.E_KeyImg.alpha = 0.0;
+	this.approachImg.alpha = 0.0;
     this.help_menu.alpha = 0.0;
     this.hideActivities();
   }
@@ -180,6 +183,7 @@ class zero_lesson extends Phaser.Scene {
     this.character_south.setDepth(50);
     this.character_west.setDepth(50);
     this.E_KeyImg.setDepth(49);
+	this.approachImg.setDepth(48);
     this.activity1.setDepth(100);
     this.activity1Page2.setDepth(100);
     this.activity2.setDepth(99);
@@ -224,6 +228,12 @@ class zero_lesson extends Phaser.Scene {
     this.graphics.fillRectShape(this.top_mid_info);
                                                  //xpos ypos x   y
     this.top_right_info = new Phaser.Geom.Rectangle(1120,150,240,150);
+    this.graphics.fillRectShape(this.top_right_info);
+	
+	
+	//MIDDLE ZONE
+	
+	this.middle_info = new Phaser.Geom.Rectangle(700,350,200,200);
     this.graphics.fillRectShape(this.top_right_info);
 
     //BOTTOM ZONES
@@ -345,11 +355,18 @@ class zero_lesson extends Phaser.Scene {
         this.activityLocked.alpha = 1.0;
         this.characterMoveable = false;
       }
+    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.middle_info, this.character_north)) {
+      this.approachImg.x = this.character_north.x;
+      this.approachImg.y = this.character_north.y-75;
+      this.approachImg.alpha = 1.0;
+      
     } else {
       this.hideActivities();
       this.E_KeyImg.alpha = 0.0;
+	  this.approachImg.alpha = 0.0;
     }
   }
+
 
   movePlayer() {
     if(this.key_W.isDown && characterMoveable == true) {
@@ -427,6 +444,7 @@ class zero_lesson extends Phaser.Scene {
     this.character_south.alpha = 1.0;
     this.character_west.alpha = 1.0;
     this.E_KeyImg.alpha = 1.0;
+	this.approachImg.alpha = 1.0;
 
 
     this.wall_info_1.alpha = 1;
@@ -467,6 +485,8 @@ class zero_lesson extends Phaser.Scene {
     this.character_south.alpha = 0.0;
     this.character_west.alpha = 0.0;
     this.E_KeyImg.alpha = 0.0;
+	this.approachImg.alpha = 0.0;
+	this.approachImg.alpha = 0.0;
     this.wall_info_1.alpha = 0.0;
     this.wall_info_2.alpha = 0.0;
     this.wall_info_3.alpha = 0.0;
