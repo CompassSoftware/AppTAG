@@ -101,6 +101,7 @@ class three_lesson extends Phaser.Scene {
 ======================================HELPER METHODS============================================
 *///////////////////////////////////////////////////////////////////////////////////////////////
   loadAssets() {
+	this.load.image('pressr', 'assets/pressr.png');
     this.load.image('one_lesson_BG', 'assets/one_lesson_BG.png');
     this.load.image('character', 'assets/tempCharacter.png');
     this.load.image('redCharacter', 'assets/redCharacter.png');
@@ -126,6 +127,8 @@ class three_lesson extends Phaser.Scene {
     this.load.image('notebook', 'assets/notebook.png');
     this.load.image('activityLocked', 'assets/activityLocked.png');
     this.load.image('help_menu', 'assets/help_menu.png');
+	this.load.image('correctPlacements', 'assets/placements0.png');
+	this.load.image('wrong1', 'assets/wrong1.png');
   }
 
   createImages() {
@@ -149,9 +152,9 @@ class three_lesson extends Phaser.Scene {
     this.wall_info_6 = this.add.image(1232, 790, 'wall_info_6');
     this.floor = this.add.image(768, 432, 'floor');
     this.paper_stack = this.add.image(1215, 432, 'paper_stack');
-    this.cardboard_box_1 = this.add.image(1232, 320, 'cardboard_box');
+    this.cardboard_box_1 = this.add.image(1310, 320, 'cardboard_box');
     this.cardboard_box_2 = this.add.image(1310, 432, 'cardboard_box');
-    this.cardboard_box_3 = this.add.image(1232, 530, 'cardboard_box');
+    this.cardboard_box_3 = this.add.image(1310, 530, 'cardboard_box');
     this.map = this.add.image(768, 432, 'map');
     this.notebook = this.add.image(768, 432, 'notebook');
     this.activityLocked = this.add.image(768, 432, 'activityLocked');
@@ -204,9 +207,9 @@ class three_lesson extends Phaser.Scene {
     this.wall_info_4.rotation = 3.14;
     this.wall_info_5.rotation = 3.14;
     this.wall_info_6.rotation = 3.14;
-    this.cardboard_box_1.rotation = -1.17;
-    this.cardboard_box_2.rotation = 1.37;
-    this.cardboard_box_3.rotation = 2.67;
+    this.cardboard_box_1.rotation = 0;
+    this.cardboard_box_2.rotation = 0;
+    this.cardboard_box_3.rotation = 0;
   }
 
 
@@ -226,7 +229,7 @@ class three_lesson extends Phaser.Scene {
 
     //BOTTOM ZONES
 
-    this.bot_left_info = new Phaser.Geom.Rectangle(175,565,240,150);
+    this.bot_left_info = new Phaser.Geom.Rectangle(175,565,240,100);
     this.graphics.fillRectShape(this.bot_left_info);
 
     this.bot_mid_info = new Phaser.Geom.Rectangle(650,565,240,150);
@@ -238,13 +241,13 @@ class three_lesson extends Phaser.Scene {
     this.quiz1 = new Phaser.Geom.Rectangle(1120,308,240,250);
     this.graphics.fillRectShape(this.quiz1);
 
-    this.box_1_zone = new Phaser.Geom.Rectangle(925,50,200,200);
+    this.box_1_zone = new Phaser.Geom.Rectangle(1200,75,200,200);
     this.graphics.fillRectShape(this.box_1_zone);
 
-    this.box_2_zone = new Phaser.Geom.Rectangle(1250,325,200,200);
+    this.box_2_zone = new Phaser.Geom.Rectangle(1200,325,200,200);
     this.graphics.fillRectShape(this.box_2_zone);
 
-    this.box_3_zone = new Phaser.Geom.Rectangle(925,550,200,200);
+    this.box_3_zone = new Phaser.Geom.Rectangle(1200,650,200,200);
     this.graphics.fillRectShape(this.box_3_zone);
   }
 
@@ -285,6 +288,9 @@ class three_lesson extends Phaser.Scene {
         this.characterMoveable = false;
         this.activityOneOpened = true;
 		activity2Locked = false;
+	
+		//COME BACK AND CHANGE THIS LATER
+		activity6Complete = true;
       }
 
     } else if (Phaser.Geom.Rectangle.ContainsPoint(this.bot_mid_info, this.character)) {
@@ -399,7 +405,7 @@ class three_lesson extends Phaser.Scene {
   }
 
   quitQuiz() {
-    this.papers_moved = false;
+    //this.papers_moved = false;
     this.quizActive = false;
     this.background.alpha = 1.0;
     this.character.alpha = 1.0;
@@ -409,9 +415,10 @@ class three_lesson extends Phaser.Scene {
     this.cardboard_box_3.setScale(0.39);
     this.paper_stack.setScale(0.35);
     this.paper_stack.x = 1215;
-    this.cardboard_box_1.x = 1232;
+	this.paper_stack.setVisible(false);
+    this.cardboard_box_1.x = 1310;
     this.cardboard_box_2.x = 1310;
-    this.cardboard_box_3.x = 1232;
+    this.cardboard_box_3.x = 1310;
     this.cardboard_box_1.y = 320;
     this.cardboard_box_2.y = 432;
     this.cardboard_box_3.y = 530;
@@ -433,6 +440,12 @@ class three_lesson extends Phaser.Scene {
     this.paperMoveable = true;
     this.paperCount = 1;
 
+    this.pressr = this.add.image(650, 40, 'pressr');
+	this.pressr.setScale(.8);
+
+	this.placements = this.add.image(240, 800, 'correctPlacements');
+	this.placements.setScale(.7);
+
     if(this.papers_moved == false) {
       this.paper_stack.x -= 1025;
       this.paper_stack.y -= 275;
@@ -453,22 +466,21 @@ class three_lesson extends Phaser.Scene {
     this.paperTwo.setDepth(100);
     this.paperThree.setDepth(100);
 
-    this.box1_frame = new Phaser.Geom.Rectangle(this.cardboard_box_1.x,this.cardboard_box_1.y,240,250);
-    this.graphics.fillRectShape(this.box1_frame);
+
 
     this.background.alpha = 0.0;
     this.character.alpha = 0.0;
     this.E_KeyImg.alpha = 0.0;
-    this.cardboard_box_1.setScale(1.3);
-    this.cardboard_box_2.setScale(1.3);
-    this.cardboard_box_3.setScale(1.3);
+    this.cardboard_box_1.setScale(1.1);
+    this.cardboard_box_2.setScale(1.1);
+    this.cardboard_box_3.setScale(1.1);
     this.paper_stack.setScale(1.0);
-    this.cardboard_box_1.x = 1000;
+    this.cardboard_box_1.x = 1350;
     this.cardboard_box_2.x = 1350;
-    this.cardboard_box_3.x = 1050;
-    this.cardboard_box_1.y = 200;
-    this.cardboard_box_2.y = 432;
-    this.cardboard_box_3.y = 650;
+    this.cardboard_box_3.x = 1350;
+    this.cardboard_box_1.y = 150;
+    this.cardboard_box_2.y = 450;
+    this.cardboard_box_3.y = 750;
     this.wall_info_1.alpha = 0.0;
     this.wall_info_2.alpha = 0.0;
     this.wall_info_3.alpha = 0.0;
@@ -477,6 +489,16 @@ class three_lesson extends Phaser.Scene {
     this.wall_info_6.alpha = 0.0;
     this.floor.scaleX = 1.5;
     this.floor.scaleY = 2.0;
+
+    this.box1_frame = new Phaser.Geom.Rectangle(this.cardboard_box_1.x, this.cardboard_box_1.y, 600,600);
+    this.graphics.fillRectShape(this.box1_frame);
+
+
+  	this.box2_frame = new Phaser.Geom.Rectangle(this.cardboard_box_2.x,this.cardboard_box_2.y,240,200);
+    this.graphics.fillRectShape(this.box2_frame);
+
+   	//this.box3_frame = new Phaser.Geom.Rectangle(this.cardboard_box_3.x,this.cardboard_box_3.y,240,200);
+    //this.graphics.fillRectShape(this.box3_frame);
 
     this.paper.on('pointerdown', function(pointer, localX, localY, event) {
       console.log("click");
@@ -515,14 +537,19 @@ class three_lesson extends Phaser.Scene {
   	if (this.key_R.isDown) {
 		//functionality to read paper
   	}
+	//THE RIGHT BOX
     if (Phaser.Geom.Rectangle.ContainsPoint(this.box_1_zone, this.paper) && this.paperCount == 1) {
       this.paper.setVisible(false);
       this.paperTwo.setVisible(true);
       this.paperTwo.setInteractive();
+	
       this.paperCount++;
+	  //this.cardboard_box_3.setVisible(false);
+
     } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_2_zone, this.paper) && this.paperCount == 1) {
       this.paper.x = this.paper_stack.x;
       this.paper.y = this.paper_stack.y + 600;
+		
     } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_3_zone, this.paper) && this.paperCount == 1) {
       this.paper.x = this.paper_stack.x;
       this.paper.y = this.paper_stack.y + 600;
@@ -544,6 +571,7 @@ class three_lesson extends Phaser.Scene {
     } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_3_zone, this.paperTwo) && this.paperCount == 2) {
       this.paperTwo.x = this.paper_stack.x;
       this.paperTwo.y = this.paper_stack.y + 600;
+		//this.cardboard_box_3.setVisible(true);
     }
   }
 
