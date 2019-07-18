@@ -378,12 +378,18 @@ class three_lesson extends Phaser.Scene {
     }
   }
 
-  movePlayer() {
+  // This method allows you to set the alpha of the character.
+  // Call this with the arguments as (N,E,S,W)
+  setCharacterAlpha() {
+    this.character_north.alpha = arguments[0];
+    this.character_east.alpha = arguments[1];
+    this.character_south.alpha = arguments[2];
+    this.character_west.alpha = arguments[3];
+  }
 
-    this.character_north.alpha = 0;
-    this.character_east.alpha = 0;
-    this.character_west.alpha = 0;
-    this.character_south.alpha =1;
+  movePlayer() {
+    //setCharacterAlpha is in helper.js and arguments go N,E,S,W
+    this.setCharacterAlpha(0,0,1,0);
 
     if(this.key_W.isDown && characterMoveable == true) {
 	if(this.character_north.y > 185){
@@ -392,10 +398,8 @@ class three_lesson extends Phaser.Scene {
           this.character_south.y -= 5;
           this.character_west.y -= 5;
 
-          this.character_north.alpha = 1;
-          this.character_east.alpha = 0;
-          this.character_west.alpha = 0;
-          this.character_south.alpha =0;
+          this.setCharacterAlpha(1,0,0,0);
+
 
 
 		}
@@ -406,10 +410,7 @@ class three_lesson extends Phaser.Scene {
           this.character_south.x -= 5;
           this.character_north.x -= 5;
 
-          this.character_west.alpha = 1;
-          this.character_east.alpha = 0;
-          this.character_north.alpha = 0;
-          this.character_south.alpha =0;
+          this.setCharacterAlpha(0,0,0,1);
 	}
 
     } if (this.key_S.isDown && characterMoveable == true) {
@@ -419,10 +420,7 @@ class three_lesson extends Phaser.Scene {
           this.character_north.y += 5;
           this.character_west.y += 5;
 
-          this.character_south.alpha = 1;
-          this.character_east.alpha = 0;
-          this.character_west.alpha = 0;
-          this.character_north.alpha =0;
+          this.setCharacterAlpha(0,0,1,0);
 		}
 
     } if (this.key_D.isDown && characterMoveable == true) {
@@ -432,10 +430,7 @@ class three_lesson extends Phaser.Scene {
           this.character_south.x += 5;
           this.character_west.x += 5;
 
-          this.character_east.alpha = 1;
-          this.character_north.alpha = 0;
-          this.character_west.alpha = 0;
-          this.character_south.alpha =0;
+          this.setCharacterAlpha(0,1,0,0);
 		}
     }
   }

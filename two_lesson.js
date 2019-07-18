@@ -31,7 +31,7 @@ class two_lesson extends Phaser.Scene {
     //TEMPORARY FOR TESTING
     //vvvvvvvvvvvvvvvvvvv//
     if (this.key_H.isDown) {
-    	helpMenu();
+      helpMenu();
     }
 
     if (this.activityOneOpened) {
@@ -100,6 +100,10 @@ class two_lesson extends Phaser.Scene {
 *///////////////////////////////////////////////////////////////////////////////////////////////
   loadAssets() {
     this.load.image('one_lesson_BG', 'assets/one_lesson_BG.png');
+    this.load.image('character_north', 'assets/character_north.png');
+    this.load.image('character_east', 'assets/character_east.png');
+    this.load.image('character_south', 'assets/character_south.png');
+    this.load.image('character_west', 'assets/character_west.png');
     this.load.image('character', 'assets/tempCharacter.png');
     this.load.image('redCharacter', 'assets/redCharacter.png');
     this.load.image('activity1', 'assets/Activity1.png');
@@ -127,6 +131,10 @@ class two_lesson extends Phaser.Scene {
     this.papers_moved = false;
     this.background = this.add.image(768, 432, 'one_lesson_BG');
     this.character = this.add.image(768, 432, 'character');
+    this.character_north = this.add.image(768, 432, 'character_north');
+    this.character_east = this.add.image(768, 432, 'character_east');
+    this.character_south = this.add.image(768, 432, 'character_south');
+    this.character_west = this.add.image(768, 432, 'character_west');
     this.E_KeyImg = this.add.image(this.character.x+40, this.character.y+40, 'E_KeyImg');
     this.activity1 = this.add.image(768, 432, 'activity1');
     this.activity1Page2 = this.add.image(768, 432, 'activity1Page2');
@@ -161,6 +169,10 @@ class two_lesson extends Phaser.Scene {
 
   setDepths() {
     this.floor.setDepth(0);
+    this.character_north.setDepth(50);
+    this.character_east.setDepth(50);
+    this.character_south.setDepth(50);
+    this.character_west.setDepth(50);
     this.floor.displayHeight = 569;
     this.floor.displayWidth = 1188;
     this.character.setDepth(50);
@@ -189,6 +201,10 @@ class two_lesson extends Phaser.Scene {
     this.cardboard_box_2.setScale(0.39);
     this.cardboard_box_3.setScale(0.39);
     this.paper_stack.setScale(0.35);
+    this.character_north.setScale(3);
+    this.character_south.setScale(3);
+    this.character_west.setScale(3);
+    this.character_east.setScale(3);
   }
 
   setRotations() {
@@ -261,8 +277,8 @@ class two_lesson extends Phaser.Scene {
 
   checkInteractValidity() {
     if (Phaser.Geom.Rectangle.ContainsPoint(this.top_right_info, this.character)) {
-      this.E_KeyImg.x = this.character.x;
-      this.E_KeyImg.y = this.character.y-75;
+      this.E_KeyImg.x = this.character_north.x;
+      this.E_KeyImg.y = this.character_north.y-75;
       this.E_KeyImg.alpha = 1.0;
       if (this.key_E.isDown) {
         this.activity1.alpha = 1.0;
@@ -271,8 +287,8 @@ class two_lesson extends Phaser.Scene {
       }
 
     } else if (Phaser.Geom.Rectangle.ContainsPoint(this.bot_mid_info, this.character)) {
-      this.E_KeyImg.x = this.character.x;
-      this.E_KeyImg.y = this.character.y-75;
+      this.E_KeyImg.x = this.character_north.x;
+      this.E_KeyImg.y = this.character_north.y-75;
       this.E_KeyImg.alpha = 1.0;
         if (this.key_E.isDown && activity2Locked == false) {
         this.activity2.alpha = 1.0;
@@ -282,8 +298,8 @@ class two_lesson extends Phaser.Scene {
           }
 
     } else if (Phaser.Geom.Rectangle.ContainsPoint(this.top_mid_info, this.character)) {
-      this.E_KeyImg.x = this.character.x;
-      this.E_KeyImg.y = this.character.y-75;
+      this.E_KeyImg.x = this.character_north.x;
+      this.E_KeyImg.y = this.character_north.y-75;
       this.E_KeyImg.alpha = 1.0;
       if (this.key_E.isDown && activity3Locked == false) {
         this.activity3.alpha = 1.0;
@@ -293,8 +309,8 @@ class two_lesson extends Phaser.Scene {
         }
 
     } else if (Phaser.Geom.Rectangle.ContainsPoint(this.bot_right_info, this.character)) {
-      this.E_KeyImg.x = this.character.x;
-      this.E_KeyImg.y = this.character.y+75;
+      this.E_KeyImg.x = this.character_north.x;
+      this.E_KeyImg.y = this.character_north.y+75;
       this.E_KeyImg.alpha = 1.0;
       if (this.key_E.isDown && activity4Locked == false) {
       this.activity4.alpha = 1.0;
@@ -304,8 +320,8 @@ class two_lesson extends Phaser.Scene {
         }
 
     } else if (Phaser.Geom.Rectangle.ContainsPoint(this.top_left_info, this.character)) {
-      this.E_KeyImg.x = this.character.x;
-      this.E_KeyImg.y = this.character.y+75;
+      this.E_KeyImg.x = this.character_north.x;
+      this.E_KeyImg.y = this.character_north.y+75;
       this.E_KeyImg.alpha = 1.0;
       if (this.key_E.isDown && activity5Locked == false) {
         this.activity5.alpha = 1.0;
@@ -315,8 +331,8 @@ class two_lesson extends Phaser.Scene {
         }
 
     } else if (Phaser.Geom.Rectangle.ContainsPoint(this.bot_left_info, this.character)) {
-      this.E_KeyImg.x = this.character.x;
-      this.E_KeyImg.y = this.character.y+75;
+      this.E_KeyImg.x = this.character_north.x;
+      this.E_KeyImg.y = this.character_north.y+75;
       this.E_KeyImg.alpha = 1.0;
       if (this.key_E.isDown && activity6Locked == false) {
         this.activity6.alpha = 1.0;
@@ -326,8 +342,8 @@ class two_lesson extends Phaser.Scene {
       }
 
     } else if (Phaser.Geom.Rectangle.ContainsPoint(this.quiz1, this.character)){
-      this.E_KeyImg.x = this.character.x+75;
-      this.E_KeyImg.y = this.character.y;
+      this.E_KeyImg.x = this.character_north.x+75;
+      this.E_KeyImg.y = this.character_north.y;
       this.E_KeyImg.alpha = 1.0;
       if (this.key_E.isDown && activity6Complete == true) {
         this.quizActive = true;
@@ -340,16 +356,61 @@ class two_lesson extends Phaser.Scene {
     }
   }
 
+  // This method allows you to set the alpha of the character.
+  // Call this with the arguments as (N,E,S,W)
+  setCharacterAlpha() {
+    this.character_north.alpha = arguments[0];
+    this.character_east.alpha = arguments[1];
+    this.character_south.alpha = arguments[2];
+    this.character_west.alpha = arguments[3];
+  }
+  
   movePlayer() {
+    //setCharacterAlpha is in helper.js and arguments go N,E,S,W
+    this.setCharacterAlpha(0,0,1,0);
+
     if(this.key_W.isDown && characterMoveable == true) {
-      this.character.y -= 5;
+  if(this.character_north.y > 185){
+          this.character_north.y -= 5;
+          this.character_east.y -= 5;
+          this.character_south.y -= 5;
+          this.character_west.y -= 5;
+
+          this.setCharacterAlpha(1,0,0,0);
+
+
+
+    }
     } if (this.key_A.isDown && characterMoveable == true) {
-      this.character.x -= 5;
+        if(this.character_west.x > 210){
+          this.character_west.x -= 5;
+          this.character_east.x -= 5;
+          this.character_south.x -= 5;
+          this.character_north.x -= 5;
+
+          this.setCharacterAlpha(0,0,0,1);
+  }
+
     } if (this.key_S.isDown && characterMoveable == true) {
-      this.character.y += 5;
+  if(this.character_south.y < 680){
+          this.character_south.y += 5;
+          this.character_east.y += 5;
+          this.character_north.y += 5;
+          this.character_west.y += 5;
+
+          this.setCharacterAlpha(0,0,1,0);
+    }
+
     } if (this.key_D.isDown && characterMoveable == true) {
-      this.character.x += 5;
-    }    
+        if(this.character_east.x < 1325){
+          this.character_east.x += 5;
+          this.character_north.x += 5;
+          this.character_south.x += 5;
+          this.character_west.x += 5;
+
+          this.setCharacterAlpha(0,1,0,0);
+    }
+    }
   }
 
   movePaper(moveThisPaper) {
@@ -477,9 +538,9 @@ class two_lesson extends Phaser.Scene {
   }
 
   checkCorrectPaperOne() {
-  	if (this.key_R.isDown) {
-		//functionality to read paper
-  	}
+    if (this.key_R.isDown) {
+    //functionality to read paper
+    }
     if (Phaser.Geom.Rectangle.ContainsPoint(this.box_1_zone, this.paper) && this.paperCount == 1) {
       this.paper.setVisible(false);
       this.paperTwo.setVisible(true);
@@ -495,9 +556,9 @@ class two_lesson extends Phaser.Scene {
   }
 
   checkCorrectPaperTwo() {
-  	if (this.key_R.isDown) {
-  		//functionality to read paper
-  	}
+    if (this.key_R.isDown) {
+      //functionality to read paper
+    }
     if (Phaser.Geom.Rectangle.ContainsPoint(this.box_2_zone, this.paperTwo) && this.paperCount == 2) {
       this.paperTwo.setVisible(false);
       this.paperThree.setVisible(true);
@@ -513,9 +574,9 @@ class two_lesson extends Phaser.Scene {
   }
 
   checkCorrectPaperThree() {
-  	if (this.key_R.isDown) {
-  		//functionality to read paper
-  	}
+    if (this.key_R.isDown) {
+      //functionality to read paper
+    }
     if (Phaser.Geom.Rectangle.ContainsPoint(this.box_3_zone, this.paperThree) && this.paperCount == 3) {
       this.paperThree.setVisible(false);
       this.paperCount++;
