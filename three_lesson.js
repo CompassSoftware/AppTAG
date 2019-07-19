@@ -64,36 +64,39 @@ class three_lesson extends Phaser.Scene {
     }
 
 
-    if (this.key_Q.isDown && this.quizActive == false) {
+    if (this.key_Q.isDown && this.activatedQuiz == false) {
       this.quitInteraction();
     }
 
-    if (this.quizActive == true && this.activatedQuiz == false) {
+    if (this.quizActive == true && this.activatedQuiz == false && this.key_E.isDown) {
       this.activateQuiz();
       this.activatedQuiz = true;
     }
 
-    if (this.quizActive == true && this.key_Q.isDown && activatedQuiz == true) {
+    if (this.quizActive == true && this.key_Q.isDown && this.activatedQuiz == true) {
       this.quitQuiz();
       this.activatedQuiz = false;
     }
 
-    if (this.quizActive == false) {
+    if (this.activatedQuiz == false) {
         this.movePlayer();
         this.checkInteractValidity();
-    } else {
-
+    } else if (this.activatedQuiz = true) {
       if (this.paperCount == 1) {
         this.movePaper(this.paper);
         this.checkCorrectPaperOne();
       } else if (this.paperCount == 2) {
           this.movePaper(this.paperTwo);
           this.checkCorrectPaperTwo();
+
       } else if (this.paperCount == 3) {
           this.movePaper(this.paperThree);
           this.checkCorrectPaperThree();
         }
+
       }
+	if (this.activatedQuiz == false)
+		this.characterMoveable = true;
     }
 
 
@@ -412,8 +415,10 @@ class three_lesson extends Phaser.Scene {
   }
 
   quitQuiz() {
-    //this.papers_moved = false;
+	//console.log("e");
+    this.papers_moved = false;
     this.quizActive = false;
+	this.activatedQuiz = false;
     this.background.alpha = 1.0;
     this.character.alpha = 1.0;
     this.E_KeyImg.alpha = 1.0;
@@ -448,12 +453,22 @@ class three_lesson extends Phaser.Scene {
 	this.incomeStatementText.setVisible(false);
 	this.retainedEarningsText.setVisible(false);
 	this.balanceSheetText.setVisible(false);
+	this.characterMoveable = true;
+	
+	this.paper.alpha = 0;
+	this.paperTwo.alpha = 0;
+	this.paperThree.alpha = 0;
+	this.paper.setVisible(false);
+	this.paperTwo.setVisible(false);
+    this.paperThree.setVisible(false);
+
   }
 
   activateQuiz() {
+	this.paper_stack.setVisible(true);
+
     this.paperMoveable = true;
     this.paperCount = 1;
-
 	this.loadQuizImages();
 	this.updateCorrectImage();
 
@@ -462,7 +477,7 @@ class three_lesson extends Phaser.Scene {
       this.paper_stack.y -= 275;
       this.papers_moved = true;
     }
-
+	
     this.paper = this.add.image(this.paper_stack.x, this.paper_stack.y, 'paper');
     this.paperTwo = this.add.image(this.paper_stack.x, this.paper_stack.y, 'paper');
     this.paperThree = this.add.image(this.paper_stack.x, this.paper_stack.y, 'paper');
@@ -513,7 +528,7 @@ class three_lesson extends Phaser.Scene {
 
     this.paper.on('pointerdown', function(pointer, localX, localY, event) {
       console.log("click");
-      this.alpha = 1;
+      this.alpha = 0;
 
     });
   }
@@ -527,6 +542,8 @@ class three_lesson extends Phaser.Scene {
     this.characterMoveable = true;
     this.activityOneOpened = false;
     this.help_menu.alpha = 0.0;
+	this.activatedQuiz = false;
+	this.quitQuiz();
   }
 
 
@@ -545,13 +562,14 @@ class three_lesson extends Phaser.Scene {
   }
 
   checkCorrectPaperOne() {
+	if(this.activatedQuiz == true) {
   	if (this.key_R.isDown) {
 		this.incomeStatement.setVisible(true);
   	}
 	else 	
 		this.incomeStatement.setVisible(false);
 	//THE RIGHT BOX
-    if (Phaser.Geom.Rectangle.ContainsPoint(this.box_1_zone, this.paper) /* && this.paperCount == 1*/) {
+    if (Phaser.Geom.Rectangle.ContainsPoint(this.box_1_zone, this.paper)) {
       this.paper.setVisible(false);
       this.paperTwo.setVisible(true);
       this.paperTwo.setInteractive();
@@ -568,7 +586,7 @@ class three_lesson extends Phaser.Scene {
       this.paper.y = this.paper_stack.y + 600;
 		this.updateCorrectImage();
     }
-
+	}
   }
 
   checkCorrectPaperTwo() {
@@ -597,7 +615,7 @@ class three_lesson extends Phaser.Scene {
 
 		//this.cardboard_box_3.setVisible(true);
     }
-	this.updateCorrectImage();
+	//this.updateCorrectImage();
   }
 
   checkCorrectPaperThree() {
@@ -614,9 +632,13 @@ class three_lesson extends Phaser.Scene {
     } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_1_zone, this.paperThree) && this.paperCount == 3) {
       this.paperThree.x = this.paper_stack.x;
       this.paperThree.y = this.paper_stack.y + 600;
+      this.quitQuiz();
+
     } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_2_zone, this.paperThree) && this.paperCount == 3) {
       this.paperThree.x = this.paper_stack.x;
       this.paperThree.y = this.paper_stack.y + 600;
+      this.quitQuiz();
+
     }
   }
 	
@@ -658,7 +680,7 @@ class three_lesson extends Phaser.Scene {
 	}
 
 	updateCorrectImage() {
-		console.log(this.paperCount);
+		//console.log(this.paperCount);
 		if (this.paperCount == 1) {
 			this.placements0.setVisible(true);
 			this.placements1.setVisible(false);
