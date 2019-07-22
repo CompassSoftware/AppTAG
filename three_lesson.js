@@ -258,7 +258,7 @@ class three_lesson extends Phaser.Scene {
 
     //BOTTOM ZONES
 
-    this.bot_left_info = new Phaser.Geom.Rectangle(175,565,240,100);
+    this.bot_left_info = new Phaser.Geom.Rectangle(175,565,240,150);
     this.graphics.fillRectShape(this.bot_left_info);
 
     this.bot_mid_info = new Phaser.Geom.Rectangle(650,565,240,150);
@@ -317,7 +317,7 @@ class three_lesson extends Phaser.Scene {
         this.characterMoveable = false;
         this.activityOneOpened = true;
 		activity2Locked = false;
-	
+
 		//COME BACK AND CHANGE THIS LATER
 		activity6Complete = true;
       }
@@ -333,7 +333,7 @@ class three_lesson extends Phaser.Scene {
         } else if (this.key_E.isDown && activity2Locked == true) {
           this.activityLocked.alpha = 1.0;
           this.characterMoveable = false;
-		  
+
           }
 
     } else if (Phaser.Geom.Rectangle.ContainsPoint(this.top_mid_info, this.character_north)) {
@@ -358,7 +358,7 @@ class three_lesson extends Phaser.Scene {
       } else if (this.key_E.isDown && activity4Locked == true){
         this.activityLocked.alpha = 1.0;
         this.characterMoveable = false;
-	    
+
         }
 
 
@@ -514,7 +514,7 @@ class three_lesson extends Phaser.Scene {
 	this.retainedEarningsText.setVisible(false);
 	this.balanceSheetText.setVisible(false);
 	this.characterMoveable = true;
-	
+
 	this.paper.alpha = 0;
 	this.paperTwo.alpha = 0;
 	this.paperThree.alpha = 0;
@@ -537,7 +537,7 @@ class three_lesson extends Phaser.Scene {
       this.paper_stack.y -= 275;
       this.papers_moved = true;
     }
-	
+
     this.paper = this.add.image(this.paper_stack.x, this.paper_stack.y, 'paper');
     this.paperTwo = this.add.image(this.paper_stack.x, this.paper_stack.y, 'paper');
     this.paperThree = this.add.image(this.paper_stack.x, this.paper_stack.y, 'paper');
@@ -633,7 +633,7 @@ class three_lesson extends Phaser.Scene {
   	if (this.key_R.isDown) {
 		this.incomeStatement.setVisible(true);
   	}
-	else 	
+	else
 		this.incomeStatement.setVisible(false);
 	//THE RIGHT BOX
     if (Phaser.Geom.Rectangle.ContainsPoint(this.box_1_zone, this.paper)) {
@@ -647,7 +647,7 @@ class three_lesson extends Phaser.Scene {
       this.paper.x = this.paper_stack.x;
       this.paper.y = this.paper_stack.y + 600;
 		this.updateCorrectImage();
-		
+
     } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_3_zone, this.paper)/* && this.paperCount == 1*/) {
       this.paper.x = this.paper_stack.x;
       this.paper.y = this.paper_stack.y + 600;
@@ -662,7 +662,7 @@ class three_lesson extends Phaser.Scene {
 		this.retainedEarnings.setVisible(true);
   	} else
 		this.retainedEarnings.setVisible(false);
-	
+
     if (Phaser.Geom.Rectangle.ContainsPoint(this.box_2_zone, this.paperTwo) /*&& this.paperCount == 2*/) {
       this.paperTwo.setVisible(false);
       this.paperThree.setVisible(true);
@@ -691,7 +691,7 @@ class three_lesson extends Phaser.Scene {
   		this.balanceSheet.setVisible(true);
   	}	else
 		this.balanceSheet.setVisible(false);
-	
+
     if (Phaser.Geom.Rectangle.ContainsPoint(this.box_3_zone, this.paperThree) && this.paperCount == 3) {
       this.paperThree.setVisible(false);
       this.paperCount++;
@@ -708,7 +708,7 @@ class three_lesson extends Phaser.Scene {
 
     }
   }
-	
+
 	loadQuizImages(){
     	this.pressr = this.add.image(650, 40, 'pressr');
 		this.pressr.setScale(.8);
@@ -737,7 +737,7 @@ class three_lesson extends Phaser.Scene {
 
 		this.balanceSheetText = this.add.image(1350, 630, 'balanceSheetText');
 		this.balanceSheetText.setScale(.6);
-		
+
 		this.retainedEarnings = this.add.image(675, 210, 'retainedEarnings');
 		this.retainedEarnings.setVisible(false);
 		this.retainedEarnings.setDepth(500);
