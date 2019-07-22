@@ -364,7 +364,7 @@ class three_lesson extends Phaser.Scene {
 
     } else if (Phaser.Geom.Rectangle.ContainsPoint(this.top_left_info, this.character_north)) {
       this.E_KeyImg.x = this.character_north.x;
-      this.E_KeyImg.y = this.character_north.y-5;
+      this.E_KeyImg.y = this.character_north.y-75;
 
       this.E_KeyImg.alpha = 1.0;
       if (this.key_E.isDown && activity5Locked == false) {
