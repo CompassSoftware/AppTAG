@@ -133,6 +133,8 @@ Info Panels like these contain important information and lessons that help you p
     this.load.image('activityLocked', 'assets/activityLocked.png');
     this.load.image('help_menu', 'assets/help_menu.png');
 	this.load.image('approachImg', 'assets/tutorial_1.jpg');
+	this.load.image('tut1', 'assets/tut1.PNG');
+	this.load.image('hole', 'assets/hole.png');
   }
 
   createImages() {
@@ -158,6 +160,8 @@ Info Panels like these contain important information and lessons that help you p
     this.notebook = this.add.image(768, 432, 'notebook');
     this.activityLocked = this.add.image(768, 432, 'activityLocked');
     this.help_menu = this.add.image(768, 432, 'help_menu');
+	this.tut1 = this.add.image(768, 432, 'tut1');
+	this.hole = this.add.image(768, 432, 'hole');
   }
 
   setAlphas() {
@@ -167,6 +171,8 @@ Info Panels like these contain important information and lessons that help you p
     this.E_KeyImg.alpha = 0.0;
 	this.approachImg.alpha = 0.0;
     this.help_menu.alpha = 0.0;
+	this.tut1.alpha = 0.0;
+	this.hole.alpha = 0.0;
     this.hideActivities();
   }
 
@@ -189,6 +195,8 @@ Info Panels like these contain important information and lessons that help you p
 
     this.notebook.setDepth(100);
     this.help_menu.setDepth(100);
+	this.tut1.setDepth(99);
+	this.hole.setDepth(1);
   }
 
   setScales() {
@@ -250,7 +258,9 @@ Info Panels like these contain important information and lessons that help you p
       this.E_KeyImg.y = this.character_north.y-75;
       this.E_KeyImg.alpha = 1.0;
       if (this.key_E.isDown) {
-        this.helpMenu();
+        this.tut1.alpha = 1.0;
+		this.activityOneOpened = true;
+		this.hole.alpha = 1.0;
       }
     } else if (Phaser.Geom.Rectangle.ContainsPoint(this.middle_info, this.character_north))
 	{
@@ -262,6 +272,7 @@ Info Panels like these contain important information and lessons that help you p
       this.hideActivities();
       this.E_KeyImg.alpha = 0.0;
 	  this.approachImg.alpha = 0.0;
+	  this.tut1.alpha = 0.0;
     }
   }
 
@@ -404,6 +415,7 @@ Info Panels like these contain important information and lessons that help you p
     this.characterMoveable = true;
     this.activityOneOpened = false;
     this.help_menu.alpha = 0.0;
+	this.tut1.alpha = 0.0;
   }
 
 
