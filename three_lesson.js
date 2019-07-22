@@ -1,4 +1,3 @@
-
 class three_lesson extends Phaser.Scene {
 
   constructor() {
@@ -8,6 +7,11 @@ class three_lesson extends Phaser.Scene {
     this.unlocked = false;
     this.paperMoveable = false;
     this.activityOneOpened = false;
+    this.activityTwoOpened = false;
+    this.activityThreeOpened = false;
+    this.activityFourOpened = false;
+    this.activityFiveOpened = false;
+    this.activitySixOpened = false;
     this.helpOpen = false;
   }
   //load assets in preload()
@@ -117,12 +121,16 @@ class three_lesson extends Phaser.Scene {
     this.load.image('character_south', 'assets/character_south.png');
     this.load.image('character_west', 'assets/character_west.png');
     this.load.image('redCharacter', 'assets/redCharacter.png');
-    this.load.image('activity1', 'assets/Activity1Test.png');
-    this.load.image('activity1Page2', 'assets/Activity2Test.png');
-    this.load.image('activity2', 'assets/Activity2Test.png');
-    this.load.image('activity3', 'assets/Activity3Test.png');
-    this.load.image('activity4', 'assets/Activity4Test.png');
-    this.load.image('activity5', 'assets/Activity5Test.png');
+    this.load.image('activity1A', 'assets/Panels/RoomOne/PanelOneA.png');
+    this.load.image('activity1B', 'assets/Panels/RoomOne/PanelOneB.png');
+    this.load.image('activity2', 'assets/Panels/RoomOne/PanelTwo.png');
+    this.load.image('activity3A', 'assets/Panels/RoomOne/PanelThreeA.png');
+    this.load.image('activity3B', 'assets/Panels/RoomOne/PanelThreeB.png');
+    this.load.image('activity3C', 'assets/Panels/RoomOne/PanelThreeC.png');
+    this.load.image('activity4', 'assets/Panels/RoomOne/PanelFour.png');
+    this.load.image('activity5A', 'assets/Panels/RoomOne/PanelFiveA.png');
+    this.load.image('activity5B', 'assets/Panels/RoomOne/PanelFiveB.png');
+    this.load.image('activity5C', 'assets/Panels/RoomOne/PanelFiveC.png');
     this.load.image('activity6', 'assets/Activity6Test.png');
     this.load.image('E_KeyImg', 'assets/E_Key.png');
     this.load.image('wall_info_1', 'assets/wall_art.png');
@@ -159,12 +167,16 @@ class three_lesson extends Phaser.Scene {
     this.character_south = this.add.image(768, 432, 'character_south');
     this.character_west = this.add.image(768, 432, 'character_west');
     this.E_KeyImg = this.add.image(this.character_north.x+40, this.character_north.y+40, 'E_KeyImg');
-    this.activity1 = this.add.image(768, 432, 'activity1');
-    this.activity1Page2 = this.add.image(768, 432, 'activity1Page2');
+    this.activity1A = this.add.image(768, 432, 'activity1A');
+    this.activity1B = this.add.image(768, 432, 'activity1B');
     this.activity2 = this.add.image(768, 432, 'activity2');
-    this.activity3 = this.add.image(768, 432, 'activity3');
+    this.activity3A = this.add.image(768, 432, 'activity3A');
+    this.activity3B = this.add.image(768, 432, 'activity3B');
+    this.activity3C = this.add.image(768, 432, 'activity3C');
     this.activity4 = this.add.image(768, 432, 'activity4');
-    this.activity5 = this.add.image(768, 432, 'activity5');
+    this.activity5A = this.add.image(768, 432, 'activity5A');
+    this.activity5B = this.add.image(768, 432, 'activity5B');
+    this.activity5C = this.add.image(768, 432, 'activity5C');
     this.activity6 = this.add.image(768, 432, 'activity6');
     this.wall_info_1 = this.add.image(305, 75, 'wall_info_1');
     this.wall_info_2 = this.add.image(768, 75, 'wall_info_2');
@@ -199,12 +211,16 @@ class three_lesson extends Phaser.Scene {
     this.character_south.setDepth(50);
     this.character_west.setDepth(50);
     this.E_KeyImg.setDepth(49);
-    this.activity1.setDepth(100);
-    this.activity1Page2.setDepth(100);
+    this.activity1A.setDepth(100);
+    this.activity1B.setDepth(100);
     this.activity2.setDepth(99);
-    this.activity3.setDepth(98);
+    this.activity3A.setDepth(98);
+    this.activity3B.setDepth(98);
+    this.activity3C.setDepth(98);
     this.activity4.setDepth(97);
-    this.activity5.setDepth(96);
+    this.activity5A.setDepth(96);
+    this.activity5B.setDepth(96);
+    this.activity5C.setDepth(96);
     this.activity6.setDepth(95);
     this.map.setDepth(100);
     this.paper_stack.setDepth(1);
@@ -293,8 +309,10 @@ class three_lesson extends Phaser.Scene {
     this.key_U = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.U);
     this.key_1 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE);
     this.key_2 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TWO);
+    this.key_3 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.THREE);
     this.key_R = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
     this.key_H = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.H);
+
   }
 
   imagesDraggable() {
@@ -313,9 +331,14 @@ class three_lesson extends Phaser.Scene {
       this.E_KeyImg.y = this.character_north.y-75;
       this.E_KeyImg.alpha = 1.0;
       if (this.key_E.isDown) {
-        this.activity1.alpha = 1.0;
+        this.activity1A.alpha = 1.0;
         this.characterMoveable = false;
         this.activityOneOpened = true;
+        this.activityTwoOpened = false;
+        this.activityThreeOpened = false;
+        this.activityFourOpened = false;
+        this.activityFiveOpened = false;
+        this.activitySixOpened = false;
 		activity2Locked = false;
 
 		//COME BACK AND CHANGE THIS LATER
@@ -325,15 +348,19 @@ class three_lesson extends Phaser.Scene {
     } else if (Phaser.Geom.Rectangle.ContainsPoint(this.bot_mid_info, this.character_north)) {
       this.E_KeyImg.x = this.character_north.x;
       this.E_KeyImg.y = this.character_north.y+75;
-
       this.E_KeyImg.alpha = 1.0;
 		if (this.key_E.isDown && activity2Locked == false) {
         this.activity2.alpha = 1.0;
+        this.activityOneOpened = false;
+        this.activityTwoOpened = true;
+        this.activityThreeOpened = false;
+        this.activityFourOpened = false;
+        this.activityFiveOpened = false;
+        this.activitySixOpened = false;
 		activity3Locked = false;
         } else if (this.key_E.isDown && activity2Locked == true) {
           this.activityLocked.alpha = 1.0;
           this.characterMoveable = false;
-
           }
 
     } else if (Phaser.Geom.Rectangle.ContainsPoint(this.top_mid_info, this.character_north)) {
@@ -341,7 +368,13 @@ class three_lesson extends Phaser.Scene {
       this.E_KeyImg.y = this.character_north.y-75;
       this.E_KeyImg.alpha = 1.0;
       if (this.key_E.isDown && activity3Locked == false) {
-        this.activity3.alpha = 1.0;
+        this.activity3A.alpha = 1.0;
+        this.activityOneOpened = false;
+        this.activityTwoOpened = false;
+        this.activityThreeOpened = true;
+        this.activityFourOpened = false;
+        this.activityFiveOpened = false;
+        this.activitySixOpened = false;
 		activity4Locked = false;
       } else if (this.key_E.isDown && activity3Locked == true){
         this.activityLocked.alpha = 1.0;
@@ -354,11 +387,11 @@ class three_lesson extends Phaser.Scene {
       this.E_KeyImg.alpha = 1.0;
       if (this.key_E.isDown && activity4Locked == false) {
       this.activity4.alpha = 1.0;
+      this.activityFourOpened = true;
 	  activity5Locked = false;
       } else if (this.key_E.isDown && activity4Locked == true){
         this.activityLocked.alpha = 1.0;
         this.characterMoveable = false;
-
         }
 
 
@@ -368,12 +401,12 @@ class three_lesson extends Phaser.Scene {
 
       this.E_KeyImg.alpha = 1.0;
       if (this.key_E.isDown && activity5Locked == false) {
-        this.activity5.alpha = 1.0;
+        this.activity5A.alpha = 1.0;
+        this.activityFiveOpened = true;
 		activity6Locked = false;
       } else if (this.key_E.isDown && activity5Locked == true){
           this.activityLocked.alpha = 1.0;
           this.characterMoveable = false;
-		  activity2Locked = false;
         }
 
     } else if (Phaser.Geom.Rectangle.ContainsPoint(this.bot_left_info, this.character_north)) {
@@ -382,6 +415,7 @@ class three_lesson extends Phaser.Scene {
       this.E_KeyImg.alpha = 1.0;
       if (this.key_E.isDown && activity6Locked == false) {
         this.activity6.alpha = 1.0;
+        this.activitySixOpened = true;
 		activity6Complete = true;
       } else if (this.key_E.isDown && activity6Locked == true){
         this.activityLocked.alpha = 1.0;
@@ -607,6 +641,11 @@ class three_lesson extends Phaser.Scene {
     this.character_west.alpha = 1.0;
     this.characterMoveable = true;
     this.activityOneOpened = false;
+    this.activityTwoOpened = false;
+    this.activityThreeOpened = false;
+    this.activityFourOpened = false;
+    this.activityFiveOpened = false;
+    this.activitySixOpened = false;
     this.help_menu.alpha = 0.0;
 	this.activatedQuiz = false;
 	this.quitQuiz();
@@ -618,14 +657,18 @@ class three_lesson extends Phaser.Scene {
   }
 
   hideActivities() {
-    this.activity1.alpha = 0.0;
-	this.activityLocked.alpha = 0.0;
+    this.activity1A.alpha = 0.0;
+    this.activity1B.alpha = 0.0;
     this.activity2.alpha = 0.0;
-    this.activity3.alpha = 0.0;
+    this.activity3A.alpha = 0.0;
+    this.activity3B.alpha = 0.0;
+    this.activity3C.alpha = 0.0;
     this.activity4.alpha = 0.0;
-    this.activity5.alpha = 0.0;
+    this.activity5A.alpha = 0.0;
+    this.activity5B.alpha = 0.0;
+    this.activity5C.alpha = 0.0;
     this.activity6.alpha = 0.0;
-    this.activity1Page2.alpha = 0.0;
+    this.activityLocked.alpha = 0.0;
   }
 
   checkCorrectPaperOne() {
@@ -766,11 +809,112 @@ class three_lesson extends Phaser.Scene {
 
   checkNextPage() {
     if (this.activityOneOpened == true && this.key_2.isDown) {
-      this.activity1.alpha = 0;
-      this.activity1Page2.alpha = 1;
+      this.activity1A.alpha = 0;
+      this.activity1B.alpha = 1;
+      this.activity2.alpha = 0;
+      this.activity3A.alpha = 0;
+      this.activity3B.alpha = 0;
+      this.activity3C.alpha = 0;
+      this.activity4.alpha = 0;
+      this.activity5A.alpha = 0;
+      this.activity5B.alpha = 0;
+      this.activity5C.alpha = 0;
+      this.activity6.alpha = 0;
+
     } else if (this.activityOneOpened == true && this.key_1.isDown) {
-      this.activity1.alpha = 1;
-      this.activity1Page2.alpha = 0;
+      this.activity1A.alpha = 1;
+      this.activity1B.alpha = 0;
+      this.activity2.alpha = 0;
+      this.activity3A.alpha = 0;
+      this.activity3B.alpha = 0;
+      this.activity3C.alpha = 0;
+      this.activity4.alpha = 0;
+      this.activity5A.alpha = 0;
+      this.activity5B.alpha = 0;
+      this.activity5C.alpha = 0;
+      this.activity6.alpha = 0;
+    }
+
+    if (this.activityThreeOpened == true && this.key_2.isDown) {
+      this.activity1A.alpha = 0;
+      this.activity1B.alpha = 0;
+      this.activity2.alpha = 0;
+      this.activity3A.alpha = 0;
+      this.activity3B.alpha = 1;
+      this.activity3C.alpha = 0;
+      this.activity4.alpha = 0;
+      this.activity5A.alpha = 0;
+      this.activity5B.alpha = 0;
+      this.activity5C.alpha = 0;
+      this.activity6.alpha = 0;
+
+    } else if (this.activityThreeOpened == true && this.key_1.isDown) {
+      this.activity1A.alpha = 0;
+      this.activity1B.alpha = 0;
+      this.activity2.alpha = 0;
+      this.activity3A.alpha = 1;
+      this.activity3B.alpha = 0;
+      this.activity3C.alpha = 0;
+      this.activity4.alpha = 0;
+      this.activity5A.alpha = 0;
+      this.activity5B.alpha = 0;
+      this.activity5C.alpha = 0;
+      this.activity6.alpha = 0;
+    }
+    else if(this.activityThreeOpened == true && this.key_3.isDown) {
+      this.activity1A.alpha = 0;
+      this.activity1B.alpha = 0;
+      this.activity2.alpha = 0;
+      this.activity3A.alpha = 0;
+      this.activity3B.alpha = 0;
+      this.activity3C.alpha = 1;
+      this.activity4.alpha = 0;
+      this.activity5A.alpha = 0;
+      this.activity5B.alpha = 0;
+      this.activity5C.alpha = 0;
+      this.activity6.alpha = 0;
+
+    }
+
+    if (this.activityFiveOpened == true && this.key_2.isDown) {
+      this.activity1A.alpha = 0;
+      this.activity1B.alpha = 0;
+      this.activity2.alpha = 0;
+      this.activity3A.alpha = 0;
+      this.activity3B.alpha = 0;
+      this.activity3C.alpha = 1;
+      this.activity4.alpha = 0;
+      this.activity5A.alpha = 0;
+      this.activity5B.alpha = 1;
+      this.activity5C.alpha = 0;
+      this.activity6.alpha = 0;
+
+    } else if (this.activityFiveOpened == true && this.key_1.isDown) {
+      this.activity1A.alpha = 0;
+      this.activity1B.alpha = 0;
+      this.activity2.alpha = 0;
+      this.activity3A.alpha = 0;
+      this.activity3B.alpha = 0;
+      this.activity3C.alpha = 1;
+      this.activity4.alpha = 0;
+      this.activity5A.alpha = 1;
+      this.activity5B.alpha = 0;
+      this.activity5C.alpha = 0;
+      this.activity6.alpha = 0;
+    }
+    else if(this.activityFiveOpened == true && this.key_3.isDown) {
+      this.activity1A.alpha = 0;
+      this.activity1B.alpha = 0;
+      this.activity2.alpha = 0;
+      this.activity3A.alpha = 0;
+      this.activity3B.alpha = 0;
+      this.activity3C.alpha = 1;
+      this.activity4.alpha = 0;
+      this.activity5A.alpha = 0;
+      this.activity5B.alpha = 0;
+      this.activity5C.alpha = 1;
+      this.activity6.alpha = 0;
+
     }
   }
 
