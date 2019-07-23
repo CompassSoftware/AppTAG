@@ -119,6 +119,10 @@ class three_lesson extends Phaser.Scene {
 /***********************************************************************************************
 ======================================HELPER METHODS============================================
 *///////////////////////////////////////////////////////////////////////////////////////////////
+  /* loadAssests
+   *
+   * Loads images to be used and sets them into a variable name.
+  */
   loadAssets() {
 	this.load.image('pressr', 'assets/pressr.png');
     this.load.image('one_lesson_BG', 'assets/one_lesson_BG.png');
@@ -164,6 +168,10 @@ class three_lesson extends Phaser.Scene {
 	this.load.image('retainedEarningsText' , 'assets/retainedEarningsText.png');
   }
 
+  /* createImages
+   * 
+   * Adds the image to the game board
+  */
   createImages() {
     this.e_pressed = false;
     this.papers_moved = false;
@@ -201,6 +209,10 @@ class three_lesson extends Phaser.Scene {
     this.help_menu = this.add.image(768, 432, 'help_menu');
   }
 
+  /* setAlphas
+   * 
+   * sets the alphas to to items in the game to zero so they are not visible at the beginning.
+  */
   setAlphas() {
     this.map.alpha = 0.0;
     this.notebook.alpha = 0.0;
@@ -210,6 +222,10 @@ class three_lesson extends Phaser.Scene {
     this.hideActivities();
   }
 
+  /* setDepths
+   * 
+   * Sets the depth of each object on the screen.
+  */
   setDepths() {
     this.floor.setDepth(0);
     this.character_north.setDepth(50);
@@ -234,6 +250,10 @@ class three_lesson extends Phaser.Scene {
     this.help_menu.setDepth(100);
   }
 
+  /* setScales
+   * 
+   * Scales the size of each object.
+  */
   setScales() {
     this.E_KeyImg.setScale(0.4);
     this.wall_info_1.setScale(0.75);
@@ -254,6 +274,10 @@ class three_lesson extends Phaser.Scene {
     this.character_east.setScale(3);
   }
 
+  /* setRotations
+   * 
+   * Sets the rotation that each object sits at. 
+  */
   setRotations() {
     this.wall_info_4.rotation = 3.14;
     this.wall_info_5.rotation = 3.14;
@@ -263,7 +287,10 @@ class three_lesson extends Phaser.Scene {
     this.cardboard_box_3.rotation = 0;
   }
 
-
+  /* createInteractionZones
+   * 
+   * Sets the area that you can interact with each object
+  */
   createInteractionZones() {
     this.graphics = this.add.graphics({fillStyle: {color: 0xFFFFFF, alpha: 0.0}});
     //this.graphicsTest = this.add.graphics({fillStyle: {color: 0x4F4F4F, alpha: 1.0}});
@@ -302,6 +329,10 @@ class three_lesson extends Phaser.Scene {
     this.graphics.fillRectShape(this.box_3_zone);
   }
 
+  /* assignKeybinds
+   * 
+   * Sets keybinds to the keyboard
+  */
   assignKeybinds() {
         //KEYBOARD INPUT
     this.key_W = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
@@ -321,6 +352,10 @@ class three_lesson extends Phaser.Scene {
 
   }
 
+  /* imagesDraggable
+   * 
+   * Makes an image draggable
+  */
   imagesDraggable() {
     this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
 
@@ -331,15 +366,12 @@ class three_lesson extends Phaser.Scene {
 
   }
 
-checkActivityOpened(one, two, three, four, five, six) {
-  this.activityOneOpened = one;
-  this.activityTwoOpened = two;
-  this.activityThreeOpened = three;
-  this.activityFourOpened = four;
-  this.activityFiveOpened = five;
-  this.activitySixOpened = six;
 
-}
+  /* checkInteractValidity
+   * 
+   * Checks to see if the character can interact with the object
+  */
+
   checkInteractValidity() {
     if (Phaser.Geom.Rectangle.ContainsPoint(this.top_right_info, this.character_north)) {
       this.E_KeyImg.x = this.character_north.x;
@@ -437,8 +469,12 @@ checkActivityOpened(one, two, three, four, five, six) {
     }
   }
 
-  // This method allows you to set the alpha of the character.
-  // Call this with the arguments as (N,E,S,W)
+
+  /* setCharacterAlpha
+   * 
+   * Sets the alpha of each facing of the character
+   * Call this method with the argument as (N,E,S,W)
+  */
   setCharacterAlpha() {
     this.character_north.alpha = arguments[0];
     this.character_east.alpha = arguments[1];
@@ -446,10 +482,15 @@ checkActivityOpened(one, two, three, four, five, six) {
     this.character_west.alpha = arguments[3];
   }
 
+  /* movePlayer
+   * 
+   * 
+  */
   movePlayer() {
     //setCharacterAlpha is in helper.js and arguments go N,E,S,W
     this.setCharacterAlpha(0,0,1,0);
 
+    //Character moves up
     if(this.key_W.isDown && characterMoveable == true) {
 	if(this.character_north.y > 185){
       		this.character_north.y -= 5;
@@ -462,6 +503,7 @@ checkActivityOpened(one, two, three, four, five, six) {
 
 
 		}
+    //Character moves left
     } if (this.key_A.isDown && characterMoveable == true) {
       	if(this.character_west.x > 210){
       		this.character_west.x -= 5;
@@ -472,7 +514,9 @@ checkActivityOpened(one, two, three, four, five, six) {
           this.setCharacterAlpha(0,0,0,1);
 	}
 
-    } if (this.key_S.isDown && characterMoveable == true) {
+    }
+    //Character moves right
+     if (this.key_S.isDown && characterMoveable == true) {
 	if(this.character_south.y < 680){
       		this.character_south.y += 5;
           this.character_east.y += 5;
@@ -482,7 +526,9 @@ checkActivityOpened(one, two, three, four, five, six) {
           this.setCharacterAlpha(0,0,1,0);
 		}
 
-    } if (this.key_D.isDown && characterMoveable == true) {
+    } 
+    //Character moves down
+    if (this.key_D.isDown && characterMoveable == true) {
       	if(this.character_east.x < 1325){
       		this.character_east.x += 5;
           this.character_north.x += 5;
@@ -493,6 +539,11 @@ checkActivityOpened(one, two, three, four, five, six) {
 		}
     }
   }
+
+  /* movePaper
+   * 
+   * makes the paper moveable in the test activity
+  */
   movePaper(moveThisPaper) {
     if(this.key_W.isDown && this.paperMoveable == true) {
       moveThisPaper.y -= 7;
@@ -505,6 +556,10 @@ checkActivityOpened(one, two, three, four, five, six) {
     }
   }
 
+  /* quitQuiz
+   * 
+   * Allows the user to quit the quiz
+  */
   quitQuiz() {
 	//console.log("e");
     this.papers_moved = false;
@@ -558,6 +613,10 @@ checkActivityOpened(one, two, three, four, five, six) {
 
   }
 
+  /* activateQuiz
+   * 
+   * Method that starts the quiz
+  */
   activateQuiz() {
 	this.paper_stack.setVisible(true);
 
@@ -630,6 +689,10 @@ checkActivityOpened(one, two, three, four, five, six) {
     });
   }
 
+  /* quitInteraction
+   * 
+   * Sets the alphas to 0 so that the interaction is quit.
+  */
   quitInteraction() {
     this.map.alpha = 0.0;
     this.notebook.alpha = 0.0;
@@ -656,6 +719,10 @@ checkActivityOpened(one, two, three, four, five, six) {
 
   }
 
+  /* hideActivities
+   * 
+   * Sets the alphas to the activities to 0 so that they are hidden.
+  */
   hideActivities() {
     this.activity1A.alpha = 0.0;
     this.activity1B.alpha = 0.0;
@@ -671,6 +738,10 @@ checkActivityOpened(one, two, three, four, five, six) {
     this.activityLocked.alpha = 0.0;
   }
 
+  /* checkCorrectPaperOne
+   * 
+   * Checks to see if the first paper is in the correct box.
+  */
   checkCorrectPaperOne() {
 	if(this.activatedQuiz == true) {
   	if (this.key_R.isDown) {
@@ -699,6 +770,10 @@ checkActivityOpened(one, two, three, four, five, six) {
 	}
   }
 
+  /* checkCorrectPaperTwo
+   * 
+   * Checks to see if the second paper is in the correct box.
+  */
   checkCorrectPaperTwo() {
 	this.incomeStatement.setVisible(false);
   	if (this.key_R.isDown) {
@@ -728,6 +803,10 @@ checkActivityOpened(one, two, three, four, five, six) {
 	//this.updateCorrectImage();
   }
 
+  /* checkCorrectPaperThree
+   * 
+   * Checks to see if the third paper is in the correct box.
+  */
   checkCorrectPaperThree() {
 	this.retainedEarnings.setVisible(false);
   	if (this.key_R.isDown) {
@@ -752,6 +831,10 @@ checkActivityOpened(one, two, three, four, five, six) {
     }
   }
 
+  /* loadQuizImages
+   * 
+   * Loads the images into the quiz Activity
+  */
 	loadQuizImages(){
     	this.pressr = this.add.image(650, 40, 'pressr');
 		this.pressr.setScale(.8);
@@ -789,6 +872,10 @@ checkActivityOpened(one, two, three, four, five, six) {
 		this.retainedEarningsText.setScale(.6);
 	}
 
+  /* updateCorrectImage
+   * 
+   * Updates the image in the quiz that tells the user how many they have got right.
+  */
 	updateCorrectImage() {
 		//console.log(this.paperCount);
 		if (this.paperCount == 1) {
@@ -807,6 +894,7 @@ checkActivityOpened(one, two, three, four, five, six) {
 
 	}
 
+
   activityAlphas(oneA, oneB, two, threeA, threeB, threeC, four, fiveA, fiveB, fiveC, six) {
     this.activity1A.alpha = oneA;
     this.activity1B.alpha = oneB;
@@ -820,6 +908,12 @@ checkActivityOpened(one, two, three, four, five, six) {
     this.activity5C.alpha = fiveC;
     this.activity6.alpha = six;
   }
+
+
+  /* checkNextPage
+   * 
+   * 
+  */
 
   checkNextPage() {
     if (this.activityOneOpened == true && this.key_2.isDown) {
@@ -851,6 +945,10 @@ checkActivityOpened(one, two, three, four, five, six) {
     }
   }
 
+  /* helpMenu
+   * 
+   * Sets the alpha of the help menu to 1 so that it is visible
+  */
   helpMenu() {
       this.help_menu.alpha = 1.0;
       this.helpOpen = true;
