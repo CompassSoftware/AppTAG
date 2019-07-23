@@ -2,7 +2,7 @@
 class zero_lesson extends Phaser.Scene {
 
   constructor() {
-    super({key: "zero_Lesson"});
+    super("zero_Lesson");
     this.quizActive = false;
     this.activatedQuiz = false;
     this.unlocked = false;
@@ -270,6 +270,10 @@ Info Panels like these contain important information and lessons that help you p
 	{
 		if (this.activityOneOpened == true)
 		{
+			if(this.key_E.isDown){
+				this.scene.start("three_Lesson");
+			
+			}
 			this.E_KeyImg.x = this.character_north.x;
 			this.E_KeyImg.y = this.character_north.y-75;
 			this.E_KeyImg.alpha = 1.0;
