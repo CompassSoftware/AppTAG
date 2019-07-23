@@ -365,6 +365,10 @@ class three_lesson extends Phaser.Scene {
     });
 
   }
+/* checkActivityOpened
+*
+* helper method to set the activities to opened or closed
+*/
 
   checkActivityOpened(one, two, three, four, five, six) {
     this.activityOneOpened = one;
@@ -375,7 +379,7 @@ class three_lesson extends Phaser.Scene {
     this.activitySixOpened = six;
 
   }
-  
+
   /* checkInteractValidity
    *
    * Checks to see if the character can interact with the object
