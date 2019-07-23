@@ -9,6 +9,7 @@ class three_lesson extends Phaser.Scene {
     this.paperMoveable = false;
     this.activityOneOpened = false;
     this.helpOpen = false;
+	this.holeOpened = false;
   }
   //load assets in preload()
 
@@ -37,7 +38,7 @@ class three_lesson extends Phaser.Scene {
     }
 
     if (this.activityOneOpened) {
-      this.checkNextPage();
+      this.checkAct1Pages();
     }
 
     if (this.key_U.isDown && this.unlocked == false) {
@@ -148,6 +149,10 @@ class three_lesson extends Phaser.Scene {
 	this.load.image('incomeStatementText' ,'assets/incomeStatementText.png');
 	this.load.image('balanceSheetText', 'assets/balanceSheetText.png');
 	this.load.image('retainedEarningsText' , 'assets/retainedEarningsText.png');
+	this.load.image('congrats', 'assets/congrats.png');
+	this.load.image('hole', 'assets/hole.png');	
+	this.load.image('leftArrow' , 'assets/leftArrow.png');
+	this.load.image('rightArrow' , 'assets/rightArrow.png');
   }
 
   createImages() {
@@ -181,6 +186,14 @@ class three_lesson extends Phaser.Scene {
     this.notebook = this.add.image(768, 432, 'notebook');
     this.activityLocked = this.add.image(768, 432, 'activityLocked');
     this.help_menu = this.add.image(768, 432, 'help_menu');
+
+/*
+	this.rightArrow = this.add.image(1000, 800, 'rightArrow');
+	this.rightArrow.setScale(.1);
+	this.leftArrow = this.add.image(600, 800, 'leftArrow');
+	this.leftArrow.setScale(.1);
+	this.leftArrow.setRotation(3.14);
+*/
   }
 
   setAlphas() {
@@ -278,6 +291,9 @@ class three_lesson extends Phaser.Scene {
 
     this.box_3_zone = new Phaser.Geom.Rectangle(1200,650,200,200);
     this.graphics.fillRectShape(this.box_3_zone);
+
+	this.middle_info = new Phaser.Geom.Rectangle(700, 350, 200, 200);
+	this.graphics.fillRectShape(this.middle_info);
   }
 
   assignKeybinds() {
@@ -295,6 +311,8 @@ class three_lesson extends Phaser.Scene {
     this.key_2 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TWO);
     this.key_R = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
     this.key_H = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.H);
+	this.key_Right = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+	this.key_Left = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
   }
 
   imagesDraggable() {
@@ -397,7 +415,15 @@ class three_lesson extends Phaser.Scene {
       } else if (this.key_E.isDown && activity6Complete == false){
           this.activityLocked.alpha = 1.0;
         }
-    } else {
+    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.middle_info, this.character_north) && this.holeOpened == true){
+     	this.E_KeyImg.x = this.character_north.x+75;
+      	this.E_KeyImg.y = this.character_north.y;
+      	this.E_KeyImg.alpha = 1.0;
+		if (this.key_E.isDown && activity6Complete == true) {
+       		console.log("next area");
+        } 
+ 
+	} else {
       this.hideActivities();
       this.E_KeyImg.alpha = 0.0;
     }
@@ -470,9 +496,21 @@ class three_lesson extends Phaser.Scene {
       moveThisPaper.x += 7;
     }
   }
+	
+	loadExit() {
+		if (this.paperCount >= 4) {
+			this.congrats = this.add.image(810, 400, 'congrats');
+			this.congrats.setScale(1.3);
+			this.congrats.depth = 200;
+			
+			this.hole = this.add.image(768, 432, 'hole');
+			this.holeOpened = true;
+		}
+	}	
 
   quitQuiz() {
 	//console.log("e");
+	this.loadExit();
     this.papers_moved = false;
     this.quizActive = false;
 	this.activatedQuiz = false;
@@ -610,6 +648,7 @@ class three_lesson extends Phaser.Scene {
     this.help_menu.alpha = 0.0;
 	this.activatedQuiz = false;
 	this.quitQuiz();
+	this.congrats.setVisible(false);
   }
 
 
@@ -763,6 +802,28 @@ class three_lesson extends Phaser.Scene {
 		}
 
 	}
+
+	loadArrows() {
+
+
+	}
+
+	checkAct1Pages() {
+		if (this.activityOneOpened == true && this.key_Right.isDown && this.activity1.alpha == 1) {
+      		this.activity1.alpha = 0;
+      		this.activity1Page2.alpha = 1;
+			this.rightArrow = false;
+			this.leftArrow = true;
+			this.loadArrows();
+    	} else if (this.activityOneOpened == true && this.key_Left.isDown && this.activity1Page2.alpha == 1) {
+     		this.activity1.alpha = 1;
+      		this.activity1Page2.alpha = 0;
+			this.rightArrow = true;
+			this.leftArrow = false;
+			this.loadArrows();
+   		}
+  }
+
 
   checkNextPage() {
     if (this.activityOneOpened == true && this.key_2.isDown) {
