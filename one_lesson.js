@@ -1,7 +1,7 @@
-class three_lesson extends Phaser.Scene {
+class one_lesson extends Phaser.Scene {
 
   constructor() {
-    super({key: "three_Lesson"});
+    super({key: "one_Lesson"});
     this.quizActive = false;
     this.activatedQuiz = false;
     this.unlocked = false;
@@ -149,7 +149,7 @@ class three_lesson extends Phaser.Scene {
     this.load.image('wall_info_4', 'assets/wall_art.png');
     this.load.image('wall_info_5', 'assets/wall_art.png');
     this.load.image('wall_info_6', 'assets/wall_art.png');
-    this.load.image('floor', 'assets/floor_3.png');
+    this.load.image('floor', 'assets/floor_2.jpeg');
     this.load.image('cardboard_box', 'assets/cardboard_box.png');
     this.load.image('paper_stack', 'assets/paper_stack.png');
     this.load.image('paper', 'assets/single_paper.png');
@@ -198,7 +198,7 @@ class three_lesson extends Phaser.Scene {
     this.wall_info_4 = this.add.image(305, 790, 'wall_info_4');
     this.wall_info_5 = this.add.image(768, 790, 'wall_info_5');
     this.wall_info_6 = this.add.image(1232, 790, 'wall_info_6');
-    this.floor = this.add.image(768, 432, 'floor');
+    this.floor = this.add.image(768, 433, 'floor');
     this.paper_stack = this.add.image(1215, 432, 'paper_stack');
     this.cardboard_box_1 = this.add.image(1310, 320, 'cardboard_box');
     this.cardboard_box_2 = this.add.image(1310, 432, 'cardboard_box');
@@ -272,6 +272,9 @@ class three_lesson extends Phaser.Scene {
     this.character_south.setScale(3);
     this.character_west.setScale(3);
     this.character_east.setScale(3);
+    this.floor.scaleY = .71;
+    this.floor.scaleX = .99;
+
   }
 
   /* setRotations
