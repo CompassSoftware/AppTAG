@@ -80,6 +80,7 @@ class three_lesson extends Phaser.Scene {
     }
 
 
+
     if (this.key_Q.isDown && this.activatedQuiz == false) {
       this.quitInteraction();
     }
@@ -166,6 +167,7 @@ class three_lesson extends Phaser.Scene {
 	this.load.image('incomeStatementText' ,'assets/incomeStatementText.png');
 	this.load.image('balanceSheetText', 'assets/balanceSheetText.png');
 	this.load.image('retainedEarningsText' , 'assets/retainedEarningsText.png');
+  this.load.image('hole', 'assets/hole.png');
   }
 
   /* createImages
@@ -207,6 +209,7 @@ class three_lesson extends Phaser.Scene {
     this.notebook = this.add.image(768, 432, 'notebook');
     this.activityLocked = this.add.image(768, 432, 'activityLocked');
     this.help_menu = this.add.image(768, 432, 'help_menu');
+    this.hole = this.add.image(768, 432, 'hole');
   }
 
   /* setAlphas
@@ -219,6 +222,7 @@ class three_lesson extends Phaser.Scene {
     this.activityLocked.alpha = 0.0;
     this.E_KeyImg.alpha = 0.0;
     this.help_menu.alpha = 0.0;
+    this.hole.alpha = 0;
     this.hideActivities();
   }
 
@@ -248,6 +252,7 @@ class three_lesson extends Phaser.Scene {
     this.paper_stack.setDepth(1);
     this.notebook.setDepth(100);
     this.help_menu.setDepth(100);
+    this.hole.setDepth(1);
   }
 
   /* setScales
@@ -272,6 +277,7 @@ class three_lesson extends Phaser.Scene {
     this.character_south.setScale(3);
     this.character_west.setScale(3);
     this.character_east.setScale(3);
+    this.hole.setScale(0.75);
   }
 
   /* setRotations
@@ -327,6 +333,9 @@ class three_lesson extends Phaser.Scene {
 
     this.box_3_zone = new Phaser.Geom.Rectangle(1200,650,200,200);
     this.graphics.fillRectShape(this.box_3_zone);
+
+    this.middle_info = new Phaser.Geom.Rectangle(700, 350, 200, 200);
+    this.graphics.fillRectShape(this.middle_info);
   }
 
   /* assignKeybinds
@@ -398,6 +407,17 @@ class three_lesson extends Phaser.Scene {
 
 		//COME BACK AND CHANGE THIS LATER
 		activity6Complete = true;
+      }
+
+    } else if(Phaser.Geom.Rectangle.ContainsPoint(this.middle_info, this.character_north)) {
+      if(this.hole.alpha == 1) {
+        this.E_KeyImg.x = this.character_north.x;
+        this.E_KeyImg.y = this.character_north.y + 75;
+        this.E_KeyImg.alpha = 1.0;
+
+        if(this.key_E.isDown) {
+          this.scene.start("two_lesson");
+        }
       }
 
     } else if (Phaser.Geom.Rectangle.ContainsPoint(this.bot_mid_info, this.character_north)) {
@@ -830,6 +850,7 @@ class three_lesson extends Phaser.Scene {
     if (Phaser.Geom.Rectangle.ContainsPoint(this.box_3_zone, this.paperThree) && this.paperCount == 3) {
       this.paperThree.setVisible(false);
       this.paperCount++;
+      this.hole.alpha = 1;
       this.quitQuiz();
     } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_1_zone, this.paperThree) && this.paperCount == 3) {
       this.paperThree.x = this.paper_stack.x;
