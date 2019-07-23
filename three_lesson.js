@@ -331,6 +331,15 @@ class three_lesson extends Phaser.Scene {
 
   }
 
+checkActivityOpened(one, two, three, four, five, six) {
+  this.activityOneOpened = one;
+  this.activityTwoOpened = two;
+  this.activityThreeOpened = three;
+  this.activityFourOpened = four;
+  this.activityFiveOpened = five;
+  this.activitySixOpened = six;
+
+}
   checkInteractValidity() {
     if (Phaser.Geom.Rectangle.ContainsPoint(this.top_right_info, this.character_north)) {
       this.E_KeyImg.x = this.character_north.x;
@@ -339,12 +348,7 @@ class three_lesson extends Phaser.Scene {
       if (this.key_E.isDown) {
         this.activity1A.alpha = 1.0;
         this.characterMoveable = false;
-        this.activityOneOpened = true;
-        this.activityTwoOpened = false;
-        this.activityThreeOpened = false;
-        this.activityFourOpened = false;
-        this.activityFiveOpened = false;
-        this.activitySixOpened = false;
+        this.checkActivityOpened(true, false, false, false, false, false);
 		activity2Locked = false;
 
 		//COME BACK AND CHANGE THIS LATER
@@ -357,12 +361,7 @@ class three_lesson extends Phaser.Scene {
       this.E_KeyImg.alpha = 1.0;
 		if (this.key_E.isDown && activity2Locked == false) {
         this.activity2.alpha = 1.0;
-        this.activityOneOpened = false;
-        this.activityTwoOpened = true;
-        this.activityThreeOpened = false;
-        this.activityFourOpened = false;
-        this.activityFiveOpened = false;
-        this.activitySixOpened = false;
+        this.checkActivityOpened(false, true, false, false, false, false);
 		activity3Locked = false;
         } else if (this.key_E.isDown && activity2Locked == true) {
           this.activityLocked.alpha = 1.0;
@@ -375,12 +374,7 @@ class three_lesson extends Phaser.Scene {
       this.E_KeyImg.alpha = 1.0;
       if (this.key_E.isDown && activity3Locked == false) {
         this.activity3A.alpha = 1.0;
-        this.activityOneOpened = false;
-        this.activityTwoOpened = false;
-        this.activityThreeOpened = true;
-        this.activityFourOpened = false;
-        this.activityFiveOpened = false;
-        this.activitySixOpened = false;
+        this.checkActivityOpened(false, false, true, false, false, false);
 		activity4Locked = false;
       } else if (this.key_E.isDown && activity3Locked == true){
         this.activityLocked.alpha = 1.0;
@@ -393,12 +387,7 @@ class three_lesson extends Phaser.Scene {
       this.E_KeyImg.alpha = 1.0;
       if (this.key_E.isDown && activity4Locked == false) {
       this.activity4.alpha = 1.0;
-      this.activityOneOpened = false;
-      this.activityTwoOpened = false;
-      this.activityThreeOpened = false;
-      this.activityFourOpened = true;
-      this.activityFiveOpened = false;
-      this.activitySixOpened = false;
+      this.checkActivityOpened(false, false, false, true, false, false);
 	  activity5Locked = false;
       } else if (this.key_E.isDown && activity4Locked == true){
         this.activityLocked.alpha = 1.0;
@@ -413,12 +402,7 @@ class three_lesson extends Phaser.Scene {
       this.E_KeyImg.alpha = 1.0;
       if (this.key_E.isDown && activity5Locked == false) {
         this.activity5A.alpha = 1.0;
-        this.activityOneOpened = false;
-        this.activityTwoOpened = false;
-        this.activityThreeOpened = false;
-        this.activityFourOpened = false;
-        this.activityFiveOpened = true;
-        this.activitySixOpened = false;
+        this.checkActivityOpened(false, false, false, false, true, false);
 		activity6Locked = false;
       } else if (this.key_E.isDown && activity5Locked == true){
           this.activityLocked.alpha = 1.0;
@@ -431,12 +415,7 @@ class three_lesson extends Phaser.Scene {
       this.E_KeyImg.alpha = 1.0;
       if (this.key_E.isDown && activity6Locked == false) {
         this.activity6.alpha = 1.0;
-        this.activityOneOpened = false;
-        this.activityTwoOpened = false;
-        this.activityThreeOpened = false;
-        this.activityFourOpened = false;
-        this.activityFiveOpened = false;
-        this.activitySixOpened = true;
+        this.checkActivityOpened(false, false, false, false, false, true);
 		activity6Complete = true;
       } else if (this.key_E.isDown && activity6Locked == true){
         this.activityLocked.alpha = 1.0;
@@ -828,113 +807,46 @@ class three_lesson extends Phaser.Scene {
 
 	}
 
+  activityAlphas(oneA, oneB, two, threeA, threeB, threeC, four, fiveA, fiveB, fiveC, six) {
+    this.activity1A.alpha = oneA;
+    this.activity1B.alpha = oneB;
+    this.activity2.alpha = two;
+    this.activity3A.alpha = threeA;
+    this.activity3B.alpha = threeB;
+    this.activity3C.alpha = threeC;
+    this.activity4.alpha = four;
+    this.activity5A.alpha = fiveA;
+    this.activity5B.alpha = fiveB;
+    this.activity5C.alpha = fiveC;
+    this.activity6.alpha = six;
+  }
+
   checkNextPage() {
     if (this.activityOneOpened == true && this.key_2.isDown) {
-      this.activity1A.alpha = 0;
-      this.activity1B.alpha = 1;
-      this.activity2.alpha = 0;
-      this.activity3A.alpha = 0;
-      this.activity3B.alpha = 0;
-      this.activity3C.alpha = 0;
-      this.activity4.alpha = 0;
-      this.activity5A.alpha = 0;
-      this.activity5B.alpha = 0;
-      this.activity5C.alpha = 0;
-      this.activity6.alpha = 0;
+      this.activityAlphas(0, 1, 0, 0, 0 ,0 ,0 ,0 ,0, 0, 0);
 
     } else if (this.activityOneOpened == true && this.key_1.isDown) {
-      this.activity1A.alpha = 1;
-      this.activity1B.alpha = 0;
-      this.activity2.alpha = 0;
-      this.activity3A.alpha = 0;
-      this.activity3B.alpha = 0;
-      this.activity3C.alpha = 0;
-      this.activity4.alpha = 0;
-      this.activity5A.alpha = 0;
-      this.activity5B.alpha = 0;
-      this.activity5C.alpha = 0;
-      this.activity6.alpha = 0;
+      this.activityAlphas(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
     }
 
     if (this.activityThreeOpened == true && this.key_2.isDown) {
-      this.activity1A.alpha = 0;
-      this.activity1B.alpha = 0;
-      this.activity2.alpha = 0;
-      this.activity3A.alpha = 0;
-      this.activity3B.alpha = 1;
-      this.activity3C.alpha = 0;
-      this.activity4.alpha = 0;
-      this.activity5A.alpha = 0;
-      this.activity5B.alpha = 0;
-      this.activity5C.alpha = 0;
-      this.activity6.alpha = 0;
+      this.activityAlphas(0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0);
 
     } else if (this.activityThreeOpened == true && this.key_1.isDown) {
-      this.activity1A.alpha = 0;
-      this.activity1B.alpha = 0;
-      this.activity2.alpha = 0;
-      this.activity3A.alpha = 1;
-      this.activity3B.alpha = 0;
-      this.activity3C.alpha = 0;
-      this.activity4.alpha = 0;
-      this.activity5A.alpha = 0;
-      this.activity5B.alpha = 0;
-      this.activity5C.alpha = 0;
-      this.activity6.alpha = 0;
+      this.activityAlphas(0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0);
     }
     else if(this.activityThreeOpened == true && this.key_3.isDown) {
-      this.activity1A.alpha = 0;
-      this.activity1B.alpha = 0;
-      this.activity2.alpha = 0;
-      this.activity3A.alpha = 0;
-      this.activity3B.alpha = 0;
-      this.activity3C.alpha = 1;
-      this.activity4.alpha = 0;
-      this.activity5A.alpha = 0;
-      this.activity5B.alpha = 0;
-      this.activity5C.alpha = 0;
-      this.activity6.alpha = 0;
+      this.activityAlphas(0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0);
 
     }
-
     if (this.activityFiveOpened == true && this.key_2.isDown) {
-      this.activity1A.alpha = 0;
-      this.activity1B.alpha = 0;
-      this.activity2.alpha = 0;
-      this.activity3A.alpha = 0;
-      this.activity3B.alpha = 0;
-      this.activity3C.alpha = 0;
-      this.activity4.alpha = 0;
-      this.activity5A.alpha = 0;
-      this.activity5B.alpha = 1;
-      this.activity5C.alpha = 0;
-      this.activity6.alpha = 0;
+      this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0);
 
     } else if (this.activityFiveOpened == true && this.key_1.isDown) {
-      this.activity1A.alpha = 0;
-      this.activity1B.alpha = 0;
-      this.activity2.alpha = 0;
-      this.activity3A.alpha = 0;
-      this.activity3B.alpha = 0;
-      this.activity3C.alpha = 0;
-      this.activity4.alpha = 0;
-      this.activity5A.alpha = 1;
-      this.activity5B.alpha = 0;
-      this.activity5C.alpha = 0;
-      this.activity6.alpha = 0;
+      this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0);
     }
     else if(this.activityFiveOpened == true && this.key_3.isDown) {
-      this.activity1A.alpha = 0;
-      this.activity1B.alpha = 0;
-      this.activity2.alpha = 0;
-      this.activity3A.alpha = 0;
-      this.activity3B.alpha = 0;
-      this.activity3C.alpha = 0;
-      this.activity4.alpha = 0;
-      this.activity5A.alpha = 0;
-      this.activity5B.alpha = 0;
-      this.activity5C.alpha = 1;
-      this.activity6.alpha = 0;
+      this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0);
 
     }
   }
