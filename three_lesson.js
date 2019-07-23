@@ -43,6 +43,12 @@ class three_lesson extends Phaser.Scene {
     if (this.activityOneOpened) {
       this.checkNextPage();
     }
+    if (this.activityThreeOpened) {
+      this.checkNextPage();
+    }
+    if (this.activityFiveOpened) {
+      this.checkNextPage();
+    }
 
     if (this.key_U.isDown && this.unlocked == false) {
       activity1Locked = false;
@@ -387,7 +393,12 @@ class three_lesson extends Phaser.Scene {
       this.E_KeyImg.alpha = 1.0;
       if (this.key_E.isDown && activity4Locked == false) {
       this.activity4.alpha = 1.0;
+      this.activityOneOpened = false;
+      this.activityTwoOpened = false;
+      this.activityThreeOpened = false;
       this.activityFourOpened = true;
+      this.activityFiveOpened = false;
+      this.activitySixOpened = false;
 	  activity5Locked = false;
       } else if (this.key_E.isDown && activity4Locked == true){
         this.activityLocked.alpha = 1.0;
@@ -402,7 +413,12 @@ class three_lesson extends Phaser.Scene {
       this.E_KeyImg.alpha = 1.0;
       if (this.key_E.isDown && activity5Locked == false) {
         this.activity5A.alpha = 1.0;
+        this.activityOneOpened = false;
+        this.activityTwoOpened = false;
+        this.activityThreeOpened = false;
+        this.activityFourOpened = false;
         this.activityFiveOpened = true;
+        this.activitySixOpened = false;
 		activity6Locked = false;
       } else if (this.key_E.isDown && activity5Locked == true){
           this.activityLocked.alpha = 1.0;
@@ -415,6 +431,11 @@ class three_lesson extends Phaser.Scene {
       this.E_KeyImg.alpha = 1.0;
       if (this.key_E.isDown && activity6Locked == false) {
         this.activity6.alpha = 1.0;
+        this.activityOneOpened = false;
+        this.activityTwoOpened = false;
+        this.activityThreeOpened = false;
+        this.activityFourOpened = false;
+        this.activityFiveOpened = false;
         this.activitySixOpened = true;
 		activity6Complete = true;
       } else if (this.key_E.isDown && activity6Locked == true){
@@ -882,7 +903,7 @@ class three_lesson extends Phaser.Scene {
       this.activity2.alpha = 0;
       this.activity3A.alpha = 0;
       this.activity3B.alpha = 0;
-      this.activity3C.alpha = 1;
+      this.activity3C.alpha = 0;
       this.activity4.alpha = 0;
       this.activity5A.alpha = 0;
       this.activity5B.alpha = 1;
@@ -895,7 +916,7 @@ class three_lesson extends Phaser.Scene {
       this.activity2.alpha = 0;
       this.activity3A.alpha = 0;
       this.activity3B.alpha = 0;
-      this.activity3C.alpha = 1;
+      this.activity3C.alpha = 0;
       this.activity4.alpha = 0;
       this.activity5A.alpha = 1;
       this.activity5B.alpha = 0;
@@ -908,7 +929,7 @@ class three_lesson extends Phaser.Scene {
       this.activity2.alpha = 0;
       this.activity3A.alpha = 0;
       this.activity3B.alpha = 0;
-      this.activity3C.alpha = 1;
+      this.activity3C.alpha = 0;
       this.activity4.alpha = 0;
       this.activity5A.alpha = 0;
       this.activity5B.alpha = 0;
