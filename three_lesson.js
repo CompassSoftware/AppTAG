@@ -169,7 +169,7 @@ class three_lesson extends Phaser.Scene {
   }
 
   /* createImages
-   * 
+   *
    * Adds the image to the game board
   */
   createImages() {
@@ -210,7 +210,7 @@ class three_lesson extends Phaser.Scene {
   }
 
   /* setAlphas
-   * 
+   *
    * sets the alphas to to items in the game to zero so they are not visible at the beginning.
   */
   setAlphas() {
@@ -223,7 +223,7 @@ class three_lesson extends Phaser.Scene {
   }
 
   /* setDepths
-   * 
+   *
    * Sets the depth of each object on the screen.
   */
   setDepths() {
@@ -251,7 +251,7 @@ class three_lesson extends Phaser.Scene {
   }
 
   /* setScales
-   * 
+   *
    * Scales the size of each object.
   */
   setScales() {
@@ -275,8 +275,8 @@ class three_lesson extends Phaser.Scene {
   }
 
   /* setRotations
-   * 
-   * Sets the rotation that each object sits at. 
+   *
+   * Sets the rotation that each object sits at.
   */
   setRotations() {
     this.wall_info_4.rotation = 3.14;
@@ -288,7 +288,7 @@ class three_lesson extends Phaser.Scene {
   }
 
   /* createInteractionZones
-   * 
+   *
    * Sets the area that you can interact with each object
   */
   createInteractionZones() {
@@ -330,7 +330,7 @@ class three_lesson extends Phaser.Scene {
   }
 
   /* assignKeybinds
-   * 
+   *
    * Sets keybinds to the keyboard
   */
   assignKeybinds() {
@@ -353,7 +353,7 @@ class three_lesson extends Phaser.Scene {
   }
 
   /* imagesDraggable
-   * 
+   *
    * Makes an image draggable
   */
   imagesDraggable() {
@@ -366,9 +366,18 @@ class three_lesson extends Phaser.Scene {
 
   }
 
+  checkActivityOpened(one, two, three, four, five, six) {
+    this.activityOneOpened = one;
+    this.activityTwoOpened = two;
+    this.activityThreeOpened = three;
+    this.activityFourOpened = four;
+    this.activityFiveOpened = five;
+    this.activitySixOpened = six;
 
+  }
+  
   /* checkInteractValidity
-   * 
+   *
    * Checks to see if the character can interact with the object
   */
 
@@ -471,7 +480,7 @@ class three_lesson extends Phaser.Scene {
 
 
   /* setCharacterAlpha
-   * 
+   *
    * Sets the alpha of each facing of the character
    * Call this method with the argument as (N,E,S,W)
   */
@@ -483,8 +492,8 @@ class three_lesson extends Phaser.Scene {
   }
 
   /* movePlayer
-   * 
-   * 
+   *
+   *
   */
   movePlayer() {
     //setCharacterAlpha is in helper.js and arguments go N,E,S,W
@@ -526,7 +535,7 @@ class three_lesson extends Phaser.Scene {
           this.setCharacterAlpha(0,0,1,0);
 		}
 
-    } 
+    }
     //Character moves down
     if (this.key_D.isDown && characterMoveable == true) {
       	if(this.character_east.x < 1325){
@@ -541,7 +550,7 @@ class three_lesson extends Phaser.Scene {
   }
 
   /* movePaper
-   * 
+   *
    * makes the paper moveable in the test activity
   */
   movePaper(moveThisPaper) {
@@ -557,7 +566,7 @@ class three_lesson extends Phaser.Scene {
   }
 
   /* quitQuiz
-   * 
+   *
    * Allows the user to quit the quiz
   */
   quitQuiz() {
@@ -614,7 +623,7 @@ class three_lesson extends Phaser.Scene {
   }
 
   /* activateQuiz
-   * 
+   *
    * Method that starts the quiz
   */
   activateQuiz() {
@@ -690,7 +699,7 @@ class three_lesson extends Phaser.Scene {
   }
 
   /* quitInteraction
-   * 
+   *
    * Sets the alphas to 0 so that the interaction is quit.
   */
   quitInteraction() {
@@ -720,7 +729,7 @@ class three_lesson extends Phaser.Scene {
   }
 
   /* hideActivities
-   * 
+   *
    * Sets the alphas to the activities to 0 so that they are hidden.
   */
   hideActivities() {
@@ -739,7 +748,7 @@ class three_lesson extends Phaser.Scene {
   }
 
   /* checkCorrectPaperOne
-   * 
+   *
    * Checks to see if the first paper is in the correct box.
   */
   checkCorrectPaperOne() {
@@ -771,7 +780,7 @@ class three_lesson extends Phaser.Scene {
   }
 
   /* checkCorrectPaperTwo
-   * 
+   *
    * Checks to see if the second paper is in the correct box.
   */
   checkCorrectPaperTwo() {
@@ -804,7 +813,7 @@ class three_lesson extends Phaser.Scene {
   }
 
   /* checkCorrectPaperThree
-   * 
+   *
    * Checks to see if the third paper is in the correct box.
   */
   checkCorrectPaperThree() {
@@ -832,7 +841,7 @@ class three_lesson extends Phaser.Scene {
   }
 
   /* loadQuizImages
-   * 
+   *
    * Loads the images into the quiz Activity
   */
 	loadQuizImages(){
@@ -873,7 +882,7 @@ class three_lesson extends Phaser.Scene {
 	}
 
   /* updateCorrectImage
-   * 
+   *
    * Updates the image in the quiz that tells the user how many they have got right.
   */
 	updateCorrectImage() {
@@ -911,8 +920,8 @@ class three_lesson extends Phaser.Scene {
 
 
   /* checkNextPage
-   * 
-   * 
+   *
+   *
   */
 
   checkNextPage() {
@@ -946,7 +955,7 @@ class three_lesson extends Phaser.Scene {
   }
 
   /* helpMenu
-   * 
+   *
    * Sets the alpha of the help menu to 1 so that it is visible
   */
   helpMenu() {
