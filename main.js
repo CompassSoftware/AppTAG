@@ -4,7 +4,7 @@ var config = {
   height: 864,
 
 
-  scene: [zero_lesson, three_lesson]
+  scene: [zero_lesson, three_lesson, two_lesson]
 
 };
 var quizActive = false;
