@@ -166,6 +166,7 @@ class two_lesson extends Phaser.Scene {
   this.load.image('room2_incomeStatementText' ,'assets/incomeStatementText.png');
   this.load.image('room2_balanceSheetText', 'assets/balanceSheetText.png');
   this.load.image('room2_retainedEarningsText' , 'assets/retainedEarningsText.png');
+
   }
 
   /* createImages
@@ -207,6 +208,7 @@ class two_lesson extends Phaser.Scene {
     this.room2_notebook = this.add.image(768, 432, 'room2_notebook');
     this.room2_activityLocked = this.add.image(768, 432, 'room2_activityLocked');
     this.room2_help_menu = this.add.image(768, 432, 'room2_help_menu');
+
   }
 
   /* setAlphas
@@ -248,6 +250,7 @@ class two_lesson extends Phaser.Scene {
     this.room2_paper_stack.setDepth(1);
     this.room2_notebook.setDepth(100);
     this.room2_help_menu.setDepth(100);
+
   }
 
   /* setScales
@@ -255,6 +258,7 @@ class two_lesson extends Phaser.Scene {
    * Scales the size of each object.
   */
   setScales() {
+
     this.room2_E_KeyImg.setScale(0.4);
     this.room2_wall_info_1.setScale(0.75);
     this.room2_wall_info_2.setScale(0.75);
@@ -578,9 +582,10 @@ class two_lesson extends Phaser.Scene {
   */
   quitQuiz() {
   //console.log("e");
+
     this.room2_papers_moved = false;
     this.room2_quizActive = false;
-  this.room2_activatedQuiz = false;
+    this.room2_activatedQuiz = false;
     this.room2_background.alpha = 1.0;
     this.room2_character_north.alpha = 1.0;
     this.room2_character_east.alpha = 1.0;
@@ -646,6 +651,7 @@ class two_lesson extends Phaser.Scene {
       this.room2_paper_stack.y -= 275;
       this.room2_papers_moved = true;
     }
+
 
     this.room2_paper = this.add.image(this.room2_paper_stack.x, this.room2_paper_stack.y, 'room2_paper');
     this.room2_paperTwo = this.add.image(this.room2_paper_stack.x, this.room2_paper_stack.y, 'room2_paper');
