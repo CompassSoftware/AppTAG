@@ -126,7 +126,7 @@ Info Panels like these contain important information and lessons that help you p
     this.load.image('activity6', 'assets/Activity6.png');
     this.load.image('E_KeyImg', 'assets/E_Key.png');
     this.load.image('wall_info_2', 'assets/wall_art.png');
-    this.load.image('floor', 'assets/floor_0.jpg');
+    this.load.image('floor1', 'assets/floor_0.jpg');
     this.load.image('paper', 'assets/single_paper.png');
     this.load.image('map', 'assets/map.png');
     this.load.image('notebook', 'assets/notebook.png');
@@ -155,7 +155,7 @@ Info Panels like these contain important information and lessons that help you p
     this.activity5 = this.add.image(768, 432, 'activity5');
     this.activity6 = this.add.image(768, 432, 'activity6');
     this.wall_info_2 = this.add.image(768, 75, 'wall_info_2');
-    this.floor = this.add.image(769, 433, 'floor');
+    this.floor1 = this.add.image(769, 433, 'floor1');
     this.map = this.add.image(768, 432, 'map');
     this.notebook = this.add.image(768, 432, 'notebook');
     this.activityLocked = this.add.image(768, 432, 'activityLocked');
@@ -177,7 +177,7 @@ Info Panels like these contain important information and lessons that help you p
   }
 
   setDepths() {
-    this.floor.setDepth(0);
+    this.floor1.setDepth(0);
     this.character_north.setDepth(50);
     this.character_east.setDepth(50);
     this.character_south.setDepth(50);
@@ -381,8 +381,8 @@ Info Panels like these contain important information and lessons that help you p
 
 
     this.wall_info_2.alpha = 1;
-    this.floor.scaleX = 1.0;
-    this.floor.scaleY = 1.0;
+    this.floor1.scaleX = 1.0;
+    this.floor1.scaleY = 1.0;
     this.paperCount = 1;
     this.paperMoveable = false;
   }
@@ -416,8 +416,8 @@ Info Panels like these contain important information and lessons that help you p
 	this.approachImg.alpha = 0.0;
 	this.approachImg.alpha = 0.0;
     this.wall_info_2.alpha = 0.0;
-    this.floor.scaleX = 1.5;
-    this.floor.scaleY = 2.0;
+    this.floor1.scaleX = 1.5;
+    this.floor1.scaleY = 2.0;
 
     this.paper.on('pointerdown', function(pointer, localX, localY, event) {
       console.log("click");
