@@ -3,7 +3,11 @@ var config = {
   width: 1536,
   height: 864,
 
+<<<<<<< HEAD
   scene: [one_lesson]
+=======
+  scene: [three_lesson]
+>>>>>>> room1_exit
 };
 var quizActive = false;
 var activity1Locked = false;
