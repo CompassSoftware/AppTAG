@@ -47,7 +47,7 @@ Info Panels like these contain important information and lessons that help you p
 
     if (this.key_U.isDown && this.unlocked == false) {
       activity1Locked = false;
-      activity2Locked = false;
+      activity2ZeroLocked = false;
       activity3Locked = false;
       activity4Locked = false;
       activity5Locked = false;
@@ -118,13 +118,13 @@ Info Panels like these contain important information and lessons that help you p
     this.load.image('character_south', 'assets/character_south.png');
     this.load.image('character_west', 'assets/character_west.png');
     this.load.image('redCharacter', 'assets/redCharacter.png');
-    this.load.image('activity1', 'assets/Activity1.png');
-    this.load.image('activity1Page2', 'assets/Activity2.png');
-    this.load.image('activity2', 'assets/Activity2.png');
-    this.load.image('activity3', 'assets/Activity3.png');
-    this.load.image('activity4', 'assets/Activity4.png');
-    this.load.image('activity5', 'assets/Activity5.png');
-    this.load.image('activity6', 'assets/Activity6.png');
+    //this.load.image('activity1', 'assets/Activity1.png');
+    //this.load.image('activity1Page2', 'assets/Activity2.png');
+    //this.load.image('activity2Zero', 'assets/activity2.png');
+    // this.load.image('activity3', 'assets/Activity3.png');
+    // this.load.image('activity4', 'assets/Activity4.png');
+    // this.load.image('activity5', 'assets/Activity5.png');
+    // this.load.image('activity6', 'assets/Activity6.png');
     this.load.image('E_KeyImg', 'assets/E_Key.png');
     this.load.image('wall_info_2', 'assets/wall_art.png');
     this.load.image('floor', 'assets/floor_0.jpg');
@@ -148,13 +148,13 @@ Info Panels like these contain important information and lessons that help you p
     this.character_west = this.add.image(768, 432, 'character_west');
     this.E_KeyImg = this.add.image(this.character_north.x+40, this.character_north.y+40, 'E_KeyImg');
 	this.approachImg = this.add.image(this.character_north.x+40, this.character_north.y+40, 'approachImg');
-    this.activity1 = this.add.image(768, 432, 'activity1');
-    this.activity1Page2 = this.add.image(768, 432, 'activity1Page2');
-    this.activity2 = this.add.image(768, 432, 'activity2');
-    this.activity3 = this.add.image(768, 432, 'activity3');
-    this.activity4 = this.add.image(768, 432, 'activity4');
-    this.activity5 = this.add.image(768, 432, 'activity5');
-    this.activity6 = this.add.image(768, 432, 'activity6');
+    // this.activity1 = this.add.image(768, 432, 'activity1');
+    // this.activity1Page2 = this.add.image(768, 432, 'activity1Page2');
+    // this.activity2Zero = this.add.image(768, 432, 'activity2Zero');
+    // this.activity3 = this.add.image(768, 432, 'activity3');
+    // this.activity4 = this.add.image(768, 432, 'activity4');
+    // this.activity5 = this.add.image(768, 432, 'activity5');
+    // this.activity6 = this.add.image(768, 432, 'activity6');
     this.wall_info_2 = this.add.image(768, 75, 'wall_info_2');
     this.floor = this.add.image(769, 433, 'floor');
     this.map = this.add.image(768, 432, 'map');
@@ -185,13 +185,13 @@ Info Panels like these contain important information and lessons that help you p
     this.character_west.setDepth(50);
     this.E_KeyImg.setDepth(49);
 	this.approachImg.setDepth(48);
-    this.activity1.setDepth(100);
-    this.activity1Page2.setDepth(100);
-    this.activity2.setDepth(99);
-    this.activity3.setDepth(98);
-    this.activity4.setDepth(97);
-    this.activity5.setDepth(96);
-    this.activity6.setDepth(95);
+    // this.activity1.setDepth(100);
+    // this.activity1Page2.setDepth(100);
+    // this.activity2Zero.setDepth(99);
+    // this.activity3.setDepth(98);
+    // this.activity4.setDepth(97);
+    // this.activity5.setDepth(96);
+    // this.activity6.setDepth(95);
     this.map.setDepth(100);
 
     this.notebook.setDepth(100);
@@ -223,9 +223,9 @@ Info Panels like these contain important information and lessons that help you p
                                                 //xpos ypos x  y
     this.top_mid_info = new Phaser.Geom.Rectangle(650,150,240,150);
     this.graphics.fillRectShape(this.top_mid_info);
-    
+
 	//MIDDLE ZONE
-	
+
 	this.middle_info = new Phaser.Geom.Rectangle(700,350,200,200);
     this.graphics.fillRectShape(this.middle_info);
   }
@@ -273,7 +273,7 @@ Info Panels like these contain important information and lessons that help you p
 		{
 			if(this.key_E.isDown){
 				this.scene.start("three_Lesson");
-			
+
 			}
 			this.E_KeyImg.x = this.character_north.x;
 			this.E_KeyImg.y = this.character_north.y-75;
@@ -447,14 +447,14 @@ Info Panels like these contain important information and lessons that help you p
   }
 
   hideActivities() {
-    this.activity1.alpha = 0.0;
+    // this.activity1.alpha = 0.0;
 	this.activityLocked.alpha = 0.0;
-    this.activity2.alpha = 0.0;
-    this.activity3.alpha = 0.0;
-    this.activity4.alpha = 0.0;
-    this.activity5.alpha = 0.0;
-    this.activity6.alpha = 0.0;
-    this.activity1Page2.alpha = 0.0;
+    // this.activity2Zero.alpha = 0.0;
+    // this.activity3.alpha = 0.0;
+    // this.activity4.alpha = 0.0;
+    // this.activity5.alpha = 0.0;
+    // this.activity6.alpha = 0.0;
+    // this.activity1Page2.alpha = 0.0;
   }
 
   checkCorrectPaperOne() {

@@ -433,7 +433,7 @@ class three_lesson extends Phaser.Scene {
         this.E_KeyImg.alpha = 1.0;
 
         if(this.key_E.isDown) {
-          this.scene.start("two_lesson");
+          this.scene.start("two_Lesson");
         }
       }
 

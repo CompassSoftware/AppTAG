@@ -1,7 +1,7 @@
 class one_lesson extends Phaser.Scene {
 
   constructor() {
-    super({key: "one_Lesson"});
+    super("one_Lesson");
     this.quizActive = false;
     this.activatedQuiz = false;
     this.unlocked = false;
