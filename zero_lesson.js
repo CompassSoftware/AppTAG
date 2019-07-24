@@ -2,7 +2,7 @@
 class zero_lesson extends Phaser.Scene {
 
   constructor() {
-    super({key: "zero_Lesson"});
+    super("zero_Lesson");
     this.quizActive = false;
     this.activatedQuiz = false;
     this.unlocked = false;
@@ -112,10 +112,10 @@ Info Panels like these contain important information and lessons that help you p
 *///////////////////////////////////////////////////////////////////////////////////////////////
   loadAssets() {
     this.load.image('one_lesson_BG', 'assets/one_lesson_BG.png');
-    this.load.image('character_north', 'assets/character-north.gif');
-    this.load.image('character_east', 'assets/character-east.gif');
-    this.load.image('character_south', 'assets/character-south.gif');
-    this.load.image('character_west', 'assets/character-west.gif');
+    this.load.image('character_north', 'assets/character_north.png');
+    this.load.image('character_east', 'assets/character_east.png');
+    this.load.image('character_south', 'assets/character_south.png');
+    this.load.image('character_west', 'assets/character_west.png');
     this.load.image('redCharacter', 'assets/redCharacter.png');
     this.load.image('activity1', 'assets/Activity1.png');
     this.load.image('activity1Page2', 'assets/Activity2.png');
@@ -133,6 +133,8 @@ Info Panels like these contain important information and lessons that help you p
     this.load.image('activityLocked', 'assets/activityLocked.png');
     this.load.image('help_menu', 'assets/help_menu.png');
 	this.load.image('approachImg', 'assets/tutorial_1.jpg');
+	this.load.image('tut1', 'assets/tut1.PNG');
+	this.load.image('hole', 'assets/hole.png');
   }
 
   createImages() {
@@ -158,6 +160,8 @@ Info Panels like these contain important information and lessons that help you p
     this.notebook = this.add.image(768, 432, 'notebook');
     this.activityLocked = this.add.image(768, 432, 'activityLocked');
     this.help_menu = this.add.image(768, 432, 'help_menu');
+	this.tut1 = this.add.image(768, 432, 'tut1');
+	this.hole = this.add.image(768, 432, 'hole');
   }
 
   setAlphas() {
@@ -167,6 +171,8 @@ Info Panels like these contain important information and lessons that help you p
     this.E_KeyImg.alpha = 0.0;
 	this.approachImg.alpha = 0.0;
     this.help_menu.alpha = 0.0;
+	this.tut1.alpha = 0.0;
+	this.hole.alpha = 0.0;
     this.hideActivities();
   }
 
@@ -189,6 +195,8 @@ Info Panels like these contain important information and lessons that help you p
 
     this.notebook.setDepth(100);
     this.help_menu.setDepth(100);
+	this.tut1.setDepth(99);
+	this.hole.setDepth(1);
   }
 
   setScales() {
@@ -196,6 +204,10 @@ Info Panels like these contain important information and lessons that help you p
     this.wall_info_2.setScale(0.75);
     this.notebook.setScale(0.75);
     this.map.setScale(0.75);
+	this.character_north.setScale(3);
+    this.character_south.setScale(3);
+    this.character_west.setScale(3);
+    this.character_east.setScale(3);
   }
 
   setRotations() {
@@ -247,26 +259,48 @@ Info Panels like these contain important information and lessons that help you p
   checkInteractValidity() {
     if (Phaser.Geom.Rectangle.ContainsPoint(this.top_mid_info, this.character_north)) {
       this.E_KeyImg.x = this.character_north.x;
-      this.E_KeyImg.y = this.character_north.y-75;
+      this.E_KeyImg.y = this.character_north.y-100;
       this.E_KeyImg.alpha = 1.0;
       if (this.key_E.isDown) {
-        this.helpMenu();
+        this.tut1.alpha = 1.0;
+		this.activityOneOpened = true;
+		this.hole.alpha = 1.0;
       }
     } else if (Phaser.Geom.Rectangle.ContainsPoint(this.middle_info, this.character_north))
 	{
-      this.approachImg.x = this.character_north.x;
-      this.approachImg.y = this.character_north.y-75;
-      this.approachImg.alpha = 1.0;
+		if (this.activityOneOpened == true)
+		{
+			if(this.key_E.isDown){
+				this.scene.start("three_Lesson");
+			
+			}
+			this.E_KeyImg.x = this.character_north.x;
+			this.E_KeyImg.y = this.character_north.y-75;
+			this.E_KeyImg.alpha = 1.0;
+		}
+		else if(this.activityOneOpened == false)
+		{
+			this.approachImg.x = this.character_north.x;
+			this.approachImg.y = this.character_north.y-100;
+			this.approachImg.alpha = 1.0;
+		}
 	}
     else {
       this.hideActivities();
       this.E_KeyImg.alpha = 0.0;
 	  this.approachImg.alpha = 0.0;
+	  this.tut1.alpha = 0.0;
     }
   }
 
 
   movePlayer() {
+
+    this.character_north.alpha = 0;
+    this.character_east.alpha = 0;
+    this.character_west.alpha = 0;
+    this.character_south.alpha =1;
+
     if(this.key_W.isDown && characterMoveable == true) {
 	if(this.character_north.y > 185){
       		this.character_north.y -= 5;
@@ -276,7 +310,7 @@ Info Panels like these contain important information and lessons that help you p
 
           this.character_north.alpha = 1;
           this.character_east.alpha = 0;
-          this.character_west.alpha = 0
+          this.character_west.alpha = 0;
           this.character_south.alpha =0;
 
 
@@ -290,12 +324,12 @@ Info Panels like these contain important information and lessons that help you p
 
           this.character_west.alpha = 1;
           this.character_east.alpha = 0;
-          this.character_north.alpha = 0
+          this.character_north.alpha = 0;
           this.character_south.alpha =0;
 	}
 
     } if (this.key_S.isDown && characterMoveable == true) {
-	if(this.character_south.y < 680){
+	if(this.character_south.y < 665){
       		this.character_south.y += 5;
           this.character_east.y += 5;
           this.character_north.y += 5;
@@ -303,7 +337,7 @@ Info Panels like these contain important information and lessons that help you p
 
           this.character_south.alpha = 1;
           this.character_east.alpha = 0;
-          this.character_west.alpha = 0
+          this.character_west.alpha = 0;
           this.character_north.alpha =0;
 		}
 
@@ -316,7 +350,7 @@ Info Panels like these contain important information and lessons that help you p
 
           this.character_east.alpha = 1;
           this.character_north.alpha = 0;
-          this.character_west.alpha = 0
+          this.character_west.alpha = 0;
           this.character_south.alpha =0;
 		}
     }
@@ -402,8 +436,8 @@ Info Panels like these contain important information and lessons that help you p
     this.character_south.alpha = 1.0;
     this.character_west.alpha = 1.0;
     this.characterMoveable = true;
-    this.activityOneOpened = false;
     this.help_menu.alpha = 0.0;
+	this.tut1.alpha = 0.0;
   }
 
 
