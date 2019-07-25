@@ -59,6 +59,9 @@ class two_lesson extends Phaser.Scene {
       activity5Locked = false;
       activity6Locked = false;
       activity6Complete = true;
+	  this.holeOpened = true;
+	  this.hole.alpha = 1.0;
+	  
       this.unlocked = true;
     }
 
@@ -311,20 +314,8 @@ class two_lesson extends Phaser.Scene {
 
     this.bot_right_info = new Phaser.Geom.Rectangle(1120,565,240,150);
     this.graphics.fillRectShape(this.bot_right_info);
-
-    this.quiz1 = new Phaser.Geom.Rectangle(1120,308,240,250);
-    this.graphics.fillRectShape(this.quiz1);
-
-    this.box_1_zone = new Phaser.Geom.Rectangle(1200,75,200,200);
-    this.graphics.fillRectShape(this.box_1_zone);
-
-    this.box_2_zone = new Phaser.Geom.Rectangle(1200,325,200,200);
-    this.graphics.fillRectShape(this.box_2_zone);
-
-    this.box_3_zone = new Phaser.Geom.Rectangle(1200,650,200,200);
-    this.graphics.fillRectShape(this.box_3_zone);
-
-    this.middle_info = new Phaser.Geom.Rectangle(700, 350, 200, 200);
+	
+	this.middle_info = new Phaser.Geom.Rectangle(700, 350, 200, 200);
     this.graphics.fillRectShape(this.middle_info);
   }
 
@@ -403,17 +394,6 @@ class two_lesson extends Phaser.Scene {
 		activity6Complete = true;
       }
 
-    } else if(Phaser.Geom.Rectangle.ContainsPoint(this.middle_info, this.character_north)) {
-      if(this.hole.alpha == 1) {
-        this.E_KeyImg.x = this.character_north.x;
-        this.E_KeyImg.y = this.character_north.y + 75;
-        this.E_KeyImg.alpha = 1.0;
-
-        if(this.key_E.isDown) {
-          this.scene.start("two_lesson");
-        }
-      }
-
     } else if (Phaser.Geom.Rectangle.ContainsPoint(this.bot_mid_info, this.character_north)) {
       this.E_KeyImg.x = this.character_north.x;
       this.E_KeyImg.y = this.character_north.y+75;
@@ -481,15 +461,6 @@ class two_lesson extends Phaser.Scene {
         this.characterMoveable = false;
       }
 
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.quiz1, this.character_north)){
-      this.E_KeyImg.x = this.character_north.x+75;
-      this.E_KeyImg.y = this.character_north.y;
-      this.E_KeyImg.alpha = 1.0;
-      if (this.key_E.isDown && activity6Complete == true) {
-        this.puzzleActive = true;
-      } else if (this.key_E.isDown && activity6Complete == false){
-          this.activityLocked.alpha = 1.0;
-        }
     } else if (Phaser.Geom.Rectangle.ContainsPoint(this.middle_info, this.character_north) && this.holeOpened == true){
      	this.E_KeyImg.x = this.character_north.x+75;
       	this.E_KeyImg.y = this.character_north.y;
@@ -596,9 +567,8 @@ class two_lesson extends Phaser.Scene {
 			this.congrats = this.add.image(810, 400, 'congrats');
 			this.congrats.setScale(1.3);
 			this.congrats.depth = 200;
-			
-			this.hole = this.add.image(768, 432, 'hole');
 			this.holeOpened = true;
+			this.hole.alpha = 1.0;
 		}
 	}	
 
