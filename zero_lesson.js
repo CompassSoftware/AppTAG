@@ -14,6 +14,7 @@ class zero_lesson extends Phaser.Scene {
 
   preload() {
     this.loadAssets();
+    this.createImages();
   }
   /*
   Welcome to The Accounting Game(TAG) Tutorial!
@@ -22,7 +23,7 @@ Info Panels like these contain important information and lessons that help you p
 
   //when scene is created
   create() {
-
+    this.loadAssets();
     this.createImages();
     this.setAlphas();
     this.setDepths();
