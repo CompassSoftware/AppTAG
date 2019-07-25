@@ -3,8 +3,8 @@ var config = {
   width: 1536,
   height: 864,
 
-  //scene: [one_lesson]
-  scene: [three_lesson]
+  scene: [zero_lesson, three_lesson, two_lesson]
+      
 
 };
 var quizActive = false;
