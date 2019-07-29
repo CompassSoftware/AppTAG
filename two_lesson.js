@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 class two_lesson extends Phaser.Scene {
 
   constructor() {
