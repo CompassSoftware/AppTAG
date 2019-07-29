@@ -13,6 +13,7 @@ class two_lesson extends Phaser.Scene {
     this.room2_activityFiveOpened = false;
     this.room2_activitySixOpened = false;
     this.room2_helpOpen = false;
+	this.counter = 0;
   }
   //load assets in preload()
 
@@ -169,15 +170,6 @@ class two_lesson extends Phaser.Scene {
     this.load.image('room2_activityLocked', 'assets/activityLocked.png');
     this.load.image('room2_help_menu', 'assets/help_menu.png');
 
-  this.load.image('room2_correctPlacements0', 'assets/placements0.png');
-  this.load.image('room2_correctPlacements1', 'assets/placements1.png');
-  this.load.image('room2_correctPlacements2', 'assets/placements2.png');
-  this.load.image('room2_incomeStatement' , 'assets/incomeStatement.png');
-  this.load.image('room2_balanceSheet', 'assets/balanceSheet.png');
-  this.load.image('room2_retainedEarnings' , 'assets/retainedEarnings.png');
-  this.load.image('room2_incomeStatementText' ,'assets/incomeStatementText.png');
-  this.load.image('room2_balanceSheetText', 'assets/balanceSheetText.png');
-  this.load.image('room2_retainedEarningsText' , 'assets/retainedEarningsText.png');
 	this.load.image('revenues' , 'assets/Puzzle/TopLeft.png');
 	this.load.image('expenses' , 'assets/Puzzle/BottomLeft.png');
 	this.load.image('dividends' , 'assets/Puzzle/LeftMiddle.png');
@@ -187,6 +179,8 @@ class two_lesson extends Phaser.Scene {
 	this.load.image('Operating' , 'assets/Puzzle/TopRight.png');
 	this.load.image('Investing' , 'assets/Puzzle/MiddleRight.png');
 	this.load.image('Financing' , 'assets/Puzzle/BottomRight.png');
+    this.load.image('leftArrow' , 'assets/leftArrow.png');
+    this.load.image('rightArrow' , 'assets/rightArrowTest.png');
 
   }
 
@@ -232,20 +226,24 @@ class two_lesson extends Phaser.Scene {
     this.room2_notebook = this.add.image(768, 432, 'room2_notebook');
     this.room2_activityLocked = this.add.image(768, 432, 'room2_activityLocked');
     this.room2_help_menu = this.add.image(768, 432, 'room2_help_menu');
+	this.rightArrow = this.add.image(1000, 650, 'rightArrow');
+    this.leftArrow = this.add.image(600, 650, 'rightArrow');
   }
 
   /* setAlphas
    *
    * sets the alphas to to items in the game to zero so they are not visible at the beginning.
   */
-  setAlphas() {
-    this.room2_map.alpha = 0.0;
-    this.room2_notebook.alpha = 0.0;
-    this.room2_activityLocked.alpha = 0.0;
-    this.room2_E_KeyImg.alpha = 0.0;
-    this.room2_help_menu.alpha = 0.0;
-    this.hideActivities();
-  }
+    setAlphas() {
+    	this.room2_map.alpha = 0.0;
+    	this.room2_notebook.alpha = 0.0;
+    	this.room2_activityLocked.alpha = 0.0;
+    	this.room2_E_KeyImg.alpha = 0.0;
+    	this.room2_help_menu.alpha = 0.0;
+    	this.hideActivities();
+        this.leftArrow.alpha = 0;
+        this.rightArrow.alpha = 0;
+    }
 
   /* setDepths
    *
@@ -277,8 +275,9 @@ class two_lesson extends Phaser.Scene {
     this.room2_activity5B.setDepth(100);
     this.room2_activity5C.setDepth(100);
 
+
     this.room2_map.setDepth(100);
-    // this.room2_paper_stack.setDepth(1);
+
     this.room2_notebook.setDepth(100);
     this.room2_help_menu.setDepth(100);
   }
@@ -297,17 +296,14 @@ class two_lesson extends Phaser.Scene {
     this.room2_wall_info_6.setScale(0.75);
     this.room2_notebook.setScale(0.75);
     this.room2_map.setScale(0.75);
-    // this.room2_cardboard_box_1.setScale(0.39);
-    // this.room2_cardboard_box_2.setScale(0.39);
-    // this.room2_cardboard_box_3.setScale(0.39);
-    // this.room2_paper_stack.setScale(0.35);
     this.room2_character_north.setScale(3);
     this.room2_character_south.setScale(3);
     this.room2_character_west.setScale(3);
     this.room2_character_east.setScale(3);
     this.room2_floor.scaleY = 0.71;
     this.room2_floor.scaleX = 0.99;
-
+	    this.leftArrow.setScale(.2);
+        this.rightArrow.setScale(.2);
   }
 
   /* setRotations
@@ -318,9 +314,7 @@ class two_lesson extends Phaser.Scene {
     this.room2_wall_info_4.rotation = 3.14;
     this.room2_wall_info_5.rotation = 3.14;
     this.room2_wall_info_6.rotation = 3.14;
-  //   this.room2_cardboard_box_1.rotation = 0;
-  //   this.room2_cardboard_box_2.rotation = 0;
-  //   this.room2_cardboard_box_3.rotation = 0;
+        this.leftArrow.setRotation(3.14);
    }
 
   /* createInteractionZones
@@ -387,7 +381,8 @@ class two_lesson extends Phaser.Scene {
     this.room2_key_5 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.FIVE);
     this.room2_key_R = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
     this.room2_key_H = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.H);
-
+        this.key_Right = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+        this.key_Left = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
   }
 
   /* imagesDraggable
@@ -763,8 +758,9 @@ class two_lesson extends Phaser.Scene {
     this.room2_activityFiveOpened = false;
     this.room2_activitySixOpened = false;
     this.room2_help_menu.alpha = 0.0;
-  this.room2_activatedQuiz = false;
-  //this.quitQuiz();
+    this.room2_activatedQuiz = false;
+        this.rightArrow.setVisible(false);
+        this.leftArrow.setVisible(false);
   }
 
 
@@ -795,6 +791,8 @@ class two_lesson extends Phaser.Scene {
     this.room2_activity5A.alpha = 0.0;
     this.room2_activity5B.alpha = 0.0;
     this.room2_activity5C.alpha = 0.0;
+    this.rightArrow.setVisible(false);
+    this.leftArrow.setVisible(false);
 
 
   }
