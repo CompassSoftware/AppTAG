@@ -169,6 +169,25 @@ class two_lesson extends Phaser.Scene {
     this.load.image('room2_activityLocked', 'assets/activityLocked.png');
     this.load.image('room2_help_menu', 'assets/help_menu.png');
 
+  this.load.image('room2_correctPlacements0', 'assets/placements0.png');
+  this.load.image('room2_correctPlacements1', 'assets/placements1.png');
+  this.load.image('room2_correctPlacements2', 'assets/placements2.png');
+  this.load.image('room2_incomeStatement' , 'assets/incomeStatement.png');
+  this.load.image('room2_balanceSheet', 'assets/balanceSheet.png');
+  this.load.image('room2_retainedEarnings' , 'assets/retainedEarnings.png');
+  this.load.image('room2_incomeStatementText' ,'assets/incomeStatementText.png');
+  this.load.image('room2_balanceSheetText', 'assets/balanceSheetText.png');
+  this.load.image('room2_retainedEarningsText' , 'assets/retainedEarningsText.png');
+	this.load.image('revenues' , 'assets/Puzzle/TopLeft.png');
+	this.load.image('expenses' , 'assets/Puzzle/BottomLeft.png');
+	this.load.image('dividends' , 'assets/Puzzle/LeftMiddle.png');
+	this.load.image('Assets' , 'assets/Puzzle/TopRightMiddle.png');
+	this.load.image('Liabilities' , 'assets/Puzzle/MiddleRightMiddle.png');
+	this.load.image('StockEquity' , 'assets/Puzzle/BottomRightMiddle.png');
+	this.load.image('Operating' , 'assets/Puzzle/TopRight.png');
+	this.load.image('Investing' , 'assets/Puzzle/MiddleRight.png');
+	this.load.image('Financing' , 'assets/Puzzle/BottomRight.png');
+
   }
 
   /* createImages
@@ -968,7 +987,9 @@ class two_lesson extends Phaser.Scene {
 
   checkNextPage() {
     if (this.room2_activityOneOpened == true && this.room2_key_1.isDown) {
+
       this.activityAlphas(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+
     } else if (this.room2_activityOneOpened == true && this.room2_key_2.isDown) {
       this.activityAlphas(0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 , 0, 0, 0 ,0, 0, 0);
     } else if (this.room2_activityOneOpened == true && this.room2_key_3.isDown) {
