@@ -1,4 +1,3 @@
-
 class two_lesson extends Phaser.Scene {
 
   constructor() {
@@ -1074,4 +1073,3 @@ class two_lesson extends Phaser.Scene {
       this.room2_help_menu.alpha = 1.0;
       this.room2_helpOpen = true;
   }
-}
