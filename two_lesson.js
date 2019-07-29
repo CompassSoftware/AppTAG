@@ -335,7 +335,7 @@ class two_lesson extends Phaser.Scene {
     this.room2_bot_right_info = new Phaser.Geom.Rectangle(1120,565,240,150);
     this.room2_graphics.fillRectShape(this.room2_bot_right_info);
 	
-	this.room2_hole_zone = new Phaser.Geom.Rectangle(150, 432,240,150);
+	this.room2_hole_zone = new Phaser.Geom.Rectangle(150, 332,240,150);
     this.room2_graphics.fillRectShape(this.room2_hole_zone);
 
     // this.room2_quiz1 = new Phaser.Geom.Rectangle(1120,308,240,250);
@@ -501,7 +501,7 @@ class two_lesson extends Phaser.Scene {
 		this.room2_E_KeyImg.y = this.room2_character_north.y+75;
 		this.room2_E_KeyImg.alpha = 1.0;
 		if (this.room2_key_E.isDown) {
-		console.log("To room 2 activity 1")
+			console.log("To room 2 activity 1")
 			this.scene.start("two_Activity");
 		} 
 
