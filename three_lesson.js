@@ -168,7 +168,6 @@ class three_lesson extends Phaser.Scene {
 	this.load.image('incomeStatementText' ,'assets/incomeStatementText.png');
 	this.load.image('balanceSheetText', 'assets/balanceSheetText.png');
 	this.load.image('retainedEarningsText' , 'assets/retainedEarningsText.png');
-    this.load.image('hole', 'assets/hole.png');
 	this.load.image('congrats', 'assets/congrats.png');
 	this.load.image('hole', 'assets/hole.png');	
 	this.load.image('leftArrow' , 'assets/leftArrow.png');
