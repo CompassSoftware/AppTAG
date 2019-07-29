@@ -699,6 +699,7 @@ class three_lesson extends Phaser.Scene {
      * Method that starts the quiz
      */
     activateQuiz() {
+        this.hole.setVisible(false);
         this.paper_stack.setVisible(true);
 
         this.paperMoveable = true;
