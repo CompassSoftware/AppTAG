@@ -429,7 +429,7 @@ class two_lesson extends Phaser.Scene {
   */
 
   checkInteractValidity() {
-    if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_top_right_info, this.room2_character_north)) {
+    if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_top_mid_info, this.room2_character_north)) {
       this.room2_E_KeyImg.x = this.room2_character_north.x;
       this.room2_E_KeyImg.y = this.room2_character_north.y-75;
       this.room2_E_KeyImg.alpha = 1.0;
@@ -443,7 +443,7 @@ class two_lesson extends Phaser.Scene {
     this.room2_activity6Complete = true;
       }
 
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_bot_mid_info, this.room2_character_north)) {
+    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_bot_left_info, this.room2_character_north)) {
       this.room2_E_KeyImg.x = this.room2_character_north.x;
       this.room2_E_KeyImg.y = this.room2_character_north.y+75;
       this.room2_E_KeyImg.alpha = 1.0;
@@ -456,7 +456,7 @@ class two_lesson extends Phaser.Scene {
           this.room2_characterMoveable = false;
           }
 
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_top_mid_info, this.room2_character_north)) {
+    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_top_left_info, this.room2_character_north)) {
       this.room2_E_KeyImg.x = this.room2_character_north.x;
       this.room2_E_KeyImg.y = this.room2_character_north.y-75;
       this.room2_E_KeyImg.alpha = 1.0;
@@ -469,7 +469,7 @@ class two_lesson extends Phaser.Scene {
         this.room2_characterMoveable = false;
         }
 
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_bot_right_info, this.room2_character_north)) {
+    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_bot_mid_info, this.room2_character_north)) {
       this.room2_E_KeyImg.x = this.room2_character_north.x;
       this.room2_E_KeyImg.y = this.room2_character_north.y+75;
       this.room2_E_KeyImg.alpha = 1.0;
@@ -484,7 +484,7 @@ class two_lesson extends Phaser.Scene {
 
 
     } 
-	else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_top_left_info, this.room2_character_north)) {
+	else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_top_right_info, this.room2_character_north)) {
 		this.room2_E_KeyImg.x = this.room2_character_north.x;
 		this.room2_E_KeyImg.y = this.room2_character_north.y-75;
 
@@ -500,12 +500,12 @@ class two_lesson extends Phaser.Scene {
         }
 
      } 
-	else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_bot_left_info, this.room2_character_north)) {
+	else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_bot_right_info, this.room2_character_north)) {
 		this.room2_E_KeyImg.x = this.room2_character_north.x;
 		this.room2_E_KeyImg.y = this.room2_character_north.y+75;
 		this.room2_E_KeyImg.alpha = 1.0;
 		if (this.room2_key_E.isDown && this.room2_activity6Locked == false) {
-			this.room2_activity6.alpha = 1.0;
+			this.room2_activity6A.alpha = 1.0;
 			this.checkActivityOpened(false, false, false, false, false, true);
 			activity6Complete = true;
 		} 
