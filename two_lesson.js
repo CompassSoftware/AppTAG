@@ -593,8 +593,6 @@ class two_lesson extends Phaser.Scene {
     this.wall_info_4.alpha = 1;
     this.wall_info_5.alpha = 1;
     this.wall_info_6.alpha = 1;
-    this.floor_2.scaleX = 1.0;
-    this.floor_2.scaleY = 1.0;
 	this.placements0.setVisible(false);
 	this.placements1.setVisible(false);
 	this.placements2.setVisible(false);
@@ -626,8 +624,6 @@ class two_lesson extends Phaser.Scene {
     this.wall_info_4.alpha = 0.0;
     this.wall_info_5.alpha = 0.0;
     this.wall_info_6.alpha = 0.0;
-    this.floor_2.scaleX = 1.5;
-    this.floor_2.scaleY = 2.0;
   }
 
   /* quitInteraction
