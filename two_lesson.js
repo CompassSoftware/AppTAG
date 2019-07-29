@@ -166,7 +166,15 @@ class two_lesson extends Phaser.Scene {
   this.load.image('room2_incomeStatementText' ,'assets/incomeStatementText.png');
   this.load.image('room2_balanceSheetText', 'assets/balanceSheetText.png');
   this.load.image('room2_retainedEarningsText' , 'assets/retainedEarningsText.png');
-
+	this.load.image('revenues' , 'assets/Puzzle/TopLeft.png');
+	this.load.image('expenses' , 'assets/Puzzle/BottomLeft.png');
+	this.load.image('dividends' , 'assets/Puzzle/LeftMiddle.png');
+	this.load.image('Assets' , 'assets/Puzzle/TopRightMiddle.png');
+	this.load.image('Liabilities' , 'assets/Puzzle/MiddleRightMiddle.png');
+	this.load.image('StockEquity' , 'assets/Puzzle/BottomRightMiddle.png');
+	this.load.image('Operating' , 'assets/Puzzle/TopRight.png');
+	this.load.image('Investing' , 'assets/Puzzle/MiddleRight.png');
+	this.load.image('Financing' , 'assets/Puzzle/BottomRight.png');
   }
 
   /* createImages
