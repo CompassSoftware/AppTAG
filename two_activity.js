@@ -214,7 +214,7 @@ class two_activity extends Phaser.Scene {
     this.room2a_notebook = this.add.image(768, 432, 'room2a_notebook');
     this.room2a_activityLocked = this.add.image(768, 432, 'room2a_activityLocked');
     this.room2a_help_menu = this.add.image(768, 432, 'room2a_help_menu');
-    this.room2a_hole = this.add.image(268, 432, 'room2a_hole');
+    this.room2a_hole = this.add.image(268, 300, 'room2a_hole');
 
   }
 
@@ -316,8 +316,8 @@ class two_activity extends Phaser.Scene {
     //this.graphicsTest = this.add.graphics({fillStyle: {color: 0x4F4F4F, alpha: 1.0}});
     //TOP ZONES
                                                 //xpos ypos x   y
-    this.room2a_top_left_info = new Phaser.Geom.Rectangle(175,150,240,150);
-    this.room2a_graphics.fillRectShape(this.room2a_top_left_info);
+    // this.room2a_top_left_info = new Phaser.Geom.Rectangle(175,150,240,150);
+    // this.room2a_graphics.fillRectShape(this.room2a_top_left_info);
                                                 //xpos ypos x  y
     this.room2a_top_mid_info = new Phaser.Geom.Rectangle(650,150,240,150);
     this.room2a_graphics.fillRectShape(this.room2a_top_mid_info);
@@ -336,7 +336,7 @@ class two_activity extends Phaser.Scene {
     this.room2a_bot_right_info = new Phaser.Geom.Rectangle(1120,565,240,150);
     this.room2a_graphics.fillRectShape(this.room2a_bot_right_info);
 
-    this.room2a_hole_zone = new Phaser.Geom.Rectangle(150, 332,240,150);
+    this.room2a_hole_zone = new Phaser.Geom.Rectangle(150, 200,240,150);
     this.room2a_graphics.fillRectShape(this.room2a_hole_zone);
 
     // this.room2a_quiz1 = new Phaser.Geom.Rectangle(1120,308,240,250);
@@ -465,19 +465,20 @@ class two_activity extends Phaser.Scene {
         }
 
 
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_top_left_info, this.room2a_character_north)) {
-      this.room2a_E_KeyImg.x = this.room2a_character_north.x;
-      this.room2a_E_KeyImg.y = this.room2a_character_north.y-75;
-
-      this.room2a_E_KeyImg.alpha = 1.0;
-      if (this.room2a_key_E.isDown && this.room2a_activity5Locked == false) {
-        this.room2a_activity5A.alpha = 1.0;
-        this.checkActivityOpened(false, false, false, false, true, false);
-    this.room2a_activity6Locked = false;
-  } else if (this.room2a_key_E.isDown && this.room2a_activity5Locked == true){
-          this.room2a_activityLocked.alpha = 1.0;
-          this.room2a_characterMoveable = false;
-        }
+  //   }
+  // else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_top_left_info, this.room2a_character_north)) {
+  //     this.room2a_E_KeyImg.x = this.room2a_character_north.x;
+  //     this.room2a_E_KeyImg.y = this.room2a_character_north.y-75;
+  //
+  //     this.room2a_E_KeyImg.alpha = 1.0;
+  //     if (this.room2a_key_E.isDown && this.room2a_activity5Locked == false) {
+  //       this.room2a_activity5A.alpha = 1.0;
+  //       this.checkActivityOpened(false, false, false, false, true, false);
+  //   this.room2a_activity6Locked = false;
+  // } else if (this.room2a_key_E.isDown && this.room2a_activity5Locked == true){
+  //         this.room2a_activityLocked.alpha = 1.0;
+  //         this.room2a_characterMoveable = false;
+  // }
 
   }  else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_hole_zone, this.room2a_character_north)) {
       		this.room2a_E_KeyImg.x = this.room2a_character_north.x;
