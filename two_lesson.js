@@ -520,7 +520,7 @@ class two_lesson extends Phaser.Scene {
 		this.room2_E_KeyImg.y = this.room2_character_north.y+75;
 		this.room2_E_KeyImg.alpha = 1.0;
 		if (this.room2_key_E.isDown) {
-			console.log("To room 2 activity 1")
+			console.log("To activity 1 from room 2")
 			this.scene.start("two_Activity");
 		} 
 
