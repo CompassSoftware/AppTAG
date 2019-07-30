@@ -613,13 +613,13 @@ class three_lesson extends Phaser.Scene {
      */
     movePaper(moveThisPaper) {
         if(this.key_W.isDown && this.paperMoveable == true) {
-            moveThisPaper.y -= 7;
+            moveThisPaper.y -= 12;
         } if (this.key_A.isDown && this.paperMoveable == true) {
-            moveThisPaper.x -= 7;
+            moveThisPaper.x -= 12;
         } if (this.key_S.isDown && this.paperMoveable == true) {
-            moveThisPaper.y += 7;
+            moveThisPaper.y += 12;
         } if (this.key_D.isDown && this.paperMoveable == true) {
-            moveThisPaper.x += 7;
+            moveThisPaper.x += 12;
         }
     }
 
