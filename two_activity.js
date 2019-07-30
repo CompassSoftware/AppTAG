@@ -163,7 +163,7 @@ class two_activity extends Phaser.Scene {
     this.load.image('room2a_wall_info_4', 'assets/wall_art.png');
     this.load.image('room2a_wall_info_5', 'assets/wall_art.png');
     this.load.image('room2a_wall_info_6', 'assets/wall_art.png');
-    this.load.image('room2a_floor', 'assets/floor_2.jpeg');
+    this.load.image('room2a_floor', 'assets/floor_room2_act1.jpg');
     this.load.image('room2a_map', 'assets/map.png');
     this.load.image('room2a_notebook', 'assets/notebook.png');
     this.load.image('room2a_activityLocked', 'assets/activityLocked.png');
@@ -289,8 +289,8 @@ class two_activity extends Phaser.Scene {
     this.room2a_character_south.setScale(3);
     this.room2a_character_west.setScale(3);
     this.room2a_character_east.setScale(3);
-    this.room2a_floor.scaleY = 1;
-    this.room2a_floor.scaleX = 1;
+    this.room2a_floor.scaleY = .513;
+    this.room2a_floor.scaleX = .791;
 
   }
 
