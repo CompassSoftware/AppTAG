@@ -224,6 +224,11 @@ class two_activity extends Phaser.Scene {
     this.room2a_character_south.setScale(3);
     this.room2a_character_west.setScale(3);
     this.room2a_character_east.setScale(3);
+<<<<<<< HEAD
+=======
+    this.room2a_floor.scaleY = 1;
+    this.room2a_floor.scaleX = 1;
+>>>>>>> ian_merge_2floor
 
   }
 

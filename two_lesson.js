@@ -107,19 +107,6 @@ class two_lesson extends Phaser.Scene {
     if (this.room2_activatedQuiz == false) {
         this.movePlayer();
         this.checkInteractValidity();
-    } else if (this.room2_activatedQuiz = true) {
-      if (this.room2_paperCount == 1) {
-        this.movePaper(this.room2_paper);
-        this.checkCorrectPaperOne();
-      } else if (this.room2_paperCount == 2) {
-          this.movePaper(this.room2_paperTwo);
-          this.checkCorrectPaperTwo();
-
-      } else if (this.room2_paperCount == 3) {
-          this.movePaper(this.room2_paperThree);
-          this.checkCorrectPaperThree();
-        }
-
       }
   if (this.room2_activatedQuiz == false)
     this.room2_characterMoveable = true;
@@ -172,7 +159,7 @@ class two_lesson extends Phaser.Scene {
     this.load.image('room2_wall_info_5', 'assets/wall_art.png');
     this.load.image('room2_wall_info_6', 'assets/wall_art.png');
     this.load.image('room2_floor', 'assets/floor_1.jpg');
-	this.load.image('room2_hole', 'assets/hole.png');	
+	this.load.image('room2_hole', 'assets/hole.png');
     this.load.image('room2_map', 'assets/map.png');
     this.load.image('room2_notebook', 'assets/notebook.png');
     this.load.image('room2_activityLocked', 'assets/activityLocked.png');
@@ -298,10 +285,6 @@ class two_lesson extends Phaser.Scene {
     this.room2_wall_info_6.setScale(0.75);
     this.room2_notebook.setScale(0.75);
     this.room2_map.setScale(0.75);
-    // this.room2_cardboard_box_1.setScale(0.39);
-    // this.room2_cardboard_box_2.setScale(0.39);
-    // this.room2_cardboard_box_3.setScale(0.39);
-    // this.room2_paper_stack.setScale(0.35);
     this.room2_character_north.setScale(3);
     this.room2_character_south.setScale(3);
     this.room2_character_west.setScale(3);
@@ -319,9 +302,6 @@ class two_lesson extends Phaser.Scene {
     this.room2_wall_info_4.rotation = 3.14;
     this.room2_wall_info_5.rotation = 3.14;
     this.room2_wall_info_6.rotation = 3.14;
-  //   this.room2_cardboard_box_1.rotation = 0;
-  //   this.room2_cardboard_box_2.rotation = 0;
-  //   this.room2_cardboard_box_3.rotation = 0;
    }
 
   /* createInteractionZones
@@ -352,21 +332,9 @@ class two_lesson extends Phaser.Scene {
 
     this.room2_bot_right_info = new Phaser.Geom.Rectangle(1120,565,240,150);
     this.room2_graphics.fillRectShape(this.room2_bot_right_info);
-	
+
 	this.room2_hole_zone = new Phaser.Geom.Rectangle(150, 332,240,150);
     this.room2_graphics.fillRectShape(this.room2_hole_zone);
-
-    // this.room2_quiz1 = new Phaser.Geom.Rectangle(1120,308,240,250);
-    // this.room2_graphics.fillRectShape(this.room2_quiz1);
-
-    // this.room2_box_1_zone = new Phaser.Geom.Rectangle(1200,75,200,200);
-    // this.room2_graphics.fillRectShape(this.room2_box_1_zone);
-    //
-    // this.room2_box_2_zone = new Phaser.Geom.Rectangle(1200,325,200,200);
-    // this.room2_graphics.fillRectShape(this.room2_box_2_zone);
-    //
-    // this.room2_box_3_zone = new Phaser.Geom.Rectangle(1200,650,200,200);
-    // this.room2_graphics.fillRectShape(this.room2_box_3_zone);
   }
 
   /* assignKeybinds
@@ -429,7 +397,7 @@ class two_lesson extends Phaser.Scene {
   */
 
   checkInteractValidity() {
-    if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_top_right_info, this.room2_character_north)) {
+    if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_top_mid_info, this.room2_character_north)) {
       this.room2_E_KeyImg.x = this.room2_character_north.x;
       this.room2_E_KeyImg.y = this.room2_character_north.y-75;
       this.room2_E_KeyImg.alpha = 1.0;
@@ -443,7 +411,7 @@ class two_lesson extends Phaser.Scene {
     this.room2_activity6Complete = true;
       }
 
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_bot_mid_info, this.room2_character_north)) {
+    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_bot_left_info, this.room2_character_north)) {
       this.room2_E_KeyImg.x = this.room2_character_north.x;
       this.room2_E_KeyImg.y = this.room2_character_north.y+75;
       this.room2_E_KeyImg.alpha = 1.0;
@@ -456,7 +424,7 @@ class two_lesson extends Phaser.Scene {
           this.room2_characterMoveable = false;
           }
 
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_top_mid_info, this.room2_character_north)) {
+    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_top_left_info, this.room2_character_north)) {
       this.room2_E_KeyImg.x = this.room2_character_north.x;
       this.room2_E_KeyImg.y = this.room2_character_north.y-75;
       this.room2_E_KeyImg.alpha = 1.0;
@@ -469,7 +437,7 @@ class two_lesson extends Phaser.Scene {
         this.room2_characterMoveable = false;
         }
 
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_bot_right_info, this.room2_character_north)) {
+    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_bot_mid_info, this.room2_character_north)) {
       this.room2_E_KeyImg.x = this.room2_character_north.x;
       this.room2_E_KeyImg.y = this.room2_character_north.y+75;
       this.room2_E_KeyImg.alpha = 1.0;
@@ -483,8 +451,8 @@ class two_lesson extends Phaser.Scene {
         }
 
 
-    } 
-	else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_top_left_info, this.room2_character_north)) {
+    }
+	else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_top_right_info, this.room2_character_north)) {
 		this.room2_E_KeyImg.x = this.room2_character_north.x;
 		this.room2_E_KeyImg.y = this.room2_character_north.y-75;
 
@@ -499,16 +467,16 @@ class two_lesson extends Phaser.Scene {
           this.room2_characterMoveable = false;
         }
 
-     } 
-	else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_bot_left_info, this.room2_character_north)) {
+     }
+	else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_bot_right_info, this.room2_character_north)) {
 		this.room2_E_KeyImg.x = this.room2_character_north.x;
 		this.room2_E_KeyImg.y = this.room2_character_north.y+75;
 		this.room2_E_KeyImg.alpha = 1.0;
 		if (this.room2_key_E.isDown && this.room2_activity6Locked == false) {
-			this.room2_activity6.alpha = 1.0;
+			this.room2_activity6A.alpha = 1.0;
 			this.checkActivityOpened(false, false, false, false, false, true);
 			activity6Complete = true;
-		} 
+		}
 		else if (this.room2_key_E.isDown && this.room2_activity6Locked == true){
 			this.room2_activityLocked.alpha = 1.0;
 			this.room2_characterMoveable = false;
@@ -522,19 +490,9 @@ class two_lesson extends Phaser.Scene {
 		if (this.room2_key_E.isDown) {
 			console.log("To activity 1 from room 2")
 			this.scene.start("two_Activity");
-		} 
+		}
 
     }
-    //else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_quiz1, this.room2_character_north)){
-    //   this.room2_E_KeyImg.x = this.room2_character_north.x+75;
-    //   this.room2_E_KeyImg.y = this.room2_character_north.y;
-    //   this.room2_E_KeyImg.alpha = 1.0;
-    //   if (this.room2_key_E.isDown && this.room2_activity6Complete == true) {
-    //     this.room2_quizActive = true;
-    //   } else if (this.room2_key_E.isDown && this.room2_activity6Complete == false){
-    //       this.room2_activityLocked.alpha = 1.0;
-    //     }
-    // }
     else {
     this.hideActivities();
     this.room2_E_KeyImg.alpha = 0.0;
@@ -628,139 +586,6 @@ class two_lesson extends Phaser.Scene {
     }
   }
 
-  /* quitQuiz
-   *
-   * Allows the user to quit the quiz
-  */
-  // quitQuiz() {
-  // //console.log("e");
-  //   this.room2_papers_moved = false;
-  //   this.room2_quizActive = false;
-  // this.room2_activatedQuiz = false;
-  //   this.room2_background.alpha = 1.0;
-  //   this.room2_character_north.alpha = 1.0;
-  //   this.room2_character_east.alpha = 1.0;
-  //   this.room2_character_south.alpha = 1.0;
-  //   this.room2_character_west.alpha = 1.0;
-  //   this.room2_E_KeyImg.alpha = 1.0;
-  //   this.room2_cardboard_box_1.setScale(0.39);
-  //   this.room2_cardboard_box_2.setScale(0.39);
-  //   this.room2_cardboard_box_3.setScale(0.39);
-  //   this.room2_paper_stack.setScale(0.35);
-  //   this.room2_paper_stack.x = 1215;
-  // this.room2_paper_stack.setVisible(false);
-  //   this.room2_cardboard_box_1.x = 1310;
-  //   this.room2_cardboard_box_2.x = 1310;
-  //   this.room2_cardboard_box_3.x = 1310;
-  //   this.room2_cardboard_box_1.y = 320;
-  //   this.room2_cardboard_box_2.y = 432;
-  //   this.room2_cardboard_box_3.y = 530;
-  //   this.room2_wall_info_1.alpha = 1;
-  //   this.room2_wall_info_2.alpha = 1;
-  //   this.room2_wall_info_3.alpha = 1;
-  //   this.room2_wall_info_4.alpha = 1;
-  //   this.room2_wall_info_5.alpha = 1;
-  //   this.room2_wall_info_6.alpha = 1;
-  //   this.room2_floor.scaleX = 1.0;
-  //   this.room2_floor.scaleY = 1.0;
-  //   this.room2_paper_stack.x = 1215;
-  //   this.room2_paper_stack.y = 432;
-  //   this.room2_paperCount = 1;
-  //   this.room2_paperMoveable = false;
-  // this.room2_placements0.setVisible(false);
-  // this.room2_placements1.setVisible(false);
-  // this.room2_placements2.setVisible(false);
-  // this.room2_pressr.setVisible(false);
-  // this.room2_incomeStatementText.setVisible(false);
-  // this.room2_retainedEarningsText.setVisible(false);
-  // this.room2_balanceSheetText.setVisible(false);
-  // this.room2_characterMoveable = true;
-  //
-  // this.room2_paper.alpha = 0;
-  // this.room2_paperTwo.alpha = 0;
-  // this.room2_paperThree.alpha = 0;
-  // this.room2_paper.setVisible(false);
-  // this.room2_paperTwo.setVisible(false);
-  //   this.room2_paperThree.setVisible(false);
-  //
-  // }
-
-  /* activateQuiz
-   *
-   * Method that starts the quiz
-  */
-  // activateQuiz() {
-  // this.room2_paper_stack.setVisible(true);
-  //
-  //   this.room2_paperMoveable = true;
-  //   this.room2_paperCount = 1;
-  // this.loadQuizImages();
-  // this.updateCorrectImage();
-  //
-  //   if(this.room2_papers_moved == false) {
-  //     this.room2_paper_stack.x -= 1025;
-  //     this.room2_paper_stack.y -= 275;
-  //     this.room2_papers_moved = true;
-  //   }
-  //
-  //   this.room2_paper = this.add.image(this.room2_paper_stack.x, this.room2_paper_stack.y, 'room2_paper');
-  //   this.room2_paperTwo = this.add.image(this.room2_paper_stack.x, this.room2_paper_stack.y, 'room2_paper');
-  //   this.room2_paperThree = this.add.image(this.room2_paper_stack.x, this.room2_paper_stack.y, 'room2_paper');
-  //
-  //   this.room2_paperTwo.setVisible(false);
-  //   this.room2_paperThree.setVisible(false);
-  //
-  //
-  //   this.room2_paper.setInteractive();
-  //   this.room2_paper.alpha = 1;
-  //   this.room2_paper.setDepth(100);
-  //   this.room2_paperTwo.setDepth(100);
-  //   this.room2_paperThree.setDepth(100);
-  //
-  //
-  //
-  //   this.room2_background.alpha = 0.0;
-  //   this.room2_character_north.alpha = 0.0;
-  //   this.room2_character_east.alpha = 0.0;
-  //   this.room2_character_south.alpha = 0.0;
-  //   this.room2_character_west.alpha = 0.0;
-  //   this.room2_E_KeyImg.alpha = 0.0;
-  //   this.room2_cardboard_box_1.setScale(1.1);
-  //   this.room2_cardboard_box_2.setScale(1.1);
-  //   this.room2_cardboard_box_3.setScale(1.1);
-  //   this.room2_paper_stack.setScale(1.0);
-  //   this.room2_cardboard_box_1.x = 1350;
-  //   this.room2_cardboard_box_2.x = 1350;
-  //   this.room2_cardboard_box_3.x = 1350;
-  //   this.room2_cardboard_box_1.y = 150;
-  //   this.room2_cardboard_box_2.y = 450;
-  //   this.room2_cardboard_box_3.y = 750;
-  //   this.room2_wall_info_1.alpha = 0.0;
-  //   this.room2_wall_info_2.alpha = 0.0;
-  //   this.room2_wall_info_3.alpha = 0.0;
-  //   this.room2_wall_info_4.alpha = 0.0;
-  //   this.room2_wall_info_5.alpha = 0.0;
-  //   this.room2_wall_info_6.alpha = 0.0;
-  //   this.room2_floor.scaleX = 1.5;
-  //   this.room2_floor.scaleY = 2.0;
-  //
-  //   this.room2_box1_frame = new Phaser.Geom.Rectangle(this.room2_cardboard_box_1.x, this.room2_cardboard_box_1.y, 240,240);
-  //   this.room2_graphics.fillRectShape(this.room2_box1_frame);
-  //
-  //
-  //   this.room2_box2_frame = new Phaser.Geom.Rectangle(this.room2_cardboard_box_2.x,this.room2_cardboard_box_2.y,240,200);
-  //   this.room2_graphics.fillRectShape(this.room2_box2_frame);
-  //
-  //   this.room2_box3_frame = new Phaser.Geom.Rectangle(this.room2_cardboard_box_3.x,this.room2_cardboard_box_3.y,240,200);
-  //   this.room2_graphics.fillRectShape(this.room2_box3_frame);
-  //
-  //   this.room2_paper.on('pointerdown', function(pointer, localX, localY, event) {
-  //     console.log("click");
-  //     this.alpha = 0;
-  //
-  //   });
-  // }
-
   /* quitInteraction
    *
    * Sets the alphas to 0 so that the interaction is quit.
@@ -783,7 +608,6 @@ class two_lesson extends Phaser.Scene {
     this.room2_activitySixOpened = false;
     this.room2_help_menu.alpha = 0.0;
   this.room2_activatedQuiz = false;
-  //this.quitQuiz();
   }
 
 
@@ -822,163 +646,6 @@ class two_lesson extends Phaser.Scene {
 
 
   }
-
-  /* checkCorrectPaperOne
-   *
-   * Checks to see if the first paper is in the correct box.
-  */
-  // checkCorrectPaperOne() {
-  // if(this.room2_activatedQuiz == true) {
-  //   if (this.room2_key_R.isDown) {
-  //   this.room2_incomeStatement.setVisible(true);
-  //   }
-  // else
-  //   this.room2_incomeStatement.setVisible(false);
-  // //THE RIGHT BOX
-  //   if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_box_1_zone, this.room2_paper)) {
-  //     this.room2_paper.setVisible(false);
-  //     this.room2_paperTwo.setVisible(true);
-  //     this.room2_paperTwo.setInteractive();
-  //     this.room2_paperCount++;
-  //     this.updateCorrectImage();
-  //
-  //   } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_box_2_zone, this.room2_paper) /*&& this.paperCount == 1*/) {
-  //     this.room2_paper.x = this.room2_paper_stack.x;
-  //     this.room2_paper.y = this.room2_paper_stack.y + 600;
-  //   this.updateCorrectImage();
-  //
-  //   } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_box_3_zone, this.room2_paper)/* && this.paperCount == 1*/) {
-  //     this.room2_paper.x = this.room2_paper_stack.x;
-  //     this.room2_paper.y = this.room2_paper_stack.y + 600;
-  //   this.updateCorrectImage();
-  //   }
-  // }
-  // }
-  //
-  // /* checkCorrectPaperTwo
-  //  *
-  //  * Checks to see if the second paper is in the correct box.
-  // */
-  // checkCorrectPaperTwo() {
-  // this.room2_incomeStatement.setVisible(false);
-  //   if (this.room2_key_R.isDown) {
-  //   this.room2_retainedEarnings.setVisible(true);
-  //   } else
-  //   this.room2_retainedEarnings.setVisible(false);
-  //
-  //   if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_box_2_zone, this.room2_paperTwo) /*&& this.paperCount == 2*/) {
-  //     this.room2_paperTwo.setVisible(false);
-  //     this.room2_paperThree.setVisible(true);
-  //     this.room2_paperThree.setInteractive();
-  //     this.room2_paperCount++;
-  //   this.updateCorrectImage();
-  //
-  //   } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_box_1_zone, this.room2_paperTwo) /*&& this.paperCount == 2*/) {
-  //     this.room2_paperTwo.x = this.room2_paper_stack.x;
-  //     this.room2_paperTwo.y = this.room2_paper_stack.y + 600;
-  //     this.updateCorrectImage();
-  //
-  //   } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_box_3_zone, this.room2_paperTwo) /*&& this.paperCount == 2*/) {
-  //     this.room2_paperTwo.x = this.room2_paper_stack.x;
-  //     this.room2_paperTwo.y = this.room2_paper_stack.y + 600;
-  //     this.updateCorrectImage();
-  //
-  //   //this.cardboard_box_3.setVisible(true);
-  //   }
-  // //this.updateCorrectImage();
-  // }
-  //
-  // /* checkCorrectPaperThree
-  //  *
-  //  * Checks to see if the third paper is in the correct box.
-  // */
-  // checkCorrectPaperThree() {
-  // this.room2_retainedEarnings.setVisible(false);
-  //   if (this.room2_key_R.isDown) {
-  //     this.room2_balanceSheet.setVisible(true);
-  //   } else
-  //   this.room2_balanceSheet.setVisible(false);
-  //
-  //   if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_box_3_zone, this.room2_paperThree) && this.room2_paperCount == 3) {
-  //     this.room2_paperThree.setVisible(false);
-  //     this.room2_paperCount++;
-  //     this.quitQuiz();
-  //   } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_box_1_zone, this.room2_paperThree) && this.room2_paperCount == 3) {
-  //     this.room2_paperThree.x = this.room2_paper_stack.x;
-  //     this.room2_paperThree.y = this.room2_paper_stack.y + 600;
-  //     this.quitQuiz();
-  //
-  //   } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_box_2_zone, this.room2_paperThree) && this.room2_paperCount == 3) {
-  //     this.room2_paperThree.x = this.room2_paper_stack.x;
-  //     this.room2_paperThree.y = this.room2_paper_stack.y + 600;
-  //     this.quitQuiz();
-  //
-  //   }
-  // }
-  //
-  // /* loadQuizImages
-  //  *
-  //  * Loads the images into the quiz Activity
-  // */
-  // loadQuizImages(){
-  //     this.room2_pressr = this.add.image(650, 40, 'room2_pressr');
-  //   this.room2_pressr.setScale(.8);
-  //
-  //   this.room2_placements0 = this.add.image(240, 800, 'room2_correctPlacements0');
-  //   this.room2_placements0.setScale(.7);
-  //   this.vplacements0.setVisible(false);
-  //
-  //   this.room2_placements1 = this.add.image(240, 800, 'croom2_orrectPlacements1');
-  //   this.room2_placements1.setScale(.7);
-  //
-  //   this.room2_placements2 = this.add.image(240, 800, 'room2_correctPlacements2');
-  //   this.room2_placements2.setScale(.7);
-  //
-  //   this.room2_incomeStatement = this.add.image(675, 350, 'room2_incomeStatement');
-  //   this.room2_incomeStatement.setVisible(false);
-  //   this.room2_incomeStatement.setDepth(500);
-  //
-  //   this.room2_incomeStatementText = this.add.image(1350, 30, 'room2_incomeStatementText');
-  //   this.room2_incomeStatementText.setScale(.6);
-  //
-  //   this.room2_balanceSheet = this.add.image(675, 410, 'room2_balanceSheet');
-  //   this.room2_balanceSheet.setVisible(false);
-  //   this.room2_balanceSheet.setDepth(500);
-  //   this.room2_balanceSheet.setScale(.85);
-  //
-  //   this.room2_balanceSheetText = this.add.image(1350, 630, 'room2_balanceSheetText');
-  //   this.room2_balanceSheetText.setScale(.6);
-  //
-  //   this.room2_retainedEarnings = this.add.image(675, 210, 'room2_retainedEarnings');
-  //   this.room2_retainedEarnings.setVisible(false);
-  //   this.room2_retainedEarnings.setDepth(500);
-  //
-  //   this.room2_retainedEarningsText = this.add.image(1350, 325, 'room2_retainedEarningsText');
-  //   this.room2_retainedEarningsText.setScale(.6);
-  // }
-  //
-  // /* updateCorrectImage
-  //  *
-  //  * Updates the image in the quiz that tells the user how many they have got right.
-  // */
-  // updateCorrectImage() {
-  //   //console.log(this.paperCount);
-  //   if (this.room2_paperCount == 1) {
-  //     this.room2_placements0.setVisible(true);
-  //     this.room2_placements1.setVisible(false);
-  //     this.room2_placements2.setVisible(false);
-  //   } else if (this.room2_paperCount == 2) {
-  //     this.room2_placements0.setVisible(false);
-  //     this.room2_placements1.setVisible(true);
-  //     this.room2_placements2.setVisible(false);
-  //   } else if (this.room2_paperCount == 3) {
-  //     this.room2_placements0.setVisible(false);
-  //     this.room2_placements1.setVisible(false);
-  //     this.room2_placements2.setVisible(true);
-  //   }
-  //
-  // }
-
 
   activityAlphas(room2_oneA, room2_oneB, room2_oneC, room2_oneD, room2_twoA, room2_twoB, room2_twoC, room2_twoD, room2_threeA, room2_threeB, room2_fourA, room2_fourB, room2_fourC, room2_fourD, room2_fourE, room2_fiveA, room2_fiveB, room2_fiveC, room2_fiveD, room2_fiveE, room2_fiveF, room2_sixA, room2_sixB) {
     this.room2_activity1A.alpha = room2_oneA;
