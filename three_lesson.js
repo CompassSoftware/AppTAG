@@ -556,6 +556,7 @@ class three_lesson extends Phaser.Scene {
         //setCharacterAlpha is in helper.js and arguments go N,E,S,W
         this.setCharacterAlpha(0,0,1,0);
 
+
         //Character moves up
         if(this.key_W.isDown && characterMoveable == true) {
             if(this.character_north.y > 185){
@@ -698,6 +699,7 @@ class three_lesson extends Phaser.Scene {
      * Method that starts the quiz
      */
     activateQuiz() {
+        this.hole.setVisible(false);
         this.paper_stack.setVisible(true);
 
         this.paperMoveable = true;
