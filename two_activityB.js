@@ -622,7 +622,7 @@ class two_activityB extends Phaser.Scene {
    *
    *
   */
-
+/**
   checkNextPage() {
     if (this.room2b_activityOneOpened == true && this.room2b_key_1.isDown) {
       this.activityAlphas(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
@@ -676,7 +676,7 @@ class two_activityB extends Phaser.Scene {
       this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1);
     }
   }
-
+*/
   /* helpMenu
    *
    * Sets the alpha of the help menu to 1 so that it is visible
