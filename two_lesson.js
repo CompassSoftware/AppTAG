@@ -489,6 +489,7 @@ class two_lesson extends Phaser.Scene {
 		this.room2_E_KeyImg.alpha = 1.0;
 		if (this.room2_key_E.isDown) {
 			console.log("To activity 1 from room 2")
+            roomProgress += 1;
 			this.scene.start("two_Activity");
 		}
 

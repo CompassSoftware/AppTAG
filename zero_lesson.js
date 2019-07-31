@@ -272,6 +272,7 @@ Info Panels like these contain important information and lessons that help you p
 		if (this.activityOneOpened == true)
 		{
 			if(this.key_E.isDown){
+                roomProgress += 1
 				this.scene.start("three_Lesson");
 
 			}

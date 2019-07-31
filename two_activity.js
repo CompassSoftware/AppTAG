@@ -73,16 +73,16 @@ class two_activity extends Phaser.Scene {
     else if (this.room2a_activatedQuiz = true) {
         if (this.room2a_puzzleCount == 1) {
             this.movePuzzle(this.room2a_puzzle1);
-            this.checkCorrectpuzzleOne();
+            
             
         } 
         else if (this.room2a_puzzleCount == 2) {
             this.movePuzzle(this.room2a_puzzle2);
-            this.checkCorrectpuzzleTwo();
+            
         } 
         else if (this.room2a_puzzleCount == 3) {
             this.movePuzzle(this.room2a_puzzle3);
-            this.checkCorrectpuzzleThree();
+           
     }
 
       }
@@ -322,7 +322,7 @@ class two_activity extends Phaser.Scene {
 
     //Character moves up
     if(this.room2a_key_W.isDown && this.room2a_characterMoveable == true) {
-  if(this.room2a_character_north.y > 185){
+        if(this.room2a_character_north.y > 185){
           this.room2a_character_north.y -= 5;
           this.room2a_character_east.y -= 5;
           this.room2a_character_south.y -= 5;
@@ -347,7 +347,7 @@ class two_activity extends Phaser.Scene {
     }
     //Character moves down
      if (this.room2a_key_S.isDown && this.room2a_characterMoveable == true) {
-  if(this.room2a_character_south.y < 680){
+        if(this.room2a_character_south.y < 680){
           this.room2a_character_south.y += 5;
           this.room2a_character_east.y += 5;
           this.room2a_character_north.y += 5;
@@ -374,15 +374,26 @@ class two_activity extends Phaser.Scene {
    *
    * makes the puzzle moveable in the test activity
   */
-  movePuzzle(moveThispuzzle) {
+  movePuzzle(room2a_moveThispuzzle) {
     if(this.room2a_key_W.isDown && this.room2a_puzzleMoveable == true) {
-      room2a_moveThispuzzle.y -= 7;
-    } if (this.room2a_key_A.isDown && this.room2a_puzzleMoveable == true) {
-      room2a_moveThispuzzle.x -= 7;
-    } if (this.room2a_key_S.isDown && this.room2a_puzzleMoveable == true) {
-      room2a_moveThispuzzle.y += 7;
-    } if (this.room2a_key_D.isDown && this.room2a_puzzleMoveable == true) {
-      room2a_moveThispuzzle.x += 7;
+        if (room2a_moveThispuzzle.y > 50){
+            room2a_moveThispuzzle.y -= 7;
+        }
+    }    
+    if (this.room2a_key_A.isDown && this.room2a_puzzleMoveable == true) {
+        if (room2a_moveThispuzzle.x > 80){
+            room2a_moveThispuzzle.x -= 7;
+        }
+    } 
+    if (this.room2a_key_S.isDown && this.room2a_puzzleMoveable == true) {
+        if (room2a_moveThispuzzle.y < 810){
+            room2a_moveThispuzzle.y += 7;
+        }
+    } 
+    if (this.room2a_key_D.isDown && this.room2a_puzzleMoveable == true) {
+        if (room2a_moveThispuzzle.x < 1425){
+            room2a_moveThispuzzle.x += 7;
+        }
     }
   }
   /* quitInteraction

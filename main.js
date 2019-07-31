@@ -16,4 +16,5 @@ var activity5Locked = true;
 var activity6Locked = true;
 var activity6Complete = false;
 var characterMoveable = true;
+var roomProgress = 0;
 var game = new Phaser.Game(config);
