@@ -46,18 +46,18 @@ class one_lesson extends Phaser.Scene {
     if (this.room3_activityTwoOpened) {
       this.checkNextPage();
     }
-    if (this.room3_activityThreeOpened) {
-      this.checkNextPage();
-    }
-    if (this.room3_activityFourOpened) {
-      this.checkNextPage();
-    }
-    if (this.room3_activityFiveOpened) {
-      this.checkNextPage();
-    }
-    if (this.room3_activitySixOpened) {
-      this.checkNextPage();
-    }
+    // if (this.room3_activityThreeOpened) {
+    //   this.checkNextPage();
+    // }
+    // if (this.room3_activityFourOpened) {
+    //   this.checkNextPage();
+    // }
+    // if (this.room3_activityFiveOpened) {
+    //   this.checkNextPage();
+    // }
+    // if (this.room3_activitySixOpened) {
+    //   this.checkNextPage();
+    // }
 
 
     if (this.room3_key_U.isDown && this.room3_unlocked == false) {
@@ -128,29 +128,13 @@ class one_lesson extends Phaser.Scene {
     this.load.image('room3_character_south', 'assets/character_south.png');
     this.load.image('room3_character_west', 'assets/character_west.png');
     this.load.image('room3_redCharacter', 'assets/redCharacter.png');
-    this.load.image('room3_activity1A', 'assets/Panels/RoomTwo/PanelOneA.png');
-    this.load.image('room3_activity1B', 'assets/Panels/RoomTwo/PanelOneB.png');
-    this.load.image('room3_activity1C', 'assets/Panels/RoomTwo/PanelOneC.png');
-    this.load.image('room3_activity1D', 'assets/Panels/RoomTwo/PanelOneD.png');
-    this.load.image('room3_activity2A', 'assets/Panels/RoomTwo/PanelTwoA.png');
-    this.load.image('room3_activity2B', 'assets/Panels/RoomTwo/PanelTwoB.png');
-    this.load.image('room3_activity2C', 'assets/Panels/RoomTwo/PanelTwoC.png');
-    this.load.image('room3_activity2D', 'assets/Panels/RoomTwo/PanelTwoD.png');
-    this.load.image('room3_activity3A', 'assets/Panels/RoomTwo/PanelThreeA.png');
-    this.load.image('room3_activity3B', 'assets/Panels/RoomTwo/PanelThreeB.png');
-    this.load.image('room3_activity4A', 'assets/Panels/RoomTwo/PanelFourA.png');
-    this.load.image('room3_activity4B', 'assets/Panels/RoomTwo/PanelFourB.png');
-    this.load.image('room3_activity4C', 'assets/Panels/RoomTwo/PanelFourC.png');
-    this.load.image('room3_activity4D', 'assets/Panels/RoomTwo/PanelFourD.png');
-    this.load.image('room3_activity4E', 'assets/Panels/RoomTwo/PanelFourE.png');
-    this.load.image('room3_activity5A', 'assets/Panels/RoomTwo/PanelFiveA.png');
-    this.load.image('room3_activity5B', 'assets/Panels/RoomTwo/PanelFiveB.png');
-    this.load.image('room3_activity5C', 'assets/Panels/RoomTwo/PanelFiveC.png');
-    this.load.image('room3_activity5D', 'assets/Panels/RoomTwo/PanelFiveD.png');
-    this.load.image('room3_activity5E', 'assets/Panels/RoomTwo/PanelFiveE.png');
-    this.load.image('room3_activity5F', 'assets/Panels/RoomTwo/PanelFiveF.png');
-    this.load.image('room3_activity6A', 'assets/Panels/RoomTwo/PanelSixA.png');
-    this.load.image('room3_activity6B', 'assets/Panels/RoomTwo/PanelSixB.png');
+    this.load.image('activity1A', 'assets/Panels/RoomThree/PanelOneA.png');
+    this.load.image('activity1B', 'assets/Panels/RoomThree/PanelOneB.png');
+    this.load.image('activity1C', 'assets/Panels/RoomThree/PanelOneC.png');
+    this.load.image('activity1D', 'assets/Panels/RoomThree/PanelOneD.png');
+    this.load.image('activity2A', 'assets/Panels/RoomThree/PanelTwoA.png');
+    this.load.image('activity2B', 'assets/Panels/RoomThree/PanelTwoB.png');
+    this.load.image('activity2C', 'assets/Panels/RoomThree/PanelTwoC.png');
     this.load.image('room3_E_KeyImg', 'assets/E_Key.png');
     this.load.image('room3_wall_info_1', 'assets/wall_art.png');
     this.load.image('room3_wall_info_2', 'assets/wall_art.png');
@@ -179,29 +163,13 @@ class one_lesson extends Phaser.Scene {
     this.room3_character_south = this.add.image(768, 432, 'room3_character_south');
     this.room3_character_west = this.add.image(768, 432, 'room3_character_west');
     this.room3_E_KeyImg = this.add.image(this.room3_character_north.x+40, this.room3_character_north.y+40, 'room3_E_KeyImg');
-    this.room3_activity1A = this.add.image(768, 432, 'room3_activity1A');
-    this.room3_activity1B = this.add.image(768, 432, 'room3_activity1B');
-    this.room3_activity1C = this.add.image(768, 432, 'room3_activity1C');
-    this.room3_activity1D = this.add.image(768, 432, 'room3_activity1D');
-    this.room3_activity2A = this.add.image(768, 432, 'room3_activity2A');
-    this.room3_activity2B = this.add.image(768, 432, 'room3_activity2B');
-    this.room3_activity2C = this.add.image(768, 432, 'room3_activity2C');
-    this.room3_activity2D = this.add.image(768, 432, 'room3_activity2D');
-    this.room3_activity3A = this.add.image(768, 432, 'room3_activity3A');
-    this.room3_activity3B = this.add.image(768, 432, 'room3_activity3B');
-    this.room3_activity4A = this.add.image(768, 432, 'room3_activity4A');
-    this.room3_activity4B = this.add.image(768, 432, 'room3_activity4B');
-    this.room3_activity4C = this.add.image(768, 432, 'room3_activity4C');
-    this.room3_activity4D = this.add.image(768, 432, 'room3_activity4D');
-    this.room3_activity4E = this.add.image(768, 432, 'room3_activity4E');
-    this.room3_activity5A = this.add.image(768, 432, 'room3_activity5A');
-    this.room3_activity5B = this.add.image(768, 432, 'room3_activity5B');
-    this.room3_activity5C = this.add.image(768, 432, 'room3_activity5C');
-    this.room3_activity5D = this.add.image(768, 432, 'room3_activity5D');
-    this.room3_activity5E = this.add.image(768, 432, 'room3_activity5E');
-    this.room3_activity5F = this.add.image(768, 432, 'room3_activity5F');
-    this.room3_activity6A = this.add.image(768, 432, 'room3_activity6A');
-    this.room3_activity6B = this.add.image(768, 432, 'room3_activity6B');
+    this.activity1A = this.add.image(768, 432, 'activity1A');
+    this.activity1B = this.add.image(768, 432, 'activity1B');
+    this.activity1C = this.add.image(768, 432, 'activity1C');
+    this.activity1D = this.add.image(768, 432, 'activity1D');
+    this.activity2A = this.add.image(768, 432, 'activity2A');
+    this.activity2B = this.add.image(768, 432, 'activity2B');
+    this.activity2C = this.add.image(768, 432, 'activity2C');
     this.room3_wall_info_1 = this.add.image(305, 75, 'room3_wall_info_1');
     this.room3_wall_info_2 = this.add.image(768, 75, 'room3_wall_info_2');
     this.room3_wall_info_3 = this.add.image(1232, 75, 'room3_wall_info_3');
@@ -239,29 +207,14 @@ class one_lesson extends Phaser.Scene {
     this.room3_character_south.setDepth(50);
     this.room3_character_west.setDepth(50);
     this.room3_E_KeyImg.setDepth(49);
-    this.room3_activity1A.setDepth(100);
-    this.room3_activity1B.setDepth(100);
-    this.room3_activity1C.setDepth(100);
-    this.room3_activity1D.setDepth(100);
-    this.room3_activity2A.setDepth(100);
-    this.room3_activity2B.setDepth(100);
-    this.room3_activity2C.setDepth(100);
-    this.room3_activity2D.setDepth(100);
-    this.room3_activity3A.setDepth(100);
-    this.room3_activity3B.setDepth(100);
-    this.room3_activity4A.setDepth(100);
-    this.room3_activity4B.setDepth(100);
-    this.room3_activity4C.setDepth(100);
-    this.room3_activity4D.setDepth(100);
-    this.room3_activity4E.setDepth(100);
-    this.room3_activity5A.setDepth(100);
-    this.room3_activity5B.setDepth(100);
-    this.room3_activity5C.setDepth(100);
-    this.room3_activity5D.setDepth(100);
-    this.room3_activity5E.setDepth(100);
-    this.room3_activity5F.setDepth(100);
-    this.room3_activity6A.setDepth(100);
-    this.room3_activity6B.setDepth(100);
+
+    this.activity1A.setDepth(100);
+    this.activity1B.setDepth(100);
+    this.activity1C.setDepth(100);
+    this.activity1D.setDepth(100);
+    this.activity2A.setDepth(99);
+    this.activity2B.setDepth(99);
+    this.activity2C.setDepth(99);
 
     this.room3_map.setDepth(100);
     // this.room3_paper_stack.setDepth(1);
@@ -420,65 +373,65 @@ class one_lesson extends Phaser.Scene {
           this.room3_characterMoveable = false;
           }
 
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room3_top_left_info, this.room3_character_north)) {
-      this.room3_E_KeyImg.x = this.room3_character_north.x;
-      this.room3_E_KeyImg.y = this.room3_character_north.y-75;
-      this.room3_E_KeyImg.alpha = 1.0;
-      if (this.room3_key_E.isDown && this.room3_activity3Locked == false) {
-        this.room3_activity3A.alpha = 1.0;
-        this.checkActivityOpened(false, false, true, false, false, false);
-    this.room3_activity4Locked = false;
-  } else if (this.room3_key_E.isDown && this.room3_activity3Locked == true){
-        this.room3_activityLocked.alpha = 1.0;
-        this.room3_characterMoveable = false;
-        }
-
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room3_bot_mid_info, this.room3_character_north)) {
-      this.room3_E_KeyImg.x = this.room3_character_north.x;
-      this.room3_E_KeyImg.y = this.room3_character_north.y+75;
-      this.room3_E_KeyImg.alpha = 1.0;
-      if (this.room3_key_E.isDown && this.room3_activity4Locked == false) {
-      this.room3_activity4A.alpha = 1.0;
-      this.checkActivityOpened(false, false, false, true, false, false);
-    this.room3_activity5Locked = false;
-  } else if (this.room3_key_E.isDown && this.room3_activity4Locked == true){
-        this.room3_activityLocked.alpha = 1.0;
-        this.room3_characterMoveable = false;
-        }
-
-
-    }
-	else if (Phaser.Geom.Rectangle.ContainsPoint(this.room3_top_right_info, this.room3_character_north)) {
-		this.room3_E_KeyImg.x = this.room3_character_north.x;
-		this.room3_E_KeyImg.y = this.room3_character_north.y-75;
-
-		this.room3_E_KeyImg.alpha = 1.0;
-		if (this.room3_key_E.isDown && this.room3_activity5Locked == false) {
-			this.room3_activity5A.alpha = 1.0;
-			this.checkActivityOpened(false, false, false, false, true, false);
-			this.room3_activity6Locked = false;
-		}
-		else if (this.room3_key_E.isDown && this.room3_activity5Locked == true){
-          this.room3_activityLocked.alpha = 1.0;
-          this.room3_characterMoveable = false;
-        }
-
-     }
-	else if (Phaser.Geom.Rectangle.ContainsPoint(this.room3_bot_right_info, this.room3_character_north)) {
-		this.room3_E_KeyImg.x = this.room3_character_north.x;
-		this.room3_E_KeyImg.y = this.room3_character_north.y+75;
-		this.room3_E_KeyImg.alpha = 1.0;
-		if (this.room3_key_E.isDown && this.room3_activity6Locked == false) {
-			this.room3_activity6A.alpha = 1.0;
-			this.checkActivityOpened(false, false, false, false, false, true);
-			activity6Complete = true;
-		}
-		else if (this.room3_key_E.isDown && this.room3_activity6Locked == true){
-			this.room3_activityLocked.alpha = 1.0;
-			this.room3_characterMoveable = false;
-       }
-
-    }
+  } //else if (Phaser.Geom.Rectangle.ContainsPoint(this.room3_top_left_info, this.room3_character_north)) {
+  //     this.room3_E_KeyImg.x = this.room3_character_north.x;
+  //     this.room3_E_KeyImg.y = this.room3_character_north.y-75;
+  //     this.room3_E_KeyImg.alpha = 1.0;
+  //     if (this.room3_key_E.isDown && this.room3_activity3Locked == false) {
+  //       this.room3_activity3A.alpha = 1.0;
+  //       this.checkActivityOpened(false, false, true, false, false, false);
+  //   this.room3_activity4Locked = false;
+  // } else if (this.room3_key_E.isDown && this.room3_activity3Locked == true){
+  //       this.room3_activityLocked.alpha = 1.0;
+  //       this.room3_characterMoveable = false;
+  //       }
+  //
+  //   } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room3_bot_mid_info, this.room3_character_north)) {
+  //     this.room3_E_KeyImg.x = this.room3_character_north.x;
+  //     this.room3_E_KeyImg.y = this.room3_character_north.y+75;
+  //     this.room3_E_KeyImg.alpha = 1.0;
+  //     if (this.room3_key_E.isDown && this.room3_activity4Locked == false) {
+  //     this.room3_activity4A.alpha = 1.0;
+  //     this.checkActivityOpened(false, false, false, true, false, false);
+  //   this.room3_activity5Locked = false;
+  // } else if (this.room3_key_E.isDown && this.room3_activity4Locked == true){
+  //       this.room3_activityLocked.alpha = 1.0;
+  //       this.room3_characterMoveable = false;
+  //       }
+  //
+  //
+  //   }
+	// else if (Phaser.Geom.Rectangle.ContainsPoint(this.room3_top_right_info, this.room3_character_north)) {
+	// 	this.room3_E_KeyImg.x = this.room3_character_north.x;
+	// 	this.room3_E_KeyImg.y = this.room3_character_north.y-75;
+  //
+	// 	this.room3_E_KeyImg.alpha = 1.0;
+	// 	if (this.room3_key_E.isDown && this.room3_activity5Locked == false) {
+	// 		this.room3_activity5A.alpha = 1.0;
+	// 		this.checkActivityOpened(false, false, false, false, true, false);
+	// 		this.room3_activity6Locked = false;
+	// 	}
+	// 	else if (this.room3_key_E.isDown && this.room3_activity5Locked == true){
+  //         this.room3_activityLocked.alpha = 1.0;
+  //         this.room3_characterMoveable = false;
+  //       }
+  //
+  //    }
+	// else if (Phaser.Geom.Rectangle.ContainsPoint(this.room3_bot_right_info, this.room3_character_north)) {
+	// 	this.room3_E_KeyImg.x = this.room3_character_north.x;
+	// 	this.room3_E_KeyImg.y = this.room3_character_north.y+75;
+	// 	this.room3_E_KeyImg.alpha = 1.0;
+	// 	if (this.room3_key_E.isDown && this.room3_activity6Locked == false) {
+	// 		this.room3_activity6A.alpha = 1.0;
+	// 		this.checkActivityOpened(false, false, false, false, false, true);
+	// 		activity6Complete = true;
+	// 	}
+	// 	else if (this.room3_key_E.isDown && this.room3_activity6Locked == true){
+	// 		this.room3_activityLocked.alpha = 1.0;
+	// 		this.room3_characterMoveable = false;
+  //      }
+  //
+  //   }
     else {
     this.hideActivities();
     this.room3_E_KeyImg.alpha = 0.0;
@@ -606,60 +559,27 @@ class one_lesson extends Phaser.Scene {
    * Sets the alphas to the activities to 0 so that they are hidden.
   */
   hideActivities() {
-    this.room3_activity1A.alpha = 0.0;
-    this.room3_activity1B.alpha = 0.0;
-    this.room3_activity1C.alpha = 0.0;
-    this.room3_activity1D.alpha = 0.0;
-    this.room3_activity2A.alpha = 0.0;
-    this.room3_activity2B.alpha = 0.0;
-    this.room3_activity2C.alpha = 0.0;
-    this.room3_activity2D.alpha = 0.0;
-    this.room3_activity3A.alpha = 0.0;
-    this.room3_activity3B.alpha = 0.0;
-    this.room3_activity4A.alpha = 0.0;
-    this.room3_activity4B.alpha = 0.0;
-    this.room3_activity4C.alpha = 0.0;
-    this.room3_activity4D.alpha = 0.0;
-    this.room3_activity4E.alpha = 0.0;
-    this.room3_activity5A.alpha = 0.0;
-    this.room3_activity5B.alpha = 0.0;
-    this.room3_activity5C.alpha = 0.0;
-    this.room3_activity5D.alpha = 0.0;
-    this.room3_activity5E.alpha = 0.0;
-    this.room3_activity5F.alpha = 0.0;
-    this.room3_activity6A.alpha = 0.0;
-    this.room3_activity6B.alpha = 0.0;
+    this.activity1A.alpha = 0.0;
+    this.activity1B.alpha = 0.0;
+    this.activity1C.alpha = 0.0;
+    this.activity1D.alpha = 0.0;
+    this.activity2A.alpha = 0.0;
+    this.activity2B.alpha = 0.0;
+    this.activity2C.alpha = 0.0;
 
 
   }
 
-  activityAlphas(room3_oneA, room3_oneB, room3_oneC, room3_oneD, room3_twoA, room3_twoB, room3_twoC, room3_twoD, room3_threeA, room3_threeB, room3_fourA, room3_fourB, room3_fourC, room3_fourD, room3_fourE, room3_fiveA, room3_fiveB, room3_fiveC, room3_fiveD, room3_fiveE, room3_fiveF, room3_sixA, room3_sixB) {
-    this.room3_activity1A.alpha = room3_oneA;
-    this.room3_activity1B.alpha = room3_oneB;
-    this.room3_activity1C.alpha = room3_oneC;
-    this.room3_activity1D.alpha = room3_oneD;
-    this.room3_activity2A.alpha = room3_twoA;
-    this.room3_activity2B.alpha = room3_twoB;
-    this.room3_activity2C.alpha = room3_twoC;
-    this.room3_activity2D.alpha = room3_twoD;
-    this.room3_activity3A.alpha = room3_threeA;
-    this.room3_activity3B.alpha = room3_threeB;
-    this.room3_activity4A.alpha = room3_fourA;
-    this.room3_activity4B.alpha = room3_fourB;
-    this.room3_activity4C.alpha = room3_fourC;
-    this.room3_activity4D.alpha = room3_fourD;
-    this.room3_activity4E.alpha = room3_fourE;
-    this.room3_activity5A.alpha = room3_fiveA;
-    this.room3_activity5B.alpha = room3_fiveB;
-    this.room3_activity5C.alpha = room3_fiveC;
-    this.room3_activity5D.alpha = room3_fiveD;
-    this.room3_activity5E.alpha = room3_fiveE;
-    this.room3_activity5F.alpha = room3_fiveF;
-    this.room3_activity6A.alpha = room3_sixA;
-    this.room3_activity6B.alpha = room3_sixB;
+  activityAlphas(oneA, oneB, oneC, oneD, twoA, twoB, twoC) {
+  this.activity1A.alpha = oneA;
+  this.activity1B.alpha = oneB;
+  this.activity1C.alpha = oneC;
+  this.activity1D.alpha = oneD;
+  this.activity2A.alpha = twoA;
+  this.activity2B.alpha = twoB;
+  this.activity2C.alpha = twoC;
 
-
-  }
+}
 
 
   /* checkNextPage
@@ -668,73 +588,29 @@ class one_lesson extends Phaser.Scene {
   */
 
   checkNextPage() {
-    if (this.room3_activityOneOpened == true && this.room3_key_1.isDown) {
-      this.activityAlphas(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    } else if (this.room3_activityOneOpened == true && this.room3_key_2.isDown) {
-      this.activityAlphas(0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 , 0, 0, 0 ,0, 0, 0, 0, 0, 0, 0, 0);
-    } else if (this.room3_activityOneOpened == true && this.room3_key_3.isDown) {
-      this.activityAlphas(0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    }else if (this.room3_activityOneOpened == true && this.room3_key_4.isDown) {
-      this.activityAlphas(0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    }
-    if (this.room3_activityTwoOpened == true && this.room3_key_1.isDown) {
-      this.activityAlphas(0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    }
-    else if (this.room3_activityTwoOpened == true && this.room3_key_2.isDown) {
-      this.activityAlphas(0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    }
-    else if (this.room3_activityTwoOpened == true && this.room3_key_3.isDown) {
-      this.activityAlphas(0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    }
-    else if (this.room3_activityTwoOpened == true && this.room3_key_4.isDown) {
-      this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    }
-    if (this.room3_activityThreeOpened == true && this.room3_key_1.isDown) {
-      this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    }
-    else if (this.room3_activityThreeOpened == true && this.room3_key_2.isDown) {
-      this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    }
-    if (this.room3_activityFourOpened == true && this.room3_key_1.isDown) {
-      this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    }
-    else if (this.room3_activityFourOpened == true && this.room3_key_2.isDown) {
-      this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    }
-    else if (this.room3_activityFourOpened == true && this.room3_key_3.isDown) {
-      this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    }
-    else if (this.room3_activityFourOpened == true && this.room3_key_4.isDown) {
-      this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    }
-    else if (this.room3_activityFourOpened == true && this.room3_key_5.isDown) {
-      this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0);
-    }
-    if (this.room3_activityFiveOpened == true && this.room3_key_1.isDown) {
-      this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0);
-    }
-    else if (this.room3_activityFiveOpened == true && this.room3_key_2.isDown) {
-      this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0);
-    }
-    else if (this.room3_activityFiveOpened == true && this.room3_key_3.isDown) {
-      this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0);
-    }
-    else if (this.room3_activityFiveOpened == true && this.room3_key_4.isDown) {
-      this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0);
-    }
-    else if (this.room3_activityFiveOpened == true && this.room3_key_5.isDown) {
-      this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0);
-    }
-    else if (this.room3_activityFiveOpened == true && this.room3_key_6.isDown) {
-      this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0);
-    }
-    if (this.room3_activitySixOpened == true && this.room3_key_1.isDown) {
-      this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0);
-    }
-    else if (this.room3_activitySixOpened == true && this.room3_key_2.isDown) {
-      this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1);
-    }
+  if (this.activityOneOpened == true && this.key_1.isDown) {
+    this.activityAlphas(1, 0, 0, 0, 0 ,0 ,0);
+
+  } else if (this.activityOneOpened == true && this.key_2.isDown) {
+    this.activityAlphas(0, 1, 0, 0, 0, 0, 0);
   }
+  else if (this.activityOneOpened == true && this.key_3.isDown) {
+    this.activityAlphas(0, 0, 1, 0, 0, 0, 0);
+  }
+  else if (this.activityOneOpened == true && this.key_4.isDown) {
+    this.activityAlphas(0, 0, 0, 1, 0, 0, 0);
+  }
+
+  if (this.activityTwoOpened == true && this.key_1.isDown) {
+    this.activityAlphas(0, 0, 0, 0, 1, 0, 0);
+  }
+  else if (this.activityOneOpened == true && this.key_2.isDown) {
+    this.activityAlphas(0, 0, 0, 0, 0, 1, 0);
+  }
+  else if (this.activityOneOpened == true && this.key_3.isDown) {
+    this.activityAlphas(0, 0, 0, 0, 0, 0, 1);
+  }
+}
 
   /* helpMenu
    *
