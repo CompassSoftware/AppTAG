@@ -5,6 +5,7 @@ class two_activity extends Phaser.Scene {
     this.room2a_quizActive = false;
     this.room2a_activatedQuiz = false;
     this.room2a_helpOpen = false;
+    this.room2a_puzzleMoveable = false;
   }
   //load assets in preload()
 
@@ -54,15 +55,14 @@ class two_activity extends Phaser.Scene {
     if (this.room2a_key_Q.isDown && this.room2a_activatedQuiz == false) {
       this.quitInteraction();
     }
-
+    
     if (this.room2a_quizActive == true && this.room2a_activatedQuiz == false && this.room2a_key_E.isDown) {
-        console.log("123")
         this.activateQuiz();
         this.room2a_activatedQuiz = true;
     }
 
     if (this.room2a_quizActive == true && this.room2a_key_Q.isDown && this.room2a_activatedQuiz == true) {
-        this.quitQuiz();
+        this.quitInteraction();
         this.room2a_activatedQuiz = false;
     }
 
@@ -71,17 +71,18 @@ class two_activity extends Phaser.Scene {
         this.checkInteractValidity();
     } 
     else if (this.room2a_activatedQuiz = true) {
-        if (this.room2a_paperCount == 1) {
-            this.movePaper(this.room2a_paper);
-            this.checkCorrectPaperOne();
-    } 
-    else if (this.room2a_paperCount == 2) {
-        this.movePaper(this.room2a_paperTwo);
-        this.checkCorrectPaperTwo();
-    } 
-    else if (this.room2a_paperCount == 3) {
-        this.movePaper(this.room2a_paperThree);
-        this.checkCorrectPaperThree();
+        if (this.room2a_puzzleCount == 1) {
+            this.movePuzzle(this.room2a_puzzle1);
+            this.checkCorrectpuzzleOne();
+            
+        } 
+        else if (this.room2a_puzzleCount == 2) {
+            this.movePuzzle(this.room2a_puzzle2);
+            this.checkCorrectpuzzleTwo();
+        } 
+        else if (this.room2a_puzzleCount == 3) {
+            this.movePuzzle(this.room2a_puzzle3);
+            this.checkCorrectpuzzleThree();
     }
 
       }
@@ -184,7 +185,7 @@ class two_activity extends Phaser.Scene {
     this.room2a_character_west.setDepth(50);
     this.room2a_E_KeyImg.setDepth(49);
     this.room2a_map.setDepth(100);
-    // this.room2a_paper_stack.setDepth(1);
+    // this.room2a_puzzle_stack.setDepth(1);
     this.room2a_notebook.setDepth(100);
     this.room2a_help_menu.setDepth(100);
   }
@@ -289,7 +290,7 @@ class two_activity extends Phaser.Scene {
 		this.room2a_E_KeyImg.alpha = 1.0;
 		if (this.room2a_key_E.isDown) {
             console.log("Activated Quiz")
-			this.room2a_quizActive = true;
+			this.room2a_quizActive = true;            
 		} 
     }
       else {
@@ -365,23 +366,23 @@ class two_activity extends Phaser.Scene {
           this.room2a_character_west.x += 5;
 
           this.setCharacterAlpha(0,1,0,0);
-    }
+        }
     }
   }
 
-  /* movePaper
+  /* movePuzzle
    *
-   * makes the paper moveable in the test activity
+   * makes the puzzle moveable in the test activity
   */
-  movePaper(moveThisPaper) {
-    if(this.room2a_key_W.isDown && this.room2a_paperMoveable == true) {
-      room2a_moveThisPaper.y -= 7;
-    } if (this.room2a_key_A.isDown && this.room2a_paperMoveable == true) {
-      room2a_moveThisPaper.x -= 7;
-    } if (this.room2a_key_S.isDown && this.room2a_paperMoveable == true) {
-      room2a_moveThisPaper.y += 7;
-    } if (this.room2a_key_D.isDown && this.room2a_paperMoveable == true) {
-      room2a_moveThisPaper.x += 7;
+  movePuzzle(moveThispuzzle) {
+    if(this.room2a_key_W.isDown && this.room2a_puzzleMoveable == true) {
+      room2a_moveThispuzzle.y -= 7;
+    } if (this.room2a_key_A.isDown && this.room2a_puzzleMoveable == true) {
+      room2a_moveThispuzzle.x -= 7;
+    } if (this.room2a_key_S.isDown && this.room2a_puzzleMoveable == true) {
+      room2a_moveThispuzzle.y += 7;
+    } if (this.room2a_key_D.isDown && this.room2a_puzzleMoveable == true) {
+      room2a_moveThispuzzle.x += 7;
     }
   }
   /* quitInteraction
@@ -406,6 +407,14 @@ class two_activity extends Phaser.Scene {
     this.room2a_activitySixOpened = false;
     this.room2a_help_menu.alpha = 0.0;
     this.room2a_activatedQuiz = false;
+    this.room2a_floor.scaleX = 1.0;
+    this.room2a_floor.scaleY = 1.0;
+    this.room2a_background.alpha = 1.0;
+    this.room2a_back_hole.alpha = 1.0;
+    this.room2a_puzzle1.setVisible(true);
+    this.room2a_back_hole_text.alpha = 1.0;
+    this.room2a_puzzleMoveable = false;
+    this.room2a_puzzleCount = 1;
   //this.quitQuiz();
   }
 
@@ -449,32 +458,25 @@ class two_activity extends Phaser.Scene {
      *
      * Method that starts the quiz
      */
-  activateQuiz() {
-        this.room2a_back_hole.setVisible(false);
+    activateQuiz() {
+        this.room2a_puzzleCount = 1;
+        this.room2a_puzzleMoveable = true;
+        this.room2a_back_hole.alpha = 0.0;
         this.loadQuizImages();
        
         this.room2a_puzzle1.setInteractive();
 
 
-        this.room2a_one_lesson_BG.alpha = 0.0;
+        this.room2a_background.alpha = 0.0;
         this.room2a_character_north.alpha = 0.0;
         this.room2a_character_east.alpha = 0.0;
         this.room2a_character_south.alpha = 0.0;
         this.room2a_character_west.alpha = 0.0;
         this.room2a_E_KeyImg.alpha = 0.0;
+        this.room2a_back_hole_text.alpha = 0.0;
 
         this.room2a_floor.scaleX = 1.5;
         this.room2a_floor.scaleY = 2.0;
-
-        this.box1_frame = new Phaser.Geom.Rectangle(this.cardboard_box_1.x, this.cardboard_box_1.y, 240,240);
-        this.graphics.fillRectShape(this.box1_frame);
-
-
-        this.box2_frame = new Phaser.Geom.Rectangle(this.cardboard_box_2.x,this.cardboard_box_2.y,240,200);
-        this.graphics.fillRectShape(this.box2_frame);
-
-        this.box3_frame = new Phaser.Geom.Rectangle(this.cardboard_box_3.x,this.cardboard_box_3.y,240,200);
-        this.graphics.fillRectShape(this.box3_frame);
     }
     
      /* loadQuizImages
@@ -483,7 +485,7 @@ class two_activity extends Phaser.Scene {
      */
     loadQuizImages(){
     
-    this.room2a_puzzle1.setVisible(false);
+    this.room2a_puzzle1.setVisible(true);
 
     this.room2a_puzzle2 = this.add.image(768, 432, 'room2a_puzzle2');
     this.room2a_puzzle2.setVisible(false);
