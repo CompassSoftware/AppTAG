@@ -125,31 +125,31 @@ class two_activityB extends Phaser.Scene {
     this.load.image('room2b_character_south', 'assets/character_south.png');
     this.load.image('room2b_character_west', 'assets/character_west.png');
     this.load.image('room2b_redCharacter', 'assets/redCharacter.png');
-    this.load.image('room2b_activity1A', 'assets/Panels/RoomTwo/PanelOneA.png');
-    this.load.image('room2b_activity1B', 'assets/Panels/RoomTwo/PanelOneB.png');
-    this.load.image('room2b_activity1C', 'assets/Panels/RoomTwo/PanelOneC.png');
-    this.load.image('room2b_activity1D', 'assets/Panels/RoomTwo/PanelOneD.png');
-    this.load.image('room2b_activity2A', 'assets/Panels/RoomTwo/PanelTwoA.png');
-    this.load.image('room2b_activity2B', 'assets/Panels/RoomTwo/PanelTwoB.png');
-    this.load.image('room2b_activity2C', 'assets/Panels/RoomTwo/PanelTwoC.png');
-    this.load.image('room2b_activity2D', 'assets/Panels/RoomTwo/PanelTwoD.png');
-    this.load.image('room2b_activity3A', 'assets/Panels/RoomTwo/PanelThreeA.png');
-    this.load.image('room2b_activity3B', 'assets/Panels/RoomTwo/PanelThreeB.png');
-    this.load.image('room2b_activity4A', 'assets/Panels/RoomTwo/PanelFourA.png');
-    this.load.image('room2b_activity4B', 'assets/Panels/RoomTwo/PanelFourB.png');
-    this.load.image('room2b_activity4C', 'assets/Panels/RoomTwo/PanelFourC.png');
-    this.load.image('room2b_activity4D', 'assets/Panels/RoomTwo/PanelFourD.png');
-    this.load.image('room2b_activity4E', 'assets/Panels/RoomTwo/PanelFourE.png');
-    this.load.image('room2b_activity5A', 'assets/Panels/RoomTwo/PanelFiveA.png');
-    this.load.image('room2b_activity5B', 'assets/Panels/RoomTwo/PanelFiveB.png');
-    this.load.image('room2b_activity5C', 'assets/Panels/RoomTwo/PanelFiveC.png');
+    // this.load.image('room2b_activity1A', 'assets/Panels/RoomTwo/PanelOneA.png');
+    // this.load.image('room2b_activity1B', 'assets/Panels/RoomTwo/PanelOneB.png');
+    // this.load.image('room2b_activity1C', 'assets/Panels/RoomTwo/PanelOneC.png');
+    // this.load.image('room2b_activity1D', 'assets/Panels/RoomTwo/PanelOneD.png');
+    // this.load.image('room2b_activity2A', 'assets/Panels/RoomTwo/PanelTwoA.png');
+    // this.load.image('room2b_activity2B', 'assets/Panels/RoomTwo/PanelTwoB.png');
+    // this.load.image('room2b_activity2C', 'assets/Panels/RoomTwo/PanelTwoC.png');
+    // this.load.image('room2b_activity2D', 'assets/Panels/RoomTwo/PanelTwoD.png');
+    // this.load.image('room2b_activity3A', 'assets/Panels/RoomTwo/PanelThreeA.png');
+    // this.load.image('room2b_activity3B', 'assets/Panels/RoomTwo/PanelThreeB.png');
+    // this.load.image('room2b_activity4A', 'assets/Panels/RoomTwo/PanelFourA.png');
+    // this.load.image('room2b_activity4B', 'assets/Panels/RoomTwo/PanelFourB.png');
+    // this.load.image('room2b_activity4C', 'assets/Panels/RoomTwo/PanelFourC.png');
+    // this.load.image('room2b_activity4D', 'assets/Panels/RoomTwo/PanelFourD.png');
+    // this.load.image('room2b_activity4E', 'assets/Panels/RoomTwo/PanelFourE.png');
+    // this.load.image('room2b_activity5A', 'assets/Panels/RoomTwo/PanelFiveA.png');
+    // this.load.image('room2b_activity5B', 'assets/Panels/RoomTwo/PanelFiveB.png');
+    // this.load.image('room2b_activity5C', 'assets/Panels/RoomTwo/PanelFiveC.png');
     this.load.image('room2b_E_KeyImg', 'assets/E_Key.png');
-    this.load.image('room2b_wall_info_1', 'assets/wall_art.png');
-    this.load.image('room2b_wall_info_2', 'assets/wall_art.png');
-    this.load.image('room2b_wall_info_3', 'assets/wall_art.png');
-    this.load.image('room2b_wall_info_4', 'assets/wall_art.png');
-    this.load.image('room2b_wall_info_5', 'assets/wall_art.png');
-    this.load.image('room2b_wall_info_6', 'assets/wall_art.png');
+    // this.load.image('room2b_wall_info_1', 'assets/wall_art.png');
+    // this.load.image('room2b_wall_info_2', 'assets/wall_art.png');
+    // this.load.image('room2b_wall_info_3', 'assets/wall_art.png');
+    // this.load.image('room2b_wall_info_4', 'assets/wall_art.png');
+    // this.load.image('room2b_wall_info_5', 'assets/wall_art.png');
+    // this.load.image('room2b_wall_info_6', 'assets/wall_art.png');
     this.load.image('room2b_floor', 'assets/floor_two_activity_2.jpg');
     this.load.image('room2b_map', 'assets/map.png');
     this.load.image('room2b_notebook', 'assets/notebook.png');
@@ -188,12 +188,12 @@ class two_activityB extends Phaser.Scene {
     this.room2b_activity5A = this.add.image(768, 432, 'room2b_activity5A');
     this.room2b_activity5B = this.add.image(768, 432, 'room2b_activity5B');
     this.room2b_activity5C = this.add.image(768, 432, 'room2b_activity5C');
-    this.room2b_wall_info_1 = this.add.image(305, 75, 'room2b_wall_info_1');
-    this.room2b_wall_info_2 = this.add.image(768, 75, 'room2b_wall_info_2');
-    this.room2b_wall_info_3 = this.add.image(1232, 75, 'room2b_wall_info_3');
-    this.room2b_wall_info_4 = this.add.image(305, 790, 'room2b_wall_info_4');
-    this.room2b_wall_info_5 = this.add.image(768, 790, 'room2b_wall_info_5');
-    this.room2b_wall_info_6 = this.add.image(1232, 790, 'room2b_wall_info_6');
+    // this.room2b_wall_info_1 = this.add.image(305, 75, 'room2b_wall_info_1');
+    // this.room2b_wall_info_2 = this.add.image(768, 75, 'room2b_wall_info_2');
+    // this.room2b_wall_info_3 = this.add.image(1232, 75, 'room2b_wall_info_3');
+    // this.room2b_wall_info_4 = this.add.image(305, 790, 'room2b_wall_info_4');
+    // this.room2b_wall_info_5 = this.add.image(768, 790, 'room2b_wall_info_5');
+    // this.room2b_wall_info_6 = this.add.image(1232, 790, 'room2b_wall_info_6');
     this.room2b_floor = this.add.image(769, 433, 'room2b_floor');
     this.room2b_map = this.add.image(768, 432, 'room2b_map');
     this.room2b_notebook = this.add.image(768, 432, 'room2b_notebook');
@@ -225,24 +225,24 @@ class two_activityB extends Phaser.Scene {
     this.room2b_character_south.setDepth(50);
     this.room2b_character_west.setDepth(50);
     this.room2b_E_KeyImg.setDepth(49);
-    this.room2b_activity1A.setDepth(100);
-    this.room2b_activity1B.setDepth(100);
-    this.room2b_activity1C.setDepth(100);
-    this.room2b_activity1D.setDepth(100);
-    this.room2b_activity2A.setDepth(100);
-    this.room2b_activity2B.setDepth(100);
-    this.room2b_activity2C.setDepth(100);
-    this.room2b_activity2D.setDepth(100);
-    this.room2b_activity3A.setDepth(100);
-    this.room2b_activity3B.setDepth(100);
-    this.room2b_activity4A.setDepth(100);
-    this.room2b_activity4B.setDepth(100);
-    this.room2b_activity4C.setDepth(100);
-    this.room2b_activity4D.setDepth(100);
-    this.room2b_activity4E.setDepth(100);
-    this.room2b_activity5A.setDepth(100);
-    this.room2b_activity5B.setDepth(100);
-    this.room2b_activity5C.setDepth(100);
+    // this.room2b_activity1A.setDepth(100);
+    // this.room2b_activity1B.setDepth(100);
+    // this.room2b_activity1C.setDepth(100);
+    // this.room2b_activity1D.setDepth(100);
+    // this.room2b_activity2A.setDepth(100);
+    // this.room2b_activity2B.setDepth(100);
+    // this.room2b_activity2C.setDepth(100);
+    // this.room2b_activity2D.setDepth(100);
+    // this.room2b_activity3A.setDepth(100);
+    // this.room2b_activity3B.setDepth(100);
+    // this.room2b_activity4A.setDepth(100);
+    // this.room2b_activity4B.setDepth(100);
+    // this.room2b_activity4C.setDepth(100);
+    // this.room2b_activity4D.setDepth(100);
+    // this.room2b_activity4E.setDepth(100);
+    // this.room2b_activity5A.setDepth(100);
+    // this.room2b_activity5B.setDepth(100);
+    // this.room2b_activity5C.setDepth(100);
 
     this.room2b_map.setDepth(100);
     // this.room2b_paper_stack.setDepth(1);
@@ -256,12 +256,12 @@ class two_activityB extends Phaser.Scene {
   */
   setScales() {
     this.room2b_E_KeyImg.setScale(0.4);
-    this.room2b_wall_info_1.setScale(0.75);
-    this.room2b_wall_info_2.setScale(0.75);
-    this.room2b_wall_info_3.setScale(0.75);
-    this.room2b_wall_info_4.setScale(0.75);
-    this.room2b_wall_info_5.setScale(0.75);
-    this.room2b_wall_info_6.setScale(0.75);
+    // this.room2b_wall_info_1.setScale(0.75);
+    // this.room2b_wall_info_2.setScale(0.75);
+    // this.room2b_wall_info_3.setScale(0.75);
+    // this.room2b_wall_info_4.setScale(0.75);
+    // this.room2b_wall_info_5.setScale(0.75);
+    // this.room2b_wall_info_6.setScale(0.75);
     this.room2b_notebook.setScale(0.75);
     this.room2b_map.setScale(0.75);
     this.room2b_character_north.setScale(3);
@@ -278,9 +278,9 @@ class two_activityB extends Phaser.Scene {
    * Sets the rotation that each object sits at.
   */
   setRotations() {
-    this.room2b_wall_info_4.rotation = 3.14;
-    this.room2b_wall_info_5.rotation = 3.14;
-    this.room2b_wall_info_6.rotation = 3.14;
+    // this.room2b_wall_info_4.rotation = 3.14;
+    // this.room2b_wall_info_5.rotation = 3.14;
+    // this.room2b_wall_info_6.rotation = 3.14;
    }
 
   /* createInteractionZones
@@ -374,80 +374,80 @@ class two_activityB extends Phaser.Scene {
   */
 
   checkInteractValidity() {
-    if (Phaser.Geom.Rectangle.ContainsPoint(this.room2b_top_right_info, this.room2b_character_north)) {
-      this.room2b_E_KeyImg.x = this.room2b_character_north.x;
-      this.room2b_E_KeyImg.y = this.room2b_character_north.y-75;
-      this.room2b_E_KeyImg.alpha = 1.0;
-      if (this.room2b_key_E.isDown) {
-        this.room2b_activity1A.alpha = 1.0;
-        this.room2b_characterMoveable = false;
-        this.checkActivityOpened(true, false, false, false, false, false);
-    this.room2b_activity2Locked = false;
-
-    //COME BACK AND CHANGE THIS LATER
-    this.room2b_activity6Complete = true;
-      }
-
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2b_bot_mid_info, this.room2b_character_north)) {
-      this.room2b_E_KeyImg.x = this.room2b_character_north.x;
-      this.room2b_E_KeyImg.y = this.room2b_character_north.y+75;
-      this.room2b_E_KeyImg.alpha = 1.0;
-    if (this.room2b_key_E.isDown && this.room2b_activity2Locked == false) {
-        this.room2b_activity2A.alpha = 1.0;
-        this.checkActivityOpened(false, true, false, false, false, false);
-    this.room2b_activity3Locked = false;
-  } else if (this.room2b_key_E.isDown && this.room2b_activity2Locked == true) {
-          this.room2b_activityLocked.alpha = 1.0;
-          this.room2b_characterMoveable = false;
-          }
-
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2b_top_mid_info, this.room2b_character_north)) {
-      this.room2b_E_KeyImg.x = this.room2b_character_north.x;
-      this.room2b_E_KeyImg.y = this.room2b_character_north.y-75;
-      this.room2b_E_KeyImg.alpha = 1.0;
-      if (this.room2b_key_E.isDown && this.room2b_activity3Locked == false) {
-        this.room2b_activity3A.alpha = 1.0;
-        this.checkActivityOpened(false, false, true, false, false, false);
-    this.room2b_activity4Locked = false;
-  } else if (this.room2b_key_E.isDown && this.room2b_activity3Locked == true){
-        this.room2b_activityLocked.alpha = 1.0;
-        this.room2b_characterMoveable = false;
-        }
-
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2b_bot_right_info, this.room2b_character_north)) {
-      this.room2b_E_KeyImg.x = this.room2b_character_north.x;
-      this.room2b_E_KeyImg.y = this.room2b_character_north.y+75;
-      this.room2b_E_KeyImg.alpha = 1.0;
-      if (this.room2b_key_E.isDown && this.room2b_activity4Locked == false) {
-      this.room2b_activity4A.alpha = 1.0;
-      this.checkActivityOpened(false, false, false, true, false, false);
-    this.room2b_activity5Locked = false;
-  } else if (this.room2b_key_E.isDown && this.room2b_activity4Locked == true){
-        this.room2b_activityLocked.alpha = 1.0;
-        this.room2b_characterMoveable = false;
-        }
-
-
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2b_top_left_info, this.room2b_character_north)) {
-      this.room2b_E_KeyImg.x = this.room2b_character_north.x;
-      this.room2b_E_KeyImg.y = this.room2b_character_north.y-75;
-
-      this.room2b_E_KeyImg.alpha = 1.0;
-      if (this.room2b_key_E.isDown && this.room2b_activity5Locked == false) {
-        this.room2b_activity5A.alpha = 1.0;
-        this.checkActivityOpened(false, false, false, false, true, false);
-    this.room2b_activity6Locked = false;
-  } else if (this.room2b_key_E.isDown && this.room2b_activity5Locked == true){
-          this.room2b_activityLocked.alpha = 1.0;
-          this.room2b_characterMoveable = false;
-        }
-
-    }
-
-      else {
-      this.hideActivities();
-      this.room2b_E_KeyImg.alpha = 0.0;
-    }
+  //   if (Phaser.Geom.Rectangle.ContainsPoint(this.room2b_top_right_info, this.room2b_character_north)) {
+  //     this.room2b_E_KeyImg.x = this.room2b_character_north.x;
+  //     this.room2b_E_KeyImg.y = this.room2b_character_north.y-75;
+  //     this.room2b_E_KeyImg.alpha = 1.0;
+  //     if (this.room2b_key_E.isDown) {
+  //       this.room2b_activity1A.alpha = 1.0;
+  //       this.room2b_characterMoveable = false;
+  //       this.checkActivityOpened(true, false, false, false, false, false);
+  //   this.room2b_activity2Locked = false;
+  //
+  //   //COME BACK AND CHANGE THIS LATER
+  //   this.room2b_activity6Complete = true;
+  //     }
+  //
+  //   } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2b_bot_mid_info, this.room2b_character_north)) {
+  //     this.room2b_E_KeyImg.x = this.room2b_character_north.x;
+  //     this.room2b_E_KeyImg.y = this.room2b_character_north.y+75;
+  //     this.room2b_E_KeyImg.alpha = 1.0;
+  //   if (this.room2b_key_E.isDown && this.room2b_activity2Locked == false) {
+  //       this.room2b_activity2A.alpha = 1.0;
+  //       this.checkActivityOpened(false, true, false, false, false, false);
+  //   this.room2b_activity3Locked = false;
+  // } else if (this.room2b_key_E.isDown && this.room2b_activity2Locked == true) {
+  //         this.room2b_activityLocked.alpha = 1.0;
+  //         this.room2b_characterMoveable = false;
+  //         }
+  //
+  //   } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2b_top_mid_info, this.room2b_character_north)) {
+  //     this.room2b_E_KeyImg.x = this.room2b_character_north.x;
+  //     this.room2b_E_KeyImg.y = this.room2b_character_north.y-75;
+  //     this.room2b_E_KeyImg.alpha = 1.0;
+  //     if (this.room2b_key_E.isDown && this.room2b_activity3Locked == false) {
+  //       this.room2b_activity3A.alpha = 1.0;
+  //       this.checkActivityOpened(false, false, true, false, false, false);
+  //   this.room2b_activity4Locked = false;
+  // } else if (this.room2b_key_E.isDown && this.room2b_activity3Locked == true){
+  //       this.room2b_activityLocked.alpha = 1.0;
+  //       this.room2b_characterMoveable = false;
+  //       }
+  //
+  //   } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2b_bot_right_info, this.room2b_character_north)) {
+  //     this.room2b_E_KeyImg.x = this.room2b_character_north.x;
+  //     this.room2b_E_KeyImg.y = this.room2b_character_north.y+75;
+  //     this.room2b_E_KeyImg.alpha = 1.0;
+  //     if (this.room2b_key_E.isDown && this.room2b_activity4Locked == false) {
+  //     this.room2b_activity4A.alpha = 1.0;
+  //     this.checkActivityOpened(false, false, false, true, false, false);
+  //   this.room2b_activity5Locked = false;
+  // } else if (this.room2b_key_E.isDown && this.room2b_activity4Locked == true){
+  //       this.room2b_activityLocked.alpha = 1.0;
+  //       this.room2b_characterMoveable = false;
+  //       }
+  //
+  //
+  //   } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2b_top_left_info, this.room2b_character_north)) {
+  //     this.room2b_E_KeyImg.x = this.room2b_character_north.x;
+  //     this.room2b_E_KeyImg.y = this.room2b_character_north.y-75;
+  //
+  //     this.room2b_E_KeyImg.alpha = 1.0;
+  //     if (this.room2b_key_E.isDown && this.room2b_activity5Locked == false) {
+  //       this.room2b_activity5A.alpha = 1.0;
+  //       this.checkActivityOpened(false, false, false, false, true, false);
+  //   this.room2b_activity6Locked = false;
+  // } else if (this.room2b_key_E.isDown && this.room2b_activity5Locked == true){
+  //         this.room2b_activityLocked.alpha = 1.0;
+  //         this.room2b_characterMoveable = false;
+  //       }
+  //
+  //   }
+  //
+  //     else {
+  //     this.hideActivities();
+  //     this.room2b_E_KeyImg.alpha = 0.0;
+  //   }
   }
 
 
