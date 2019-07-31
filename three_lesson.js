@@ -582,9 +582,9 @@ class three_lesson extends Phaser.Scene {
             }
 
         }
-        //Character moves right
+        //Character moves down
         if (this.key_S.isDown && characterMoveable == true) {
-            if(this.character_south.y < 680){
+            if(this.character_south.y < 670){
                 this.character_south.y += 5;
                 this.character_east.y += 5;
                 this.character_north.y += 5;
@@ -594,7 +594,7 @@ class three_lesson extends Phaser.Scene {
             }
 
         }
-        //Character moves down
+        //Character moves right
         if (this.key_D.isDown && characterMoveable == true) {
             if(this.character_east.x < 1325){
                 this.character_east.x += 5;
@@ -612,13 +612,13 @@ class three_lesson extends Phaser.Scene {
      * makes the paper moveable in the test activity
      */
     movePaper(moveThisPaper) {
-        if(this.key_W.isDown && this.paperMoveable == true) {
+        if(this.key_W.isDown && this.paperMoveable == true && moveThisPaper.y > 75) {
             moveThisPaper.y -= 12;
-        } if (this.key_A.isDown && this.paperMoveable == true) {
+        } if (this.key_A.isDown && this.paperMoveable == true && moveThisPaper.x > 50) {
             moveThisPaper.x -= 12;
-        } if (this.key_S.isDown && this.paperMoveable == true) {
+        } if (this.key_S.isDown && this.paperMoveable == true && moveThisPaper.y < 800) {
             moveThisPaper.y += 12;
-        } if (this.key_D.isDown && this.paperMoveable == true) {
+        } if (this.key_D.isDown && this.paperMoveable == true && moveThisPaper.x < 1400) {
             moveThisPaper.x += 12;
         }
     }
