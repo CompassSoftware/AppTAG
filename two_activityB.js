@@ -155,6 +155,7 @@ class two_activityB extends Phaser.Scene {
     this.load.image('room2b_notebook', 'assets/notebook.png');
     this.load.image('room2b_activityLocked', 'assets/activityLocked.png');
     this.load.image('room2b_help_menu', 'assets/help_menu.png');
+
   }
 
   /* createImages
@@ -311,8 +312,6 @@ class two_activityB extends Phaser.Scene {
 
     this.room2b_bot_right_info = new Phaser.Geom.Rectangle(1120,565,240,150);
     this.room2b_graphics.fillRectShape(this.room2b_bot_right_info);
-
-
   }
 
   /* assignKeybinds
