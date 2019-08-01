@@ -6,6 +6,8 @@ class two_activity extends Phaser.Scene {
     this.room2a_activatedQuiz = false;
     this.room2a_helpOpen = false;
     this.room2a_puzzleMoveable = false;
+    this.room2a_isPuzzle = false;
+    
   }
   //load assets in preload()
 
@@ -52,8 +54,10 @@ class two_activity extends Phaser.Scene {
     }
 
 
-    if (this.room2a_key_Q.isDown && this.room2a_activatedQuiz == false) {
-      this.quitInteraction();
+    if (this.room2a_key_Q.isDown) {
+        this.quitInteraction();
+        this.room2a_activatedQuiz = false;
+        this.room2a_quizActive = false;
     }
     
     if (this.room2a_quizActive == true && this.room2a_activatedQuiz == false && this.room2a_key_E.isDown) {
@@ -61,31 +65,23 @@ class two_activity extends Phaser.Scene {
         this.room2a_activatedQuiz = true;
     }
 
-    if (this.room2a_quizActive == true && this.room2a_key_Q.isDown && this.room2a_activatedQuiz == true) {
-        this.quitInteraction();
-        this.room2a_activatedQuiz = false;
-    }
-
     if (this.room2a_activatedQuiz == false) {
         this.movePlayer();
         this.checkInteractValidity();
     } 
     else if (this.room2a_activatedQuiz = true) {
-        if (this.room2a_puzzleCount == 1) {
-            this.movePuzzle(this.room2a_puzzle1);
+        if(this.room2a_isPuzzle == true)
+        {
+            //create switch statement to check which piece you are
             
-            
-        } 
-        else if (this.room2a_puzzleCount == 2) {
-            this.movePuzzle(this.room2a_puzzle2);
-            
-        } 
-        else if (this.room2a_puzzleCount == 3) {
-            this.movePuzzle(this.room2a_puzzle3);
-           
-    }
+            //checkactivityzones()
+        }
+        else {
+            this.movePlayer();
+            this.checkInteractValidity();
+        }
 
-      }
+    }
   if (this.room2a_activatedQuiz == false)
     this.room2a_characterMoveable = true;
     }
@@ -266,8 +262,8 @@ class two_activity extends Phaser.Scene {
     this.room2a_back_hole_zone = new Phaser.Geom.Rectangle(150,532,150,150);
     this.room2a_graphics.fillRectShape(this.room2a_back_hole_zone);
     
-    this.room2a_quiz_box = new Phaser.Geom.Rectangle(1068, 332,160,110);
-    this.room2a_graphics.fillRectShape(this.room2a_quiz_box);
+    this.room2a_P1A = new Phaser.Geom.Rectangle(1068, 332,160,110);
+    this.room2a_graphics.fillRectShape(this.room2a_P1A);
   }
 
   /* checkInteractValidity
@@ -276,7 +272,8 @@ class two_activity extends Phaser.Scene {
   */
 
   checkInteractValidity() {
-    if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_back_hole_zone, this.room2a_character_north)) {
+    if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_back_hole_zone, this.room2a_character_north) &&
+            this.room2a_activatedQuiz == false) {
 		this.room2a_E_KeyImg.x = this.room2a_character_north.x;
 		this.room2a_E_KeyImg.y = this.room2a_character_north.y+75;
 		this.room2a_E_KeyImg.alpha = 1.0;
@@ -285,7 +282,8 @@ class two_activity extends Phaser.Scene {
 			this.scene.start("two_Lesson");
 		} 
     }
-    else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_quiz_box, this.room2a_character_north)) {
+    else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_P1A, this.room2a_character_north) &&
+            this.room2a_activatedQuiz == false) {
 		this.room2a_E_KeyImg.x = this.room2a_character_north.x;
 		this.room2a_E_KeyImg.y = this.room2a_character_north.y+75;
 		this.room2a_E_KeyImg.alpha = 1.0;
@@ -427,6 +425,10 @@ class two_activity extends Phaser.Scene {
     this.room2a_back_hole_text.alpha = 1.0;
     this.room2a_puzzleMoveable = false;
     this.room2a_puzzleCount = 1;
+    this.room2a_floor.scaleY = .513;
+    this.room2a_floor.scaleX = .791;
+    this.room2a_puzzle1.x = 1168;
+    this.room2a_puzzle1.y = 432;
   //this.quitQuiz();
   }
 
@@ -475,20 +477,24 @@ class two_activity extends Phaser.Scene {
         this.room2a_puzzleMoveable = true;
         this.room2a_back_hole.alpha = 0.0;
         this.loadQuizImages();
+        this.createActivityZones();
        
-        this.room2a_puzzle1.setInteractive();
+        //this.room2a_puzzle1.setInteractive();
 
 
-        this.room2a_background.alpha = 0.0;
+        this.room2a_E_KeyImg.alpha = 0.0;
+        this.room2a_back_hole_text.alpha = 0.0;
         this.room2a_character_north.alpha = 0.0;
         this.room2a_character_east.alpha = 0.0;
         this.room2a_character_south.alpha = 0.0;
         this.room2a_character_west.alpha = 0.0;
-        this.room2a_E_KeyImg.alpha = 0.0;
-        this.room2a_back_hole_text.alpha = 0.0;
 
         this.room2a_floor.scaleX = 1.5;
         this.room2a_floor.scaleY = 2.0;
+        this.room2a_puzzle1.x = 1168;
+        this.room2a_puzzle1.y = 432;
+        
+        
     }
     
      /* loadQuizImages
@@ -519,6 +525,24 @@ class two_activity extends Phaser.Scene {
     
     this.room2a_puzzle8 = this.add.image(768, 432, 'room2a_puzzle8');
     this.room2a_puzzle8.setVisible(false);
+    }
+    
+    /* createActivityZones
+   *
+   * creates the interact zones for the activity
+  */
+  createActivityZones(){
+    
+    
+    }
+    
+    /* checkActivityZones
+   *
+   * checks the interact zones for the activity
+  */
+  checkActivityZones(){
+    
+    
     }
 
   /* helpMenu
