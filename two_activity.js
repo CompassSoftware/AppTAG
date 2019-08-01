@@ -113,7 +113,7 @@ class two_activity extends Phaser.Scene {
     this.load.image('room2a_wall_info_4', 'assets/wall_art.png');
     this.load.image('room2a_wall_info_5', 'assets/wall_art.png');
     this.load.image('room2a_wall_info_6', 'assets/wall_art.png');
-    this.load.image('room2a_floor', 'assets/floor_2.jpeg');
+    this.load.image('room2a_floor', 'assets/floor_room2_act1.jpg');
     this.load.image('room2a_map', 'assets/map.png');
     this.load.image('room2a_notebook', 'assets/notebook.png');
     this.load.image('room2a_activityLocked', 'assets/activityLocked.png');
@@ -127,7 +127,6 @@ class two_activity extends Phaser.Scene {
     this.load.image('room2a_puzzle6', 'assets/Puzzle/TopLeft.png');
     this.load.image('room2a_puzzle7', 'assets/Puzzle/TopRightMiddle.png');
     this.load.image('room2a_puzzle8', 'assets/Puzzle/TopRight.png');
-
 
 
   }
@@ -203,6 +202,9 @@ class two_activity extends Phaser.Scene {
     this.room2a_character_south.setScale(3);
     this.room2a_character_west.setScale(3);
     this.room2a_character_east.setScale(3);
+    this.room2a_floor.scaleY = .513;
+    this.room2a_floor.scaleX = .791;
+
   }
 
   /* setRotations
@@ -213,7 +215,6 @@ class two_activity extends Phaser.Scene {
     this.room2a_puzzle1.angle = 90;
   //   this.room2a_cardboard_box_3.rotation = 0;
    }
-
   /* assignKeybinds
    *
    * Sets keybinds to the keyboard

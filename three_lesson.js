@@ -64,8 +64,8 @@ class three_lesson extends Phaser.Scene {
         }
 
         if (this.key_M.isDown) {
-            this.map.alpha = 1.0;
-            characterMoveable = false;
+            this.r1_map.alpha = 1.0;
+            this.characterMoveable = false;
             this.character_north.alpha = 0.0;
             this.character_east.alpha = 0.0;
             this.character_south.alpha = 0.0;
@@ -74,7 +74,7 @@ class three_lesson extends Phaser.Scene {
 
         if (this.key_B.isDown) {
             this.notebook.alpha = 1.0;
-            characterMoveable = false;
+            this.characterMoveable = false;
             this.character_north.alpha = 0.0;
             this.character_east.alpha = 0.0;
             this.character_south.alpha = 0.0;
@@ -156,7 +156,7 @@ class three_lesson extends Phaser.Scene {
         this.load.image('cardboard_box', 'assets/cardboard_box.png');
         this.load.image('paper_stack', 'assets/paper_stack.png');
         this.load.image('paper', 'assets/single_paper.png');
-        this.load.image('map', 'assets/map.png');
+        this.load.image('r1_map', 'assets/map/room2inprogress.png');
         this.load.image('notebook', 'assets/notebook.png');
         this.load.image('activityLocked', 'assets/activityLocked.png');
         this.load.image('help_menu', 'assets/help_menu.png');
@@ -211,7 +211,7 @@ class three_lesson extends Phaser.Scene {
         this.cardboard_box_1 = this.add.image(1310, 320, 'cardboard_box');
         this.cardboard_box_2 = this.add.image(1310, 432, 'cardboard_box');
         this.cardboard_box_3 = this.add.image(1310, 530, 'cardboard_box');
-        this.map = this.add.image(768, 432, 'map');
+        this.r1_map = this.add.image(768, 432, 'r1_map');
         this.notebook = this.add.image(768, 432, 'notebook');
         this.activityLocked = this.add.image(768, 432, 'activityLocked');
         this.help_menu = this.add.image(768, 432, 'help_menu');
@@ -233,7 +233,7 @@ class three_lesson extends Phaser.Scene {
      * sets the alphas to to items in the game to zero so they are not visible at the beginning.
      */
     setAlphas() {
-        this.map.alpha = 0.0;
+        this.r1_map.alpha = 0.0;
         this.notebook.alpha = 0.0;
         this.activityLocked.alpha = 0.0;
         this.E_KeyImg.alpha = 0.0;
@@ -267,7 +267,7 @@ class three_lesson extends Phaser.Scene {
         this.activity5B.setDepth(96);
         this.activity5C.setDepth(96);
         this.activity6.setDepth(95);
-        this.map.setDepth(100);
+        this.r1_map.setDepth(100);
         this.paper_stack.setDepth(1);
         this.notebook.setDepth(100);
         this.help_menu.setDepth(100);
@@ -287,7 +287,7 @@ class three_lesson extends Phaser.Scene {
         this.wall_info_5.setScale(0.75);
         this.wall_info_6.setScale(0.75);
         this.notebook.setScale(0.75);
-        this.map.setScale(0.75);
+        this.r1_map.setScale(0.75);
         this.cardboard_box_1.setScale(0.39);
         this.cardboard_box_2.setScale(0.39);
         this.cardboard_box_3.setScale(0.39);
@@ -583,9 +583,9 @@ class three_lesson extends Phaser.Scene {
             }
 
         }
-        //Character moves right
+        //Character moves down
         if (this.key_S.isDown && characterMoveable == true) {
-            if(this.character_south.y < 680){
+            if(this.character_south.y < 670){
                 this.character_south.y += 5;
                 this.character_east.y += 5;
                 this.character_north.y += 5;
@@ -595,7 +595,7 @@ class three_lesson extends Phaser.Scene {
             }
 
         }
-        //Character moves down
+        //Character moves right
         if (this.key_D.isDown && characterMoveable == true) {
             if(this.character_east.x < 1325){
                 this.character_east.x += 5;
@@ -613,14 +613,14 @@ class three_lesson extends Phaser.Scene {
      * makes the paper moveable in the test activity
      */
     movePaper(moveThisPaper) {
-        if(this.key_W.isDown && this.paperMoveable == true) {
-            moveThisPaper.y -= 7;
-        } if (this.key_A.isDown && this.paperMoveable == true) {
-            moveThisPaper.x -= 7;
-        } if (this.key_S.isDown && this.paperMoveable == true) {
-            moveThisPaper.y += 7;
-        } if (this.key_D.isDown && this.paperMoveable == true) {
-            moveThisPaper.x += 7;
+        if(this.key_W.isDown && this.paperMoveable == true && moveThisPaper.y > 75) {
+            moveThisPaper.y -= 12;
+        } if (this.key_A.isDown && this.paperMoveable == true && moveThisPaper.x > 50) {
+            moveThisPaper.x -= 12;
+        } if (this.key_S.isDown && this.paperMoveable == true && moveThisPaper.y < 800) {
+            moveThisPaper.y += 12;
+        } if (this.key_D.isDown && this.paperMoveable == true && moveThisPaper.x < 1400) {
+            moveThisPaper.x += 12;
         }
     }
 
@@ -777,7 +777,7 @@ class three_lesson extends Phaser.Scene {
      * Sets the alphas to 0 so that the interaction is quit.
      */
     quitInteraction() {
-        this.map.alpha = 0.0;
+        this.r1_map.alpha = 0.0;
         this.notebook.alpha = 0.0;
         this.hideActivities();
         this.activityLocked.alpha = 0.0;
