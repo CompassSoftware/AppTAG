@@ -13,6 +13,7 @@ class one_lesson extends Phaser.Scene {
     this.room3_activityFiveOpened = false;
     this.room3_activitySixOpened = false;
     this.room3_helpOpen = false;
+    this.room3_counter = 0;
   }
   //load assets in preload()
 
@@ -135,6 +136,10 @@ class one_lesson extends Phaser.Scene {
     this.load.image('room3_activity2A', 'assets/Panels/RoomThree/PanelTwoA.png');
     this.load.image('room3_activity2B', 'assets/Panels/RoomThree/PanelTwoB.png');
     this.load.image('room3_activity2C', 'assets/Panels/RoomThree/PanelTwoC.png');
+    this.load.image('room3_activity3A', 'assets/Panels/RoomThree/PanelThreeA.png');
+    this.load.image('room3_activity3B', 'assets/Panels/RoomThree/PanelThreeB.png');
+    this.load.image('room3_activity3C', 'assets/Panels/RoomThree/PanelThreeC.png');
+    this.load.image('room3_activity3D', 'assets/Panels/RoomThree/PanelThreeD.png');
     this.load.image('room3_E_KeyImg', 'assets/E_Key.png');
     this.load.image('room3_wall_info_1', 'assets/wall_art.png');
     this.load.image('room3_wall_info_2', 'assets/wall_art.png');
@@ -147,6 +152,7 @@ class one_lesson extends Phaser.Scene {
     this.load.image('room3_notebook', 'assets/notebook.png');
     this.load.image('room3_activityLocked', 'assets/activityLocked.png');
     this.load.image('room3_help_menu', 'assets/help_menu.png');
+    this.load.image('room3_rightArrow' , 'assets/rightArrowTest.png');
 
   }
 
@@ -170,6 +176,10 @@ class one_lesson extends Phaser.Scene {
     this.room3_activity2A = this.add.image(768, 432, 'room3_activity2A');
     this.room3_activity2B = this.add.image(768, 432, 'room3_activity2B');
     this.room3_activity2C = this.add.image(768, 432, 'room3_activity2C');
+    this.room3_activity3A = this.add.image(768, 432, 'room3_activity3A');
+    this.room3_activity3B = this.add.image(768, 432, 'room3_activity3B');
+    this.room3_activity3C = this.add.image(768, 432, 'room3_activity3C');
+    this.room3_activity3D = this.add.image(768, 432, 'room3_activity3D');
     this.room3_wall_info_1 = this.add.image(305, 75, 'room3_wall_info_1');
     this.room3_wall_info_2 = this.add.image(768, 75, 'room3_wall_info_2');
     this.room3_wall_info_3 = this.add.image(1232, 75, 'room3_wall_info_3');
@@ -181,6 +191,8 @@ class one_lesson extends Phaser.Scene {
     this.room3_notebook = this.add.image(768, 432, 'room3_notebook');
     this.room3_activityLocked = this.add.image(768, 432, 'room3_activityLocked');
     this.room3_help_menu = this.add.image(768, 432, 'room3_help_menu');
+    this.room3_rightArrow = this.add.image(1000, 650, 'room3_rightArrow');
+    this.room3_leftArrow = this.add.image(600, 650, 'room3_rightArrow');
   }
 
   /* setAlphas
@@ -193,6 +205,8 @@ class one_lesson extends Phaser.Scene {
     this.room3_activityLocked.alpha = 0.0;
     this.room3_E_KeyImg.alpha = 0.0;
     this.room3_help_menu.alpha = 0.0;
+    this.room3_leftArrow.alpha = 0;
+    this.room3_rightArrow.alpha = 0;
     this.hideActivities();
   }
 
@@ -214,6 +228,10 @@ class one_lesson extends Phaser.Scene {
     this.room3_activity2A.setDepth(100);
     this.room3_activity2B.setDepth(100);
     this.room3_activity2C.setDepth(100);
+    this.room3_activity3A.setDepth(100);
+    this.room3_activity3B.setDepth(100);
+    this.room3_activity3C.setDepth(100);
+    this.room3_activity3D.setDepth(100);
 
     this.room3_map.setDepth(100);
     // this.room3_paper_stack.setDepth(1);
@@ -241,6 +259,8 @@ class one_lesson extends Phaser.Scene {
     this.room3_character_east.setScale(3);
     this.room3_floor.scaleY = 0.526;
     this.room3_floor.scaleX = 0.6178;
+    this.room3_leftArrow.setScale(.2);
+    this.room3_rightArrow.setScale(.2);
 
   }
 
@@ -252,6 +272,7 @@ class one_lesson extends Phaser.Scene {
     this.room3_wall_info_4.rotation = 3.14;
     this.room3_wall_info_5.rotation = 3.14;
     this.room3_wall_info_6.rotation = 3.14;
+    this.room3_leftArrow.setRotation(3.14);
    }
 
   /* createInteractionZones
@@ -308,6 +329,8 @@ class one_lesson extends Phaser.Scene {
     this.room3_key_6 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SIX);
     this.room3_key_R = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
     this.room3_key_H = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.H);
+    this.room3_key_Right = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+    this.room3_key_Left = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
 
   }
 
@@ -351,6 +374,7 @@ class one_lesson extends Phaser.Scene {
       this.room3_E_KeyImg.alpha = 1.0;
       if (this.room3_key_E.isDown) {
         this.room3_activity1A.alpha = 1.0;
+        this.resetArrows();
         this.room3_characterMoveable = false;
         this.checkActivityOpened(true, false, false, false, false, false);
     this.room3_activity2Locked = false;
@@ -365,6 +389,7 @@ class one_lesson extends Phaser.Scene {
       this.room3_E_KeyImg.alpha = 1.0;
     if (this.room3_key_E.isDown && this.room3_activity2Locked == false) {
         this.room3_activity2A.alpha = 1.0;
+        this.resetArrows();
         this.checkActivityOpened(false, true, false, false, false, false);
     this.room3_activity3Locked = false;
   } else if (this.room3_key_E.isDown && this.room3_activity2Locked == true) {
@@ -372,31 +397,32 @@ class one_lesson extends Phaser.Scene {
           this.room3_characterMoveable = false;
           }
 
-  //   } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room3_top_left_info, this.room3_character_north)) {
-  //     this.room3_E_KeyImg.x = this.room3_character_north.x;
-  //     this.room3_E_KeyImg.y = this.room3_character_north.y-75;
-  //     this.room3_E_KeyImg.alpha = 1.0;
-  //     if (this.room3_key_E.isDown && this.room3_activity3Locked == false) {
-  //       this.room3_activity3A.alpha = 1.0;
-  //       this.checkActivityOpened(false, false, true, false, false, false);
-  //   this.room3_activity4Locked = false;
-  // } else if (this.room3_key_E.isDown && this.room3_activity3Locked == true){
-  //       this.room3_activityLocked.alpha = 1.0;
-  //       this.room3_characterMoveable = false;
-  //       }
-  //
-  //   } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room3_bot_mid_info, this.room3_character_north)) {
-  //     this.room3_E_KeyImg.x = this.room3_character_north.x;
-  //     this.room3_E_KeyImg.y = this.room3_character_north.y+75;
-  //     this.room3_E_KeyImg.alpha = 1.0;
-  //     if (this.room3_key_E.isDown && this.room3_activity4Locked == false) {
-  //     this.room3_activity4A.alpha = 1.0;
-  //     this.checkActivityOpened(false, false, false, true, false, false);
-  //   this.room3_activity5Locked = false;
-  // } else if (this.room3_key_E.isDown && this.room3_activity4Locked == true){
-  //       this.room3_activityLocked.alpha = 1.0;
-  //       this.room3_characterMoveable = false;
-  //       }
+    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room3_top_left_info, this.room3_character_north)) {
+      this.room3_E_KeyImg.x = this.room3_character_north.x;
+      this.room3_E_KeyImg.y = this.room3_character_north.y-75;
+      this.room3_E_KeyImg.alpha = 1.0;
+      if (this.room3_key_E.isDown && this.room3_activity3Locked == false) {
+        this.room3_activity3A.alpha = 1.0;
+        this.resetArrows();
+        this.checkActivityOpened(false, false, true, false, false, false);
+    this.room3_activity4Locked = false;
+  } else if (this.room3_key_E.isDown && this.room3_activity3Locked == true){
+        this.room3_activityLocked.alpha = 1.0;
+        this.room3_characterMoveable = false;
+        }
+
+   } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room3_bot_mid_info, this.room3_character_north)) {
+      this.room3_E_KeyImg.x = this.room3_character_north.x;
+      this.room3_E_KeyImg.y = this.room3_character_north.y+75;
+      this.room3_E_KeyImg.alpha = 1.0;
+      if (this.room3_key_E.isDown && this.room3_activity4Locked == false) {
+            this.scene.start("two_Lesson");
+      this.checkActivityOpened(false, false, false, true, false, false);
+    this.room3_activity5Locked = false;
+  } else if (this.room3_key_E.isDown && this.room3_activity4Locked == true){
+        this.room3_activityLocked.alpha = 1.0;
+        this.room3_characterMoveable = false;
+        }
   //
   //
   //   }
@@ -434,6 +460,7 @@ class one_lesson extends Phaser.Scene {
     else {
     this.hideActivities();
     this.room3_E_KeyImg.alpha = 0.0;
+    this.checkActivityOpened(false,false,false,false,false,false);
     }
   }
 
@@ -546,6 +573,8 @@ class one_lesson extends Phaser.Scene {
     this.room3_activitySixOpened = false;
     this.room3_help_menu.alpha = 0.0;
   this.room3_activatedQuiz = false;
+  this.room3_leftArrow.setVisible(false);
+  this.room3_rightArrow.setVisible(false);
   }
 
 
@@ -565,11 +594,17 @@ class one_lesson extends Phaser.Scene {
     this.room3_activity2A.alpha = 0.0;
     this.room3_activity2B.alpha = 0.0;
     this.room3_activity2C.alpha = 0.0;
+    this.room3_activity3A.alpha = 0.0;
+    this.room3_activity3B.alpha = 0.0;
+    this.room3_activity3C.alpha = 0.0;
+    this.room3_activity3D.alpha = 0.0;
+    this.room3_leftArrow.setVisible(false);
+    this.room3_rightArrow.setVisible(false);
 
 
   }
 
-  activityAlphas(room3_oneA, room3_oneB, room3_oneC, room3_oneD, room3_twoA, room3_twoB, room3_twoC) {
+  activityAlphas(room3_oneA, room3_oneB, room3_oneC, room3_oneD, room3_twoA, room3_twoB, room3_twoC, room3_threeA, room3_threeB, room3_threeC, room3_threeD) {
     this.room3_activity1A.alpha = room3_oneA;
     this.room3_activity1B.alpha = room3_oneB;
     this.room3_activity1C.alpha = room3_oneC;
@@ -577,9 +612,35 @@ class one_lesson extends Phaser.Scene {
     this.room3_activity2A.alpha = room3_twoA;
     this.room3_activity2B.alpha = room3_twoB;
     this.room3_activity2C.alpha = room3_twoC;
+    this.room3_activity3A.alpha = room3_threeA;
+    this.room3_activity3B.alpha = room3_threeB;
+    this.room3_activity3C.alpha = room3_threeC;
+    this.room3_activity3D.alpha = room3_threeD;
 
   }
+  resetArrows() {
+      this.room3_rightArrow.alpha = 0;
+      this.room3_rightArrow.setVisible(true);
 
+      this.room3_leftArrow.alpha = 0;
+      this.room3_leftArrow.setVisible(true);
+  }
+
+  loadArrows() {
+      if (this.room3_rightArrowShown == true) {
+          this.room3_rightArrow.alpha = 1;
+      }
+      else {
+          this.room3_rightArrow.alpha = 0;
+      }
+
+      if (this.room3_leftArrowShown == true) {
+          this.room3_leftArrow.alpha = 1;
+      }
+      else {
+          this.room3_leftArrow.alpha = 0;
+      }
+  }
 
   /* checkNextPage
    *
@@ -587,24 +648,113 @@ class one_lesson extends Phaser.Scene {
   */
 
   checkNextPage() {
-    if (this.room3_activityOneOpened == true && this.room3_key_1.isDown) {
-      this.activityAlphas(1, 0, 0, 0, 0, 0, 0);
-    } else if (this.room3_activityOneOpened == true && this.room3_key_2.isDown) {
-      this.activityAlphas(0, 1, 0, 0, 0, 0, 0);
-    } else if (this.room3_activityOneOpened == true && this.room3_key_3.isDown) {
-      this.activityAlphas(0, 0, 1, 0, 0, 0, 0);
-    }else if (this.room3_activityOneOpened == true && this.room3_key_4.isDown) {
-      this.activityAlphas(0, 0, 0, 1, 0, 0, 0);
+
+    if (this.room3_activityOneOpened == true && this.room3_activity1A.alpha == 1 && this.room3_key_Right.isDown && this.room3_counter > 15) {
+        this.activityAlphas(0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        this.room3_rightArrowShown = true;
+        this.room3_leftArrowShown = true;
+        this.room3_counter = 0;
+    } else if (this.room3_activityOneOpened == true && this.room3_activity1A.alpha == 1) {
+        this.activityAlphas(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        this.room3_rightArrowShown = true;
+        this.room3_leftArrowShown = false;
+    } else if(this.room3_activityOneOpened == true && this.room3_activity1B.alpha == 1 && this.room3_key_Right.isDown && this.room3_counter > 15) {
+        this.activityAlphas(0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0);
+        this.room3_rightArrowShown = true;
+        this.room3_leftArrowShown = true;
+        this.room3_counter = 0;
+    } else if(this.room3_activityOneOpened == true && this.room3_activity1B.alpha == 1 && this.room3_key_Left.isDown && this.room3_counter > 15) {
+        this.activityAlphas(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        this.room3_rightArrowShown = true;
+        this.room3_leftArrowShown = false;
+        this.room3_counter = 0;
+    } else if(this.room3_activityOneOpened == true && this.room3_activity1C.alpha == 1 && this.room3_key_Right.isDown && this.room3_counter > 15) {
+        this.activityAlphas(0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0);
+        this.room3_rightArrowShown = false;
+        this.room3_leftArrowShown = true;
+        this.room3_counter = 0;
+    } else if(this.room3_activityOneOpened == true && this.room3_activity1C.alpha == 1 && this.room3_key_Left.isDown && this.room3_counter > 15) {
+        this.activityAlphas(0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        this.room3_rightArrowShown = true;
+        this.room3_leftArrowShown = true;
+        this.room3_counter = 0;
+    } else if(this.room3_activityOneOpened == true && this.room3_activity1D.alpha == 1 && this.room3_key_Left.isDown && this.room3_counter > 15) {
+        this.activityAlphas(0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0);
+        this.room3_rightArrowShown = true;
+        this.room3_leftArrowShown = true;
+        this.room3_counter = 0;
     }
-    if (this.room3_activityTwoOpened == true && this.room3_key_1.isDown) {
-      this.activityAlphas(0, 0, 0, 0, 1, 0, 0);
-    }
-    else if (this.room3_activityTwoOpened == true && this.room3_key_2.isDown) {
-      this.activityAlphas(0, 0, 0, 0, 0, 1, 0);
-    }
-    else if (this.room3_activityTwoOpened == true && this.room3_key_3.isDown) {
-      this.activityAlphas(0, 0, 0, 0, 0, 0, 1);
-    }
+    if (this.room3_activityTwoOpened == true) {
+        if (this.room3_activity2A.alpha == 1 && this.room3_key_Right.isDown && this.room3_counter > 15) {
+            this.activityAlphas(0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0);
+            this.room3_rightArrowShown = true;
+            this.room3_leftArrowShown = true;
+            this.room3_counter = 0;
+        } else if (this.room3_activity2A.alpha == 1) {
+            this.activityAlphas(0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0);
+            this.room3_rightArrowShown = true;
+            this.room3_leftArrowShown = false;
+        } else if(this.room3_activity2B.alpha == 1 && this.room3_key_Right.isDown && this.room3_counter > 15) {
+            this.activityAlphas(0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0);
+            this.room3_rightArrowShown = false;
+            this.room3_leftArrowShown = true;
+            this.room3_counter = 0;
+        } else if(this.room3_activity2B.alpha == 1 && this.room3_key_Left.isDown && this.room3_counter > 15) {
+            this.activityAlphas(0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0);
+            this.room3_rightArrowShown = true;
+            this.room3_leftArrowShown = false;
+            this.room3_counter = 0;
+
+        } else if(this.room3_activity2C.alpha == 1 && this.room3_key_Left.isDown && this.room3_counter > 15) {
+            this.activityAlphas(0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0);
+            this.room3_rightArrowShown = false;
+            this.room3_leftArrowShown = true;
+            this.room3_counter = 0;
+        }
+      }
+      if (this.room3_activityThreeOpened == true) {
+          if (this.room3_activity3A.alpha == 1 && this.room3_key_Right.isDown && this.room3_counter > 15) {
+              this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0);
+              this.room3_rightArrowShown = true;
+              this.room3_leftArrowShown = true;
+              this.room3_counter = 0;
+              console.log("aaaa");
+          } else if (this.room3_activity3A.alpha == 1) {
+              this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0);
+              this.room3_rightArrowShown = true;
+              this.room3_leftArrowShown = false;
+          } else if (this.room3_activity3B.alpha == 1 && this.room3_key_Left.isDown && this.room3_counter > 15) {
+              this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0);
+              this.room3_rightArrowShown = true;
+              this.room3_leftArrowShown = false;
+              this.room3_counter = 0;
+          } else if (this.room3_activity3B.alpha == 1 && this.room3_key_Right.isDown && this.room3_counter > 15) {
+              this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0);
+              this.room3_rightArrowShown = false;
+              this.room3_leftArrowShown = true;
+              this.room3_counter = 0;
+          } else if (this.room3_activity3C.alpha == 1 && this.room3_key_Left.isDown && this.room3_counter > 15) {
+              this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0);
+              this.room3_rightArrowShown = true;
+              this.room3_leftArrowShown = true;
+              this.room3_counter = 0;
+          }  else if (this.room3_activity3C.alpha == 1 && this.room3_key_Right.isDown && this.room3_counter > 15) {
+              this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1);
+              this.room3_rightArrowShown = false;
+              this.room3_leftArrowShown = true;
+              this.room3_counter = 0;
+          } else if (this.room3_activity3D.alpha == 1 && this.room3_key_Left.isDown && this.room3_counter > 15) {
+              this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0);
+              this.room3_rightArrowShown = true;
+              this.room3_leftArrowShown = true;
+              this.room3_counter = 0;
+          }
+
+
+      }
+    this.room3_counter++;
+    this.loadArrows();
+
   }
 
   /* helpMenu
