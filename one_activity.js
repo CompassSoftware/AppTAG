@@ -98,10 +98,11 @@ class one_activity extends Phaser.Scene {
     if (this.actOne_activatedQuiz == false) {
         this.movePlayer();
         this.checkInteractValidity();
-}
-  if (this.actOne_activatedQuiz == false)
-    this.actOne_characterMoveable = true;
+      }
+    if (this.actOne_activatedQuiz == false) {
+      this.actOne_characterMoveable = true;
     }
+  }
 
 
 /***********************************************************************************************
@@ -220,25 +221,9 @@ class one_activity extends Phaser.Scene {
     //this.graphicsTest = this.add.graphics({fillStyle: {color: 0x4F4F4F, alpha: 1.0}});
     //TOP ZONES
                                                 //xpos ypos x   y
-    this.actOne_top_left_info = new Phaser.Geom.Rectangle(175,150,240,150);
-    this.actOne_graphics.fillRectShape(this.actOne_top_left_info);
-                                                //xpos ypos x  y
-    this.actOne_top_mid_info = new Phaser.Geom.Rectangle(650,150,240,150);
-    this.actOne_graphics.fillRectShape(this.actOne_top_mid_info);
-                                                 //xpos ypos x   y
-    this.actOne_top_right_info = new Phaser.Geom.Rectangle(1120,150,240,150);
-    this.actOne_graphics.fillRectShape(this.actOne_top_right_info);
+    this.actOne_increaseTopLeft = new Phaser.Geom.Rectangle(425,300,100,100);
+    this.actOne_graphics.fillRectShape(this.actOne_increaseTopLeft);
 
-    //BOTTOM ZONES
-
-    this.actOne_bot_left_info = new Phaser.Geom.Rectangle(175,565,240,150);
-    this.actOne_graphics.fillRectShape(this.actOne_bot_left_info);
-
-    this.actOne_bot_mid_info = new Phaser.Geom.Rectangle(650,565,240,150);
-    this.actOne_graphics.fillRectShape(this.actOne_bot_mid_info);
-
-    this.actOne_bot_right_info = new Phaser.Geom.Rectangle(1120,565,240,150);
-    this.actOne_graphics.fillRectShape(this.actOne_bot_right_info);
   }
 
   /* assignKeybinds
@@ -301,6 +286,15 @@ class one_activity extends Phaser.Scene {
 
   checkInteractValidity() {
 
+        if (Phaser.Geom.Rectangle.ContainsPoint(this.actOne_increaseTopLeft, this.character)) {
+          this.actOne_E_KeyImg.x = this.character.x;
+          this.actOne_E_KeyImg.y = this.character.y-75;
+          this.actOne_E_KeyImg.alpha = 1.0;
+        }
+        else {
+          this.hideActivities();
+          this.actOne_E_KeyImg.alpha = 0;
+        }
   }
 
 
@@ -417,17 +411,6 @@ class one_activity extends Phaser.Scene {
 
 
   }
-
-
-
-
-
-  /* checkNextPage
-   *
-   *
-  */
-
-
 
   /* helpMenu
    *
