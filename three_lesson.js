@@ -156,7 +156,7 @@ class three_lesson extends Phaser.Scene {
         this.load.image('cardboard_box', 'assets/cardboard_box.png');
         this.load.image('paper_stack', 'assets/paper_stack.png');
         this.load.image('paper', 'assets/single_paper.png');
-        this.load.image('r1_map', 'assets/map/room2inprogress.png');
+        this.load.image('r1_map', 'assets/Map/room2inprogress.png');
         this.load.image('notebook', 'assets/notebook.png');
         this.load.image('activityLocked', 'assets/activityLocked.png');
         this.load.image('help_menu', 'assets/help_menu.png');

@@ -130,7 +130,7 @@ Info Panels like these contain important information and lessons that help you p
     this.load.image('wall_info_2', 'assets/wall_art.png');
     this.load.image('floor', 'assets/floor_0.jpg');
     this.load.image('paper', 'assets/single_paper.png');
-    this.load.image('map', 'assets/map/room1.png');
+    this.load.image('map', 'assets/Map/room1.png');
     this.load.image('notebook', 'assets/notebook.png');
     this.load.image('activityLocked', 'assets/activityLocked.png');
     this.load.image('help_menu', 'assets/help_menu.png');

@@ -151,7 +151,7 @@ class two_activityB extends Phaser.Scene {
     // this.load.image('room2b_wall_info_5', 'assets/wall_art.png');
     // this.load.image('room2b_wall_info_6', 'assets/wall_art.png');
     this.load.image('room2b_floor', 'assets/floor_two_activity_2.jpg');
-    this.load.image('room2b_map', 'assets/map.png');
+    this.load.image('room2b_map', 'assets/Map/room3act2inprogress.png');
     this.load.image('room2b_notebook', 'assets/notebook.png');
     this.load.image('room2b_activityLocked', 'assets/activityLocked.png');
     this.load.image('room2b_help_menu', 'assets/help_menu.png');
