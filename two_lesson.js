@@ -493,7 +493,8 @@ class two_lesson extends Phaser.Scene {
             this.room2_E_KeyImg.alpha = 1.0;
             if (this.room2_key_E.isDown) {
                 console.log("To room 2 activity 1")
-                    this.scene.start("two_Activity");
+                roomProgress += 1;
+                this.scene.start("two_Activity");
             }
 
         }
@@ -558,10 +559,9 @@ class two_lesson extends Phaser.Scene {
                 this.room2_character_east.x -= 5;
                 this.room2_character_south.x -= 5;
                 this.room2_character_north.x -= 5;
-
+                
                 this.setCharacterAlpha(0,0,0,1);
             }
-
         }
         //Character moves down
         if (this.room2_key_S.isDown && this.room2_characterMoveable == true) {
