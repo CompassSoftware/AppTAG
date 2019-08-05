@@ -13,6 +13,8 @@ class one_activity extends Phaser.Scene {
     this.actOne_activityFiveOpened = false;
     this.actOne_activitySixOpened = false;
     this.actOne_helpOpen = false;
+    this.assetCorrect = false;
+    this.revenueCorrect = false;
   }
   //load assets in preload()
 
@@ -102,6 +104,10 @@ class one_activity extends Phaser.Scene {
     if (this.actOne_activatedQuiz == false) {
       this.actOne_characterMoveable = true;
     }
+
+    if(this.assetCorrect == true && this.revenueCorrect == true) {
+      this.actOne_hole.alpha = true;
+    }
   }
 
 
@@ -124,6 +130,9 @@ class one_activity extends Phaser.Scene {
     this.load.image('actOne_activityLocked', 'assets/activityLocked.png');
     this.load.image('actOne_help_menu', 'assets/help_menu.png');
     this.load.image('actOne_Activity', 'assets/Panels/RoomThree/equation.png');
+    this.load.image('actOne_redX', 'assets/Panels/RoomThree/redX.jpg');
+    this.load.image('actOne_greenCheck', 'assets/Panels/RoomThree/green_check.jpg');
+    this.load.image('actOne_hole', 'assets/hole.png');
 
   }
 
@@ -160,8 +169,10 @@ class one_activity extends Phaser.Scene {
     this.actOne_notebook = this.add.image(768, 432, 'actOne_notebook');
     this.actOne_activityLocked = this.add.image(768, 432, 'actOne_activityLocked');
     this.actOne_help_menu = this.add.image(768, 432, 'actOne_help_menu');
-
+    this.actOne_hole = this.add.image(1300, 432, 'actOne_hole');
     this.actOne_Activity = this.add.image(768, 432, 'actOne_Activity');
+    this.actOne_redX = this.add.image(768, 432, 'actOne_redX');
+    this.actOne_greenCheck = this.add.image(768, 432, 'actOne_greenCheck');
   }
 
   /* setAlphas
@@ -174,6 +185,9 @@ class one_activity extends Phaser.Scene {
     this.actOne_activityLocked.alpha = 0.0;
     this.actOne_E_KeyImg.alpha = 0.0;
     this.actOne_help_menu.alpha = 0.0;
+    this.actOne_redX.alpha = 0.0;
+    this.actOne_greenCheck.alpha = 0.0;
+    this.actOne_hole.alpha = 0.0;
     this.hideActivities();
   }
 
@@ -183,12 +197,15 @@ class one_activity extends Phaser.Scene {
   */
   setDepths() {
     this.actOne_floor.setDepth(0);
+    this.actOne_hole.setDepth(1);
     this.actOne_Activity.setDepth(1);
     this.character.setDepth(50);
     this.actOne_E_KeyImg.setDepth(49);
     this.actOne_map.setDepth(100);
     this.actOne_notebook.setDepth(100);
     this.actOne_help_menu.setDepth(100);
+    this.actOne_redX.setDepth(49);
+    this.actOne_greenCheck.setDepth(49);
   }
 
   /* setScales
@@ -221,8 +238,44 @@ class one_activity extends Phaser.Scene {
     //this.graphicsTest = this.add.graphics({fillStyle: {color: 0x4F4F4F, alpha: 1.0}});
     //TOP ZONES
                                                 //xpos ypos x   y
-    this.actOne_increaseTopLeft = new Phaser.Geom.Rectangle(425,300,100,100);
-    this.actOne_graphics.fillRectShape(this.actOne_increaseTopLeft);
+    this.actOne_increaseAssets = new Phaser.Geom.Rectangle(425,300,100,100);
+    this.actOne_graphics.fillRectShape(this.actOne_increaseAssets);
+
+    this.actOne_decreaseAssets = new Phaser.Geom.Rectangle(425,500,100,100);
+    this.actOne_graphics.fillRectShape(this.actOne_decreaseAssets);
+
+    this.actOne_increaseLiabilities = new Phaser.Geom.Rectangle(525,300,100,100);
+    this.actOne_graphics.fillRectShape(this.actOne_increaseLiabilities);
+
+    this.actOne_decreaseLiabilities = new Phaser.Geom.Rectangle(525,500,100,100);
+    this.actOne_graphics.fillRectShape(this.actOne_decreaseLiabilities);
+
+    this.actOne_increaseStock = new Phaser.Geom.Rectangle(625,300,100,100);
+    this.actOne_graphics.fillRectShape(this.actOne_increaseStock);
+
+    this.actOne_decreaseStock = new Phaser.Geom.Rectangle(625,500,100,100);
+    this.actOne_graphics.fillRectShape(this.actOne_decreaseStock);
+
+    this.actOne_increaseRevenue = new Phaser.Geom.Rectangle(725,300,100,100);
+    this.actOne_graphics.fillRectShape(this.actOne_increaseRevenue);
+
+    this.actOne_decreaseRevenue = new Phaser.Geom.Rectangle(725,500,100,100);
+    this.actOne_graphics.fillRectShape(this.actOne_decreaseRevenue);
+
+    this.actOne_increaseExpenses = new Phaser.Geom.Rectangle(825,300,100,100);
+    this.actOne_graphics.fillRectShape(this.actOne_increaseExpenses);
+
+    this.actOne_decreaseExpenses = new Phaser.Geom.Rectangle(825,500,100,100);
+    this.actOne_graphics.fillRectShape(this.actOne_decreaseExpenses);
+
+    this.actOne_increaseDividend = new Phaser.Geom.Rectangle(925,300,100,100);
+    this.actOne_graphics.fillRectShape(this.actOne_increaseDividend);
+
+    this.actOne_decreaseDividend = new Phaser.Geom.Rectangle(925,500,100,100);
+    this.actOne_graphics.fillRectShape(this.actOne_decreaseDividend);
+
+    this.actOne_holeInteract = new Phaser.Geom.Rectangle(1300, 400, 100, 100);
+    this.actOne_graphics.fillRectShape(this.actOne_holeInteract);
 
   }
 
@@ -286,15 +339,101 @@ class one_activity extends Phaser.Scene {
 
   checkInteractValidity() {
 
-        if (Phaser.Geom.Rectangle.ContainsPoint(this.actOne_increaseTopLeft, this.character)) {
+        if (Phaser.Geom.Rectangle.ContainsPoint(this.actOne_increaseAssets, this.character)) {
           this.actOne_E_KeyImg.x = this.character.x;
           this.actOne_E_KeyImg.y = this.character.y-75;
           this.actOne_E_KeyImg.alpha = 1.0;
+          if(this.actOne_key_E.isDown) {
+            this.actOne_greenCheck.alpha = 1.0;
+            this.assetCorrect = true;
+          }
+        }
+        else if(Phaser.Geom.Rectangle.ContainsPoint(this.actOne_decreaseAssets, this.character)) {
+          this.actOne_E_KeyImg.x = this.character.x;
+          this.actOne_E_KeyImg.y = this.character.y-75;
+          this.actOne_E_KeyImg.alpha = 1.0;
+          if(this.actOne_key_E.isDown) {
+            this.actOne_redX.alpha = 1.0;
+          }
+
+        }
+        // else if(Phaser.Geom.Rectangle.ContainsPoint(this.actOne_increaseLiabilities, this.character)) {
+        //   this.actOne_E_KeyImg.x = this.character.x;
+        //   this.actOne_E_KeyImg.y = this.character.y-75;
+        //   this.actOne_E_KeyImg.alpha = 1.0;
+        // }
+        // else if(Phaser.Geom.Rectangle.ContainsPoint(this.actOne_decreaseLiabilities, this.character)) {
+        //   this.actOne_E_KeyImg.x = this.character.x;
+        //   this.actOne_E_KeyImg.y = this.character.y-75;
+        //   this.actOne_E_KeyImg.alpha = 1.0;
+        // }
+        // else if(Phaser.Geom.Rectangle.ContainsPoint(this.actOne_increaseStock, this.character)) {
+        //   this.actOne_E_KeyImg.x = this.character.x;
+        //   this.actOne_E_KeyImg.y = this.character.y-75;
+        //   this.actOne_E_KeyImg.alpha = 1.0;
+        // }
+        // else if(Phaser.Geom.Rectangle.ContainsPoint(this.actOne_decreaseStock, this.character)) {
+        //   this.actOne_E_KeyImg.x = this.character.x;
+        //   this.actOne_E_KeyImg.y = this.character.y-75;
+        //   this.actOne_E_KeyImg.alpha = 1.0;
+        // }
+        else if(Phaser.Geom.Rectangle.ContainsPoint(this.actOne_increaseRevenue, this.character)) {
+          this.actOne_E_KeyImg.x = this.character.x;
+          this.actOne_E_KeyImg.y = this.character.y-75;
+          this.actOne_E_KeyImg.alpha = 1.0;
+          if(this.actOne_key_E.isDown) {
+            this.actOne_greenCheck.alpha = 1.0;
+            this.revenueCorrect = true;
+            this.setHoleAlpha();
+          }
+        }
+        else if(Phaser.Geom.Rectangle.ContainsPoint(this.actOne_decreaseRevenue, this.character)) {
+          this.actOne_E_KeyImg.x = this.character.x;
+          this.actOne_E_KeyImg.y = this.character.y-75;
+          this.actOne_E_KeyImg.alpha = 1.0;
+          if(this.actOne_key_E.isDown) {
+            this.actOne_redX.alpha = 1.0;
+          }
+        }
+        // else if(Phaser.Geom.Rectangle.ContainsPoint(this.actOne_increaseExpenses, this.character)) {
+        //   this.actOne_E_KeyImg.x = this.character.x;
+        //   this.actOne_E_KeyImg.y = this.character.y-75;
+        //   this.actOne_E_KeyImg.alpha = 1.0;
+        // }
+        // else if(Phaser.Geom.Rectangle.ContainsPoint(this.actOne_decreaseExpenses, this.character)) {
+        //   this.actOne_E_KeyImg.x = this.character.x;
+        //   this.actOne_E_KeyImg.y = this.character.y-75;
+        //   this.actOne_E_KeyImg.alpha = 1.0;
+        // }
+        // else if(Phaser.Geom.Rectangle.ContainsPoint(this.actOne_increaseDividend, this.character)) {
+        //   this.actOne_E_KeyImg.x = this.character.x;
+        //   this.actOne_E_KeyImg.y = this.character.y-75;
+        //   this.actOne_E_KeyImg.alpha = 1.0;
+        // }
+        // else if(Phaser.Geom.Rectangle.ContainsPoint(this.actOne_decreaseDividend, this.character)) {
+        //   this.actOne_E_KeyImg.x = this.character.x;
+        //   this.actOne_E_KeyImg.y = this.character.y-75;
+        //   this.actOne_E_KeyImg.alpha = 1.0;
+        // }
+        else if(Phaser.Geom.Rectangle.ContainsPoint(this.actOne_holeInteract, this.character)) {
+          this.actOne_E_KeyImg.x = this.character.x;
+          this.actOne_E_KeyImg.y = this.character.y-75;
+          this.actOne_E_KeyImg.alpha = 1.0;
+
+          if(this.actOne_key_E.isDown) {
+            this.scene.start("one_Lesson");
+          }
         }
         else {
           this.hideActivities();
           this.actOne_E_KeyImg.alpha = 0;
         }
+  }
+
+  setHoleAlpha() {
+    if(this.assetCorrect == true && this.revenueCorrect == true) {
+      this.actOne_hole.alpha = true;
+    }
   }
 
 
@@ -408,6 +547,8 @@ class one_activity extends Phaser.Scene {
     this.actOne_activity5A.alpha = 0.0;
     this.actOne_activity5B.alpha = 0.0;
     this.actOne_activity5C.alpha = 0.0;
+    this.actOne_redX.alpha = 0.0;
+    this.actOne_greenCheck.alpha = 0.0;
 
 
   }
