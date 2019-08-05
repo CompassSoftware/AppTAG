@@ -153,7 +153,7 @@ class two_lesson extends Phaser.Scene {
         this.load.image('room2_wall_info_6', 'assets/wall_art.png');
         this.load.image('room2_floor', 'assets/floor_1.jpg');
         this.load.image('room2_hole', 'assets/hole.png');
-        this.load.image('room2_map', 'assets/map.png');
+        this.load.image('room2_map', 'assets/map/room3inprogress.png');
         this.load.image('room2_notebook', 'assets/notebook.png');
         this.load.image('room2_activityLocked', 'assets/activityLocked.png');
         this.load.image('room2_help_menu', 'assets/help_menu.png');
@@ -493,7 +493,8 @@ class two_lesson extends Phaser.Scene {
             this.room2_E_KeyImg.alpha = 1.0;
             if (this.room2_key_E.isDown) {
                 console.log("To room 2 activity 1")
-                    this.scene.start("two_Activity");
+                roomProgress += 1;
+                this.scene.start("two_Activity");
             }
 
         }
@@ -558,10 +559,9 @@ class two_lesson extends Phaser.Scene {
                 this.room2_character_east.x -= 5;
                 this.room2_character_south.x -= 5;
                 this.room2_character_north.x -= 5;
-
+                
                 this.setCharacterAlpha(0,0,0,1);
             }
-
         }
         //Character moves down
         if (this.room2_key_S.isDown && this.room2_characterMoveable == true) {

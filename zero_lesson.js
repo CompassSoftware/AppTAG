@@ -58,7 +58,7 @@ Info Panels like these contain important information and lessons that help you p
 
     if (this.key_M.isDown) {
       this.map.alpha = 1.0;
-      characterMoveable = false;
+      this.characterMoveable = false;
       this.character_north.alpha = 0.0;
       this.character_east.alpha = 0.0;
       this.character_south.alpha = 0.0;
@@ -67,7 +67,7 @@ Info Panels like these contain important information and lessons that help you p
 
     if (this.key_B.isDown) {
       this.notebook.alpha = 1.0;
-      characterMoveable = false;
+      this.characterMoveable = false;
       this.character_north.alpha = 0.0;
       this.character_east.alpha = 0.0;
       this.character_south.alpha = 0.0;
@@ -105,6 +105,7 @@ Info Panels like these contain important information and lessons that help you p
           this.checkCorrectPaperThree();
         }
       }
+
     }
 
 
@@ -129,7 +130,7 @@ Info Panels like these contain important information and lessons that help you p
     this.load.image('wall_info_2', 'assets/wall_art.png');
     this.load.image('floor', 'assets/floor_0.jpg');
     this.load.image('paper', 'assets/single_paper.png');
-    this.load.image('map', 'assets/map.png');
+    this.load.image('map', 'assets/Map/room1.png');
     this.load.image('notebook', 'assets/notebook.png');
     this.load.image('activityLocked', 'assets/activityLocked.png');
     this.load.image('help_menu', 'assets/help_menu.png');
@@ -272,6 +273,7 @@ Info Panels like these contain important information and lessons that help you p
 		if (this.activityOneOpened == true)
 		{
 			if(this.key_E.isDown){
+                roomProgress += 1
 				this.scene.start("three_Lesson");
 
 			}
@@ -438,7 +440,9 @@ Info Panels like these contain important information and lessons that help you p
     this.character_west.alpha = 1.0;
     this.characterMoveable = true;
     this.help_menu.alpha = 0.0;
-	this.tut1.alpha = 0.0;
+	  this.tut1.alpha = 0.0;
+    this.characterMoveable = true;
+    this.movePlayer();
   }
 
 
@@ -449,6 +453,7 @@ Info Panels like these contain important information and lessons that help you p
   hideActivities() {
     // this.activity1.alpha = 0.0;
 	this.activityLocked.alpha = 0.0;
+
     // this.activity2Zero.alpha = 0.0;
     // this.activity3.alpha = 0.0;
     // this.activity4.alpha = 0.0;
