@@ -115,14 +115,26 @@ class two_activity extends Phaser.Scene {
     this.load.image('room2a_activityLocked', 'assets/activityLocked.png');
     this.load.image('room2a_help_menu', 'assets/help_menu.png');
     this.load.image('room2a_hole', 'assets/hole.png');
-    this.load.image('room2a_puzzle1', 'assets/Puzzle/BottomLeft.png');
-    this.load.image('room2a_puzzle2', 'assets/Puzzle/BottomRightMiddle.png');
-    this.load.image('room2a_puzzle3', 'assets/Puzzle/BottomRight.png');
-    this.load.image('room2a_puzzle4', 'assets/Puzzle/MiddleRight.png');
-    this.load.image('room2a_puzzle5', 'assets/Puzzle/MiddleRightMiddle.png');
-    this.load.image('room2a_puzzle6', 'assets/Puzzle/TopLeft.png');
-    this.load.image('room2a_puzzle7', 'assets/Puzzle/TopRightMiddle.png');
-    this.load.image('room2a_puzzle8', 'assets/Puzzle/TopRight.png');
+    this.load.image('room2a_puzzle1', 'assets/Puzzle/Puzzle/Puzzle1A.png');
+    this.load.image('room2a_puzzle2', 'assets/Puzzle/Puzzle/Puzzle1B.png');
+    this.load.image('room2a_puzzle3', 'assets/Puzzle/Puzzle/Puzzle1C.png');
+    this.load.image('room2a_puzzle4', 'assets/Puzzle/Puzzle/Puzzle1D.png');
+    this.load.image('room2a_puzzle5', 'assets/Puzzle/Puzzle/Puzzle1E.png');
+    this.load.image('room2a_puzzle6', 'assets/Puzzle/Puzzle/Puzzle2A.png');
+    this.load.image('room2a_puzzle7', 'assets/Puzzle/Puzzle/Puzzle2B.png');
+    this.load.image('room2a_puzzle8', 'assets/Puzzle/Puzzle/Puzzle2C.png');
+	this.load.image('room2a_puzzle9', 'assets/Puzzle/Puzzle/Puzzle2D.png');
+	this.load.image('room2a_puzzle10', 'assets/Puzzle/Puzzle/Puzzle2E.png');
+	this.load.image('room2a_puzzle11', 'assets/Puzzle/Puzzle/Puzzle3A.png');
+    this.load.image('room2a_puzzle12', 'assets/Puzzle/Puzzle/Puzzle3B.png');
+    this.load.image('room2a_puzzle13', 'assets/Puzzle/Puzzle/Puzzle3C.png');
+    this.load.image('room2a_puzzle14', 'assets/Puzzle/Puzzle/Puzzle3D.png');
+    this.load.image('room2a_puzzle15', 'assets/Puzzle/Puzzle/Puzzle3E.png');
+    this.load.image('room2a_puzzle16', 'assets/Puzzle/Puzzle/Puzzle4A.png');
+    this.load.image('room2a_puzzle17', 'assets/Puzzle/Puzzle/Puzzle4B.png');
+    this.load.image('room2a_puzzle18', 'assets/Puzzle/Puzzle/Puzzle4C.png');
+	this.load.image('room2a_puzzle19', 'assets/Puzzle/Puzzle/Puzzle4D.png');
+	this.load.image('room2a_puzzle20', 'assets/Puzzle/Puzzle/Puzzle4E.png');
 
 
   }
@@ -429,6 +441,26 @@ class two_activity extends Phaser.Scene {
     this.room2a_floor.scaleX = .791;
     this.room2a_puzzle1.x = 1168;
     this.room2a_puzzle1.y = 432;
+	this.room2a_puzzle2.setVisible(false);
+	this.room2a_puzzle3.setVisible(false);
+	this.room2a_puzzle4.setVisible(false);
+	this.room2a_puzzle5.setVisible(false);
+	this.room2a_puzzle6.setVisible(false);
+	this.room2a_puzzle7.setVisible(false);
+	this.room2a_puzzle8.setVisible(false);
+	this.room2a_puzzle9.setVisible(false);
+	this.room2a_puzzle10.setVisible(false);
+	this.room2a_puzzle11.setVisible(false);
+	this.room2a_puzzle12.setVisible(false);
+	this.room2a_puzzle13.setVisible(false);
+	this.room2a_puzzle14.setVisible(false);
+	this.room2a_puzzle15.setVisible(false);
+	this.room2a_puzzle16.setVisible(false);
+	this.room2a_puzzle17.setVisible(false);
+	this.room2a_puzzle18.setVisible(false);
+	this.room2a_puzzle19.setVisible(false);
+	this.room2a_puzzle20.setVisible(false);
+
   //this.quitQuiz();
   }
 
@@ -504,36 +536,96 @@ class two_activity extends Phaser.Scene {
     loadQuizImages(){
     
     this.room2a_puzzle1.setVisible(true);
+	this.room2a_puzzle1.x = 400;
+    this.room2a_puzzle1.y = 100;
 
-    this.room2a_puzzle2 = this.add.image(768, 432, 'room2a_puzzle2');
-    this.room2a_puzzle2.setVisible(false);
-    
-    this.room2a_puzzle3 = this.add.image(768, 432, 'room2a_puzzle3');
-    this.room2a_puzzle3.setVisible(false);
-    
-    this.room2a_puzzle4 = this.add.image(768, 432, 'room2a_puzzle4');
-    this.room2a_puzzle4.setVisible(false);
-    
-    this.room2a_puzzle5 = this.add.image(768, 432, 'room2a_puzzle5');
-    this.room2a_puzzle5.setVisible(false);
-    
-    this.room2a_puzzle6 = this.add.image(768, 432, 'room2a_puzzle6');
-    this.room2a_puzzle6.setVisible(false);
-    
-    this.room2a_puzzle7 = this.add.image(768, 432, 'room2a_puzzle7');
-    this.room2a_puzzle7.setVisible(false);
-    
-    this.room2a_puzzle8 = this.add.image(768, 432, 'room2a_puzzle8');
-    this.room2a_puzzle8.setVisible(false);
+    this.room2a_puzzle2 = this.add.image(500, 100, 'room2a_puzzle2');
+    this.room2a_puzzle2.setVisible(true);
+	this.room2a_puzzle2.setScale(0.6);
+	
+	this.room2a_puzzle3 = this.add.image(600, 100, 'room2a_puzzle3');
+    this.room2a_puzzle3.setVisible(true);
+	this.room2a_puzzle3.setScale(0.6);
+	
+	this.room2a_puzzle4 = this.add.image(700, 100, 'room2a_puzzle4');
+    this.room2a_puzzle4.setVisible(true);
+	this.room2a_puzzle4.setScale(0.6);
+	
+	this.room2a_puzzle5 = this.add.image(800, 100, 'room2a_puzzle5');
+    this.room2a_puzzle5.setVisible(true);
+	this.room2a_puzzle5.setScale(0.6);
+	
+	this.room2a_puzzle6 = this.add.image(900, 100, 'room2a_puzzle6');
+    this.room2a_puzzle6.setVisible(true);
+	this.room2a_puzzle6.setScale(0.6);
+	
+	this.room2a_puzzle7 = this.add.image(1000, 100, 'room2a_puzzle7');
+    this.room2a_puzzle7.setVisible(true);
+	this.room2a_puzzle7.setScale(0.6);
+	
+	this.room2a_puzzle8 = this.add.image(1100, 100, 'room2a_puzzle8');
+    this.room2a_puzzle8.setVisible(true);
+	this.room2a_puzzle8.setScale(0.6);
+	
+	this.room2a_puzzle9 = this.add.image(1200, 100, 'room2a_puzzle9');
+    this.room2a_puzzle9.setVisible(true);
+	this.room2a_puzzle9.setScale(0.6);
+	
+	this.room2a_puzzle10 = this.add.image(1300, 100, 'room2a_puzzle10');
+    this.room2a_puzzle10.setVisible(true);
+	this.room2a_puzzle10.setScale(0.6);
+	
+	this.room2a_puzzle11 = this.add.image(400, 250, 'room2a_puzzle11');
+    this.room2a_puzzle11.setVisible(true);
+	this.room2a_puzzle11.setScale(0.6);
+	
+	this.room2a_puzzle12 = this.add.image(500, 250, 'room2a_puzzle12');
+    this.room2a_puzzle12.setVisible(true);
+	this.room2a_puzzle12.setScale(0.6);
+	
+	this.room2a_puzzle13 = this.add.image(600, 250, 'room2a_puzzle13');
+    this.room2a_puzzle13.setVisible(true);
+	this.room2a_puzzle13.setScale(0.6);
+	
+	this.room2a_puzzle14 = this.add.image(700, 250, 'room2a_puzzle14');
+    this.room2a_puzzle14.setVisible(true);
+	this.room2a_puzzle14.setScale(0.6);
+	
+	this.room2a_puzzle15 = this.add.image(800, 250, 'room2a_puzzle15');
+    this.room2a_puzzle15.setVisible(true);
+	this.room2a_puzzle15.setScale(0.6);
+	
+	this.room2a_puzzle16 = this.add.image(900, 250, 'room2a_puzzle16');
+    this.room2a_puzzle16.setVisible(true);
+	this.room2a_puzzle16.setScale(0.6);
+	
+	this.room2a_puzzle17 = this.add.image(1000, 250, 'room2a_puzzle17');
+    this.room2a_puzzle17.setVisible(true);
+	this.room2a_puzzle17.setScale(0.6);
+	
+	this.room2a_puzzle18 = this.add.image(1100, 250, 'room2a_puzzle18');
+    this.room2a_puzzle18.setVisible(true);
+	this.room2a_puzzle18.setScale(0.6);
+	
+	this.room2a_puzzle19 = this.add.image(1200, 250, 'room2a_puzzle19');
+    this.room2a_puzzle19.setVisible(true);
+	this.room2a_puzzle19.setScale(0.6);
+	
+	this.room2a_puzzle20 = this.add.image(1300, 250, 'room2a_puzzle20');
+    this.room2a_puzzle20.setVisible(true);
+	this.room2a_puzzle20.setScale(0.6);
+	
+
     }
     
     /* createActivityZones
    *
    * creates the interact zones for the activity
   */
-  createActivityZones(){
-    
-    
+  createActivityZones(){	  
+	this.room2a_activityZone1 = new Phaser.Geom.Rectangle(150,532,100,100);
+    this.room2a_graphics.fillRectShape(this.room2a_activityZone1);
+	
     }
     
     /* checkActivityZones
