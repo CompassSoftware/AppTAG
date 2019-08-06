@@ -155,6 +155,8 @@ class two_activityB extends Phaser.Scene {
     this.load.image('room2b_notebook', 'assets/notebook.png');
     this.load.image('room2b_activityLocked', 'assets/activityLocked.png');
     this.load.image('room2b_help_menu', 'assets/help_menu.png');
+    this.load.image('room2b_hole', 'assets/hole.png');
+
 
   }
 
@@ -200,6 +202,7 @@ class two_activityB extends Phaser.Scene {
     this.room2b_notebook = this.add.image(768, 432, 'room2b_notebook');
     this.room2b_activityLocked = this.add.image(768, 432, 'room2b_activityLocked');
     this.room2b_help_menu = this.add.image(768, 432, 'room2b_help_menu');
+    this.room2b_hole = this.add.image(268, 432, 'room2b_hole');
   }
 
   /* setAlphas
@@ -301,6 +304,9 @@ class two_activityB extends Phaser.Scene {
                                                  //xpos ypos x   y
     this.room2b_top_right_info = new Phaser.Geom.Rectangle(1120,150,240,150);
     this.room2b_graphics.fillRectShape(this.room2b_top_right_info);
+    
+    this.room2b_hole_zone = new Phaser.Geom.Rectangle(150, 332,240,150);
+    this.room2b_graphics.fillRectShape(this.room2b_hole_zone);
 
     //BOTTOM ZONES
 
@@ -373,15 +379,16 @@ class two_activityB extends Phaser.Scene {
   */
 
   checkInteractValidity() {
-  //   if (Phaser.Geom.Rectangle.ContainsPoint(this.room2b_top_right_info, this.room2b_character_north)) {
-  //     this.room2b_E_KeyImg.x = this.room2b_character_north.x;
-  //     this.room2b_E_KeyImg.y = this.room2b_character_north.y-75;
-  //     this.room2b_E_KeyImg.alpha = 1.0;
-  //     if (this.room2b_key_E.isDown) {
-  //       this.room2b_activity1A.alpha = 1.0;
-  //       this.room2b_characterMoveable = false;
-  //       this.checkActivityOpened(true, false, false, false, false, false);
-  //   this.room2b_activity2Locked = false;
+    if (Phaser.Geom.Rectangle.ContainsPoint(this.room2b_hole_zone, this.room2b_character_north)) {
+        this.room2b_E_KeyImg.x = this.room2b_character_north.x;
+        this.room2b_E_KeyImg.y = this.room2b_character_north.y-75;
+        this.room2b_E_KeyImg.alpha = 1.0;
+        if (this.room2b_key_E.isDown) {
+            this.scene.start("one_Lesson");
+
+     }
+     }
+     }
   //
   //   //COME BACK AND CHANGE THIS LATER
   //   this.room2b_activity6Complete = true;
@@ -447,7 +454,6 @@ class two_activityB extends Phaser.Scene {
   //     this.hideActivities();
   //     this.room2b_E_KeyImg.alpha = 0.0;
   //   }
-  }
 
 
   /* setCharacterAlpha
