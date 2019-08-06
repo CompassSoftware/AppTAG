@@ -3,7 +3,11 @@ var config = {
   width: 1536,
   height: 864,
 
+
   scene: [two_activityB, one_lesson]
+  //scene: [zero_lesson, three_lesson, two_lesson, two_activity, two_activityB, one_lesson]
+
+
 };
 var quizActive = false;
 var activity1Locked = false;

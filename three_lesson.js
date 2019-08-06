@@ -156,7 +156,7 @@ class three_lesson extends Phaser.Scene {
         this.load.image('cardboard_box', 'assets/cardboard_box.png');
         this.load.image('paper_stack', 'assets/paper_stack.png');
         this.load.image('paper', 'assets/single_paper.png');
-        this.load.image('r1_map', 'assets/map/room2inprogress.png');
+        this.load.image('r1_map', 'assets/Map/room2inprogress.png');
         this.load.image('notebook', 'assets/notebook.png');
         this.load.image('activityLocked', 'assets/activityLocked.png');
         this.load.image('help_menu', 'assets/help_menu.png');
@@ -171,7 +171,7 @@ class three_lesson extends Phaser.Scene {
         this.load.image('retainedEarningsText' , 'assets/retainedEarningsText.png');
         this.load.image('hole', 'assets/hole.png');
         this.load.image('congrats', 'assets/congrats.png');
-        this.load.image('hole', 'assets/hole.png');	
+        this.load.image('hole', 'assets/hole.png');
         this.load.image('leftArrow' , 'assets/leftArrow.png');
         this.load.image('rightArrow' , 'assets/rightArrowTest.png');
     }
@@ -633,7 +633,7 @@ class three_lesson extends Phaser.Scene {
             this.hole = this.add.image(768, 432, 'hole');
             this.holeOpened = true;
         }
-    }	
+    }
 
     /* quitQuiz
      *
@@ -693,6 +693,9 @@ class three_lesson extends Phaser.Scene {
 
         this.quizActive = false;
         this.characterMoveable = true;
+        this.incomeStatement.alpha = 0.0;
+        this.balanceSheet.alpha = 0.0;
+        this.retainedEarnings.alpha = 0.0;
     }
 
     /* activateQuiz
@@ -823,7 +826,7 @@ class three_lesson extends Phaser.Scene {
         this.activity5B.alpha = 0.0;
         this.activity5C.alpha = 0.0;
         this.activity6.alpha = 0.0;
-        this.activityLocked.alpha = 0.0;	
+        this.activityLocked.alpha = 0.0;
         this.congrats.alpha = 0.0;
         this.rightArrow.setVisible(false);
         this.leftArrow.setVisible(false);
