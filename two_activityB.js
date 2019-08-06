@@ -122,7 +122,7 @@ class two_activityB extends Phaser.Scene {
         this.load.image('balanceSheet', 'assets/balanceSheet.png');
         this.load.image('retainedEarnings' , 'assets/retainedEarnings.png')
             this.load.image('cashFlows' , 'assets/cashFlows.jpg');
-        this.load.image('hole', 'assets/hole.png');
+        this.load.image('room2b_hole', 'assets/hole.png');
 
     }
 
@@ -149,6 +149,7 @@ class two_activityB extends Phaser.Scene {
         this.question2 = this.add.image(1125, 310, 'question');
         this.question3 = this.add.image(1060, 310, 'question');
         this.questionStack = this.add.image(100, 100, 'questionStack');
+        this.room2b_hole = this.add.image(268, 432, 'room2b_hole');
     }
 
     /* setAlphas
@@ -224,6 +225,9 @@ class two_activityB extends Phaser.Scene {
 
         this.room2b_middle_info = new Phaser.Geom.Rectangle(700, 350, 200, 200);
         this.room2b_graphics.fillRectShape(this.room2b_middle_info);
+      
+        this.room2b_hole_zone = new Phaser.Geom.Rectangle(150, 332,240,150);
+        this.room2b_graphics.fillRectShape(this.room2b_hole_zone);
 
 
     }
@@ -273,7 +277,16 @@ class two_activityB extends Phaser.Scene {
      */
 
     checkInteractValidity() {
-        if (Phaser.Geom.Rectangle.ContainsPoint(this.room2b_quiz_info, this.room2b_character_north)) {
+      if (Phaser.Geom.Rectangle.ContainsPoint(this.room2b_hole_zone, this.room2b_character_north)) {
+        this.room2b_E_KeyImg.x = this.room2b_character_north.x;
+        this.room2b_E_KeyImg.y = this.room2b_character_north.y-75;
+        this.room2b_E_KeyImg.alpha = 1.0;
+        if (this.room2b_key_E.isDown) {
+            this.scene.start("one_Lesson");
+
+        }
+       }
+        else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2b_quiz_info, this.room2b_character_north)) {
             this.room2b_E_KeyImg.x = this.room2b_character_north.x;
             this.room2b_E_KeyImg.y = this.room2b_character_north.y-75;
             this.room2b_E_KeyImg.alpha = 1.0;
@@ -414,7 +427,6 @@ class two_activityB extends Phaser.Scene {
      * Sets the alphas to the activities to 0 so that they are hidden.
      */
     hideActivities() {
-
 
     }
 
