@@ -11,7 +11,14 @@ class one_lesson extends Phaser.Scene {
     this.room3_activityThreeOpened = false;
     this.room3_activityFourOpened = false;
     this.room3_activityFiveOpened = false;
-    this.room3_activitySixOpened = false;
+    //this.room3_activitySixOpened = false;
+    this.room3_activity1Locked = false;
+    this.room3_activity2Locked = true;
+    this.room3_activity3Locked = true;
+    this.room3_activity4Locked = true;
+    this.room3_activity5Locked = true;
+    //this.room3_activity6Locked = true;
+    this.room3_activity5Complete = false;
     this.room3_helpOpen = false;
     this.room3_counter = 0;
   }
@@ -62,19 +69,19 @@ class one_lesson extends Phaser.Scene {
 
 
     if (this.room3_key_U.isDown && this.room3_unlocked == false) {
-      room3_activity1Locked = false;
-      room3_activity2Locked = false;
-      room3_activity3Locked = false;
-      room3_activity4Locked = false;
-      room3_activity5Locked = false;
-      room3_activity6Locked = false;
-      room3_activity6Complete = true;
+      this.room3_activity1Locked = false;
+      this.room3_activity2Locked = false;
+      this.room3_activity3Locked = false;
+      this.room3_activity4Locked = false;
+      this.room3_activity5Locked = false;
+      //this.room3_activity6Locked = false;
+      this.room3_activity5Complete = true;
       this.room3_unlocked = true;
     }
 
     if (this.room3_key_M.isDown) {
       this.room3_map.alpha = 1.0;
-      characterMoveable = false;
+      this.characterMoveable = false;
       this.room3_character_north.alpha = 0.0;
       this.room3_character_east.alpha = 0.0;
       this.room3_character_south.alpha = 0.0;
@@ -83,7 +90,7 @@ class one_lesson extends Phaser.Scene {
 
     if (this.room3_key_B.isDown) {
       this.room3_notebook.alpha = 1.0;
-      room3_characterMoveable = false;
+      this.room3_characterMoveable = false;
       this.room3_character_north.alpha = 0.0;
       this.room3_character_east.alpha = 0.0;
       this.room3_character_south.alpha = 0.0;
@@ -385,7 +392,6 @@ class one_lesson extends Phaser.Scene {
     this.room3_activity2Locked = false;
 
     //COME BACK AND CHANGE THIS LATER
-    this.room3_activity6Complete = true;
       }
 
     } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room3_bot_left_info, this.room3_character_north)) {
@@ -410,7 +416,7 @@ class one_lesson extends Phaser.Scene {
         this.room3_activity3A.alpha = 1.0;
         this.resetArrows();
         this.checkActivityOpened(false, false, true, false, false, false);
-    this.room3_activity4Locked = false;
+        this.room3_activity4Locked = false;
   } else if (this.room3_key_E.isDown && this.room3_activity3Locked == true){
         this.room3_activityLocked.alpha = 1.0;
         this.room3_characterMoveable = false;
@@ -422,8 +428,8 @@ class one_lesson extends Phaser.Scene {
       this.room3_E_KeyImg.alpha = 1.0;
       if (this.room3_key_E.isDown && this.room3_activity4Locked == false) {
             this.scene.start("one_Activity");
-      this.checkActivityOpened(false, false, false, true, false, false);
-    this.room3_activity5Locked = false;
+            this.checkActivityOpened(false, false, false, true, false, false);
+            this.room3_activity5Locked = false;
   } else if (this.room3_key_E.isDown && this.room3_activity4Locked == true){
         this.room3_activityLocked.alpha = 1.0;
         this.room3_characterMoveable = false;
@@ -434,13 +440,13 @@ class one_lesson extends Phaser.Scene {
 	else if (Phaser.Geom.Rectangle.ContainsPoint(this.room3_top_right_info, this.room3_character_north)) {
 		this.room3_E_KeyImg.x = this.room3_character_north.x;
 		this.room3_E_KeyImg.y = this.room3_character_north.y-75;
-
-		this.room3_E_KeyImg.alpha = 1.0;
+    this.room3_E_KeyImg.alpha = 1.0;
 		if (this.room3_key_E.isDown && this.room3_activity5Locked == false) {
 			this.room3_activity5A.alpha = 1.0;
       this.resetArrows();
 			this.checkActivityOpened(false, false, false, false, true, false);
-			this.room3_activity6Locked = false;
+      this.room3_unlocked == true;
+			//this.room3_activity6Locked = false;
 		}
 		else if (this.room3_key_E.isDown && this.room3_activity5Locked == true){
           this.room3_activityLocked.alpha = 1.0;
@@ -605,6 +611,7 @@ class one_lesson extends Phaser.Scene {
     this.room3_activity3D.alpha = 0.0;
     this.room3_activity5A.alpha = 0.0;
     this.room3_activity5B.alpha = 0.0;
+    this.room3_activityLocked.alpha = 0.0;
     this.room3_leftArrow.setVisible(false);
     this.room3_rightArrow.setVisible(false);
 
