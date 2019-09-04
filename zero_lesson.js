@@ -273,8 +273,11 @@ Info Panels like these contain important information and lessons that help you p
 		if (this.activityOneOpened == true)
 		{
 			if(this.key_E.isDown){
-                roomProgress += 1
-				this.scene.start("three_Lesson");
+			    // Normal sequence: roomProgress was 0 and is going to 1.
+			    // BUT
+			    //   if coming back from further on, the max remembers there.
+			    roomProgress = Math.max(1,roomProgress);
+			    this.scene.start("three_Lesson");
 
 			}
 			this.E_KeyImg.x = this.character_north.x;
