@@ -539,7 +539,7 @@ class two_lesson extends Phaser.Scene {
               if(this.room2_key_E.isDown) {
                 console.log("To room2 activity")
                 roomProgress += 1;
-                //this.scene.start("two_Activity");
+                this.scene.start("two_Activity");
               }
             }
 
