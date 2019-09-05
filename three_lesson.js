@@ -25,6 +25,8 @@ class three_lesson extends Phaser.Scene {
     //when scene is created
     create() {
 
+
+
         this.createImages();
         this.setAlphas();
         this.setDepths();
@@ -127,7 +129,7 @@ class three_lesson extends Phaser.Scene {
      * Loads images to be used and sets them into a variable name.
      */
     loadAssets() {
-        this.load.image('returnDoor', 'assets/dooropen_100x100.png');
+	this.load.image('returnDoor', 'assets/dooropen_100x100.png');
         this.load.image('pressr', 'assets/pressr.png');
         this.load.image('one_lesson_BG', 'assets/one_lesson_BG.png');
         this.load.image('character_north', 'assets/character_north.png');
@@ -184,7 +186,7 @@ class three_lesson extends Phaser.Scene {
     createImages() {
         this.e_pressed = false;
         this.papers_moved = false;
-        this.returnDoor = this.add.image(250, 85, 'returnDoor');
+	this.returnDoor = this.add.image(113, 385, 'returnDoor');
         this.background = this.add.image(768, 432, 'one_lesson_BG');
         this.character_north = this.add.image(768, 432, 'character_north');
         this.character_east = this.add.image(768, 432, 'character_east');
@@ -275,7 +277,7 @@ class three_lesson extends Phaser.Scene {
         this.notebook.setDepth(100);
         this.help_menu.setDepth(100);
         this.hole.setDepth(1);
-        this.returnDoor.setDepth(1);
+	this.returnDoor.setDepth(1);
     }
 
     /* setScales
@@ -303,6 +305,7 @@ class three_lesson extends Phaser.Scene {
         this.hole.setScale(0.75);
         this.leftArrow.setScale(.2);
         this.rightArrow.setScale(.2);
+	this.returnDoor.setScale(1.5);
     }
 
     /* setRotations
@@ -317,7 +320,7 @@ class three_lesson extends Phaser.Scene {
         this.cardboard_box_2.rotation = 0;
         this.cardboard_box_3.rotation = 0;
         this.leftArrow.setRotation(3.14);
-	this.returnDoor.angle = 45;
+	this.returnDoor.angle = 270;
     }
 
     /* createInteractionZones
@@ -349,6 +352,7 @@ class three_lesson extends Phaser.Scene {
         this.bot_right_info = new Phaser.Geom.Rectangle(1120,565,240,150);
         this.graphics.fillRectShape(this.bot_right_info);
 
+        
         this.quiz1 = new Phaser.Geom.Rectangle(1120,308,240,250);
         this.graphics.fillRectShape(this.quiz1);
 
@@ -363,6 +367,10 @@ class three_lesson extends Phaser.Scene {
 
         this.middle_info = new Phaser.Geom.Rectangle(700, 350, 200, 200);
         this.graphics.fillRectShape(this.middle_info);
+
+	// return door located at 113,385
+	this.exitDoor = new Phaser.Geom.Rectangle(113,320,100,100);
+        this.graphics.fillRectShape(this.exitDoor);
     }
 
     /* assignKeybinds
@@ -536,6 +544,13 @@ class three_lesson extends Phaser.Scene {
                 this.quizActive = true;
             } else if (this.key_E.isDown && activity6Complete == false){
                 this.activityLocked.alpha = 1.0;
+            }
+        } else if (Phaser.Geom.Rectangle.ContainsPoint(this.exitDoor, this.character_north)){
+            this.E_KeyImg.x = this.character_north.x+75;
+            this.E_KeyImg.y = this.character_north.y;
+            this.E_KeyImg.alpha = 1.0;
+            if (this.key_E.isDown) {
+		this.scene.start("zero_Lesson");
             }
         } else {
             this.hideActivities();
