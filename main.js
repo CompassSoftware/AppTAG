@@ -2,8 +2,7 @@ var config = {
   type: Phaser.AUTO,
   width: 1536,
   height: 864,
-  //scene: [winners_room]
-  //scene: [one_lesson, one_activity, winners_room]
+  //scene: [zero_lesson, three_lesson]
   scene: [zero_lesson, three_lesson, two_lesson, one_lesson, one_activity, winners_room]
 
 
