@@ -67,6 +67,10 @@ class one_lesson extends Phaser.Scene {
       this.checkNextPage();
     }
 
+    if(this.room3_activity5Complete == true) {
+      this.room3_hole.alpha = 1.0;
+    }
+
 
     if (this.room3_key_U.isDown && this.room3_unlocked == false) {
       this.room3_activity1Locked = false;
@@ -116,9 +120,13 @@ class one_lesson extends Phaser.Scene {
         this.movePlayer();
         this.checkInteractValidity();
       }
-  if (this.room3_activatedQuiz == false)
-    this.room3_characterMoveable = true;
+  if (this.room3_activatedQuiz == false) {
+        this.room3_characterMoveable = true;
+  }
+
     }
+
+
 
 
 /***********************************************************************************************
@@ -162,6 +170,7 @@ class one_lesson extends Phaser.Scene {
     this.load.image('room3_activityLocked', 'assets/activityLocked.png');
     this.load.image('room3_help_menu', 'assets/help_menu.png');
     this.load.image('room3_rightArrow' , 'assets/rightArrowTest.png');
+    this.load.image('room3_hole', 'assets/hole.png');
 
   }
 
@@ -204,6 +213,7 @@ class one_lesson extends Phaser.Scene {
     this.room3_help_menu = this.add.image(768, 432, 'room3_help_menu');
     this.room3_rightArrow = this.add.image(1000, 650, 'room3_rightArrow');
     this.room3_leftArrow = this.add.image(600, 650, 'room3_rightArrow');
+    this.room3_hole = this.add.image(1200,450, 'room3_hole');
   }
 
   /* setAlphas
@@ -218,6 +228,7 @@ class one_lesson extends Phaser.Scene {
     this.room3_help_menu.alpha = 0.0;
     this.room3_leftArrow.alpha = 0;
     this.room3_rightArrow.alpha = 0;
+    // this.room3_hole.alpha = 0.0;
     this.hideActivities();
   }
 
@@ -249,6 +260,7 @@ class one_lesson extends Phaser.Scene {
     // this.room3_paper_stack.setDepth(1);
     this.room3_notebook.setDepth(100);
     this.room3_help_menu.setDepth(100);
+
   }
 
   /* setScales
@@ -316,6 +328,8 @@ class one_lesson extends Phaser.Scene {
     this.room3_bot_right_info = new Phaser.Geom.Rectangle(1120,565,240,150);
     this.room3_graphics.fillRectShape(this.room3_bot_right_info);
 
+    this.room3_hole_info = new Phaser.Geom.Rectangle(1300, 400, 100, 100);
+    this.room3_graphics.fillRectShape(this.room3_hole_info);
   }
 
   /* assignKeybinds
@@ -445,13 +459,23 @@ class one_lesson extends Phaser.Scene {
 			this.room3_activity5A.alpha = 1.0;
       this.resetArrows();
 			this.checkActivityOpened(false, false, false, false, true, false);
-      this.room3_unlocked == true;
+      this.room3_unlocked = true;
 			//this.room3_activity6Locked = false;
 		}
-		else if (this.room3_key_E.isDown && this.room3_activity5Locked == true){
-          this.room3_activityLocked.alpha = 1.0;
-          this.room3_characterMoveable = false;
-        }
+  }
+  else if (this.room3_key_E.isDown && this.room3_activity5Locked == true){
+        this.room3_activityLocked.alpha = 1.0;
+        this.room3_characterMoveable = false;
+      }
+
+    else if (Phaser.Geom.Rectangle.ContainsPoint(this.room3_hole_info, this.room3_character_north)) {
+      this.room3_E_KeyImg.x = this.room3_character_north.x;
+  		this.room3_E_KeyImg.y = this.room3_character_north.y-75;
+      this.room3_E_KeyImg.alpha = 1.0;
+      if (this.room3_key_E.isDown && this.room3_activity5Complete == true) {
+        this.scene.start("winners_Room");
+      }
+}
 
 	// else if (Phaser.Geom.Rectangle.ContainsPoint(this.room3_bot_right_info, this.room3_character_north)) {
 	// 	this.room3_E_KeyImg.x = this.room3_character_north.x;
@@ -467,7 +491,7 @@ class one_lesson extends Phaser.Scene {
 	// 		this.room3_characterMoveable = false;
   //      }
 
-    }
+
     else {
     this.hideActivities();
     this.room3_E_KeyImg.alpha = 0.0;
