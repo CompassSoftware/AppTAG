@@ -9,6 +9,7 @@ class zero_lesson extends Phaser.Scene {
     this.paperMoveable = false;
     this.activityOneOpened = false;
     this.helpOpen = false;
+
   }
   //load assets in preload()
 
@@ -170,11 +171,15 @@ Info Panels like these contain important information and lessons that help you p
     this.map.alpha = 0.0;
     this.notebook.alpha = 0.0;
     this.activityLocked.alpha = 0.0;
-    this.E_KeyImg.alpha = 0.0;
 	this.approachImg.alpha = 0.0;
     this.help_menu.alpha = 0.0;
 	this.tut1.alpha = 0.0;
+    this.E_KeyImg.alpha = 0.0;
 	this.hole.alpha = 0.0;
+	if (roomProgress > 0) {
+	    this.E_KeyImg.alpha = 1.0;
+	    this.hole.alpha = 1.0;
+	}
     this.hideActivities();
   }
 
@@ -273,8 +278,24 @@ Info Panels like these contain important information and lessons that help you p
 		if (this.activityOneOpened == true)
 		{
 			if(this.key_E.isDown){
-                roomProgress += 1
-				this.scene.start("three_Lesson");
+			    // Normal sequence: roomProgress was 0 and is going to 1.
+			    // BUT
+			    //   if coming back from further on, the max remembers there.
+			    roomProgress = Math.max(1,roomProgress);
+			    if (roomProgress == 0) {
+				this.debugText = this.add.text(1200, 30, "roomProgress=0");
+			    }
+			    else if (roomProgress == 1) {
+				this.debugText = this.add.text(1200, 30, "roomProgress=1");
+			    }
+			    else {
+				this.debugText = this.add.text(1200, 30, "roomProgress=??");
+			    }
+			    this.debugText.setColor('black');
+			    this.debugText.setFont('bold 20px Arial');	
+			    this.debugText.setVisible(true);
+
+			    this.scene.start("three_Lesson");
 
 			}
 			this.E_KeyImg.x = this.character_north.x;
