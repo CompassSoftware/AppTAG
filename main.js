@@ -3,7 +3,9 @@ var config = {
   width: 1536,
   height: 864,
   //scene: [zero_lesson, three_lesson]
+  
   scene: [zero_lesson, three_lesson, two_lesson, one_lesson, one_activity, winners_room]
+
 
 
 };
