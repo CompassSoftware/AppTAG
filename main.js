@@ -2,8 +2,10 @@ var config = {
   type: Phaser.AUTO,
   width: 1536,
   height: 864,
+
   //scene: [two_lesson]
   scene: [zero_lesson, three_lesson, two_lesson, two_activity, one_lesson, one_activity]
+
 
 
 };
