@@ -172,7 +172,7 @@ class two_lesson extends Phaser.Scene {
         this.load.image('room2_wall_info_5', 'assets/wall_art.png');
         this.load.image('room2_wall_info_6', 'assets/wall_art.png');
         this.load.image('room2_floor', 'assets/floor_1.jpg');
-        this.load.image('room2_hole_activity', 'assets/hole.png');
+        this.load.image('room2_hole_activity', 'assets/crackedHole.png');
         this.load.image('room2_hole_nextRoom', 'assets/hole.png');
         this.load.image('room2_map', 'assets/map/room3inprogress.png');
         this.load.image('room2_notebook', 'assets/notebook.png');
@@ -315,6 +315,7 @@ class two_lesson extends Phaser.Scene {
         this.room2_floor.scaleX = 0.99;
         this.leftArrow.setScale(.2);
         this.rightArrow.setScale(.2);
+        this.room2_hole_activity.setScale(0.5);
     }
 
     /* setRotations
