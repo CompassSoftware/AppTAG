@@ -156,6 +156,10 @@ class two_activity extends Phaser.Scene {
     this.room2a_back_hole_text.setFontSize(32);
     this.room2a_back_hole_text.setStroke("Black",4);
 
+    this.room2a_NOTREADY_text = this.add.text(500, 500, "PUZZLE ROOM NOT FINISHED")
+    this.room2a_NOTREADY_text.setFontSize(32);
+    this.room2a_NOTREADY_text.setStroke("Black",4);
+
     this.room2a_puzz_holeText = this.add.text(5, 532, "Back to Room 2");
     this.room2a_puzz_holeText.setFontSize(32);
     this.room2a_puzz_holeText.setStroke("Black", 4);
@@ -197,6 +201,7 @@ class two_activity extends Phaser.Scene {
     // this.room2a_puzzle_stack.setDepth(1);
     this.room2a_notebook.setDepth(100);
     this.room2a_help_menu.setDepth(100);
+    this.room2a_NOTREADY_text.setDepth(49);
   }
 
   /* setScales
@@ -520,6 +525,7 @@ class two_activity extends Phaser.Scene {
     this.room2a_back_hole.alpha = 1.0;
     this.room2a_puzzle1.setVisible(true);
     this.room2a_back_hole_text.alpha = 1.0;
+    this.room2a_NOTREADY_text.alpha = 1.0;
     this.room2a_puzz_holeText.alpha = 0.0;
     this.room2a_puzzleMoveable = false;
     this.room2a_puzzleCount = 1;
