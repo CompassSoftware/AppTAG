@@ -228,7 +228,7 @@ class one_lesson extends Phaser.Scene {
     this.room3_help_menu.alpha = 0.0;
     this.room3_leftArrow.alpha = 0;
     this.room3_rightArrow.alpha = 0;
-    // this.room3_hole.alpha = 0.0;
+    this.room3_hole.alpha = 0.0;
     this.hideActivities();
   }
 
@@ -468,7 +468,7 @@ class one_lesson extends Phaser.Scene {
         this.room3_characterMoveable = false;
       }
 
-    else if (Phaser.Geom.Rectangle.ContainsPoint(this.room3_hole_info, this.room3_character_north)) {
+    else if (Phaser.Geom.Rectangle.ContainsPoint(this.room3_hole_info, this.room3_character_north) && this.room3_activity5Complete) {
       this.room3_E_KeyImg.x = this.room3_character_north.x;
   		this.room3_E_KeyImg.y = this.room3_character_north.y-75;
       this.room3_E_KeyImg.alpha = 1.0;
