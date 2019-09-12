@@ -694,7 +694,7 @@ class three_lesson extends Phaser.Scene {
         this.cardboard_box_3.setScale(0.39);
         this.paper_stack.setScale(0.35);
         this.paper_stack.x = 1215;
-        this.paper_stack.setVisible(false);
+        this.paper_stack.setVisible(true);
         this.cardboard_box_1.x = 1310;
         this.cardboard_box_2.x = 1310;
         this.cardboard_box_3.x = 1310;
@@ -713,6 +713,7 @@ class three_lesson extends Phaser.Scene {
         this.paper_stack.y = 432;
         this.paperCount = 1;
         this.paperMoveable = false;
+	this.returnDoor.x += 40;
 
         this.quizActive = false;
         this.characterMoveable = true;
@@ -729,6 +730,7 @@ class three_lesson extends Phaser.Scene {
         this.hole.setVisible(false);
         this.paper_stack.setVisible(true);
 
+	this.returnDoor.x -= 40;
         this.paperMoveable = true;
         this.paperCount = 1;
         this.loadQuizImages();
