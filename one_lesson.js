@@ -67,7 +67,9 @@ class one_lesson extends Phaser.Scene {
       this.checkNextPage();
     }
 
-    if(this.room3_activity5Complete == true) {
+    if(this.room3_activity5Complete == true || roomProgress == 35) {
+	this.room3_activity5Complete = true;
+	roomProgress = 35;
       this.room3_hole.alpha = 1.0;
     }
 

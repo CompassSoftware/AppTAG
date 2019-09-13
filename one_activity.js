@@ -421,6 +421,7 @@ class one_activity extends Phaser.Scene {
           this.actOne_E_KeyImg.alpha = 1.0;
 
           if(this.actOne_key_E.isDown) {
+	      roomProgress = 35;
             this.scene.start("one_Lesson");
           }
         }
