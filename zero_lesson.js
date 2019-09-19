@@ -135,7 +135,8 @@ Info Panels like these contain important information and lessons that help you p
     this.load.image('notebook', 'assets/notebook.png');
     this.load.image('activityLocked', 'assets/activityLocked.png');
     this.load.image('help_menu', 'assets/help_menu.png');
-	this.load.image('approachImg', 'assets/tutorial_1.jpg');
+    //	this.load.image('approachImg', 'assets/tutorial_1.jpg');
+    this.load.image('approachImg', 'assets/R0_tutorial.png');
 	this.load.image('tut1', 'assets/tut1.PNG');
 	this.load.image('hole', 'assets/hole.png');
   }
@@ -211,10 +212,12 @@ Info Panels like these contain important information and lessons that help you p
     this.wall_info_2.setScale(0.75);
     this.notebook.setScale(0.75);
     this.map.setScale(0.75);
-	this.character_north.setScale(3);
+    this.character_north.setScale(3);
     this.character_south.setScale(3);
     this.character_west.setScale(3);
     this.character_east.setScale(3);
+    this.approachImg.setScale(0.5);
+    this.tut1.setScale(0.5);
   }
 
   setRotations() {
@@ -305,7 +308,7 @@ Info Panels like these contain important information and lessons that help you p
 		else if(this.activityOneOpened == false)
 		{
 			this.approachImg.x = this.character_north.x;
-			this.approachImg.y = this.character_north.y-100;
+			this.approachImg.y = this.character_north.y-150;
 			this.approachImg.alpha = 1.0;
 		}
 	}
