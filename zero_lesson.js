@@ -120,13 +120,6 @@ Info Panels like these contain important information and lessons that help you p
     this.load.image('character_south', 'assets/character_south.png');
     this.load.image('character_west', 'assets/character_west.png');
     this.load.image('redCharacter', 'assets/redCharacter.png');
-    //this.load.image('activity1', 'assets/Activity1.png');
-    //this.load.image('activity1Page2', 'assets/Activity2.png');
-    //this.load.image('activity2Zero', 'assets/activity2.png');
-    // this.load.image('activity3', 'assets/Activity3.png');
-    // this.load.image('activity4', 'assets/Activity4.png');
-    // this.load.image('activity5', 'assets/Activity5.png');
-    // this.load.image('activity6', 'assets/Activity6.png');
     this.load.image('E_KeyImg', 'assets/E_Key.png');
     this.load.image('wall_info_2', 'assets/wall_art.png');
     this.load.image('floor', 'assets/floor_0.jpg');
@@ -135,10 +128,9 @@ Info Panels like these contain important information and lessons that help you p
     this.load.image('notebook', 'assets/notebook.png');
     this.load.image('activityLocked', 'assets/activityLocked.png');
     this.load.image('help_menu', 'assets/help_menu.png');
-    //	this.load.image('approachImg', 'assets/tutorial_1.jpg');
     this.load.image('approachImg', 'assets/R0_tutorial.png');
-	this.load.image('tut1', 'assets/tut1.PNG');
-	this.load.image('hole', 'assets/hole.png');
+    this.load.image('tut1', 'assets/tut1.PNG');
+    this.load.image('hole', 'assets/hole.png');
   }
 
   createImages() {
@@ -150,37 +142,30 @@ Info Panels like these contain important information and lessons that help you p
     this.character_south = this.add.image(768, 432, 'character_south');
     this.character_west = this.add.image(768, 432, 'character_west');
     this.E_KeyImg = this.add.image(this.character_north.x+40, this.character_north.y+40, 'E_KeyImg');
-	this.approachImg = this.add.image(this.character_north.x+40, this.character_north.y+40, 'approachImg');
-    // this.activity1 = this.add.image(768, 432, 'activity1');
-    // this.activity1Page2 = this.add.image(768, 432, 'activity1Page2');
-    // this.activity2Zero = this.add.image(768, 432, 'activity2Zero');
-    // this.activity3 = this.add.image(768, 432, 'activity3');
-    // this.activity4 = this.add.image(768, 432, 'activity4');
-    // this.activity5 = this.add.image(768, 432, 'activity5');
-    // this.activity6 = this.add.image(768, 432, 'activity6');
+    this.approachImg = this.add.image(this.character_north.x+40, this.character_north.y+40, 'approachImg');
     this.wall_info_2 = this.add.image(768, 75, 'wall_info_2');
     this.floor = this.add.image(769, 433, 'floor');
     this.map = this.add.image(768, 432, 'map');
     this.notebook = this.add.image(768, 432, 'notebook');
     this.activityLocked = this.add.image(768, 432, 'activityLocked');
     this.help_menu = this.add.image(768, 432, 'help_menu');
-	this.tut1 = this.add.image(768, 432, 'tut1');
-	this.hole = this.add.image(768, 432, 'hole');
+    this.tut1 = this.add.image(768, 432, 'tut1');
+    this.hole = this.add.image(768, 432, 'hole');
   }
 
   setAlphas() {
     this.map.alpha = 0.0;
     this.notebook.alpha = 0.0;
     this.activityLocked.alpha = 0.0;
-	this.approachImg.alpha = 0.0;
+    this.approachImg.alpha = 0.0;
     this.help_menu.alpha = 0.0;
-	this.tut1.alpha = 0.0;
+    this.tut1.alpha = 0.0;
     this.E_KeyImg.alpha = 0.0;
-	this.hole.alpha = 0.0;
-	if (roomProgress > 0) {
-	    this.E_KeyImg.alpha = 1.0;
-	    this.hole.alpha = 1.0;
-	}
+    this.hole.alpha = 0.0;
+    if (roomProgress > 0) {
+	this.E_KeyImg.alpha = 1.0;
+	this.hole.alpha = 1.0;
+    }
     this.hideActivities();
   }
 
@@ -191,20 +176,12 @@ Info Panels like these contain important information and lessons that help you p
     this.character_south.setDepth(50);
     this.character_west.setDepth(50);
     this.E_KeyImg.setDepth(49);
-	this.approachImg.setDepth(48);
-    // this.activity1.setDepth(100);
-    // this.activity1Page2.setDepth(100);
-    // this.activity2Zero.setDepth(99);
-    // this.activity3.setDepth(98);
-    // this.activity4.setDepth(97);
-    // this.activity5.setDepth(96);
-    // this.activity6.setDepth(95);
+    this.approachImg.setDepth(48);
     this.map.setDepth(100);
-
     this.notebook.setDepth(100);
     this.help_menu.setDepth(100);
-	this.tut1.setDepth(99);
-	this.hole.setDepth(1);
+    this.tut1.setDepth(99);
+    this.hole.setDepth(1);
   }
 
   setScales() {
@@ -273,8 +250,9 @@ Info Panels like these contain important information and lessons that help you p
       this.E_KeyImg.alpha = 1.0;
       if (this.key_E.isDown) {
         this.tut1.alpha = 1.0;
-		this.activityOneOpened = true;
-		this.hole.alpha = 1.0;
+	this.activityOneOpened = true;
+	this.hole.alpha = 1.0;
+	this.wall_info_2.alpha = 0.5;
       }
     } else if (Phaser.Geom.Rectangle.ContainsPoint(this.middle_info, this.character_north))
 	{
