@@ -1,6 +1,6 @@
-class two_lesson extends Phaser.Scene {
+class room2 extends Phaser.Scene {
     constructor() {
-        super("two_Lesson");
+        super("room_Two");
         this.room2_quizActive = false;
         this.room2_activatedQuiz = false;
         this.room2_unlocked = false;
@@ -41,7 +41,6 @@ class two_lesson extends Phaser.Scene {
         this.createInteractionZones();
         this.assignKeybinds();
         this.imagesDraggable();
-        // this.bmpText = game.add.bitmapText(200, 100, 'carrier_command', 'To next Room', 64);
     }
 
     update(delta) {
@@ -134,13 +133,11 @@ class two_lesson extends Phaser.Scene {
      * Loads images to be used and sets them into a variable name.
      */
     loadAssets() {
-        this.load.image('room2_pressr', 'assets/pressr.png');
         this.load.image('room2_one_lesson_BG', 'assets/one_lesson_BG.png');
         this.load.image('room2_character_north', 'assets/character_north.png');
         this.load.image('room2_character_east', 'assets/character_east.png');
         this.load.image('room2_character_south', 'assets/character_south.png');
         this.load.image('room2_character_west', 'assets/character_west.png');
-        this.load.image('room2_redCharacter', 'assets/redCharacter.png');
         this.load.image('room2_activity1A', 'assets/Panels/RoomTwo/PanelOneA.png');
         this.load.image('room2_activity1B', 'assets/Panels/RoomTwo/PanelOneB.png');
         this.load.image('room2_activity1C', 'assets/Panels/RoomTwo/PanelOneC.png');
@@ -171,8 +168,8 @@ class two_lesson extends Phaser.Scene {
         this.load.image('room2_wall_info_4', 'assets/wall_art.png');
         this.load.image('room2_wall_info_5', 'assets/wall_art.png');
         this.load.image('room2_wall_info_6', 'assets/wall_art.png');
-        this.load.image('room2_floor', 'assets/floor_1.jpg');
-        this.load.image('room2_hole_activity', 'assets/crackedHole.png');
+        this.load.image('room2_floor', 'assets/Room2/floor_1.jpg');
+        this.load.image('room2_hole_activity', 'assets/Room2/crackedHole.png');
         this.load.image('room2_hole_nextRoom', 'assets/hole.png');
         this.load.image('room2_map', 'assets/map/room3inprogress.png');
         this.load.image('room2_notebook', 'assets/notebook.png');
@@ -335,7 +332,6 @@ class two_lesson extends Phaser.Scene {
      */
     createInteractionZones() {
         this.room2_graphics = this.add.graphics({fillStyle: {color: 0xFFFFFF, alpha: 0.0}});
-        //this.graphicsTest = this.add.graphics({fillStyle: {color: 0x4F4F4F, alpha: 1.0}});
         //TOP ZONES
         //xpos ypos x   y
         this.room2_top_left_info = new Phaser.Geom.Rectangle(175,100,240,150);
@@ -525,7 +521,7 @@ class two_lesson extends Phaser.Scene {
               this.room2_E_KeyImg.alpha = 1.0;
               if (this.room2_key_E.isDown) {
                   console.log("To room 3")
-                  this.scene.start("one_Lesson");
+                  this.scene.start("room_Three");
               }
             }
 
@@ -540,7 +536,7 @@ class two_lesson extends Phaser.Scene {
               if(this.room2_key_E.isDown) {
                 console.log("To room2 activity")
                 roomProgress += 1;
-                this.scene.start("two_Activity");
+                this.scene.start("room2_Act1");
               }
             }
 

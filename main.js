@@ -3,12 +3,7 @@ var config = {
   width: 1536,
   height: 864,
 
-  //scene: [zero_lesson, three_lesson]
-  
-  scene: [zero_lesson, three_lesson, two_lesson, two_activity, one_lesson, one_activity, winners_room]
-
-
-
+  scene: [room0, room1, room2, room2Act1, room3, room3Act1, winners_room]
 
 };
 var quizActive = false;

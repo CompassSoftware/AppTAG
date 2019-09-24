@@ -1,7 +1,7 @@
-class two_activity extends Phaser.Scene {
+class room2Act1 extends Phaser.Scene {
 
   constructor() {
-    super("two_Activity");
+    super("room2_Act1");
     this.room2a_quizActive = false;
     this.room2a_activatedQuiz = false;
     this.room2a_helpOpen = false;
@@ -86,13 +86,11 @@ class two_activity extends Phaser.Scene {
    * Loads images to be used and sets them into a variable name.
   */
   loadAssets() {
-    this.load.image('room2a_pressr', 'assets/pressr.png');
     this.load.image('room2a_one_lesson_BG', 'assets/one_lesson_BG.png');
     this.load.image('room2a_character_north', 'assets/character_north.png');
     this.load.image('room2a_character_east', 'assets/character_east.png');
     this.load.image('room2a_character_south', 'assets/character_south.png');
     this.load.image('room2a_character_west', 'assets/character_west.png');
-    this.load.image('room2a_redCharacter', 'assets/redCharacter.png');
     this.load.image('room2a_E_KeyImg', 'assets/E_Key.png');
     this.load.image('room2a_wall_info_1', 'assets/wall_art.png');
     this.load.image('room2a_wall_info_2', 'assets/wall_art.png');
@@ -100,33 +98,33 @@ class two_activity extends Phaser.Scene {
     this.load.image('room2a_wall_info_4', 'assets/wall_art.png');
     this.load.image('room2a_wall_info_5', 'assets/wall_art.png');
     this.load.image('room2a_wall_info_6', 'assets/wall_art.png');
-    this.load.image('room2a_floor', 'assets/floor_room2_act1.jpg');
+    this.load.image('room2a_floor', 'assets/Room2Act1/floor_room2_act1.jpg');
     this.load.image('room2a_map', 'assets/Map/room3act1inprogress.png');
     this.load.image('room2a_notebook', 'assets/notebook.png');
     this.load.image('room2a_activityLocked', 'assets/activityLocked.png');
     this.load.image('room2a_help_menu', 'assets/help_menu.png');
     this.load.image('room2a_hole', 'assets/hole.png');
-    this.load.image('room2a_puzzle1', 'assets/Puzzle/Puzzle/Puzzle1A.png');
-    this.load.image('room2a_puzzle2', 'assets/Puzzle/Puzzle/Puzzle1B.png');
-    this.load.image('room2a_puzzle3', 'assets/Puzzle/Puzzle/Puzzle1C.png');
-    this.load.image('room2a_puzzle4', 'assets/Puzzle/Puzzle/Puzzle1D.png');
-    this.load.image('room2a_puzzle5', 'assets/Puzzle/Puzzle/Puzzle1E.png');
-    this.load.image('room2a_puzzle6', 'assets/Puzzle/Puzzle/Puzzle2A.png');
-    this.load.image('room2a_puzzle7', 'assets/Puzzle/Puzzle/Puzzle2B.png');
-    this.load.image('room2a_puzzle8', 'assets/Puzzle/Puzzle/Puzzle2C.png');
-	  this.load.image('room2a_puzzle9', 'assets/Puzzle/Puzzle/Puzzle2D.png');
-	  this.load.image('room2a_puzzle10', 'assets/Puzzle/Puzzle/Puzzle2E.png');
-	  this.load.image('room2a_puzzle11', 'assets/Puzzle/Puzzle/Puzzle3A.png');
-    this.load.image('room2a_puzzle12', 'assets/Puzzle/Puzzle/Puzzle3B.png');
-    this.load.image('room2a_puzzle13', 'assets/Puzzle/Puzzle/Puzzle3C.png');
-    this.load.image('room2a_puzzle14', 'assets/Puzzle/Puzzle/Puzzle3D.png');
-    this.load.image('room2a_puzzle15', 'assets/Puzzle/Puzzle/Puzzle3E.png');
-    this.load.image('room2a_puzzle16', 'assets/Puzzle/Puzzle/Puzzle4A.png');
-    this.load.image('room2a_puzzle17', 'assets/Puzzle/Puzzle/Puzzle4B.png');
-    this.load.image('room2a_puzzle18', 'assets/Puzzle/Puzzle/Puzzle4C.png');
-	  this.load.image('room2a_puzzle19', 'assets/Puzzle/Puzzle/Puzzle4D.png');
-	  this.load.image('room2a_puzzle20', 'assets/Puzzle/Puzzle/Puzzle4E.png');
-    this.load.image('room2a_Pfloor', 'assets/floor_2.jpeg');
+    this.load.image('room2a_puzzle1', 'assets/Room2Act1/Puzzle/Puzzle/Puzzle1A.png');
+    this.load.image('room2a_puzzle2', 'assets/Room2Act1/Puzzle/Puzzle/Puzzle1B.png');
+    this.load.image('room2a_puzzle3', 'assets/Room2Act1/Puzzle/Puzzle/Puzzle1C.png');
+    this.load.image('room2a_puzzle4', 'assets/Room2Act1/Puzzle/Puzzle/Puzzle1D.png');
+    this.load.image('room2a_puzzle5', 'assets/Room2Act1/Puzzle/Puzzle/Puzzle1E.png');
+    this.load.image('room2a_puzzle6', 'assets/Room2Act1/Puzzle/Puzzle/Puzzle2A.png');
+    this.load.image('room2a_puzzle7', 'assets/Room2Act1/Puzzle/Puzzle/Puzzle2B.png');
+    this.load.image('room2a_puzzle8', 'assets/Room2Act1/Puzzle/Puzzle/Puzzle2C.png');
+	  this.load.image('room2a_puzzle9', 'assets/Room2Act1/Puzzle/Puzzle/Puzzle2D.png');
+	  this.load.image('room2a_puzzle10', 'assets/Room2Act1/Puzzle/Puzzle/Puzzle2E.png');
+	  this.load.image('room2a_puzzle11', 'assets/Room2Act1/Puzzle/Puzzle/Puzzle3A.png');
+    this.load.image('room2a_puzzle12', 'assets/Room2Act1/Puzzle/Puzzle/Puzzle3B.png');
+    this.load.image('room2a_puzzle13', 'assets/Room2Act1/Puzzle/Puzzle/Puzzle3C.png');
+    this.load.image('room2a_puzzle14', 'assets/Room2Act1/Puzzle/Puzzle/Puzzle3D.png');
+    this.load.image('room2a_puzzle15', 'assets/Room2Act1/Puzzle/Puzzle/Puzzle3E.png');
+    this.load.image('room2a_puzzle16', 'assets/Room2Act1/Puzzle/Puzzle/Puzzle4A.png');
+    this.load.image('room2a_puzzle17', 'assets/Room2Act1/Puzzle/Puzzle/Puzzle4B.png');
+    this.load.image('room2a_puzzle18', 'assets/Room2Act1/Puzzle/Puzzle/Puzzle4C.png');
+	  this.load.image('room2a_puzzle19', 'assets/Room2Act1/Puzzle/Puzzle/Puzzle4D.png');
+	  this.load.image('room2a_puzzle20', 'assets/Room2Act1/Puzzle/Puzzle/Puzzle4E.png');
+    this.load.image('room2a_Pfloor', 'assets/Room2Act1/floor_2.jpeg');
 
 
   }
@@ -198,7 +196,6 @@ class two_activity extends Phaser.Scene {
     this.room2a_character_west.setDepth(50);
     this.room2a_E_KeyImg.setDepth(49);
     this.room2a_map.setDepth(100);
-    // this.room2a_puzzle_stack.setDepth(1);
     this.room2a_notebook.setDepth(100);
     this.room2a_help_menu.setDepth(100);
     this.room2a_NOTREADY_text.setDepth(49);
@@ -230,7 +227,6 @@ class two_activity extends Phaser.Scene {
   */
   setRotations() {
     this.room2a_puzzle1.angle = 90;
-  //   this.room2a_cardboard_box_3.rotation = 0;
    }
   /* assignKeybinds
    *
@@ -298,7 +294,7 @@ class two_activity extends Phaser.Scene {
 		this.displayE();
 		if (this.room2a_key_E.isDown) {
 			console.log("from activity 1 to room 2")
-			this.scene.start("two_Lesson");
+			this.scene.start("room_Two");
 		}
     }
     else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_P1A, this.room2a_character_north) &&
@@ -933,8 +929,9 @@ class two_activity extends Phaser.Scene {
     if(Phaser.Geom.Rectangle.ContainsPoint(this.room2a_puzz_zone, this.room2a_character_north)) {
       this.displayE();
       if(this.room2a_key_E.isDown) {
-        this.scene.start("two_Lesson");
-        this.quitInteraction();
+        this.scene.start("room_Two");
+        this.room2a_activatedQuiz= false;
+        // this.quitInteraction();
       }
     }
     else {
