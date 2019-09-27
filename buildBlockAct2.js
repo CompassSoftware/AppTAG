@@ -1,6 +1,6 @@
-class room2Act2 extends Phaser.Scene {
+class buildBlockAct2 extends Phaser.Scene {
     constructor() {
-        super("room2Act2");
+        super("BuidBlock_Act2");
         this.room2b_quizActive = false;
         this.room2b_activatedQuiz = false;
         this.room2b_unlocked = false;

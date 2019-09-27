@@ -1,7 +1,7 @@
-class room2Act1 extends Phaser.Scene {
+class buildBlockAct1 extends Phaser.Scene {
 
   constructor() {
-    super("room2_Act1");
+    super("BuildBlock_Act1");
     this.room2a_quizActive = false;
     this.room2a_activatedQuiz = false;
     this.room2a_helpOpen = false;
@@ -294,7 +294,7 @@ class room2Act1 extends Phaser.Scene {
 		this.displayE();
 		if (this.room2a_key_E.isDown) {
 			console.log("from activity 1 to room 2")
-			this.scene.start("room_Two");
+			this.scene.start("Building_Blocks");
 		}
     }
     else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_P1A, this.room2a_character_north) &&
@@ -929,7 +929,7 @@ class room2Act1 extends Phaser.Scene {
     if(Phaser.Geom.Rectangle.ContainsPoint(this.room2a_puzz_zone, this.room2a_character_north)) {
       this.displayE();
       if(this.room2a_key_E.isDown) {
-        this.scene.start("room_Two");
+        this.scene.start("Building_Blocks");
         this.room2a_activatedQuiz= false;
         // this.quitInteraction();
       }

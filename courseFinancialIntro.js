@@ -1,7 +1,7 @@
-class room1 extends Phaser.Scene {
+class courseFinancialIntro extends Phaser.Scene {
 
     constructor() {
-        super("room_One");
+        super("Course_Fin_Intro");
         this.quizActive = false;
         this.activatedQuiz = false;
         this.unlocked = false;
@@ -458,7 +458,7 @@ class room1 extends Phaser.Scene {
 		    // BUT
 		    //   if coming back from further on, the max remembers there.
 		    roomProgress = Math.max(2,roomProgress);
-                    this.scene.start("room_Two");
+                    this.scene.start("Building_Blocks");
                 }
             }
 
@@ -718,6 +718,7 @@ class room1 extends Phaser.Scene {
         this.incomeStatement.alpha = 0.0;
         this.balanceSheet.alpha = 0.0;
         this.retainedEarnings.alpha = 0.0;
+        this.unlocked = true;
     }
 
     /* activateQuiz

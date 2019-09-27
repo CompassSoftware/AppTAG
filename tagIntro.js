@@ -1,8 +1,8 @@
 
-class room0 extends Phaser.Scene {
+class tagIntro extends Phaser.Scene {
 
   constructor() {
-    super("room_Zero");
+    super("TAG_Intro");
     this.quizActive = false;
     this.activatedQuiz = false;
     this.unlocked = false;
@@ -270,7 +270,7 @@ Info Panels like these contain important information and lessons that help you p
 			    this.debugText.setFont('bold 20px Arial');
 			    this.debugText.setVisible(true);
 
-			    this.scene.start("room_One");
+			    this.scene.start("Course_Fin_Intro");
 
 			}
 			this.E_KeyImg.x = this.character_north.x;

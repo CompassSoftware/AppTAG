@@ -1,7 +1,7 @@
-class room3 extends Phaser.Scene {
+class accountEqn extends Phaser.Scene {
 
   constructor() {
-    super("room_Three");
+    super("Account_Eqn");
     this.room3_quizActive = false;
     this.room3_activatedQuiz = false;
     this.room3_unlocked = false;
@@ -438,7 +438,7 @@ class room3 extends Phaser.Scene {
       this.room3_E_KeyImg.y = this.room3_character_north.y+75;
       this.room3_E_KeyImg.alpha = 1.0;
       if (this.room3_key_E.isDown && this.room3_activity4Locked == false) {
-            this.scene.start("room3_Act1");
+            this.scene.start("AccountEqn_Act");
             this.checkActivityOpened(false, false, false, true, false, false);
             this.room3_activity5Locked = false;
   } else if (this.room3_key_E.isDown && this.room3_activity4Locked == true){
@@ -472,7 +472,7 @@ class room3 extends Phaser.Scene {
       if (this.room3_key_E.isDown && this.room3_activity5Complete == true) {
         this.scene.start("winners_Room");
       }
-    }   
+    }
     else {
     this.hideActivities();
     this.room3_E_KeyImg.alpha = 0.0;

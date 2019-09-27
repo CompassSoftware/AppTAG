@@ -1,6 +1,6 @@
-class room2 extends Phaser.Scene {
+class buildingBlocks extends Phaser.Scene {
     constructor() {
-        super("room_Two");
+        super("Building_Blocks");
         this.room2_quizActive = false;
         this.room2_activatedQuiz = false;
         this.room2_unlocked = false;
@@ -84,7 +84,7 @@ class room2 extends Phaser.Scene {
             this.room2_activity6Complete = true;
             this.room2_unlocked = true;
         }
-        if(this.room2_unlocked == true) {
+        if(this.room2_activity6Complete == true) {
           this.room2_hole_activity.alpha = 1.0;
           this.room2_hole_nextRoom.alpha = 1.0;
         }
@@ -433,7 +433,6 @@ class room2 extends Phaser.Scene {
                 this.room2_characterMoveable = false;
                 this.checkActivityOpened(true, false, false, false, false, false);
                 this.room2_activity2Locked = false;
-                this.room2_activity6Complete = false;
             }
 
         } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_bot_left_info, this.room2_character_north)) {
@@ -445,7 +444,6 @@ class room2 extends Phaser.Scene {
                 this.resetArrows();
                 this.checkActivityOpened(false, true, false, false, false, false);
                 this.room2_activity3Locked = false;
-                this.room2_activity6Complete = false;
             } else if (this.room2_key_E.isDown && this.room2_activity2Locked == true) {
                 this.room2_activityLocked.alpha = 1.0;
                 this.room2_characterMoveable = false;
@@ -460,7 +458,6 @@ class room2 extends Phaser.Scene {
                 this.resetArrows();
                 this.checkActivityOpened(false, false, true, false, false, false);
                 this.room2_activity4Locked = false;
-                this.room2_activity6Complete = false;
             } else if (this.room2_key_E.isDown && this.room2_activity3Locked == true){
                 this.room2_activityLocked.alpha = 1.0;
                 this.room2_characterMoveable = false;
@@ -475,7 +472,6 @@ class room2 extends Phaser.Scene {
                 this.resetArrows();
                 this.checkActivityOpened(false, false, false, true, false, false);
                 this.room2_activity5Locked = false;
-                this.room2_activity6Complete = false;
             } else if (this.room2_key_E.isDown && this.room2_activity4Locked == true){
                 this.room2_activityLocked.alpha = 1.0;
                 this.room2_characterMoveable = false;
@@ -491,7 +487,6 @@ class room2 extends Phaser.Scene {
                 this.resetArrows();
                 this.checkActivityOpened(false, false, false, false, true, false);
                 this.room2_activity6Locked = false;
-                this.room2_activity6Complete = false;
             }
             else if (this.room2_key_E.isDown && this.room2_activity5Locked == true){
                 this.room2_activityLocked.alpha = 1.0;
@@ -521,7 +516,7 @@ class room2 extends Phaser.Scene {
               this.room2_E_KeyImg.alpha = 1.0;
               if (this.room2_key_E.isDown) {
                   console.log("To room 3")
-                  this.scene.start("room_Three");
+                  this.scene.start("Account_Eqn");
               }
             }
 
@@ -536,7 +531,7 @@ class room2 extends Phaser.Scene {
               if(this.room2_key_E.isDown) {
                 console.log("To room2 activity")
                 roomProgress += 1;
-                this.scene.start("room2_Act1");
+                this.scene.start("BuildBlock_Act1");
               }
             }
 
@@ -545,21 +540,6 @@ class room2 extends Phaser.Scene {
             this.hideActivities();
             this.room2_E_KeyImg.alpha = 0.0;
         }
-    }
-
-    /* checkActivityOpened
-     *
-     * helper method to set the activities to opened or closed
-     */
-
-    checkActivityOpened(room2_one, room2_two, room2_three, room2_four, room2_five, room2_six) {
-        this.room2_activityOneOpened = room2_one;
-        this.room2_activityTwoOpened = room2_two;
-        this.room2_activityThreeOpened = room2_three;
-        this.room2_activityFourOpened = room2_four;
-        this.room2_activityFiveOpened = room2_five;
-        this.room2_activitySixOpened = room2_six;
-
     }
 
     /* setCharacterAlpha

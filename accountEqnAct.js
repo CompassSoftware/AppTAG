@@ -1,7 +1,7 @@
-class room3Act1 extends Phaser.Scene {
+class accountEqnAct extends Phaser.Scene {
 
   constructor() {
-    super("room3_Act1");
+    super("AccountEqn_Act");
     this.actOne_quizActive = false;
     this.actOne_activatedQuiz = false;
     this.actOne_unlocked = false;
@@ -380,7 +380,7 @@ class room3Act1 extends Phaser.Scene {
 
           if(this.actOne_key_E.isDown) {
 	      roomProgress = 35;
-            this.scene.start("room_Three");
+            this.scene.start("Account_Eqn");
           }
         }
         else {
