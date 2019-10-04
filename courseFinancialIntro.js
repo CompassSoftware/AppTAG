@@ -1,7 +1,7 @@
-class three_lesson extends Phaser.Scene {
+class courseFinancialIntro extends Phaser.Scene {
 
     constructor() {
-        super("three_Lesson");
+        super("Course_Fin_Intro");
         this.quizActive = false;
         this.activatedQuiz = false;
         this.unlocked = false;
@@ -129,14 +129,13 @@ class three_lesson extends Phaser.Scene {
      * Loads images to be used and sets them into a variable name.
      */
     loadAssets() {
-	this.load.image('returnDoor', 'assets/dooropen_100x100.png');
-        this.load.image('pressr', 'assets/pressr.png');
+	      this.load.image('returnDoor', 'assets/dooropen_100x100.png');
+        this.load.image('pressr', 'assets/Room1/pressr.png');
         this.load.image('one_lesson_BG', 'assets/one_lesson_BG.png');
         this.load.image('character_north', 'assets/character_north.png');
         this.load.image('character_east', 'assets/character_east.png');
         this.load.image('character_south', 'assets/character_south.png');
         this.load.image('character_west', 'assets/character_west.png');
-        this.load.image('redCharacter', 'assets/redCharacter.png');
         this.load.image('activity1A', 'assets/Panels/RoomOne/PanelOneA.png');
         this.load.image('activity1B', 'assets/Panels/RoomOne/PanelOneB.png');
         this.load.image('activity2', 'assets/Panels/RoomOne/PanelTwo.png');
@@ -155,25 +154,25 @@ class three_lesson extends Phaser.Scene {
         this.load.image('wall_info_4', 'assets/wall_art.png');
         this.load.image('wall_info_5', 'assets/wall_art.png');
         this.load.image('wall_info_6', 'assets/wall_art.png');
-        this.load.image('floor3', 'assets/floor_3.png');
-        this.load.image('cardboard_box', 'assets/cardboard_box.png');
-        this.load.image('paper_stack', 'assets/paper_stack.png');
+        this.load.image('floor3', 'assets/Room1/floor_3.png');
+        this.load.image('cardboard_box', 'assets/Room1/cardboard_box.png');
+        this.load.image('paper_stack', 'assets/Room1/paper_stack.png');
         this.load.image('paper', 'assets/single_paper.png');
         this.load.image('r1_map', 'assets/Map/room2inprogress.png');
         this.load.image('notebook', 'assets/notebook.png');
         this.load.image('activityLocked', 'assets/activityLocked.png');
         this.load.image('help_menu', 'assets/help_menu.png');
-        this.load.image('correctPlacements0', 'assets/placements0.png');
-        this.load.image('correctPlacements1', 'assets/placements1.png');
-        this.load.image('correctPlacements2', 'assets/placements2.png');
-        this.load.image('incomeStatement' , 'assets/incomeStatement.png');
-        this.load.image('balanceSheet', 'assets/balanceSheet.png');
-        this.load.image('retainedEarnings' , 'assets/retainedEarnings.png');
-        this.load.image('incomeStatementText' ,'assets/incomeStatementText.png');
-        this.load.image('balanceSheetText', 'assets/balanceSheetText.png');
-        this.load.image('retainedEarningsText' , 'assets/retainedEarningsText.png');
+        this.load.image('correctPlacements0', 'assets/Room1/placements0.png');
+        this.load.image('correctPlacements1', 'assets/Room1/placements1.png');
+        this.load.image('correctPlacements2', 'assets/Room1/placements2.png');
+        this.load.image('incomeStatement' , 'assets/Documents/incomeStatement.png');
+        this.load.image('balanceSheet', 'assets/Documents/balanceSheet.png');
+        this.load.image('retainedEarnings' , 'assets/Documents/retainedEarnings.png');
+        this.load.image('incomeStatementText' ,'assets/Room1/incomeStatementText.png');
+        this.load.image('balanceSheetText', 'assets/Room1/balanceSheetText.png');
+        this.load.image('retainedEarningsText' , 'assets/Room1/retainedEarningsText.png');
         this.load.image('hole', 'assets/hole.png');
-        this.load.image('congrats', 'assets/congrats.png');
+        this.load.image('congrats', 'assets/Room1/congrats.png');
         this.load.image('hole', 'assets/hole.png');
         this.load.image('leftArrow' , 'assets/leftArrow.png');
         this.load.image('rightArrow' , 'assets/rightArrowTest.png');
@@ -305,7 +304,7 @@ class three_lesson extends Phaser.Scene {
         this.hole.setScale(0.75);
         this.leftArrow.setScale(.2);
         this.rightArrow.setScale(.2);
-	this.returnDoor.setScale(1.5);
+	      this.returnDoor.setScale(1.5);
     }
 
     /* setRotations
@@ -320,7 +319,7 @@ class three_lesson extends Phaser.Scene {
         this.cardboard_box_2.rotation = 0;
         this.cardboard_box_3.rotation = 0;
         this.leftArrow.setRotation(3.14);
-	this.returnDoor.angle = 270;
+	      this.returnDoor.angle = 270;
     }
 
     /* createInteractionZones
@@ -329,7 +328,6 @@ class three_lesson extends Phaser.Scene {
      */
     createInteractionZones() {
         this.graphics = this.add.graphics({fillStyle: {color: 0xFFFFFF, alpha: 0.0}});
-        //this.graphicsTest = this.add.graphics({fillStyle: {color: 0x4F4F4F, alpha: 1.0}});
         //TOP ZONES
         //xpos ypos x   y
         this.top_left_info = new Phaser.Geom.Rectangle(175,150,240,150);
@@ -352,7 +350,7 @@ class three_lesson extends Phaser.Scene {
         this.bot_right_info = new Phaser.Geom.Rectangle(1120,565,240,150);
         this.graphics.fillRectShape(this.bot_right_info);
 
-        
+
         this.quiz1 = new Phaser.Geom.Rectangle(1120,308,240,250);
         this.graphics.fillRectShape(this.quiz1);
 
@@ -460,7 +458,7 @@ class three_lesson extends Phaser.Scene {
 		    // BUT
 		    //   if coming back from further on, the max remembers there.
 		    roomProgress = Math.max(2,roomProgress);
-                    this.scene.start("two_Lesson");
+                    this.scene.start("Building_Blocks");
                 }
             }
 
@@ -550,7 +548,7 @@ class three_lesson extends Phaser.Scene {
             this.E_KeyImg.y = this.character_north.y;
             this.E_KeyImg.alpha = 1.0;
             if (this.key_E.isDown) {
-		this.scene.start("zero_Lesson");
+		this.scene.start("room_Zero");
             }
         } else {
             this.hideActivities();
@@ -720,6 +718,7 @@ class three_lesson extends Phaser.Scene {
         this.incomeStatement.alpha = 0.0;
         this.balanceSheet.alpha = 0.0;
         this.retainedEarnings.alpha = 0.0;
+        this.unlocked = true;
     }
 
     /* activateQuiz

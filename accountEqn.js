@@ -1,7 +1,7 @@
-class one_lesson extends Phaser.Scene {
+class accountEqn extends Phaser.Scene {
 
   constructor() {
-    super("one_Lesson");
+    super("Account_Eqn");
     this.room3_quizActive = false;
     this.room3_activatedQuiz = false;
     this.room3_unlocked = false;
@@ -11,13 +11,11 @@ class one_lesson extends Phaser.Scene {
     this.room3_activityThreeOpened = false;
     this.room3_activityFourOpened = false;
     this.room3_activityFiveOpened = false;
-    //this.room3_activitySixOpened = false;
     this.room3_activity1Locked = false;
     this.room3_activity2Locked = true;
     this.room3_activity3Locked = true;
     this.room3_activity4Locked = true;
     this.room3_activity5Locked = true;
-    //this.room3_activity6Locked = true;
     this.room3_activity5Complete = false;
     this.room3_helpOpen = false;
     this.room3_counter = 0;
@@ -80,7 +78,6 @@ class one_lesson extends Phaser.Scene {
       this.room3_activity3Locked = false;
       this.room3_activity4Locked = false;
       this.room3_activity5Locked = false;
-      //this.room3_activity6Locked = false;
       this.room3_activity5Complete = true;
       this.room3_unlocked = true;
     }
@@ -139,7 +136,6 @@ class one_lesson extends Phaser.Scene {
    * Loads images to be used and sets them into a variable name.
   */
   loadAssets() {
-  this.load.image('room3_pressr', 'assets/pressr.png');
     this.load.image('room3_one_lesson_BG', 'assets/one_lesson_BG.png');
     this.load.image('room3_character_north', 'assets/character_north.png');
     this.load.image('room3_character_east', 'assets/character_east.png');
@@ -166,7 +162,7 @@ class one_lesson extends Phaser.Scene {
     this.load.image('room3_wall_info_4', 'assets/wall_art.png');
     this.load.image('room3_wall_info_5', 'assets/wall_art.png');
     this.load.image('room3_wall_info_6', 'assets/wall_art.png');
-    this.load.image('room3_floor', 'assets/floor_room3.jpg');
+    this.load.image('room3_floor', 'assets/Room3/floor_room3.jpg');
     this.load.image('room3_map', 'assets/map.png');
     this.load.image('room3_notebook', 'assets/notebook.png');
     this.load.image('room3_activityLocked', 'assets/activityLocked.png');
@@ -259,7 +255,6 @@ class one_lesson extends Phaser.Scene {
     this.room3_activity5A.setDepth(100);
     this.room3_activity5B.setDepth(100);
     this.room3_map.setDepth(100);
-    // this.room3_paper_stack.setDepth(1);
     this.room3_notebook.setDepth(100);
     this.room3_help_menu.setDepth(100);
 
@@ -443,7 +438,7 @@ class one_lesson extends Phaser.Scene {
       this.room3_E_KeyImg.y = this.room3_character_north.y+75;
       this.room3_E_KeyImg.alpha = 1.0;
       if (this.room3_key_E.isDown && this.room3_activity4Locked == false) {
-            this.scene.start("one_Activity");
+            this.scene.start("AccountEqn_Act");
             this.checkActivityOpened(false, false, false, true, false, false);
             this.room3_activity5Locked = false;
   } else if (this.room3_key_E.isDown && this.room3_activity4Locked == true){
@@ -477,23 +472,7 @@ class one_lesson extends Phaser.Scene {
       if (this.room3_key_E.isDown && this.room3_activity5Complete == true) {
         this.scene.start("winners_Room");
       }
-}
-
-	// else if (Phaser.Geom.Rectangle.ContainsPoint(this.room3_bot_right_info, this.room3_character_north)) {
-	// 	this.room3_E_KeyImg.x = this.room3_character_north.x;
-	// 	this.room3_E_KeyImg.y = this.room3_character_north.y+75;
-	// 	this.room3_E_KeyImg.alpha = 1.0;
-	// 	if (this.room3_key_E.isDown && this.room3_activity6Locked == false) {
-	// 		this.room3_activity6A.alpha = 1.0;
-	// 		this.checkActivityOpened(false, false, false, false, false, true);
-	// 		activity6Complete = true;
-	// 	}
-	// 	else if (this.room3_key_E.isDown && this.room3_activity6Locked == true){
-	// 		this.room3_activityLocked.alpha = 1.0;
-	// 		this.room3_characterMoveable = false;
-  //      }
-
-
+    }
     else {
     this.hideActivities();
     this.room3_E_KeyImg.alpha = 0.0;

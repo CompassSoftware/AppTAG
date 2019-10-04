@@ -1,6 +1,6 @@
-class two_lesson extends Phaser.Scene {
+class buildingBlocks extends Phaser.Scene {
     constructor() {
-        super("two_Lesson");
+        super("Building_Blocks");
         this.room2_quizActive = false;
         this.room2_activatedQuiz = false;
         this.room2_unlocked = false;
@@ -41,7 +41,6 @@ class two_lesson extends Phaser.Scene {
         this.createInteractionZones();
         this.assignKeybinds();
         this.imagesDraggable();
-        // this.bmpText = game.add.bitmapText(200, 100, 'carrier_command', 'To next Room', 64);
     }
 
     update(delta) {
@@ -85,7 +84,7 @@ class two_lesson extends Phaser.Scene {
             this.room2_activity6Complete = true;
             this.room2_unlocked = true;
         }
-        if(this.room2_unlocked == true) {
+        if(this.room2_activity6Complete == true) {
           this.room2_hole_activity.alpha = 1.0;
           this.room2_hole_nextRoom.alpha = 1.0;
         }
@@ -134,13 +133,11 @@ class two_lesson extends Phaser.Scene {
      * Loads images to be used and sets them into a variable name.
      */
     loadAssets() {
-        this.load.image('room2_pressr', 'assets/pressr.png');
         this.load.image('room2_one_lesson_BG', 'assets/one_lesson_BG.png');
         this.load.image('room2_character_north', 'assets/character_north.png');
         this.load.image('room2_character_east', 'assets/character_east.png');
         this.load.image('room2_character_south', 'assets/character_south.png');
         this.load.image('room2_character_west', 'assets/character_west.png');
-        this.load.image('room2_redCharacter', 'assets/redCharacter.png');
         this.load.image('room2_activity1A', 'assets/Panels/RoomTwo/PanelOneA.png');
         this.load.image('room2_activity1B', 'assets/Panels/RoomTwo/PanelOneB.png');
         this.load.image('room2_activity1C', 'assets/Panels/RoomTwo/PanelOneC.png');
@@ -171,8 +168,8 @@ class two_lesson extends Phaser.Scene {
         this.load.image('room2_wall_info_4', 'assets/wall_art.png');
         this.load.image('room2_wall_info_5', 'assets/wall_art.png');
         this.load.image('room2_wall_info_6', 'assets/wall_art.png');
-        this.load.image('room2_floor', 'assets/floor_1.jpg');
-        this.load.image('room2_hole_activity', 'assets/crackedHole.png');
+        this.load.image('room2_floor', 'assets/Room2/floor_1.jpg');
+        this.load.image('room2_hole_activity', 'assets/Room2/crackedHole.png');
         this.load.image('room2_hole_nextRoom', 'assets/hole.png');
         this.load.image('room2_map', 'assets/map/room3inprogress.png');
         this.load.image('room2_notebook', 'assets/notebook.png');
@@ -335,7 +332,6 @@ class two_lesson extends Phaser.Scene {
      */
     createInteractionZones() {
         this.room2_graphics = this.add.graphics({fillStyle: {color: 0xFFFFFF, alpha: 0.0}});
-        //this.graphicsTest = this.add.graphics({fillStyle: {color: 0x4F4F4F, alpha: 1.0}});
         //TOP ZONES
         //xpos ypos x   y
         this.room2_top_left_info = new Phaser.Geom.Rectangle(175,100,240,150);
@@ -437,7 +433,6 @@ class two_lesson extends Phaser.Scene {
                 this.room2_characterMoveable = false;
                 this.checkActivityOpened(true, false, false, false, false, false);
                 this.room2_activity2Locked = false;
-                this.room2_activity6Complete = false;
             }
 
         } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_bot_left_info, this.room2_character_north)) {
@@ -449,7 +444,6 @@ class two_lesson extends Phaser.Scene {
                 this.resetArrows();
                 this.checkActivityOpened(false, true, false, false, false, false);
                 this.room2_activity3Locked = false;
-                this.room2_activity6Complete = false;
             } else if (this.room2_key_E.isDown && this.room2_activity2Locked == true) {
                 this.room2_activityLocked.alpha = 1.0;
                 this.room2_characterMoveable = false;
@@ -464,7 +458,6 @@ class two_lesson extends Phaser.Scene {
                 this.resetArrows();
                 this.checkActivityOpened(false, false, true, false, false, false);
                 this.room2_activity4Locked = false;
-                this.room2_activity6Complete = false;
             } else if (this.room2_key_E.isDown && this.room2_activity3Locked == true){
                 this.room2_activityLocked.alpha = 1.0;
                 this.room2_characterMoveable = false;
@@ -479,7 +472,6 @@ class two_lesson extends Phaser.Scene {
                 this.resetArrows();
                 this.checkActivityOpened(false, false, false, true, false, false);
                 this.room2_activity5Locked = false;
-                this.room2_activity6Complete = false;
             } else if (this.room2_key_E.isDown && this.room2_activity4Locked == true){
                 this.room2_activityLocked.alpha = 1.0;
                 this.room2_characterMoveable = false;
@@ -495,7 +487,6 @@ class two_lesson extends Phaser.Scene {
                 this.resetArrows();
                 this.checkActivityOpened(false, false, false, false, true, false);
                 this.room2_activity6Locked = false;
-                this.room2_activity6Complete = false;
             }
             else if (this.room2_key_E.isDown && this.room2_activity5Locked == true){
                 this.room2_activityLocked.alpha = 1.0;
@@ -525,7 +516,7 @@ class two_lesson extends Phaser.Scene {
               this.room2_E_KeyImg.alpha = 1.0;
               if (this.room2_key_E.isDown) {
                   console.log("To room 3")
-                  this.scene.start("one_Lesson");
+                  this.scene.start("Account_Eqn");
               }
             }
 
@@ -540,7 +531,7 @@ class two_lesson extends Phaser.Scene {
               if(this.room2_key_E.isDown) {
                 console.log("To room2 activity")
                 roomProgress += 1;
-                this.scene.start("two_Activity");
+                this.scene.start("BuildBlock_Act1");
               }
             }
 
@@ -549,21 +540,6 @@ class two_lesson extends Phaser.Scene {
             this.hideActivities();
             this.room2_E_KeyImg.alpha = 0.0;
         }
-    }
-
-    /* checkActivityOpened
-     *
-     * helper method to set the activities to opened or closed
-     */
-
-    checkActivityOpened(room2_one, room2_two, room2_three, room2_four, room2_five, room2_six) {
-        this.room2_activityOneOpened = room2_one;
-        this.room2_activityTwoOpened = room2_two;
-        this.room2_activityThreeOpened = room2_three;
-        this.room2_activityFourOpened = room2_four;
-        this.room2_activityFiveOpened = room2_five;
-        this.room2_activitySixOpened = room2_six;
-
     }
 
     /* setCharacterAlpha

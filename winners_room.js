@@ -104,7 +104,7 @@ class winners_room extends Phaser.Scene {
   */
   loadAssets() {
   this.load.image('winnerRoom_pressr', 'assets/pressr.png');
-    this.load.image('winnerRoom_one_lesson_BG', 'assets/Winners Room/winners_room_bg.png');
+    this.load.image('winnerRoom_one_lesson_BG', 'assets/WinnersRoom/winners_room_bg.png');
     this.load.image('winnerRoom_character_north', 'assets/character_north.png');
     this.load.image('winnerRoom_character_east', 'assets/character_east.png');
     this.load.image('winnerRoom_character_south', 'assets/character_south.png');
@@ -130,13 +130,13 @@ class winners_room extends Phaser.Scene {
     this.load.image('winnerRoom_wall_info_4', 'assets/wall_art.png');
     this.load.image('winnerRoom_wall_info_5', 'assets/wall_art.png');
     this.load.image('winnerRoom_wall_info_6', 'assets/wall_art.png');
-    this.load.image('winnerRoom_floor', 'assets/winnerFloor.jpeg');
+    this.load.image('winnerRoom_floor', 'assets/WinnersRoom/winnerFloor.jpeg');
     this.load.image('winnerRoom_map', 'assets/map.png');
     this.load.image('winnerRoom_notebook', 'assets/notebook.png');
     this.load.image('winnerRoom_activityLocked', 'assets/activityLocked.png');
     this.load.image('winnerRoom_help_menu', 'assets/help_menu.png');
     this.load.image('winnerRoom_rightArrow' , 'assets/rightArrowTest.png');
-    this.load.image('trophy', 'assets/Winners Room/trophy.jpg');
+    this.load.image('trophy', 'assets/WinnersRoom/trophy.jpg');
 
   }
 
@@ -235,7 +235,6 @@ class winners_room extends Phaser.Scene {
     this.winnerRoom_activity5A.setDepth(100);
     this.winnerRoom_activity5B.setDepth(100);
     this.winnerRoom_map.setDepth(100);
-    // this.winnerRoom_paper_stack.setDepth(1);
     this.winnerRoom_notebook.setDepth(100);
     this.winnerRoom_help_menu.setDepth(100);
   }
