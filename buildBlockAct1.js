@@ -612,101 +612,101 @@ class buildBlockAct1 extends Phaser.Scene {
     this.room2a_puzzle2.setVisible(true);
 	this.room2a_puzzle2.setScale(0.6);
 
-	this.room2a_puzzle3 = this.add.image(440, 100, 'room2a_puzzle3');
+	  this.room2a_puzzle3 = this.add.image(440, 100, 'room2a_puzzle3');
     this.room2a_puzzle3.setVisible(true);
-	this.room2a_puzzle3.setScale(0.6);
+	  this.room2a_puzzle3.setScale(0.6);
 
-	this.room2a_puzzle4 = this.add.image(560, 100, 'room2a_puzzle4');
+	  this.room2a_puzzle4 = this.add.image(560, 100, 'room2a_puzzle4');
     this.room2a_puzzle4.setVisible(true);
-	this.room2a_puzzle4.setScale(0.6);
+	  this.room2a_puzzle4.setScale(0.6);
 
-	this.room2a_puzzle5 = this.add.image(680, 100, 'room2a_puzzle5');
+	  this.room2a_puzzle5 = this.add.image(680, 100, 'room2a_puzzle5');
     this.room2a_puzzle5.setVisible(true);
-	this.room2a_puzzle5.setScale(0.6);
+	  this.room2a_puzzle5.setScale(0.6);
 
-	this.room2a_puzzle6 = this.add.image(800, 100, 'room2a_puzzle6');
+	  this.room2a_puzzle6 = this.add.image(800, 100, 'room2a_puzzle6');
     this.room2a_puzzle6.setVisible(true);
-	this.room2a_puzzle6.setScale(0.6);
+	  this.room2a_puzzle6.setScale(0.6);
 
-	this.room2a_puzzle7 = this.add.image(920, 100, 'room2a_puzzle7');
+	  this.room2a_puzzle7 = this.add.image(920, 100, 'room2a_puzzle7');
     this.room2a_puzzle7.setVisible(true);
-	this.room2a_puzzle7.setScale(0.6);
+	  this.room2a_puzzle7.setScale(0.6);
 
-	this.room2a_puzzle8 = this.add.image(1040, 100, 'room2a_puzzle8');
+  	this.room2a_puzzle8 = this.add.image(1040, 100, 'room2a_puzzle8');
     this.room2a_puzzle8.setVisible(true);
-	this.room2a_puzzle8.setScale(0.6);
+	  this.room2a_puzzle8.setScale(0.6);
 
-	this.room2a_puzzle9 = this.add.image(1160, 100, 'room2a_puzzle9');
+	  this.room2a_puzzle9 = this.add.image(1160, 100, 'room2a_puzzle9');
     this.room2a_puzzle9.setVisible(true);
-	this.room2a_puzzle9.setScale(0.6);
+	  this.room2a_puzzle9.setScale(0.6);
 
-	this.room2a_puzzle10 = this.add.image(1280, 100, 'room2a_puzzle10');
+	  this.room2a_puzzle10 = this.add.image(1280, 100, 'room2a_puzzle10');
     this.room2a_puzzle10.setVisible(true);
-	this.room2a_puzzle10.setScale(0.6);
+	  this.room2a_puzzle10.setScale(0.6);
 
-	this.room2a_puzzle11 = this.add.image(200, 250, 'room2a_puzzle11');
+	  this.room2a_puzzle11 = this.add.image(200, 250, 'room2a_puzzle11');
     this.room2a_puzzle11.setVisible(true);
-	this.room2a_puzzle11.setScale(0.6);
+	  this.room2a_puzzle11.setScale(0.6);
 
-	this.room2a_puzzle12 = this.add.image(320, 250, 'room2a_puzzle12');
+	  this.room2a_puzzle12 = this.add.image(320, 250, 'room2a_puzzle12');
     this.room2a_puzzle12.setVisible(true);
-	this.room2a_puzzle12.setScale(0.6);
+	  this.room2a_puzzle12.setScale(0.6);
 
-	this.room2a_puzzle13 = this.add.image(440, 250, 'room2a_puzzle13');
+	  this.room2a_puzzle13 = this.add.image(440, 250, 'room2a_puzzle13');
     this.room2a_puzzle13.setVisible(true);
-	this.room2a_puzzle13.setScale(0.6);
+	  this.room2a_puzzle13.setScale(0.6);
 
-	this.room2a_puzzle14 = this.add.image(560, 250, 'room2a_puzzle14');
+	  this.room2a_puzzle14 = this.add.image(560, 250, 'room2a_puzzle14');
     this.room2a_puzzle14.setVisible(true);
-	this.room2a_puzzle14.setScale(0.6);
+	  this.room2a_puzzle14.setScale(0.6);
 
-	this.room2a_puzzle15 = this.add.image(680, 250, 'room2a_puzzle15');
+	  this.room2a_puzzle15 = this.add.image(680, 250, 'room2a_puzzle15');
     this.room2a_puzzle15.setVisible(true);
-	this.room2a_puzzle15.setScale(0.6);
+	  this.room2a_puzzle15.setScale(0.6);
 
-	this.room2a_puzzle16 = this.add.image(800, 250, 'room2a_puzzle16');
+	  this.room2a_puzzle16 = this.add.image(800, 250, 'room2a_puzzle16');
     this.room2a_puzzle16.setVisible(true);
-	this.room2a_puzzle16.setScale(0.6);
+	  this.room2a_puzzle16.setScale(0.6);
 
-	this.room2a_puzzle17 = this.add.image(920, 250, 'room2a_puzzle17');
+	  this.room2a_puzzle17 = this.add.image(920, 250, 'room2a_puzzle17');
     this.room2a_puzzle17.setVisible(true);
-	this.room2a_puzzle17.setScale(0.6);
+	  this.room2a_puzzle17.setScale(0.6);
 
-	this.room2a_puzzle18 = this.add.image(1040, 250, 'room2a_puzzle18');
+	  this.room2a_puzzle18 = this.add.image(1040, 250, 'room2a_puzzle18');
     this.room2a_puzzle18.setVisible(true);
-	this.room2a_puzzle18.setScale(0.6);
+	  this.room2a_puzzle18.setScale(0.6);
 
-	this.room2a_puzzle19 = this.add.image(1160, 250, 'room2a_puzzle19');
+	  this.room2a_puzzle19 = this.add.image(1160, 250, 'room2a_puzzle19');
     this.room2a_puzzle19.setVisible(true);
-	this.room2a_puzzle19.setScale(0.6);
+	  this.room2a_puzzle19.setScale(0.6);
 
-	this.room2a_puzzle20 = this.add.image(1280, 250, 'room2a_puzzle20');
+	  this.room2a_puzzle20 = this.add.image(1280, 250, 'room2a_puzzle20');
     this.room2a_puzzle20.setVisible(true);
-	this.room2a_puzzle20.setScale(0.6);
-
+	  this.room2a_puzzle20.setScale(0.6);
 
     }
+
     ActivityRotations(){
     this.room2a_puzzle1.angle = Math.floor(Math.random() * 3) * 90;
     this.room2a_puzzle2.angle = Math.floor(Math.random() * 3) * 90;
-	this.room2a_puzzle3.angle = Math.floor(Math.random() * 3) * 90;
-	this.room2a_puzzle4.angle = Math.floor(Math.random() * 3) * 90;
-	this.room2a_puzzle5.angle = Math.floor(Math.random() * 3) * 90;
-	this.room2a_puzzle6.angle = Math.floor(Math.random() * 3) * 90;
-	this.room2a_puzzle7.angle = Math.floor(Math.random() * 3) * 90;
-	this.room2a_puzzle8.angle = Math.floor(Math.random() * 3) * 90;
-	this.room2a_puzzle9.angle = Math.floor(Math.random() * 3) * 90;
-	this.room2a_puzzle10.angle = Math.floor(Math.random() * 3) * 90;
-	this.room2a_puzzle11.angle = Math.floor(Math.random() * 3) * 90;
-	this.room2a_puzzle12.angle = Math.floor(Math.random() * 3) * 90;
-	this.room2a_puzzle13.angle = Math.floor(Math.random() * 3) * 90;
-	this.room2a_puzzle14.angle = Math.floor(Math.random() * 3) * 90;
-	this.room2a_puzzle15.angle = Math.floor(Math.random() * 3) * 90;
-	this.room2a_puzzle16.angle = Math.floor(Math.random() * 3) * 90;
-	this.room2a_puzzle17.angle = Math.floor(Math.random() * 3) * 90;
-	this.room2a_puzzle18.angle = Math.floor(Math.random() * 3) * 90;
-	this.room2a_puzzle19.angle = Math.floor(Math.random() * 3) * 90;
-	this.room2a_puzzle20.angle = Math.floor(Math.random() * 3) * 90;
+	  this.room2a_puzzle3.angle = Math.floor(Math.random() * 3) * 90;
+	  this.room2a_puzzle4.angle = Math.floor(Math.random() * 3) * 90;
+	  this.room2a_puzzle5.angle = Math.floor(Math.random() * 3) * 90;
+	  this.room2a_puzzle6.angle = Math.floor(Math.random() * 3) * 90;
+	  this.room2a_puzzle7.angle = Math.floor(Math.random() * 3) * 90;
+	  this.room2a_puzzle8.angle = Math.floor(Math.random() * 3) * 90;
+	  this.room2a_puzzle9.angle = Math.floor(Math.random() * 3) * 90;
+	  this.room2a_puzzle10.angle = Math.floor(Math.random() * 3) * 90;
+	  this.room2a_puzzle11.angle = Math.floor(Math.random() * 3) * 90;
+	  this.room2a_puzzle12.angle = Math.floor(Math.random() * 3) * 90;
+	  this.room2a_puzzle13.angle = Math.floor(Math.random() * 3) * 90;
+	  this.room2a_puzzle14.angle = Math.floor(Math.random() * 3) * 90;
+	  this.room2a_puzzle15.angle = Math.floor(Math.random() * 3) * 90;
+	  this.room2a_puzzle16.angle = Math.floor(Math.random() * 3) * 90;
+	  this.room2a_puzzle17.angle = Math.floor(Math.random() * 3) * 90;
+	  this.room2a_puzzle18.angle = Math.floor(Math.random() * 3) * 90;
+	  this.room2a_puzzle19.angle = Math.floor(Math.random() * 3) * 90;
+	  this.room2a_puzzle20.angle = Math.floor(Math.random() * 3) * 90;
 
     }
 
@@ -716,7 +716,7 @@ class buildBlockAct1 extends Phaser.Scene {
   */
   createActivityZones(){
     var room2a_activityZones = [];
-	this.room2a_activityZone1 = new Phaser.Geom.Rectangle(150,0,100,100);
+	  this.room2a_activityZone1 = new Phaser.Geom.Rectangle(150,0,100,100);
     this.room2a_graphics.fillRectShape(this.room2a_activityZone1);
     room2a_activityZones.push(this.room2a_activityZone1);
 
@@ -815,13 +815,13 @@ class buildBlockAct1 extends Phaser.Scene {
     else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_activityZone2, this.room2a_character_north)){
         this.displayE();
 		if (this.room2a_key_E.isDown) {
-		}
+	  	}
     }
     else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_activityZone3, this.room2a_character_north)){
         this.displayE();
-		if (this.room2a_key_E.isDown) {
+		  if (this.room2a_key_E.isDown) {
 
-		}
+		  }
     }
     else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_activityZone4, this.room2a_character_north)){
         this.displayE();
