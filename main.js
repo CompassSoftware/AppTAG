@@ -6,6 +6,7 @@ var config = {
   scene: [tagIntro, courseFinancialIntro, buildingBlocks, buildBlockAct1, accountEqn, accountEqnAct, winners_room]
 
 };
+
 var quizActive = false;
 var activity1Locked = false;
 var activity2Locked = true;
