@@ -259,8 +259,10 @@ Info Panels like these contain important information and lessons that help you p
 			    // Normal sequence: roomProgress was 0 and is going to 1.
 			    // BUT
           //   if coming back from further on, the max remembers there.
+
           if(roomProgress < 1000)
             roomProgress = 1000;
+
           this.scene.start("Course_Fin_Intro");
       }
 			this.E_KeyImg.x = this.character_north.x;
