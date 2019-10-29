@@ -182,7 +182,7 @@ class winners_room extends Phaser.Scene {
     this.trophy = this.add.image(450,450, 'trophy');
     this.trophy2 = this.add.image(1050,450,'trophy');
 
-    this.winner_text = this.add.text(530, 80, "You won! Congrats")
+    this.winner_text = this.add.text(400, 80, "Congrats, " + name + "! You won")
     this.winner_text.setFontSize(50);
     this.winner_text.setStroke("Black",4);
   }
