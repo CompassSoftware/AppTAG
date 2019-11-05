@@ -9,7 +9,6 @@ class tagIntro extends Phaser.Scene {
     this.paperMoveable = false;
     this.activityOneOpened = false;
     this.helpOpen = false;
-
   }
   //load assets in preload()
 

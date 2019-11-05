@@ -41,6 +41,7 @@ class accountEqnAct extends Phaser.Scene {
     if (this.actOne_key_H.isDown) {
       this.helpMenu();
     }
+    document.getElementById("background").volume = 0.2;
 
     if (this.actOne_activityOneOpened) {
       this.checkNextPage();
@@ -342,6 +343,7 @@ class accountEqnAct extends Phaser.Scene {
           this.actOne_E_KeyImg.y = this.character.y-75;
           this.actOne_E_KeyImg.alpha = 1.0;
           if(this.actOne_key_E.isDown) {
+            document.getElementById("correct").play();
             this.actOne_greenCheck.alpha = 1.0;
             this.assetCorrect = true;
           }
@@ -351,6 +353,7 @@ class accountEqnAct extends Phaser.Scene {
           this.actOne_E_KeyImg.y = this.character.y-75;
           this.actOne_E_KeyImg.alpha = 1.0;
           if(this.actOne_key_E.isDown) {
+            document.getElementById("wrong").play();
             this.actOne_redX.alpha = 1.0;
           }
 
@@ -360,6 +363,7 @@ class accountEqnAct extends Phaser.Scene {
           this.actOne_E_KeyImg.y = this.character.y-75;
           this.actOne_E_KeyImg.alpha = 1.0;
           if(this.actOne_key_E.isDown) {
+            document.getElementById("correct").play();
             this.actOne_greenCheck.alpha = 1.0;
             this.revenueCorrect = true;
             this.setHoleAlpha();
@@ -370,6 +374,7 @@ class accountEqnAct extends Phaser.Scene {
           this.actOne_E_KeyImg.y = this.character.y-75;
           this.actOne_E_KeyImg.alpha = 1.0;
           if(this.actOne_key_E.isDown) {
+            document.getElementById("wrong").play();
             this.actOne_redX.alpha = 1.0;
           }
         }

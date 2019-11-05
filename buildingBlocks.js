@@ -20,6 +20,7 @@ class buildingBlocks extends Phaser.Scene {
         this.room2_activity6Complete = false;
         this.room2_helpOpen = false;
         this.counter = 0;
+        document.getElementById("background").volume = 0.8;
 
     }
     //load assets in preload()

@@ -15,6 +15,7 @@ class courseFinancialIntro extends Phaser.Scene {
         this.helpOpen = false;
         this.holeOpened = false;
         this.counter = 0;
+        document.getElementById("background").volume = 0.8;
     }
     //load assets in preload()
 
@@ -719,6 +720,8 @@ class courseFinancialIntro extends Phaser.Scene {
         this.balanceSheet.alpha = 0.0;
         this.retainedEarnings.alpha = 0.0;
         this.unlocked = true;
+        document.getElementById("background").volume = 1;
+
     }
 
     /* activateQuiz
@@ -726,6 +729,7 @@ class courseFinancialIntro extends Phaser.Scene {
      * Method that starts the quiz
      */
     activateQuiz() {
+        document.getElementById("background").volume = 0.2;
         this.hole.setVisible(false);
         this.paper_stack.setVisible(true);
 
@@ -869,6 +873,7 @@ class courseFinancialIntro extends Phaser.Scene {
                 this.incomeStatement.setVisible(false);
             //THE RIGHT BOX
             if (Phaser.Geom.Rectangle.ContainsPoint(this.box_1_zone, this.paper)) {
+                document.getElementById("correct").play();
                 this.paper.setVisible(false);
                 this.paperTwo.setVisible(true);
                 this.paperTwo.setInteractive();
@@ -876,11 +881,13 @@ class courseFinancialIntro extends Phaser.Scene {
                 this.updateCorrectImage();
 
             } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_2_zone, this.paper) /*&& this.paperCount == 1*/) {
+                document.getElementById("wrong").play();
                 this.paper.x = this.paper_stack.x;
                 this.paper.y = this.paper_stack.y + 600;
                 this.updateCorrectImage();
 
             } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_3_zone, this.paper)/* && this.paperCount == 1*/) {
+                document.getElementById("wrong").play();
                 this.paper.x = this.paper_stack.x;
                 this.paper.y = this.paper_stack.y + 600;
                 this.updateCorrectImage();
@@ -900,6 +907,7 @@ class courseFinancialIntro extends Phaser.Scene {
             this.retainedEarnings.setVisible(false);
 
         if (Phaser.Geom.Rectangle.ContainsPoint(this.box_2_zone, this.paperTwo) /*&& this.paperCount == 2*/) {
+            document.getElementById("correct").play();
             this.paperTwo.setVisible(false);
             this.paperThree.setVisible(true);
             this.paperThree.setInteractive();
@@ -907,11 +915,13 @@ class courseFinancialIntro extends Phaser.Scene {
             this.updateCorrectImage();
 
         } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_1_zone, this.paperTwo) /*&& this.paperCount == 2*/) {
+            document.getElementById("wrong").play();
             this.paperTwo.x = this.paper_stack.x;
             this.paperTwo.y = this.paper_stack.y + 600;
             this.updateCorrectImage();
 
         } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_3_zone, this.paperTwo) /*&& this.paperCount == 2*/) {
+            document.getElementById("wrong").play();
             this.paperTwo.x = this.paper_stack.x;
             this.paperTwo.y = this.paper_stack.y + 600;
             this.updateCorrectImage();
@@ -933,15 +943,18 @@ class courseFinancialIntro extends Phaser.Scene {
             this.balanceSheet.setVisible(false);
 
         if (Phaser.Geom.Rectangle.ContainsPoint(this.box_3_zone, this.paperThree) && this.paperCount == 3) {
+            document.getElementById("correct").play();
             this.paperThree.setVisible(false);
             this.paperCount++;
             this.quitQuiz();
         } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_1_zone, this.paperThree) && this.paperCount == 3) {
+            document.getElementById("wrong").play();
             this.paperThree.x = this.paper_stack.x;
             this.paperThree.y = this.paper_stack.y + 600;
 
 
         } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_2_zone, this.paperThree) && this.paperCount == 3) {
+            document.getElementById("wrong").play();
             this.paperThree.x = this.paper_stack.x;
             this.paperThree.y = this.paper_stack.y + 600;
         }
