@@ -59,6 +59,25 @@ class accountEqn extends Phaser.Scene {
       this.checkNextPage();
     }
 
+
+    if(roomProgress >= 3005)
+      this.room3_wall_info_2.alpha = wallAlpha;
+
+    if(roomProgress >= 3010)
+      this.room3_wall_info_4.alpha = wallAlpha;
+
+    if(roomProgress >= 3015)
+      this.room3_wall_info_1.alpha = wallAlpha;
+
+    if(roomProgress >= 3020)
+      this.room3_wall_info_5.alpha = wallAlpha;
+
+    if(roomProgress >= 3025)
+      this.room3_wall_info_3.alpha = wallAlpha;
+
+    if(roomProgress >= 3030)
+      this.room3_wall_info_6.alpha = wallAlpha;
+
     if(roomProgress >= 3025 && this.room3_unlocked) {
       this.room3_hole.alpha = 1.0;
     }

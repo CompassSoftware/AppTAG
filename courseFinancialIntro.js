@@ -48,6 +48,25 @@ class courseFinancialIntro extends Phaser.Scene {
             this.unlocked = true;
         }
 
+        //Determines if the panel has been visited
+        if(roomProgress >= 1025)
+            this.wall_info_1.alpha = wallAlpha;
+        
+        if(roomProgress >= 1015)
+            this.wall_info_2.alpha = wallAlpha;
+
+        if(roomProgress >= 1005)
+            this.wall_info_3.alpha = wallAlpha;
+
+        if(roomProgress >= 1030)
+            this.wall_info_4.alpha = wallAlpha;
+
+        if(roomProgress >= 1010)
+            this.wall_info_5.alpha = wallAlpha;
+
+        if(roomProgress >= 1020)
+            this.wall_info_6.alpha = wallAlpha;
+
         if (this.key_M.isDown) {
             this.r1_map.alpha = 1.0;
             this.characterMoveable = false;
