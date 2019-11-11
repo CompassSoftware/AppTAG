@@ -7,6 +7,7 @@ class buildBlockAct2 extends Phaser.Scene {
         this.room2b_paperMoveable = false;
         this.room2b_helpOpen = false;
         this.holeOpened = false;
+        
     }
     //load assets in preload()
 

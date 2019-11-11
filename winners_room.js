@@ -21,6 +21,7 @@ class winners_room extends Phaser.Scene {
     this.winnerRoom_activity5Complete = false;
     this.winnerRoom_helpOpen = false;
     this.winnerRoom_counter = 0;
+    
   }
   //load assets in preload()
 

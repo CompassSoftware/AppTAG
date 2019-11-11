@@ -13,6 +13,7 @@ class accountEqn extends Phaser.Scene {
     this.room3_activityFiveOpened = false;
     this.room3_helpOpen = false;
     this.room3_counter = 0;
+    document.getElementById("background").volume = 0.8;
   }
   //load assets in preload()
 
@@ -39,6 +40,8 @@ class accountEqn extends Phaser.Scene {
     if (this.room3_key_H.isDown) {
       this.helpMenu();
     }
+    document.getElementById("background").volume = 0.8;
+
 
     if (this.room3_activityOneOpened) {
       this.checkNextPage();
