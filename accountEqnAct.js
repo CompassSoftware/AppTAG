@@ -59,18 +59,6 @@ class accountEqnAct extends Phaser.Scene {
       this.checkNextPage();
     }
 
-
-    if (this.actOne_key_U.isDown && this.actOne_unlocked == false) {
-      actOne_activity1Locked = false;
-      actOne_activity2Locked = false;
-      actOne_activity3Locked = false;
-      actOne_activity4Locked = false;
-      actOne_activity5Locked = false;
-      actOne_activity6Locked = false;
-      actOne_activity6Complete = true;
-      this.actOne_unlocked = true;
-    }
-
     if (this.actOne_key_M.isDown) {
       this.actOne_map.alpha = 1.0;
       actOne_characterMoveable = false;
@@ -384,7 +372,6 @@ class accountEqnAct extends Phaser.Scene {
           this.actOne_E_KeyImg.alpha = 1.0;
 
           if(this.actOne_key_E.isDown) {
-	      roomProgress = 35;
             this.scene.start("Account_Eqn");
           }
         }

@@ -257,24 +257,13 @@ Info Panels like these contain important information and lessons that help you p
 			if(this.key_E.isDown){
 			    // Normal sequence: roomProgress was 0 and is going to 1.
 			    // BUT
-			    //   if coming back from further on, the max remembers there.
-			    roomProgress = Math.max(1,roomProgress);
-			    if (roomProgress == 0) {
-				this.debugText = this.add.text(1200, 30, "roomProgress=0");
-			    }
-			    else if (roomProgress == 1) {
-				this.debugText = this.add.text(1200, 30, "roomProgress=1");
-			    }
-			    else {
-				this.debugText = this.add.text(1200, 30, "roomProgress=??");
-			    }
-			    this.debugText.setColor('black');
-			    this.debugText.setFont('bold 20px Arial');
-			    this.debugText.setVisible(true);
+          //   if coming back from further on, the max remembers there.
 
-			    this.scene.start("Course_Fin_Intro");
+          if(roomProgress < 1000)
+            roomProgress = 1000;
 
-			}
+          this.scene.start("Course_Fin_Intro");
+      }
 			this.E_KeyImg.x = this.character_north.x;
 			this.E_KeyImg.y = this.character_north.y-75;
 			this.E_KeyImg.alpha = 1.0;

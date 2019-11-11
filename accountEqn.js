@@ -11,12 +11,6 @@ class accountEqn extends Phaser.Scene {
     this.room3_activityThreeOpened = false;
     this.room3_activityFourOpened = false;
     this.room3_activityFiveOpened = false;
-    this.room3_activity1Locked = false;
-    this.room3_activity2Locked = true;
-    this.room3_activity3Locked = true;
-    this.room3_activity4Locked = true;
-    this.room3_activity5Locked = true;
-    this.room3_activity5Complete = false;
     this.room3_helpOpen = false;
     this.room3_counter = 0;
     document.getElementById("background").volume = 0.8;
@@ -68,20 +62,33 @@ class accountEqn extends Phaser.Scene {
       this.checkNextPage();
     }
 
-    if(this.room3_activity5Complete == true || roomProgress == 35) {
-	this.room3_activity5Complete = true;
-	roomProgress = 35;
+
+    if(roomProgress >= 3005)
+      this.room3_wall_info_2.alpha = wallAlpha;
+
+    if(roomProgress >= 3010)
+      this.room3_wall_info_4.alpha = wallAlpha;
+
+    if(roomProgress >= 3015)
+      this.room3_wall_info_1.alpha = wallAlpha;
+
+    if(roomProgress >= 3020)
+      this.room3_wall_info_5.alpha = wallAlpha;
+
+    if(roomProgress >= 3025)
+      this.room3_wall_info_3.alpha = wallAlpha;
+
+    if(roomProgress >= 3030)
+      this.room3_wall_info_6.alpha = wallAlpha;
+
+    if(roomProgress >= 3025 && this.room3_unlocked) {
       this.room3_hole.alpha = 1.0;
     }
 
 
-    if (this.room3_key_U.isDown && this.room3_unlocked == false) {
-      this.room3_activity1Locked = false;
-      this.room3_activity2Locked = false;
-      this.room3_activity3Locked = false;
-      this.room3_activity4Locked = false;
-      this.room3_activity5Locked = false;
-      this.room3_activity5Complete = true;
+    if (this.room3_key_U.isDown) {
+      roomProgress = 3025;
+      this.room3_hole.alpha = 1.0;
       this.room3_unlocked = true;
     }
 
@@ -144,7 +151,6 @@ class accountEqn extends Phaser.Scene {
     this.load.image('room3_character_east', 'assets/character_east.png');
     this.load.image('room3_character_south', 'assets/character_south.png');
     this.load.image('room3_character_west', 'assets/character_west.png');
-    this.load.image('room3_redCharacter', 'assets/redCharacter.png');
     this.load.image('room3_activity1A', 'assets/Panels/RoomThree/PanelOneA.png');
     this.load.image('room3_activity1B', 'assets/Panels/RoomThree/PanelOneB.png');
     this.load.image('room3_activity1C', 'assets/Panels/RoomThree/PanelOneC.png');
@@ -398,12 +404,15 @@ class accountEqn extends Phaser.Scene {
       this.room3_E_KeyImg.x = this.room3_character_north.x;
       this.room3_E_KeyImg.y = this.room3_character_north.y-75;
       this.room3_E_KeyImg.alpha = 1.0;
+      
       if (this.room3_key_E.isDown) {
+        if(roomProgress <= 3000)
+          roomProgress = 3005;
+        
         this.room3_activity1A.alpha = 1.0;
         this.resetArrows();
         this.room3_characterMoveable = false;
         this.checkActivityOpened(true, false, false, false, false, false);
-    this.room3_activity2Locked = false;
 
     //COME BACK AND CHANGE THIS LATER
       }
@@ -412,26 +421,35 @@ class accountEqn extends Phaser.Scene {
       this.room3_E_KeyImg.x = this.room3_character_north.x;
       this.room3_E_KeyImg.y = this.room3_character_north.y+75;
       this.room3_E_KeyImg.alpha = 1.0;
-    if (this.room3_key_E.isDown && this.room3_activity2Locked == false) {
+      console.log(roomProgress);
+      
+      if (this.room3_key_E.isDown && roomProgress >= 3005) {
+        if(roomProgress <= 3010)
+          roomProgress = 3010;
+
         this.room3_activity2A.alpha = 1.0;
         this.resetArrows();
         this.checkActivityOpened(false, true, false, false, false, false);
-    this.room3_activity3Locked = false;
-  } else if (this.room3_key_E.isDown && this.room3_activity2Locked == true) {
+  } else if (this.room3_key_E.isDown && roomProgress < 3005) {
           this.room3_activityLocked.alpha = 1.0;
           this.room3_characterMoveable = false;
-          }
+    }
 
     } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room3_top_left_info, this.room3_character_north)) {
       this.room3_E_KeyImg.x = this.room3_character_north.x;
       this.room3_E_KeyImg.y = this.room3_character_north.y-75;
       this.room3_E_KeyImg.alpha = 1.0;
-      if (this.room3_key_E.isDown && this.room3_activity3Locked == false) {
+      
+      if (this.room3_key_E.isDown && roomProgress >= 3010) {
+        if(roomProgress <= 3015)
+          roomProgress = 3015;
+
         this.room3_activity3A.alpha = 1.0;
         this.resetArrows();
         this.checkActivityOpened(false, false, true, false, false, false);
         this.room3_activity4Locked = false;
-  } else if (this.room3_key_E.isDown && this.room3_activity3Locked == true){
+
+  } else if (this.room3_key_E.isDown && roomProgress < 3010){
         this.room3_activityLocked.alpha = 1.0;
         this.room3_characterMoveable = false;
         }
@@ -440,11 +458,15 @@ class accountEqn extends Phaser.Scene {
       this.room3_E_KeyImg.x = this.room3_character_north.x;
       this.room3_E_KeyImg.y = this.room3_character_north.y+75;
       this.room3_E_KeyImg.alpha = 1.0;
-      if (this.room3_key_E.isDown && this.room3_activity4Locked == false) {
-            this.scene.start("AccountEqn_Act");
-            this.checkActivityOpened(false, false, false, true, false, false);
-            this.room3_activity5Locked = false;
-  } else if (this.room3_key_E.isDown && this.room3_activity4Locked == true){
+      if (this.room3_key_E.isDown && roomProgress >= 3015) {
+        if(roomProgress <= 3020)
+            roomProgress = 3020;
+
+        this.scene.start("AccountEqn_Act");
+        this.checkActivityOpened(false, false, false, true, false, false);
+        this.room3_activity5Locked = false;
+
+  } else if (this.room3_key_E.isDown && roomProgress < 3015){
         this.room3_activityLocked.alpha = 1.0;
         this.room3_characterMoveable = false;
         }
@@ -455,24 +477,27 @@ class accountEqn extends Phaser.Scene {
 		this.room3_E_KeyImg.x = this.room3_character_north.x;
 		this.room3_E_KeyImg.y = this.room3_character_north.y-75;
     this.room3_E_KeyImg.alpha = 1.0;
-		if (this.room3_key_E.isDown && this.room3_activity5Locked == false) {
+    console.log(roomProgress);
+		if (this.room3_key_E.isDown && roomProgress >= 3020) {
+      if(roomProgress <= 3025)
+          roomProgress = 3025;
+      
 			this.room3_activity5A.alpha = 1.0;
       this.resetArrows();
 			this.checkActivityOpened(false, false, false, false, true, false);
       this.room3_unlocked = true;
-			//this.room3_activity6Locked = false;
 		}
   }
-  else if (this.room3_key_E.isDown && this.room3_activity5Locked == true){
+  else if (this.room3_key_E.isDown && roomProgress < 3020){
         this.room3_activityLocked.alpha = 1.0;
         this.room3_characterMoveable = false;
       }
 
-    else if (Phaser.Geom.Rectangle.ContainsPoint(this.room3_hole_info, this.room3_character_north) && this.room3_activity5Complete) {
+    else if (Phaser.Geom.Rectangle.ContainsPoint(this.room3_hole_info, this.room3_character_north)) {
       this.room3_E_KeyImg.x = this.room3_character_north.x;
   		this.room3_E_KeyImg.y = this.room3_character_north.y-75;
       this.room3_E_KeyImg.alpha = 1.0;
-      if (this.room3_key_E.isDown && this.room3_activity5Complete == true) {
+      if (this.room3_key_E.isDown && roomProgress >= 3025) {
         this.scene.start("winners_Room");
       }
     }
