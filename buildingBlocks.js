@@ -61,6 +61,26 @@ class buildingBlocks extends Phaser.Scene {
         if (this.room2_activitySixOpened) {
             this.checkNextPage();
         }
+
+        if(roomProgress >= 2005)
+            this.room2_wall_info_2.alpha = wallAlpha;
+        
+        if(roomProgress >= 2010)
+            this.room2_wall_info_4.alpha = wallAlpha;
+        
+        if(roomProgress >= 2015)
+            this.room2_wall_info_1.alpha = wallAlpha;
+
+        if(roomProgress >= 2020)
+            this.room2_wall_info_5.alpha = wallAlpha;
+        
+        if(roomProgress >= 2025)
+            this.room2_wall_info_3.alpha = wallAlpha;
+        
+        if(roomProgress >= 2030)
+            this.room2_wall_info_6.alpha = wallAlpha;
+        
+
         if (roomProgress >= 2030) {
           this.room2_hole_activity.alpha = 1.0;
           this.room2_hole_nextRoom.alpha = 1.0;
