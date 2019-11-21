@@ -731,7 +731,7 @@ class courseFinancialIntro extends Phaser.Scene {
         this.paper_stack.y = 432;
         this.paperCount = 1;
         this.paperMoveable = false;
-	this.returnDoor.x += 40;
+	    this.returnDoor.x += 500;
 
         this.quizActive = false;
         this.characterMoveable = true;
@@ -752,7 +752,7 @@ class courseFinancialIntro extends Phaser.Scene {
         this.hole.setVisible(false);
         this.paper_stack.setVisible(true);
 
-	    this.returnDoor.x -= 40;
+	    this.returnDoor.x -= 500;
         this.paperMoveable = true;
         this.paperCount = 1;
         this.loadQuizImages();
