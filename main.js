@@ -4,7 +4,7 @@ var config = {
   height: 864,
 
   //scene: [two_lesson]
-  scene: [zero_lesson, three_lesson, two_lesson, two_activity, one_lesson, one_activity]
+  scene: [two_activity]
 
 
 
