@@ -319,7 +319,7 @@ class buildBlockAct1 extends Phaser.Scene {
 		this.E_KeyImg.y = this.character_north.y;
 		this.E_KeyImg.alpha = 1.0;
 		if (this.key_E.isDown) {
-			this.scene.start("room_two");
+			this.scene.start("Building_Blocks");
 		}
 	}
     else {
