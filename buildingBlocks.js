@@ -180,7 +180,7 @@ class buildingBlocks extends Phaser.Scene {
         this.load.image('room2_activityLocked', 'assets/activityLocked.png');
         this.load.image('room2_help_menu', 'assets/help_menu.png');
         this.load.image('rightArrow' , 'assets/rightArrowTest.png');
-
+	this.load.image('returnDoor', 'assets/dooropen_100x100.png');
 
     }
 
@@ -191,6 +191,7 @@ class buildingBlocks extends Phaser.Scene {
     createImages() {
         this.room2_e_pressed = false;
         this.room2_papers_moved = false;
+        this.returnDoor = this.add.image(113, 385, 'returnDoor');
         this.room2_background = this.add.image(768, 432, 'room2_one_lesson_BG');
         this.room2_character_north = this.add.image(768, 432, 'room2_character_north');
         this.room2_character_east = this.add.image(768, 432, 'room2_character_east');
@@ -252,6 +253,7 @@ class buildingBlocks extends Phaser.Scene {
         this.room2_hole_nextRoom.alpha = 0.0;
         this.leftArrow.alpha = 0;
         this.rightArrow.alpha = 0;
+	this.returnDoor.alpha = 1;
     }
 
     /* setDepths
@@ -292,6 +294,7 @@ class buildingBlocks extends Phaser.Scene {
         this.room2_map.setDepth(100);
         this.room2_notebook.setDepth(100);
         this.room2_help_menu.setDepth(100);
+	this.returnDoor.setDepth(1);
     }
 
     /* setScales
@@ -317,6 +320,7 @@ class buildingBlocks extends Phaser.Scene {
         this.leftArrow.setScale(.2);
         this.rightArrow.setScale(.2);
         this.room2_hole_activity.setScale(0.5);
+	this.returnDoor.setScale(1.5);
     }
 
     /* setRotations
@@ -328,6 +332,7 @@ class buildingBlocks extends Phaser.Scene {
         this.room2_wall_info_5.rotation = 3.14;
         this.room2_wall_info_6.rotation = 3.14;
         this.leftArrow.setRotation(3.14);
+	this.returnDoor.angle = 270;
     }
 
     /* createInteractionZones
@@ -364,6 +369,10 @@ class buildingBlocks extends Phaser.Scene {
 
         this.room2_hole__zone_activity = new Phaser.Geom.Rectangle(220,450, 220, 150);
         this.room2_graphics.fillRectShape(this.room2_hole__zone_activity);
+
+	//return door
+	this.room2_exitDoor = new Phaser.Geom.Rectangle(113, 320, 100, 100);
+	this.room2_graphics.fillRectShape(this.room2_exitDoor);
     }
 
     /* assignKeybinds
@@ -553,8 +562,16 @@ class buildingBlocks extends Phaser.Scene {
                 this.scene.start("BuildBlock_Act1");
               }
             }
-
         }
+	else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_exitDoor, this.room2_character_north)){
+	    this.room2_E_KeyImg.x = this.room2_character_north.x+75;
+	    this.room2_E_KeyImg.y = this.room2_character_north.y;
+	    this.room2_E_KeyImg.alpha = 1.0;
+	    if (this.room2_key_E.isDown) {
+		this.scene.start("Course_Fin_Intro");
+	    }
+	}	
+
         else {
             this.hideActivities();
             this.room2_E_KeyImg.alpha = 0.0;
