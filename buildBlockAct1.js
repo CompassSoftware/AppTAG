@@ -103,7 +103,6 @@ class buildBlockAct1 extends Phaser.Scene {
     this.load.image('room2a_notebook', 'assets/notebook.png');
     this.load.image('room2a_activityLocked', 'assets/activityLocked.png');
     this.load.image('room2a_help_menu', 'assets/help_menu.png');
-    this.load.image('room2a_hole', 'assets/hole.png');
     this.load.image('room2a_puzzle1', 'assets/Room2Act1/Puzzle/Puzzle/Puzzle1A.png');
     this.load.image('room2a_puzzle2', 'assets/Room2Act1/Puzzle/Puzzle/Puzzle1B.png');
     this.load.image('room2a_puzzle3', 'assets/Room2Act1/Puzzle/Puzzle/Puzzle1C.png');
@@ -125,7 +124,7 @@ class buildBlockAct1 extends Phaser.Scene {
 	  this.load.image('room2a_puzzle19', 'assets/Room2Act1/Puzzle/Puzzle/Puzzle4D.png');
 	  this.load.image('room2a_puzzle20', 'assets/Room2Act1/Puzzle/Puzzle/Puzzle4E.png');
     this.load.image('room2a_Pfloor', 'assets/Room2Act1/floor_2.jpeg');
-
+    this.load.image('returnDoor', 'assets/dooropen_100x100.png');
 
   }
 
@@ -147,12 +146,10 @@ class buildBlockAct1 extends Phaser.Scene {
     this.room2a_notebook = this.add.image(768, 432, 'room2a_notebook');
     this.room2a_activityLocked = this.add.image(768, 432, 'room2a_activityLocked');
     this.room2a_help_menu = this.add.image(768, 432, 'room2a_help_menu');
-    this.room2a_back_hole = this.add.image(268, 632, 'room2a_hole');
-    this.room2a_puzz_backHole = this.add.image(140, 632, 'room2a_hole');
 
-    this.room2a_back_hole_text = this.add.text(168, 532, "Back to Room 2")
-    this.room2a_back_hole_text.setFontSize(32);
-    this.room2a_back_hole_text.setStroke("Black",4);
+//    this.room2a_back_hole_text = this.add.text(168, 532, "Back to Room 2")
+  //  this.room2a_back_hole_text.setFontSize(32);
+    //this.room2a_back_hole_text.setStroke("Black",4);
 
     this.room2a_NOTREADY_text = this.add.text(500, 500, "PUZZLE ROOM NOT FINISHED")
     this.room2a_NOTREADY_text.setFontSize(32);
@@ -164,6 +161,8 @@ class buildBlockAct1 extends Phaser.Scene {
 
     this.room2a_puzzle1 = this.add.image(1168, 432, 'room2a_puzzle1');
     this.room2a_Pfloor = this.add.image(768, 615, 'room2a_Pfloor');
+
+    this.returnDoor = this.add.image(113, 385, 'returnDoor');
   }
 
   /* setAlphas
@@ -179,8 +178,8 @@ class buildBlockAct1 extends Phaser.Scene {
     this.hideActivities();
     this.room2a_puzzle1.alpha = 1.0;
     this.room2a_Pfloor.alpha = 0.0;
-    this.room2a_puzz_backHole.alpha = 0.0;
     this.room2a_puzz_holeText.alpha = 0.0;
+    this.returnDoor.alpha = 1;
   }
 
   /* setDepths
@@ -199,6 +198,7 @@ class buildBlockAct1 extends Phaser.Scene {
     this.room2a_notebook.setDepth(100);
     this.room2a_help_menu.setDepth(100);
     this.room2a_NOTREADY_text.setDepth(49);
+    this.returnDoor.setDepth(1);
   }
 
   /* setScales
@@ -218,7 +218,7 @@ class buildBlockAct1 extends Phaser.Scene {
     this.room2a_floor.scaleX = .791;
     this.room2a_Pfloor.scaleY = .8;
     this.room2a_Pfloor.scaleX = .8;
-
+    this.returnDoor.setScale(1.5);
   }
 
   /* setRotations
@@ -227,6 +227,7 @@ class buildBlockAct1 extends Phaser.Scene {
   */
   setRotations() {
     this.room2a_puzzle1.angle = 90;
+    this.returnDoor.angle = 270;
    }
   /* assignKeybinds
    *
@@ -276,8 +277,8 @@ class buildBlockAct1 extends Phaser.Scene {
     //this.graphicsTest = this.add.graphics({fillStyle: {color: 0x4F4F4F, alpha: 1.0}});
     //TOP ZONES
                                                 //xpos ypos x   y
-    this.room2a_back_hole_zone = new Phaser.Geom.Rectangle(150,532,150,150);
-    this.room2a_graphics.fillRectShape(this.room2a_back_hole_zone);
+    this.room2a_exitDoor = new Phaser.Geom.Rectangle(113,320,100,100);
+    this.room2a_graphics.fillRectShape(this.room2a_exitDoor);
 
     this.room2a_P1A = new Phaser.Geom.Rectangle(1068, 332,160,110);
     this.room2a_graphics.fillRectShape(this.room2a_P1A);
@@ -289,9 +290,10 @@ class buildBlockAct1 extends Phaser.Scene {
   */
 
   checkInteractValidity() {
-    if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_back_hole_zone, this.room2a_character_north) &&
-            this.room2a_activatedQuiz == false) {
-		this.displayE();
+    if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_exitDoor, this.room2a_character_north)) {
+		this.room2a_E_KeyImg.x = this.room2a_character_north.x+75;
+        this.room2a_E_KeyImg.y = this.room2a_character_north.y;
+        this.room2a_E_KeyImg.alpha = 1.0;
 		if (this.room2a_key_E.isDown) {
 			console.log("from activity 1 to room 2")
 			this.scene.start("Building_Blocks");
