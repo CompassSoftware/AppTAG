@@ -1,20 +1,15 @@
-class three_lesson extends Phaser.Scene {
+class courseFinancialIntro extends Phaser.Scene {
 
     constructor() {
-        super("three_Lesson");
+        super("Course_Fin_Intro");
         this.quizActive = false;
         this.activatedQuiz = false;
         this.unlocked = false;
         this.paperMoveable = false;
-        this.activityOneOpened = false;
-        this.activityTwoOpened = false;
-        this.activityThreeOpened = false;
-        this.activityFourOpened = false;
-        this.activityFiveOpened = false;
-        this.activitySixOpened = false;
         this.helpOpen = false;
         this.holeOpened = false;
         this.counter = 0;
+        document.getElementById("background").volume = 0.8;
     }
     //load assets in preload()
 
@@ -24,9 +19,6 @@ class three_lesson extends Phaser.Scene {
 
     //when scene is created
     create() {
-
-
-
         this.createImages();
         this.setAlphas();
         this.setDepths();
@@ -40,9 +32,6 @@ class three_lesson extends Phaser.Scene {
     update(delta) {
         //TEMPORARY FOR TESTING
         //vvvvvvvvvvvvvvvvvvv//
-        if (this.key_H.isDown) {
-            this.helpMenu();
-        }
 
         if (this.activityOneOpened) {
             this.checkNextPage();
@@ -55,15 +44,29 @@ class three_lesson extends Phaser.Scene {
         }
 
         if (this.key_U.isDown && this.unlocked == false) {
-            activity1Locked = false;
-            activity2Locked = false;
-            activity3Locked = false;
-            activity4Locked = false;
-            activity5Locked = false;
-            activity6Locked = false;
+            roomProgress = 1030;
             activity6Complete = true;
             this.unlocked = true;
         }
+
+        //Determines if the panel has been visited
+        if(roomProgress >= 1025)
+            this.wall_info_1.alpha = wallAlpha;
+        
+        if(roomProgress >= 1015)
+            this.wall_info_2.alpha = wallAlpha;
+
+        if(roomProgress >= 1005)
+            this.wall_info_3.alpha = wallAlpha;
+
+        if(roomProgress >= 1030)
+            this.wall_info_4.alpha = wallAlpha;
+
+        if(roomProgress >= 1010)
+            this.wall_info_5.alpha = wallAlpha;
+
+        if(roomProgress >= 1020)
+            this.wall_info_6.alpha = wallAlpha;
 
         if (this.key_M.isDown) {
             this.r1_map.alpha = 1.0;
@@ -129,14 +132,13 @@ class three_lesson extends Phaser.Scene {
      * Loads images to be used and sets them into a variable name.
      */
     loadAssets() {
-	this.load.image('returnDoor', 'assets/dooropen_100x100.png');
-        this.load.image('pressr', 'assets/pressr.png');
+	      this.load.image('returnDoor', 'assets/dooropen_100x100.png');
+        this.load.image('pressr', 'assets/Room1/pressr.png');
         this.load.image('one_lesson_BG', 'assets/one_lesson_BG.png');
         this.load.image('character_north', 'assets/character_north.png');
         this.load.image('character_east', 'assets/character_east.png');
         this.load.image('character_south', 'assets/character_south.png');
         this.load.image('character_west', 'assets/character_west.png');
-        this.load.image('redCharacter', 'assets/redCharacter.png');
         this.load.image('activity1A', 'assets/Panels/RoomOne/PanelOneA.png');
         this.load.image('activity1B', 'assets/Panels/RoomOne/PanelOneB.png');
         this.load.image('activity2', 'assets/Panels/RoomOne/PanelTwo.png');
@@ -155,25 +157,25 @@ class three_lesson extends Phaser.Scene {
         this.load.image('wall_info_4', 'assets/wall_art.png');
         this.load.image('wall_info_5', 'assets/wall_art.png');
         this.load.image('wall_info_6', 'assets/wall_art.png');
-        this.load.image('floor3', 'assets/floor_3.png');
-        this.load.image('cardboard_box', 'assets/cardboard_box.png');
-        this.load.image('paper_stack', 'assets/paper_stack.png');
+        this.load.image('floor3', 'assets/Room1/floor_3.png');
+        this.load.image('cardboard_box', 'assets/Room1/cardboard_box.png');
+        this.load.image('paper_stack', 'assets/Room1/paper_stack.png');
         this.load.image('paper', 'assets/single_paper.png');
         this.load.image('r1_map', 'assets/Map/room2inprogress.png');
         this.load.image('notebook', 'assets/notebook.png');
         this.load.image('activityLocked', 'assets/activityLocked.png');
         this.load.image('help_menu', 'assets/help_menu.png');
-        this.load.image('correctPlacements0', 'assets/placements0.png');
-        this.load.image('correctPlacements1', 'assets/placements1.png');
-        this.load.image('correctPlacements2', 'assets/placements2.png');
-        this.load.image('incomeStatement' , 'assets/incomeStatement.png');
-        this.load.image('balanceSheet', 'assets/balanceSheet.png');
-        this.load.image('retainedEarnings' , 'assets/retainedEarnings.png');
-        this.load.image('incomeStatementText' ,'assets/incomeStatementText.png');
-        this.load.image('balanceSheetText', 'assets/balanceSheetText.png');
-        this.load.image('retainedEarningsText' , 'assets/retainedEarningsText.png');
+        this.load.image('correctPlacements0', 'assets/Room1/placements0.png');
+        this.load.image('correctPlacements1', 'assets/Room1/placements1.png');
+        this.load.image('correctPlacements2', 'assets/Room1/placements2.png');
+        this.load.image('incomeStatement' , 'assets/Documents/incomeStatement.png');
+        this.load.image('balanceSheet', 'assets/Documents/balanceSheet.png');
+        this.load.image('retainedEarnings' , 'assets/Documents/retainedEarnings.png');
+        this.load.image('incomeStatementText' ,'assets/Room1/incomeStatementText.png');
+        this.load.image('balanceSheetText', 'assets/Room1/balanceSheetText.png');
+        this.load.image('retainedEarningsText' , 'assets/Room1/retainedEarningsText.png');
         this.load.image('hole', 'assets/hole.png');
-        this.load.image('congrats', 'assets/congrats.png');
+        this.load.image('congrats', 'assets/Room1/congrats.png');
         this.load.image('hole', 'assets/hole.png');
         this.load.image('leftArrow' , 'assets/leftArrow.png');
         this.load.image('rightArrow' , 'assets/rightArrowTest.png');
@@ -186,7 +188,7 @@ class three_lesson extends Phaser.Scene {
     createImages() {
         this.e_pressed = false;
         this.papers_moved = false;
-	this.returnDoor = this.add.image(113, 385, 'returnDoor');
+	    this.returnDoor = this.add.image(113, 385, 'returnDoor');
         this.background = this.add.image(768, 432, 'one_lesson_BG');
         this.character_north = this.add.image(768, 432, 'character_north');
         this.character_east = this.add.image(768, 432, 'character_east');
@@ -221,7 +223,6 @@ class three_lesson extends Phaser.Scene {
         this.help_menu = this.add.image(768, 432, 'help_menu');
         this.hole = this.add.image(768, 432, 'hole');
         this.congrats = this.add.image(810, 400, 'congrats');
-
         this.rightArrow = this.add.image(1000, 650, 'rightArrow');
         this.leftArrow = this.add.image(600, 650, 'rightArrow');
         this.placements0 = this.add.image(240, 800, 'correctPlacements0');
@@ -247,7 +248,7 @@ class three_lesson extends Phaser.Scene {
         this.leftArrow.alpha = 0;
         this.rightArrow.alpha = 0;
         this.congrats.alpha = 0;
-	this.returnDoor.alpha = 1;
+	    this.returnDoor.alpha = 1;
     }
 
     /* setDepths
@@ -277,7 +278,7 @@ class three_lesson extends Phaser.Scene {
         this.notebook.setDepth(100);
         this.help_menu.setDepth(100);
         this.hole.setDepth(1);
-	this.returnDoor.setDepth(1);
+	    this.returnDoor.setDepth(1);
     }
 
     /* setScales
@@ -305,7 +306,7 @@ class three_lesson extends Phaser.Scene {
         this.hole.setScale(0.75);
         this.leftArrow.setScale(.2);
         this.rightArrow.setScale(.2);
-	this.returnDoor.setScale(1.5);
+	    this.returnDoor.setScale(1.5);
     }
 
     /* setRotations
@@ -320,7 +321,7 @@ class three_lesson extends Phaser.Scene {
         this.cardboard_box_2.rotation = 0;
         this.cardboard_box_3.rotation = 0;
         this.leftArrow.setRotation(3.14);
-	this.returnDoor.angle = 270;
+	    this.returnDoor.angle = 270;
     }
 
     /* createInteractionZones
@@ -329,7 +330,6 @@ class three_lesson extends Phaser.Scene {
      */
     createInteractionZones() {
         this.graphics = this.add.graphics({fillStyle: {color: 0xFFFFFF, alpha: 0.0}});
-        //this.graphicsTest = this.add.graphics({fillStyle: {color: 0x4F4F4F, alpha: 1.0}});
         //TOP ZONES
         //xpos ypos x   y
         this.top_left_info = new Phaser.Geom.Rectangle(175,150,240,150);
@@ -352,7 +352,7 @@ class three_lesson extends Phaser.Scene {
         this.bot_right_info = new Phaser.Geom.Rectangle(1120,565,240,150);
         this.graphics.fillRectShape(this.bot_right_info);
 
-        
+
         this.quiz1 = new Phaser.Geom.Rectangle(1120,308,240,250);
         this.graphics.fillRectShape(this.quiz1);
 
@@ -439,14 +439,13 @@ class three_lesson extends Phaser.Scene {
             this.E_KeyImg.y = this.character_north.y-75;
             this.E_KeyImg.alpha = 1.0;
             if (this.key_E.isDown) {
+                if(roomProgress <= 1005)
+                    roomProgress = 1005;
+
                 this.activity1A.alpha = 1.0;
                 this.resetArrows();
                 this.characterMoveable = false;
                 this.checkActivityOpened(true, false, false, false, false, false);
-                activity2Locked = false;
-
-                //COME BACK AND CHANGE THIS LATER
-                activity6Complete = true;
             }
 
         } else if(Phaser.Geom.Rectangle.ContainsPoint(this.middle_info, this.character_north)) {
@@ -454,13 +453,9 @@ class three_lesson extends Phaser.Scene {
                 this.E_KeyImg.x = this.character_north.x;
                 this.E_KeyImg.y = this.character_north.y + 75;
                 this.E_KeyImg.alpha = 1.0;
-
                 if(this.key_E.isDown) {
-		    // Normal sequence: roomProgress was 0 and is going to 1.
-		    // BUT
-		    //   if coming back from further on, the max remembers there.
-		    roomProgress = Math.max(2,roomProgress);
-                    this.scene.start("two_Lesson");
+                    roomProgress = 2000;
+                    this.scene.start("Building_Blocks");
                 }
             }
 
@@ -468,26 +463,34 @@ class three_lesson extends Phaser.Scene {
             this.E_KeyImg.x = this.character_north.x;
             this.E_KeyImg.y = this.character_north.y+75;
             this.E_KeyImg.alpha = 1.0;
-            if (this.key_E.isDown && activity2Locked == false) {
+            if (this.key_E.isDown && roomProgress >= 1005) {
+                if(roomProgress <= 1010)
+                    roomProgress = 1010;
+
                 this.activity2.alpha = 1.0;
                 this.resetArrows();
                 this.checkActivityOpened(false, true, false, false, false, false);
-                activity3Locked = false;
-            } else if (this.key_E.isDown && activity2Locked == true) {
+
+            } else if (this.key_E.isDown && roomProgress < 1005) {
                 this.activityLocked.alpha = 1.0;
                 this.characterMoveable = false;
             }
 
         } else if (Phaser.Geom.Rectangle.ContainsPoint(this.top_mid_info, this.character_north)) {
+            console.log(roomProgress);
             this.E_KeyImg.x = this.character_north.x;
             this.E_KeyImg.y = this.character_north.y-75;
             this.E_KeyImg.alpha = 1.0;
-            if (this.key_E.isDown && activity3Locked == false) {
+            if (this.key_E.isDown && roomProgress >= 1010) {
+                if(roomProgress <= 1015)
+                    roomProgress = 1015;
+
                 this.activity3A.alpha = 1.0;
                 this.resetArrows();
                 this.checkActivityOpened(false, false, true, false, false, false);
-                activity4Locked = false;
-            } else if (this.key_E.isDown && activity3Locked == true){
+
+                
+            } else if (this.key_E.isDown && roomProgress < 1010){
                 this.activityLocked.alpha = 1.0;
                 this.characterMoveable = false;
             }
@@ -496,12 +499,15 @@ class three_lesson extends Phaser.Scene {
             this.E_KeyImg.x = this.character_north.x;
             this.E_KeyImg.y = this.character_north.y+75;
             this.E_KeyImg.alpha = 1.0;
-            if (this.key_E.isDown && activity4Locked == false) {
+            if (this.key_E.isDown && roomProgress >= 1015) {
+                if(roomProgress <= 1020)
+                    roomProgress = 1020;
+                
                 this.activity4.alpha = 1.0;
                 this.resetArrows();
                 this.checkActivityOpened(false, false, false, true, false, false);
-                activity5Locked = false;
-            } else if (this.key_E.isDown && activity4Locked == true){
+
+            } else if (this.key_E.isDown && roomProgress < 1015){
                 this.activityLocked.alpha = 1.0;
                 this.characterMoveable = false;
             }
@@ -512,12 +518,15 @@ class three_lesson extends Phaser.Scene {
             this.E_KeyImg.y = this.character_north.y-75;
 
             this.E_KeyImg.alpha = 1.0;
-            if (this.key_E.isDown && activity5Locked == false) {
+            if (this.key_E.isDown && roomProgress >= 1020) {
+                if(roomProgress <= 1025)
+                    roomProgress = 1025;
+
                 this.activity5A.alpha = 1.0;
                 this.resetArrows();
                 this.checkActivityOpened(false, false, false, false, true, false);
-                activity6Locked = false;
-            } else if (this.key_E.isDown && activity5Locked == true){
+
+            } else if (this.key_E.isDown && roomProgress < 1020){
                 this.activityLocked.alpha = 1.0;
                 this.characterMoveable = false;
             }
@@ -526,12 +535,15 @@ class three_lesson extends Phaser.Scene {
             this.E_KeyImg.x = this.character_north.x;
             this.E_KeyImg.y = this.character_north.y+75;
             this.E_KeyImg.alpha = 1.0;
-            if (this.key_E.isDown && activity6Locked == false) {
+            if (this.key_E.isDown && roomProgress >= 1025) {
+                if(roomProgress <= 1030)
+                    roomProgress = 1030;
+
                 this.activity6.alpha = 1.0;
                 this.resetArrows();
                 this.checkActivityOpened(false, false, false, false, false, true);
-                activity6Complete = true;
-            } else if (this.key_E.isDown && activity6Locked == true){
+
+            } else if (this.key_E.isDown && roomProgress < 1025){
                 this.activityLocked.alpha = 1.0;
                 this.characterMoveable = false;
             }
@@ -540,9 +552,10 @@ class three_lesson extends Phaser.Scene {
             this.E_KeyImg.x = this.character_north.x+75;
             this.E_KeyImg.y = this.character_north.y;
             this.E_KeyImg.alpha = 1.0;
-            if (this.key_E.isDown && activity6Complete == true) {
+            if (this.key_E.isDown && roomProgress >= 1030) {
+                roomProgress = 1100;
                 this.quizActive = true;
-            } else if (this.key_E.isDown && activity6Complete == false){
+            } else if (this.key_E.isDown && roomProgress < 1030){
                 this.activityLocked.alpha = 1.0;
             }
         } else if (Phaser.Geom.Rectangle.ContainsPoint(this.exitDoor, this.character_north)){
@@ -550,7 +563,7 @@ class three_lesson extends Phaser.Scene {
             this.E_KeyImg.y = this.character_north.y;
             this.E_KeyImg.alpha = 1.0;
             if (this.key_E.isDown) {
-		this.scene.start("zero_Lesson");
+		    this.scene.start("TAG_Intro");
             }
         } else {
             this.hideActivities();
@@ -694,7 +707,7 @@ class three_lesson extends Phaser.Scene {
         this.cardboard_box_3.setScale(0.39);
         this.paper_stack.setScale(0.35);
         this.paper_stack.x = 1215;
-        this.paper_stack.setVisible(false);
+        this.paper_stack.setVisible(true);
         this.cardboard_box_1.x = 1310;
         this.cardboard_box_2.x = 1310;
         this.cardboard_box_3.x = 1310;
@@ -713,12 +726,16 @@ class three_lesson extends Phaser.Scene {
         this.paper_stack.y = 432;
         this.paperCount = 1;
         this.paperMoveable = false;
+	this.returnDoor.x += 40;
 
         this.quizActive = false;
         this.characterMoveable = true;
         this.incomeStatement.alpha = 0.0;
         this.balanceSheet.alpha = 0.0;
         this.retainedEarnings.alpha = 0.0;
+        this.unlocked = true;
+        document.getElementById("background").volume = 1;
+
     }
 
     /* activateQuiz
@@ -726,9 +743,11 @@ class three_lesson extends Phaser.Scene {
      * Method that starts the quiz
      */
     activateQuiz() {
+        document.getElementById("background").volume = 0.2;
         this.hole.setVisible(false);
         this.paper_stack.setVisible(true);
 
+	    this.returnDoor.x -= 40;
         this.paperMoveable = true;
         this.paperCount = 1;
         this.loadQuizImages();
@@ -868,6 +887,7 @@ class three_lesson extends Phaser.Scene {
                 this.incomeStatement.setVisible(false);
             //THE RIGHT BOX
             if (Phaser.Geom.Rectangle.ContainsPoint(this.box_1_zone, this.paper)) {
+                document.getElementById("correct").play();
                 this.paper.setVisible(false);
                 this.paperTwo.setVisible(true);
                 this.paperTwo.setInteractive();
@@ -875,11 +895,13 @@ class three_lesson extends Phaser.Scene {
                 this.updateCorrectImage();
 
             } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_2_zone, this.paper) /*&& this.paperCount == 1*/) {
+                document.getElementById("wrong").play();
                 this.paper.x = this.paper_stack.x;
                 this.paper.y = this.paper_stack.y + 600;
                 this.updateCorrectImage();
 
             } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_3_zone, this.paper)/* && this.paperCount == 1*/) {
+                document.getElementById("wrong").play();
                 this.paper.x = this.paper_stack.x;
                 this.paper.y = this.paper_stack.y + 600;
                 this.updateCorrectImage();
@@ -899,6 +921,7 @@ class three_lesson extends Phaser.Scene {
             this.retainedEarnings.setVisible(false);
 
         if (Phaser.Geom.Rectangle.ContainsPoint(this.box_2_zone, this.paperTwo) /*&& this.paperCount == 2*/) {
+            document.getElementById("correct").play();
             this.paperTwo.setVisible(false);
             this.paperThree.setVisible(true);
             this.paperThree.setInteractive();
@@ -906,11 +929,13 @@ class three_lesson extends Phaser.Scene {
             this.updateCorrectImage();
 
         } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_1_zone, this.paperTwo) /*&& this.paperCount == 2*/) {
+            document.getElementById("wrong").play();
             this.paperTwo.x = this.paper_stack.x;
             this.paperTwo.y = this.paper_stack.y + 600;
             this.updateCorrectImage();
 
         } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_3_zone, this.paperTwo) /*&& this.paperCount == 2*/) {
+            document.getElementById("wrong").play();
             this.paperTwo.x = this.paper_stack.x;
             this.paperTwo.y = this.paper_stack.y + 600;
             this.updateCorrectImage();
@@ -932,15 +957,18 @@ class three_lesson extends Phaser.Scene {
             this.balanceSheet.setVisible(false);
 
         if (Phaser.Geom.Rectangle.ContainsPoint(this.box_3_zone, this.paperThree) && this.paperCount == 3) {
+            document.getElementById("correct").play();
             this.paperThree.setVisible(false);
             this.paperCount++;
             this.quitQuiz();
         } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_1_zone, this.paperThree) && this.paperCount == 3) {
+            document.getElementById("wrong").play();
             this.paperThree.x = this.paper_stack.x;
             this.paperThree.y = this.paper_stack.y + 600;
 
 
         } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_2_zone, this.paperThree) && this.paperCount == 3) {
+            document.getElementById("wrong").play();
             this.paperThree.x = this.paper_stack.x;
             this.paperThree.y = this.paper_stack.y + 600;
         }

@@ -1,7 +1,7 @@
-class one_activity extends Phaser.Scene {
+class accountEqnAct extends Phaser.Scene {
 
   constructor() {
-    super("one_Activity");
+    super("AccountEqn_Act");
     this.actOne_quizActive = false;
     this.actOne_activatedQuiz = false;
     this.actOne_unlocked = false;
@@ -41,6 +41,7 @@ class one_activity extends Phaser.Scene {
     if (this.actOne_key_H.isDown) {
       this.helpMenu();
     }
+    document.getElementById("background").volume = 0.2;
 
     if (this.actOne_activityOneOpened) {
       this.checkNextPage();
@@ -56,18 +57,6 @@ class one_activity extends Phaser.Scene {
     }
     if (this.actOne_activityFiveOpened) {
       this.checkNextPage();
-    }
-
-
-    if (this.actOne_key_U.isDown && this.actOne_unlocked == false) {
-      actOne_activity1Locked = false;
-      actOne_activity2Locked = false;
-      actOne_activity3Locked = false;
-      actOne_activity4Locked = false;
-      actOne_activity5Locked = false;
-      actOne_activity6Locked = false;
-      actOne_activity6Complete = true;
-      this.actOne_unlocked = true;
     }
 
     if (this.actOne_key_M.isDown) {
@@ -119,19 +108,17 @@ class one_activity extends Phaser.Scene {
    * Loads images to be used and sets them into a variable name.
   */
   loadAssets() {
-  this.load.image('actOne_pressr', 'assets/pressr.png');
     this.load.image('actOne_one_lesson_BG', 'assets/one_lesson_BG.png');
     this.load.image('character', 'assets/Panels/RoomThree/activityOneCharacter.png');
-    this.load.image('actOne_redCharacter', 'assets/redCharacter.png');
     this.load.image('actOne_E_KeyImg', 'assets/E_Key.png');
-    this.load.image('actOne_floor', 'assets/floor_two_activity_2.jpg');
+    this.load.image('actOne_floor', 'assets/Room3Act1/floor_two_activity_2.jpg');
     this.load.image('actOne_map', 'assets/map.png');
     this.load.image('actOne_notebook', 'assets/notebook.png');
     this.load.image('actOne_activityLocked', 'assets/activityLocked.png');
     this.load.image('actOne_help_menu', 'assets/help_menu.png');
-    this.load.image('actOne_Activity', 'assets/Panels/RoomThree/equation.png');
-    this.load.image('actOne_redX', 'assets/Panels/RoomThree/redX.jpg');
-    this.load.image('actOne_greenCheck', 'assets/Panels/RoomThree/green_check.jpg');
+    this.load.image('actOne_Activity', 'assets/Room3Act1/equation.png');
+    this.load.image('actOne_redX', 'assets/Room3Act1/redX.jpg');
+    this.load.image('actOne_greenCheck', 'assets/Room3Act1/green_check.jpg');
     this.load.image('actOne_hole', 'assets/hole.png');
 
   }
@@ -344,6 +331,7 @@ class one_activity extends Phaser.Scene {
           this.actOne_E_KeyImg.y = this.character.y-75;
           this.actOne_E_KeyImg.alpha = 1.0;
           if(this.actOne_key_E.isDown) {
+            document.getElementById("correct").play();
             this.actOne_greenCheck.alpha = 1.0;
             this.assetCorrect = true;
           }
@@ -353,35 +341,17 @@ class one_activity extends Phaser.Scene {
           this.actOne_E_KeyImg.y = this.character.y-75;
           this.actOne_E_KeyImg.alpha = 1.0;
           if(this.actOne_key_E.isDown) {
+            document.getElementById("wrong").play();
             this.actOne_redX.alpha = 1.0;
           }
 
         }
-        // else if(Phaser.Geom.Rectangle.ContainsPoint(this.actOne_increaseLiabilities, this.character)) {
-        //   this.actOne_E_KeyImg.x = this.character.x;
-        //   this.actOne_E_KeyImg.y = this.character.y-75;
-        //   this.actOne_E_KeyImg.alpha = 1.0;
-        // }
-        // else if(Phaser.Geom.Rectangle.ContainsPoint(this.actOne_decreaseLiabilities, this.character)) {
-        //   this.actOne_E_KeyImg.x = this.character.x;
-        //   this.actOne_E_KeyImg.y = this.character.y-75;
-        //   this.actOne_E_KeyImg.alpha = 1.0;
-        // }
-        // else if(Phaser.Geom.Rectangle.ContainsPoint(this.actOne_increaseStock, this.character)) {
-        //   this.actOne_E_KeyImg.x = this.character.x;
-        //   this.actOne_E_KeyImg.y = this.character.y-75;
-        //   this.actOne_E_KeyImg.alpha = 1.0;
-        // }
-        // else if(Phaser.Geom.Rectangle.ContainsPoint(this.actOne_decreaseStock, this.character)) {
-        //   this.actOne_E_KeyImg.x = this.character.x;
-        //   this.actOne_E_KeyImg.y = this.character.y-75;
-        //   this.actOne_E_KeyImg.alpha = 1.0;
-        // }
         else if(Phaser.Geom.Rectangle.ContainsPoint(this.actOne_increaseRevenue, this.character)) {
           this.actOne_E_KeyImg.x = this.character.x;
           this.actOne_E_KeyImg.y = this.character.y-75;
           this.actOne_E_KeyImg.alpha = 1.0;
           if(this.actOne_key_E.isDown) {
+            document.getElementById("correct").play();
             this.actOne_greenCheck.alpha = 1.0;
             this.revenueCorrect = true;
             this.setHoleAlpha();
@@ -392,36 +362,17 @@ class one_activity extends Phaser.Scene {
           this.actOne_E_KeyImg.y = this.character.y-75;
           this.actOne_E_KeyImg.alpha = 1.0;
           if(this.actOne_key_E.isDown) {
+            document.getElementById("wrong").play();
             this.actOne_redX.alpha = 1.0;
           }
         }
-        // else if(Phaser.Geom.Rectangle.ContainsPoint(this.actOne_increaseExpenses, this.character)) {
-        //   this.actOne_E_KeyImg.x = this.character.x;
-        //   this.actOne_E_KeyImg.y = this.character.y-75;
-        //   this.actOne_E_KeyImg.alpha = 1.0;
-        // }
-        // else if(Phaser.Geom.Rectangle.ContainsPoint(this.actOne_decreaseExpenses, this.character)) {
-        //   this.actOne_E_KeyImg.x = this.character.x;
-        //   this.actOne_E_KeyImg.y = this.character.y-75;
-        //   this.actOne_E_KeyImg.alpha = 1.0;
-        // }
-        // else if(Phaser.Geom.Rectangle.ContainsPoint(this.actOne_increaseDividend, this.character)) {
-        //   this.actOne_E_KeyImg.x = this.character.x;
-        //   this.actOne_E_KeyImg.y = this.character.y-75;
-        //   this.actOne_E_KeyImg.alpha = 1.0;
-        // }
-        // else if(Phaser.Geom.Rectangle.ContainsPoint(this.actOne_decreaseDividend, this.character)) {
-        //   this.actOne_E_KeyImg.x = this.character.x;
-        //   this.actOne_E_KeyImg.y = this.character.y-75;
-        //   this.actOne_E_KeyImg.alpha = 1.0;
-        // }
         else if(Phaser.Geom.Rectangle.ContainsPoint(this.actOne_holeInteract, this.character)) {
           this.actOne_E_KeyImg.x = this.character.x;
           this.actOne_E_KeyImg.y = this.character.y-75;
           this.actOne_E_KeyImg.alpha = 1.0;
 
           if(this.actOne_key_E.isDown) {
-            this.scene.start("one_Lesson");
+            this.scene.start("Account_Eqn");
           }
         }
         else {
@@ -435,19 +386,6 @@ class one_activity extends Phaser.Scene {
       this.actOne_hole.alpha = true;
     }
   }
-
-
-  /* setCharacterAlpha
-   *
-   * Sets the alpha of each facing of the character
-   * Call this method with the argument as (N,E,S,W)
-  */
-  // setCharacterAlpha() {
-  //   this.actOne_character_north.alpha = arguments[0];
-  //   this.actOne_character_east.alpha = arguments[1];
-  //   this.actOne_character_south.alpha = arguments[2];
-  //   this.actOne_character_west.alpha = arguments[3];
-  // }
 
   /* movePlayer
    *

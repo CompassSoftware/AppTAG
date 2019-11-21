@@ -1,12 +1,13 @@
-class two_activityB extends Phaser.Scene {
+class buildBlockAct2 extends Phaser.Scene {
     constructor() {
-        super("two_ActivityB");
+        super("BuidBlock_Act2");
         this.room2b_quizActive = false;
         this.room2b_activatedQuiz = false;
         this.room2b_unlocked = false;
         this.room2b_paperMoveable = false;
         this.room2b_helpOpen = false;
         this.holeOpened = false;
+        
     }
     //load assets in preload()
 
@@ -102,26 +103,24 @@ class two_activityB extends Phaser.Scene {
      * Loads images to be used and sets them into a variable name.
      */
     loadAssets() {
-        this.load.image('room2b_pressr', 'assets/pressr.png');
         this.load.image('room2b_one_lesson_BG', 'assets/one_lesson_BG.png');
         this.load.image('room2b_character_north', 'assets/character_north.png');
         this.load.image('room2b_character_east', 'assets/character_east.png');
         this.load.image('room2b_character_south', 'assets/character_south.png');
         this.load.image('room2b_character_west', 'assets/character_west.png');
-        this.load.image('room2b_redCharacter', 'assets/redCharacter.png');
         this.load.image('room2b_E_KeyImg', 'assets/E_Key.png');
-        this.load.image('room2b_floor', 'assets/floor_two_activity_2.jpg');
+        this.load.image('room2b_floor', 'assets/Room2Act2/floor_two_activity_2.jpg');
         this.load.image('room2b_map', 'assets/map.png');
         this.load.image('room2b_notebook', 'assets/notebook.png');
         this.load.image('room2b_activityLocked', 'assets/activityLocked.png');
         this.load.image('room2b_help_menu', 'assets/help_menu.png');
-        this.load.image('couple', 'assets/couple.png');
-        this.load.image('question', 'assets/question.png');
-        this.load.image('questionStack', 'assets/questionStack.png');
-        this.load.image('incomeStatement' , 'assets/incomeStatement.png');
-        this.load.image('balanceSheet', 'assets/balanceSheet.png');
-        this.load.image('retainedEarnings' , 'assets/retainedEarnings.png')
-            this.load.image('cashFlows' , 'assets/cashFlows.jpg');
+        this.load.image('couple', 'assets/Room2Act2/couple.png');
+        this.load.image('question', 'assets/Room2Act2/question.png');
+        this.load.image('questionStack', 'assets/Room2Act2/questionStack.png');
+        this.load.image('incomeStatement' , 'assets/Documents/incomeStatement.png');
+        this.load.image('balanceSheet', 'assets/Documents/balanceSheet.png');
+        this.load.image('retainedEarnings' , 'assets/Documents/retainedEarnings.png')
+        this.load.image('cashFlows' , 'assets/Documents/cashFlows.jpg');
         this.load.image('room2b_hole', 'assets/hole.png');
 
     }
@@ -225,7 +224,7 @@ class two_activityB extends Phaser.Scene {
 
         this.room2b_middle_info = new Phaser.Geom.Rectangle(700, 350, 200, 200);
         this.room2b_graphics.fillRectShape(this.room2b_middle_info);
-      
+
         this.room2b_hole_zone = new Phaser.Geom.Rectangle(150, 332,240,150);
         this.room2b_graphics.fillRectShape(this.room2b_hole_zone);
 
@@ -438,11 +437,11 @@ class two_activityB extends Phaser.Scene {
         this.loadQuizImages();
         this.placements = this.add.text(1200, 30, "Correct Placements: 0");
         this.placements.setColor('black');
-        this.placements.setFont('bold 30px Arial');	
+        this.placements.setFont('bold 30px Arial');
 
         this.parentQuestion = this.add.text(400, 40, "What did you spend all your money on?");
         this.parentQuestion.setColor('black');
-        this.parentQuestion.setFont('30px Arial');	
+        this.parentQuestion.setFont('30px Arial');
 
 
 
@@ -687,9 +686,9 @@ class two_activityB extends Phaser.Scene {
 
     loadPlacements() {
         if (this.correctCount == 1)
-            this.placements.setText("Correct Placements: 0");	
+            this.placements.setText("Correct Placements: 0");
         else if (this.correctCount == 2) {
-            this.parentQuestion.setText("Question where cash flows is the answer");		
+            this.parentQuestion.setText("Question where cash flows is the answer");
             this.placements.setText("Correct Placements: 1");
         } else if (this.correctCount == 3) {
             this.parentQuestion.setText("How much money did you save last month?");
@@ -702,13 +701,13 @@ class two_activityB extends Phaser.Scene {
     }
 
     loadExit() {
-        if (this.holeOpened == true) 
+        if (this.holeOpened == true)
             this.hole.alpha = 1;
         else if (this.correctCount >= 4) {
             this.hole = this.add.image(768, 432, 'hole');
             this.holeOpened = true;
         }
-    }	
+    }
 
 
     /* helpMenu

@@ -11,15 +11,9 @@ class buildingBlocks extends Phaser.Scene {
         this.room2_activityFourOpened = false;
         this.room2_activityFiveOpened = false;
         this.room2_activitySixOpened = false;
-        this.room2_activity1Locked = false;
-        this.room2_activity2Locked = true;
-        this.room2_activity3Locked = true;
-        this.room2_activity4Locked = true;
-        this.room2_activity5Locked = true;
-        this.room2_activity6Locked = true;
-        this.room2_activity6Complete = false;
         this.room2_helpOpen = false;
         this.counter = 0;
+        document.getElementById("background").volume = 0.8;
 
     }
     //load assets in preload()
@@ -68,25 +62,35 @@ class buildingBlocks extends Phaser.Scene {
         if (this.room2_activitySixOpened) {
             this.checkNextPage();
         }
-        if (this.room2_activity6Complete == true) {
+
+        if(roomProgress >= 2005)
+            this.room2_wall_info_2.alpha = wallAlpha;
+        
+        if(roomProgress >= 2010)
+            this.room2_wall_info_4.alpha = wallAlpha;
+        
+        if(roomProgress >= 2015)
+            this.room2_wall_info_1.alpha = wallAlpha;
+
+        if(roomProgress >= 2020)
+            this.room2_wall_info_5.alpha = wallAlpha;
+        
+        if(roomProgress >= 2025)
+            this.room2_wall_info_3.alpha = wallAlpha;
+        
+        if(roomProgress >= 2030)
+            this.room2_wall_info_6.alpha = wallAlpha;
+        
+
+        if (roomProgress >= 2030) {
           this.room2_hole_activity.alpha = 1.0;
           this.room2_hole_nextRoom.alpha = 1.0;
         }
 
 
         if (this.room2_key_U.isDown) {
-            this.room2_activity1Locked = false;
-            this.room2_activity2Locked = false;
-            this.room2_activity3Locked = false;
-            this.room2_activity4Locked = false;
-            this.room2_activity5Locked = false;
-            this.room2_activity6Locked = false;
-            this.room2_activity6Complete = true;
+            roomProgress = 2030;
             this.room2_unlocked = true;
-        }
-        if(this.room2_activity6Complete == true) {
-          this.room2_hole_activity.alpha = 1.0;
-          this.room2_hole_nextRoom.alpha = 1.0;
         }
 
         if (this.room2_key_M.isDown) {
@@ -176,7 +180,6 @@ class buildingBlocks extends Phaser.Scene {
         this.load.image('room2_activityLocked', 'assets/activityLocked.png');
         this.load.image('room2_help_menu', 'assets/help_menu.png');
         this.load.image('rightArrow' , 'assets/rightArrowTest.png');
-		this.load.image('returnDoor', 'assets/dooropen_100x100.png');
 
 
     }
@@ -188,8 +191,7 @@ class buildingBlocks extends Phaser.Scene {
     createImages() {
         this.room2_e_pressed = false;
         this.room2_papers_moved = false;
-        this.returnDoor = this.add.image(113, 385, 'returnDoor');
-		this.room2_background = this.add.image(768, 432, 'room2_one_lesson_BG');
+        this.room2_background = this.add.image(768, 432, 'room2_one_lesson_BG');
         this.room2_character_north = this.add.image(768, 432, 'room2_character_north');
         this.room2_character_east = this.add.image(768, 432, 'room2_character_east');
         this.room2_character_south = this.add.image(768, 432, 'room2_character_south');
@@ -250,7 +252,6 @@ class buildingBlocks extends Phaser.Scene {
         this.room2_hole_nextRoom.alpha = 0.0;
         this.leftArrow.alpha = 0;
         this.rightArrow.alpha = 0;
-		this.returnDoor.alpha = 1;
     }
 
     /* setDepths
@@ -291,7 +292,6 @@ class buildingBlocks extends Phaser.Scene {
         this.room2_map.setDepth(100);
         this.room2_notebook.setDepth(100);
         this.room2_help_menu.setDepth(100);
-		this.returnDoor.setDepth(1);
     }
 
     /* setScales
@@ -317,7 +317,6 @@ class buildingBlocks extends Phaser.Scene {
         this.leftArrow.setScale(.2);
         this.rightArrow.setScale(.2);
         this.room2_hole_activity.setScale(0.5);
-		this.returnDoor.setScale(1.5);
     }
 
     /* setRotations
@@ -329,7 +328,6 @@ class buildingBlocks extends Phaser.Scene {
         this.room2_wall_info_5.rotation = 3.14;
         this.room2_wall_info_6.rotation = 3.14;
         this.leftArrow.setRotation(3.14);
-		this.returnDoor.angle = 270;
     }
 
     /* createInteractionZones
@@ -366,10 +364,6 @@ class buildingBlocks extends Phaser.Scene {
 
         this.room2_hole__zone_activity = new Phaser.Geom.Rectangle(220,450, 220, 150);
         this.room2_graphics.fillRectShape(this.room2_hole__zone_activity);
-		
-		//return door
-		this.exitDoor = new Phaser.Geom.Rectangle(113, 320, 100, 100);
-		this.graphics.fillRectShape(this.exitDoor);
     }
 
     /* assignKeybinds
@@ -438,23 +432,28 @@ class buildingBlocks extends Phaser.Scene {
             this.room2_E_KeyImg.y = this.room2_character_north.y-75;
             this.room2_E_KeyImg.alpha = 1.0;
             if (this.room2_key_E.isDown) {
+                if(roomProgress <= 2000)
+                    roomProgress = 2005;
+
                 this.room2_activity1A.alpha = 1.0;
                 this.resetArrows();
                 this.room2_characterMoveable = false;
                 this.checkActivityOpened(true, false, false, false, false, false);
-                this.room2_activity2Locked = false;
             }
 
         } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_bot_left_info, this.room2_character_north)) {
             this.room2_E_KeyImg.x = this.room2_character_north.x;
             this.room2_E_KeyImg.y = this.room2_character_north.y+75;
             this.room2_E_KeyImg.alpha = 1.0;
-            if (this.room2_key_E.isDown && this.room2_activity2Locked == false) {
+            if (this.room2_key_E.isDown && roomProgress >= 2005) {
+                if(roomProgress <= 2010)
+                    roomProgress = 2010;
+
                 this.room2_activity2A.alpha = 1.0;
                 this.resetArrows();
                 this.checkActivityOpened(false, true, false, false, false, false);
-                this.room2_activity3Locked = false;
-            } else if (this.room2_key_E.isDown && this.room2_activity2Locked == true) {
+            
+            } else if (this.room2_key_E.isDown && roomProgress < 2005) {
                 this.room2_activityLocked.alpha = 1.0;
                 this.room2_characterMoveable = false;
             }
@@ -463,12 +462,15 @@ class buildingBlocks extends Phaser.Scene {
             this.room2_E_KeyImg.x = this.room2_character_north.x;
             this.room2_E_KeyImg.y = this.room2_character_north.y-75;
             this.room2_E_KeyImg.alpha = 1.0;
-            if (this.room2_key_E.isDown && this.room2_activity3Locked == false) {
+            if (this.room2_key_E.isDown && roomProgress >= 2010) {
+                if(roomProgress <= 2015)
+                    roomProgress = 2015;
+
                 this.room2_activity3A.alpha = 1.0;
                 this.resetArrows();
                 this.checkActivityOpened(false, false, true, false, false, false);
-                this.room2_activity4Locked = false;
-            } else if (this.room2_key_E.isDown && this.room2_activity3Locked == true){
+
+            } else if (this.room2_key_E.isDown && roomProgress < 2010){
                 this.room2_activityLocked.alpha = 1.0;
                 this.room2_characterMoveable = false;
             }
@@ -477,12 +479,15 @@ class buildingBlocks extends Phaser.Scene {
             this.room2_E_KeyImg.x = this.room2_character_north.x;
             this.room2_E_KeyImg.y = this.room2_character_north.y+75;
             this.room2_E_KeyImg.alpha = 1.0;
-            if (this.room2_key_E.isDown && this.room2_activity4Locked == false) {
+            if (this.room2_key_E.isDown && roomProgress >= 2015) {
+                if(roomProgress <= 2020)
+                    roomProgress = 2020;
+
                 this.room2_activity4A.alpha = 1.0;
                 this.resetArrows();
                 this.checkActivityOpened(false, false, false, true, false, false);
-                this.room2_activity5Locked = false;
-            } else if (this.room2_key_E.isDown && this.room2_activity4Locked == true){
+
+            } else if (this.room2_key_E.isDown && roomProgress < 2015){
                 this.room2_activityLocked.alpha = 1.0;
                 this.room2_characterMoveable = false;
 
@@ -492,13 +497,15 @@ class buildingBlocks extends Phaser.Scene {
             this.room2_E_KeyImg.y = this.room2_character_north.y-75;
 
             this.room2_E_KeyImg.alpha = 1.0;
-            if (this.room2_key_E.isDown && this.room2_activity5Locked == false) {
+            if (this.room2_key_E.isDown && roomProgress >= 2020) {
+                if(roomProgress <= 2025)
+                    roomProgress = 2025;
+
                 this.room2_activity5A.alpha = 1.0;
                 this.resetArrows();
                 this.checkActivityOpened(false, false, false, false, true, false);
-                this.room2_activity6Locked = false;
             }
-            else if (this.room2_key_E.isDown && this.room2_activity5Locked == true){
+            else if (this.room2_key_E.isDown && roomProgress < 2020){
                 this.room2_activityLocked.alpha = 1.0;
                 this.room2_characterMoveable = false;
             }
@@ -507,25 +514,27 @@ class buildingBlocks extends Phaser.Scene {
             this.room2_E_KeyImg.x = this.room2_character_north.x;
             this.room2_E_KeyImg.y = this.room2_character_north.y+75;
             this.room2_E_KeyImg.alpha = 1.0;
-            if (this.room2_key_E.isDown && this.room2_activity6Locked == false) {
+            if (this.room2_key_E.isDown && roomProgress >= 2025) {
+                if(roomProgress <= 2030)
+                    roomProgress = 2030;
+                console.log(roomProgress);      
                 this.room2_activity6A.alpha = 1.0;
                 this.resetArrows();
                 this.checkActivityOpened(false, false, false, false, false, true);
-                this.room2_activity6Complete = true;
             }
-            else if (this.room2_key_E.isDown && this.room2_activity6Locked == true){
+            else if (this.room2_key_E.isDown && roomProgress < 2025){
                 this.room2_activityLocked.alpha = 1.0;
                 this.room2_characterMoveable = false;
             }
 
         }
         else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_hole_zone_nextRoom, this.room2_character_north)) {
-            if(this.room2_activity6Complete == true) {
+            if(roomProgress >= 2030) {
               this.room2_E_KeyImg.x = this.room2_character_north.x;
               this.room2_E_KeyImg.y = this.room2_character_north.y+75;
               this.room2_E_KeyImg.alpha = 1.0;
               if (this.room2_key_E.isDown) {
-                  console.log("To room 3")
+                  roomProgress = 3000;
                   this.scene.start("Account_Eqn");
               }
             }
@@ -534,26 +543,18 @@ class buildingBlocks extends Phaser.Scene {
         }
 
         else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_hole__zone_activity, this.room2_character_north)) {
-            if(this.room2_activity6Complete == true) {
+            if(roomProgress >= 2030) {
               this.room2_E_KeyImg.x = this.room2_character_north.x;
               this.room2_E_KeyImg.y = this.room2_character_north.y+75;
               this.room2_E_KeyImg.alpha = 1.0;
               if(this.room2_key_E.isDown) {
-                console.log("To room2 activity")
-                roomProgress += 1;
+                  if(roomProgress <= 2100)
+                        roomProgress = 2100;
                 this.scene.start("BuildBlock_Act1");
               }
             }
 
         }
-		else if (Phaser.Geom.Rectangle.ContainsPoint(this.exitDoor, this.character_north)){
-			this.E_KeyImg.x = this.character_north.x+75;
-			this.E_KeyImg.y = this.character_north.y;
-			this.E_KeyImg.alpha = 1.0;
-			if (this.key_E.isDown) {
-					this.scene.start("Course_Fin_Intro");
-			}
-		}	
         else {
             this.hideActivities();
             this.room2_E_KeyImg.alpha = 0.0;
@@ -654,7 +655,6 @@ class buildingBlocks extends Phaser.Scene {
         this.room2_activatedQuiz = false;
         this.rightArrow.setVisible(false);
         this.leftArrow.setVisible(false);
-		this.returnDoor.x += 40;
     }
 
 
