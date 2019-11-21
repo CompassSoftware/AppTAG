@@ -68,6 +68,11 @@ class courseFinancialIntro extends Phaser.Scene {
         if(roomProgress >= 1020)
             this.wall_info_6.alpha = wallAlpha;
 
+	console.log("update: "+ roomProgress + ":" + this.holeOpened);
+        if(roomProgress >= 2000 || this.holeOpened == true) 
+            this.hole.alpha = 1;
+
+
         if (this.key_M.isDown) {
             this.r1_map.alpha = 1.0;
             this.characterMoveable = false;

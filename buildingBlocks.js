@@ -371,8 +371,8 @@ class buildingBlocks extends Phaser.Scene {
         this.room2_graphics.fillRectShape(this.room2_hole__zone_activity);
 
 	//return door
-	this.exitDoor = new Phaser.Geom.Rectangle(113, 320, 100, 100);
-	this.graphics.fillRectShape(this.exitDoor);
+	this.room2_exitDoor = new Phaser.Geom.Rectangle(113, 320, 100, 100);
+	this.room2_graphics.fillRectShape(this.room2_exitDoor);
     }
 
     /* assignKeybinds
@@ -563,11 +563,11 @@ class buildingBlocks extends Phaser.Scene {
               }
             }
         }
-	else if (Phaser.Geom.Rectangle.ContainsPoint(this.exitDoor, this.character_north)){
-	    this.E_KeyImg.x = this.character_north.x+75;
-	    this.E_KeyImg.y = this.character_north.y;
-	    this.E_KeyImg.alpha = 1.0;
-	    if (this.key_E.isDown) {
+	else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_exitDoor, this.room2_character_north)){
+	    this.room2_E_KeyImg.x = this.room2_character_north.x+75;
+	    this.room2_E_KeyImg.y = this.room2_character_north.y;
+	    this.room2_E_KeyImg.alpha = 1.0;
+	    if (this.room2_key_E.isDown) {
 		this.scene.start("Course_Fin_Intro");
 	    }
 	}	
