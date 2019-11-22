@@ -311,7 +311,9 @@ class courseFinancialIntro extends Phaser.Scene {
         this.hole.setScale(0.75);
         this.leftArrow.setScale(.2);
         this.rightArrow.setScale(.2);
-	    this.returnDoor.setScale(1.5);
+	this.returnDoor.setScale(1.5);
+	this.activity1A.setScale(0.67);
+	this.activity1B.setScale(0.67);
     }
 
     /* setRotations
