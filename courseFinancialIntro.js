@@ -69,8 +69,14 @@ class courseFinancialIntro extends Phaser.Scene {
             this.wall_info_6.alpha = wallAlpha;
 
 	console.log("update: "+ roomProgress + ":" + this.holeOpened);
-        if(roomProgress >= 2000 || this.holeOpened == true) 
+        if(roomProgress >= 2000) {
+	    this.holeOpened == true;
             this.hole.alpha = 1;
+	}
+	if (roomProgress >= 1030 && this.activity6.alpha == 0) {
+	    this.holeOpened == true;
+            this.hole.alpha = 1;
+	}
 
 
         if (this.key_M.isDown) {
@@ -95,11 +101,15 @@ class courseFinancialIntro extends Phaser.Scene {
 
         if (this.key_Q.isDown && this.activatedQuiz == false) {
             this.quitInteraction();
+	    if (roomProgress >= 1030) {
+		this.hole.alpha = 1.0;
+		this.holeOpened = true;
+	    }
         }
 
         if (this.quizActive == true && this.activatedQuiz == false && this.key_E.isDown) {
-            this.activateQuiz();
-            this.activatedQuiz = true;
+	    //            this.activateQuiz();
+	    //            this.activatedQuiz = true;
         }
 
         if (this.quizActive == true && this.key_Q.isDown && this.activatedQuiz == true) {
@@ -181,7 +191,7 @@ class courseFinancialIntro extends Phaser.Scene {
         this.load.image('retainedEarningsText' , 'assets/Room1/retainedEarningsText.png');
         this.load.image('hole', 'assets/hole.png');
         this.load.image('congrats', 'assets/Room1/congrats.png');
-        this.load.image('hole', 'assets/hole.png');
+	//        this.load.image('hole', 'assets/hole.png');
         this.load.image('leftArrow' , 'assets/leftArrow.png');
         this.load.image('rightArrow' , 'assets/rightArrowTest.png');
     }
@@ -254,6 +264,11 @@ class courseFinancialIntro extends Phaser.Scene {
         this.rightArrow.alpha = 0;
         this.congrats.alpha = 0;
 	    this.returnDoor.alpha = 1;
+	// FinStmt sorting activity w/ boxes is not in room1 anymore...
+	    this.cardboard_box_1.alpha = 0;
+	    this.cardboard_box_2.alpha = 0;
+	    this.cardboard_box_3.alpha = 0;
+	    this.paper_stack.alpha = 0;
     }
 
     /* setDepths
@@ -314,6 +329,15 @@ class courseFinancialIntro extends Phaser.Scene {
 	this.returnDoor.setScale(1.5);
 	this.activity1A.setScale(0.67);
 	this.activity1B.setScale(0.67);
+	this.activity2.setScale(0.67);
+	this.activity3A.setScale(0.67);
+	this.activity3B.setScale(0.67);
+	this.activity3C.setScale(0.67);
+	this.activity4.setScale(0.67);
+	this.activity5A.setScale(0.67);
+	this.activity5B.setScale(0.67);
+	this.activity5C.setScale(0.67);
+	this.activity6.setScale(0.67);
     }
 
     /* setRotations
@@ -328,7 +352,7 @@ class courseFinancialIntro extends Phaser.Scene {
         this.cardboard_box_2.rotation = 0;
         this.cardboard_box_3.rotation = 0;
         this.leftArrow.setRotation(3.14);
-	    this.returnDoor.angle = 270;
+        this.returnDoor.angle = 270;
     }
 
     /* createInteractionZones
@@ -547,6 +571,8 @@ class courseFinancialIntro extends Phaser.Scene {
                     roomProgress = 1030;
 
                 this.activity6.alpha = 1.0;
+		//		this.holeOpened = true;
+		//		this.hole.alpha = 1.0;
                 this.resetArrows();
                 this.checkActivityOpened(false, false, false, false, false, true);
 
@@ -554,7 +580,7 @@ class courseFinancialIntro extends Phaser.Scene {
                 this.activityLocked.alpha = 1.0;
                 this.characterMoveable = false;
             }
-
+	    /*
         } else if (Phaser.Geom.Rectangle.ContainsPoint(this.quiz1, this.character_north)){
             this.E_KeyImg.x = this.character_north.x+75;
             this.E_KeyImg.y = this.character_north.y;
@@ -565,6 +591,7 @@ class courseFinancialIntro extends Phaser.Scene {
             } else if (this.key_E.isDown && roomProgress < 1030){
                 this.activityLocked.alpha = 1.0;
             }
+	    */
         } else if (Phaser.Geom.Rectangle.ContainsPoint(this.exitDoor, this.character_north)){
             this.E_KeyImg.x = this.character_north.x+75;
             this.E_KeyImg.y = this.character_north.y;
@@ -1066,16 +1093,19 @@ class courseFinancialIntro extends Phaser.Scene {
         this.leftArrow.alpha = 0;
         this.leftArrow.setVisible(true);
     }
+    // Arrows are now in the panel images themselves so don't need images 
+    // here anymore. Still need to track if panel has multiple screens
+    // though... Quick fix: just never turn image alpha on!
     loadArrows() {
         if (this.rightArrowShown == true) {
-            this.rightArrow.alpha = 1;
+            this.rightArrow.alpha = 0; //1;
         }
         else {
             this.rightArrow.alpha = 0;
         }
 
         if (this.leftArrowShown == true) {
-            this.leftArrow.alpha = 1;
+            this.leftArrow.alpha = 0; //1;
         }
         else {
             this.leftArrow.alpha = 0;
