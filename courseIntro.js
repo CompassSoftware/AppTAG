@@ -1,7 +1,7 @@
-class courseFinancialIntro extends Phaser.Scene {
+class courseIntro extends Phaser.Scene {
 
     constructor() {
-        super("Course_Fin_Intro");
+        super("Course_Intro");
         this.quizActive = false;
         this.activatedQuiz = false;
         this.unlocked = false;
@@ -68,7 +68,7 @@ class courseFinancialIntro extends Phaser.Scene {
         if(roomProgress >= 1020)
             this.wall_info_6.alpha = wallAlpha;
 
-	console.log("update: "+ roomProgress + ":" + this.holeOpened);
+	//	console.log("update: "+ roomProgress + ":" + this.holeOpened);
         if(roomProgress >= 2000) {
 	    this.holeOpened == true;
             this.hole.alpha = 1;
