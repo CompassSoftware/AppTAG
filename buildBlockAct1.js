@@ -150,19 +150,21 @@ class buildBlockAct1 extends Phaser.Scene {
     this.room2a_back_hole = this.add.image(268, 632, 'room2a_hole');
     this.room2a_puzz_backHole = this.add.image(140, 632, 'room2a_hole');
 
+
+    this.room2a_act2_text = this.add.text(140, 200, "To Activity Two");
+    this.room2a_act2_text.setFontSize(32);
+    this.room2a_act2_text.setStroke("Black", 4);
+    this.room2a_act2_hole = this.add.image(275, 300, 'room2a_hole');
+
     this.room2a_back_hole_text = this.add.text(168, 532, "Back to Room 2")
     this.room2a_back_hole_text.setFontSize(32);
     this.room2a_back_hole_text.setStroke("Black",4);
-
-    this.room2a_NOTREADY_text = this.add.text(500, 500, "PUZZLE ROOM NOT FINISHED")
-    this.room2a_NOTREADY_text.setFontSize(32);
-    this.room2a_NOTREADY_text.setStroke("Black",4);
 
     this.room2a_puzz_holeText = this.add.text(5, 532, "Back to Room 2");
     this.room2a_puzz_holeText.setFontSize(32);
     this.room2a_puzz_holeText.setStroke("Black", 4);
 
-    this.room2a_puzzle1 = this.add.image(1168, 432, 'room2a_puzzle1');
+    this.room2a_puzzle1 = this.add.image(1168, 432, 'room2a_puzzle1').setInteractive();
     this.room2a_Pfloor = this.add.image(768, 615, 'room2a_Pfloor');
   }
 
@@ -196,9 +198,9 @@ class buildBlockAct1 extends Phaser.Scene {
     this.room2a_character_west.setDepth(50);
     this.room2a_E_KeyImg.setDepth(49);
     this.room2a_map.setDepth(100);
+    //this.room2a_puzzle_stack.setDepth(1);
     this.room2a_notebook.setDepth(100);
     this.room2a_help_menu.setDepth(100);
-    this.room2a_NOTREADY_text.setDepth(49);
   }
 
   /* setScales
@@ -227,6 +229,7 @@ class buildBlockAct1 extends Phaser.Scene {
   */
   setRotations() {
     this.room2a_puzzle1.angle = 90;
+  //   this.room2a_cardboard_box_3.rotation = 0;
    }
   /* assignKeybinds
    *
@@ -250,7 +253,8 @@ class buildBlockAct1 extends Phaser.Scene {
     this.room2a_key_5 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.FIVE);
     this.room2a_key_R = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
     this.room2a_key_H = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.H);
-
+    this.room2a_key_F = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
+    this.room2a_key_G = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.G);
   }
 
   /* imagesDraggable
@@ -279,6 +283,10 @@ class buildBlockAct1 extends Phaser.Scene {
     this.room2a_back_hole_zone = new Phaser.Geom.Rectangle(150,532,150,150);
     this.room2a_graphics.fillRectShape(this.room2a_back_hole_zone);
 
+
+    this.room2a_act2_hole_zone = new Phaser.Geom.Rectangle(160, 150, 150, 150);
+    this.room2a_graphics.fillRectShape(this.room2a_act2_hole_zone);
+
     this.room2a_P1A = new Phaser.Geom.Rectangle(1068, 332,160,110);
     this.room2a_graphics.fillRectShape(this.room2a_P1A);
   }
@@ -299,12 +307,21 @@ class buildBlockAct1 extends Phaser.Scene {
     }
     else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_P1A, this.room2a_character_north) &&
             this.room2a_activatedQuiz == false) {
+
 		this.displayE();
 		if (this.room2a_key_E.isDown) {
-            console.log("Activated Quiz")
-			this.room2a_quizActive = true;
+          console.log("Activated Quiz")
+			    this.room2a_quizActive = true;
 		}
     }
+    else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_act2_hole_zone, this.room2a_character_north) &&
+            this.room2a_activatedQuiz == false) {
+              console.log("found intereact zone");
+              this.displayE();
+              if (this.room2a_key_E.isDown) {
+                this.scene.start("BuidBlock_Act2");
+              }
+            }
     else {
         this.hideActivities();
         this.room2a_E_KeyImg.alpha = 0.0;
@@ -521,7 +538,6 @@ class buildBlockAct1 extends Phaser.Scene {
     this.room2a_back_hole.alpha = 1.0;
     this.room2a_puzzle1.setVisible(true);
     this.room2a_back_hole_text.alpha = 1.0;
-    this.room2a_NOTREADY_text.alpha = 1.0;
     this.room2a_puzz_holeText.alpha = 0.0;
     this.room2a_puzzleMoveable = false;
     this.room2a_puzzleCount = 1;
@@ -529,7 +545,7 @@ class buildBlockAct1 extends Phaser.Scene {
     this.room2a_floor.scaleX = .791;
     this.room2a_puzzle1.x = 1168;
     this.room2a_puzzle1.y = 432;
-  //this.quitQuiz();
+    //this.quitQuiz();
   }
 
 
@@ -607,85 +623,124 @@ class buildBlockAct1 extends Phaser.Scene {
     this.room2a_puzzle1.setVisible(true);
 	this.room2a_puzzle1.x = 200;
     this.room2a_puzzle1.y = 100;
+    this.room2a_puzzle1.setDepth(2);
 
-    this.room2a_puzzle2 = this.add.image(320, 100, 'room2a_puzzle2');
+    this.room2a_puzzle2 = this.add.image(320, 100, 'room2a_puzzle2').setInteractive();
     this.room2a_puzzle2.setVisible(true);
-	this.room2a_puzzle2.setScale(0.6);
+  this.room2a_puzzle2.setScale(0.6);
+  this.room2a_puzzle2.setDepth(2);
 
-	  this.room2a_puzzle3 = this.add.image(440, 100, 'room2a_puzzle3');
+
+	this.room2a_puzzle3 = this.add.image(440, 100, 'room2a_puzzle3').setInteractive();
     this.room2a_puzzle3.setVisible(true);
-	  this.room2a_puzzle3.setScale(0.6);
+  this.room2a_puzzle3.setScale(0.6);
+  this.room2a_puzzle3.setDepth(2);
 
-	  this.room2a_puzzle4 = this.add.image(560, 100, 'room2a_puzzle4');
+
+	this.room2a_puzzle4 = this.add.image(560, 100, 'room2a_puzzle4').setInteractive();
     this.room2a_puzzle4.setVisible(true);
-	  this.room2a_puzzle4.setScale(0.6);
+  this.room2a_puzzle4.setScale(0.6);
+  this.room2a_puzzle4.setDepth(2);
 
-	  this.room2a_puzzle5 = this.add.image(680, 100, 'room2a_puzzle5');
+
+	this.room2a_puzzle5 = this.add.image(680, 100, 'room2a_puzzle5').setInteractive();
     this.room2a_puzzle5.setVisible(true);
-	  this.room2a_puzzle5.setScale(0.6);
+  this.room2a_puzzle5.setScale(0.6);
+  this.room2a_puzzle5.setDepth(2);
 
-	  this.room2a_puzzle6 = this.add.image(800, 100, 'room2a_puzzle6');
+
+	this.room2a_puzzle6 = this.add.image(800, 100, 'room2a_puzzle6').setInteractive();
     this.room2a_puzzle6.setVisible(true);
-	  this.room2a_puzzle6.setScale(0.6);
+  this.room2a_puzzle6.setScale(0.6);
+  this.room2a_puzzle6.setDepth(2);
 
-	  this.room2a_puzzle7 = this.add.image(920, 100, 'room2a_puzzle7');
+
+	this.room2a_puzzle7 = this.add.image(920, 100, 'room2a_puzzle7').setInteractive();
     this.room2a_puzzle7.setVisible(true);
-	  this.room2a_puzzle7.setScale(0.6);
+  this.room2a_puzzle7.setScale(0.6);
+  this.room2a_puzzle7.setDepth(2);
 
-  	this.room2a_puzzle8 = this.add.image(1040, 100, 'room2a_puzzle8');
+
+	this.room2a_puzzle8 = this.add.image(1040, 100, 'room2a_puzzle8').setInteractive();
     this.room2a_puzzle8.setVisible(true);
-	  this.room2a_puzzle8.setScale(0.6);
+  this.room2a_puzzle8.setScale(0.6);
+  this.room2a_puzzle8.setDepth(2);
 
-	  this.room2a_puzzle9 = this.add.image(1160, 100, 'room2a_puzzle9');
+
+	this.room2a_puzzle9 = this.add.image(1160, 100, 'room2a_puzzle9').setInteractive();
     this.room2a_puzzle9.setVisible(true);
-	  this.room2a_puzzle9.setScale(0.6);
+  this.room2a_puzzle9.setScale(0.6);
+  this.room2a_puzzle9.setDepth(2);
 
-	  this.room2a_puzzle10 = this.add.image(1280, 100, 'room2a_puzzle10');
+
+	this.room2a_puzzle10 = this.add.image(1280, 100, 'room2a_puzzle10').setInteractive();
     this.room2a_puzzle10.setVisible(true);
-	  this.room2a_puzzle10.setScale(0.6);
+  this.room2a_puzzle10.setScale(0.6);
+  this.room2a_puzzle10.setDepth(2);
 
-	  this.room2a_puzzle11 = this.add.image(200, 250, 'room2a_puzzle11');
+
+	this.room2a_puzzle11 = this.add.image(200, 250, 'room2a_puzzle11').setInteractive();
     this.room2a_puzzle11.setVisible(true);
-	  this.room2a_puzzle11.setScale(0.6);
+  this.room2a_puzzle11.setScale(0.6);
+  this.room2a_puzzle11.setDepth(2);
 
-	  this.room2a_puzzle12 = this.add.image(320, 250, 'room2a_puzzle12');
+
+	this.room2a_puzzle12 = this.add.image(320, 250, 'room2a_puzzle12').setInteractive();
     this.room2a_puzzle12.setVisible(true);
-	  this.room2a_puzzle12.setScale(0.6);
+  this.room2a_puzzle12.setScale(0.6);
+  this.room2a_puzzle12.setDepth(2);
 
-	  this.room2a_puzzle13 = this.add.image(440, 250, 'room2a_puzzle13');
+
+	this.room2a_puzzle13 = this.add.image(440, 250, 'room2a_puzzle13').setInteractive();
     this.room2a_puzzle13.setVisible(true);
-	  this.room2a_puzzle13.setScale(0.6);
+  this.room2a_puzzle13.setScale(0.6);
+  this.room2a_puzzle13.setDepth(2);
 
-	  this.room2a_puzzle14 = this.add.image(560, 250, 'room2a_puzzle14');
+
+	this.room2a_puzzle14 = this.add.image(560, 250, 'room2a_puzzle14').setInteractive();
     this.room2a_puzzle14.setVisible(true);
-	  this.room2a_puzzle14.setScale(0.6);
+  this.room2a_puzzle14.setScale(0.6);
+  this.room2a_puzzle14.setDepth(2);
 
-	  this.room2a_puzzle15 = this.add.image(680, 250, 'room2a_puzzle15');
+
+	this.room2a_puzzle15 = this.add.image(680, 250, 'room2a_puzzle15').setInteractive();
     this.room2a_puzzle15.setVisible(true);
-	  this.room2a_puzzle15.setScale(0.6);
+  this.room2a_puzzle15.setScale(0.6);
+  this.room2a_puzzle15.setDepth(2);
 
-	  this.room2a_puzzle16 = this.add.image(800, 250, 'room2a_puzzle16');
+
+	this.room2a_puzzle16 = this.add.image(800, 250, 'room2a_puzzle16').setInteractive();
     this.room2a_puzzle16.setVisible(true);
-	  this.room2a_puzzle16.setScale(0.6);
+  this.room2a_puzzle16.setScale(0.6);
+  this.room2a_puzzle16.setDepth(2);
 
-	  this.room2a_puzzle17 = this.add.image(920, 250, 'room2a_puzzle17');
+
+	this.room2a_puzzle17 = this.add.image(920, 250, 'room2a_puzzle17').setInteractive();
     this.room2a_puzzle17.setVisible(true);
-	  this.room2a_puzzle17.setScale(0.6);
+  this.room2a_puzzle17.setScale(0.6);
+  this.room2a_puzzle17.setDepth(2);
 
-	  this.room2a_puzzle18 = this.add.image(1040, 250, 'room2a_puzzle18');
+
+	this.room2a_puzzle18 = this.add.image(1040, 250, 'room2a_puzzle18').setInteractive();
     this.room2a_puzzle18.setVisible(true);
-	  this.room2a_puzzle18.setScale(0.6);
+  this.room2a_puzzle18.setScale(0.6);
+  this.room2a_puzzle18.setDepth(2);
 
-	  this.room2a_puzzle19 = this.add.image(1160, 250, 'room2a_puzzle19');
+
+	this.room2a_puzzle19 = this.add.image(1160, 250, 'room2a_puzzle19').setInteractive();
     this.room2a_puzzle19.setVisible(true);
-	  this.room2a_puzzle19.setScale(0.6);
+  this.room2a_puzzle19.setScale(0.6);
+  this.room2a_puzzle19.setDepth(2);
 
-	  this.room2a_puzzle20 = this.add.image(1280, 250, 'room2a_puzzle20');
+
+	this.room2a_puzzle20 = this.add.image(1280, 250, 'room2a_puzzle20').setInteractive();
     this.room2a_puzzle20.setVisible(true);
-	  this.room2a_puzzle20.setScale(0.6);
+  this.room2a_puzzle20.setScale(0.6);
+  this.room2a_puzzle20.setDepth(2);
+
+
 
     }
-
     ActivityRotations(){
     this.room2a_puzzle1.angle = Math.floor(Math.random() * 3) * 90;
     this.room2a_puzzle2.angle = Math.floor(Math.random() * 3) * 90;
@@ -694,7 +749,7 @@ class buildBlockAct1 extends Phaser.Scene {
 	  this.room2a_puzzle5.angle = Math.floor(Math.random() * 3) * 90;
 	  this.room2a_puzzle6.angle = Math.floor(Math.random() * 3) * 90;
 	  this.room2a_puzzle7.angle = Math.floor(Math.random() * 3) * 90;
-	  this.room2a_puzzle8.angle = Math.floor(Math.random() * 3) * 90;
+  	this.room2a_puzzle8.angle = Math.floor(Math.random() * 3) * 90;
 	  this.room2a_puzzle9.angle = Math.floor(Math.random() * 3) * 90;
 	  this.room2a_puzzle10.angle = Math.floor(Math.random() * 3) * 90;
 	  this.room2a_puzzle11.angle = Math.floor(Math.random() * 3) * 90;
@@ -716,7 +771,7 @@ class buildBlockAct1 extends Phaser.Scene {
   */
   createActivityZones(){
     var room2a_activityZones = [];
-	  this.room2a_activityZone1 = new Phaser.Geom.Rectangle(150,0,100,100);
+	this.room2a_activityZone1 = new Phaser.Geom.Rectangle(150,0,100,100);
     this.room2a_graphics.fillRectShape(this.room2a_activityZone1);
     room2a_activityZones.push(this.room2a_activityZone1);
 
@@ -807,131 +862,165 @@ class buildBlockAct1 extends Phaser.Scene {
    * checks the interact zones for the activity
   */
   checkActivityZones() {
-    if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_activityZone1, this.room2a_character_north)){
-        this.displayE();
-		if (this.room2a_key_E.isDown) {
-		}
-    }
-    else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_activityZone2, this.room2a_character_north)){
-        this.displayE();
-		if (this.room2a_key_E.isDown) {
-	  	}
-    }
-    else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_activityZone3, this.room2a_character_north)){
-        this.displayE();
-		  if (this.room2a_key_E.isDown) {
+    let distanceFrom = 30;
+    this.input.setDraggable(this.room2a_puzzle1, true);
+    this.input.setDraggable(this.room2a_puzzle2, true);
+    this.input.setDraggable(this.room2a_puzzle3, true);
+    this.input.setDraggable(this.room2a_puzzle4, true);
+    this.input.setDraggable(this.room2a_puzzle5, true);
+    this.input.setDraggable(this.room2a_puzzle6, true);
+    this.input.setDraggable(this.room2a_puzzle7, true);
+    this.input.setDraggable(this.room2a_puzzle8, true);
+    this.input.setDraggable(this.room2a_puzzle9, true);
+    this.input.setDraggable(this.room2a_puzzle10, true);
+    this.input.setDraggable(this.room2a_puzzle11, true);
+    this.input.setDraggable(this.room2a_puzzle12, true);
+    this.input.setDraggable(this.room2a_puzzle13, true);
+    this.input.setDraggable(this.room2a_puzzle14, true);
+    this.input.setDraggable(this.room2a_puzzle15, true);
+    this.input.setDraggable(this.room2a_puzzle16, true);
+    this.input.setDraggable(this.room2a_puzzle17, true);
+    this.input.setDraggable(this.room2a_puzzle18, true);
+    this.input.setDraggable(this.room2a_puzzle19, true);
+    this.input.setDraggable(this.room2a_puzzle20, true);
 
-		  }
-    }
-    else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_activityZone4, this.room2a_character_north)){
-        this.displayE();
-		if (this.room2a_key_E.isDown) {
 
-		}
-    }
-    else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_activityZone5, this.room2a_character_north)){
-        this.displayE();
-		if (this.room2a_key_E.isDown) {
+    if(this.room2a_puzzle1.x == 297 && this.room2a_puzzle1.y == 392) {
+      this.input.setDraggable(this.room2a_puzzle1, false);
 
-		}
     }
-    else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_activityZone6, this.room2a_character_north)) {
-        this.displayE();
-		if (this.room2a_key_E.isDown) {
+    
 
-		}
+    if(((this.input.mousePointer.x >= this.room2a_puzzle1.x - distanceFrom) && this.input.mousePointer.x <= (this.room2a_puzzle1.x + distanceFrom)) &&
+    (this.input.mousePointer.y >= this.room2a_puzzle1.y - distanceFrom) && this.input.mousePointer.y <= (this.room2a_puzzle1.y + distanceFrom)){
+      if(this.input.activePointer.isDown && this.room2a_key_F.isDown) {
+        this.room2a_puzzle1.rotation += 0.1;
+      }
+      if(this.input.activePointer.isDown && this.room2a_key_G.isDown) {
+        this.room2a_puzzle1.rotation -= 0.1;
+
+      }
     }
-    else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_activityZone7, this.room2a_character_north)) {
-        this.displayE();
-		if (this.room2a_key_E.isDown) {
+    if(((this.input.mousePointer.x >= this.room2a_puzzle2.x - distanceFrom) && this.input.mousePointer.x <= (this.room2a_puzzle2.x + distanceFrom)) &&
+    (this.input.mousePointer.y >= this.room2a_puzzle2.y - distanceFrom) && this.input.mousePointer.y <= (this.room2a_puzzle2.y + distanceFrom)){
+      if(this.input.activePointer.isDown && this.room2a_key_F.isDown) {
+        this.room2a_puzzle2.rotation += 0.1;
+      }
 
-		}
     }
-    else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_activityZone8, this.room2a_character_north)) {
-        this.displayE();
-		if (this.room2a_key_E.isDown) {
-
-		}
+    if(((this.input.mousePointer.x >= this.room2a_puzzle3.x - distanceFrom) && this.input.mousePointer.x <= (this.room2a_puzzle3.x + distanceFrom)) &&
+    (this.input.mousePointer.y >= this.room2a_puzzle3.y - distanceFrom) && this.input.mousePointer.y <= (this.room2a_puzzle3.y + distanceFrom)){
+      if(this.input.activePointer.isDown && this.room2a_key_F.isDown) {
+        this.room2a_puzzle3.angle += 90;
+      }
     }
-    else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_activityZone9, this.room2a_character_north)) {
-        this.displayE();
-		if (this.room2a_key_E.isDown) {
-
-		}
+    if(((this.input.mousePointer.x >= this.room2a_puzzle4.x - distanceFrom) && this.input.mousePointer.x <= (this.room2a_puzzle4.x + distanceFrom)) &&
+    (this.input.mousePointer.y >= this.room2a_puzzle4.y - distanceFrom) && this.input.mousePointer.y <= (this.room2a_puzzle4.y + distanceFrom)){
+      if(this.input.activePointer.isDown && this.room2a_key_F.isDown) {
+        this.room2a_puzzle4.angle += 90;
+      }
     }
-    else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_activityZone10, this.room2a_character_north)) {
-        this.displayE();
-		if (this.room2a_key_E.isDown) {
-
-		}
+    if(((this.input.mousePointer.x >= this.room2a_puzzle5.x - distanceFrom) && this.input.mousePointer.x <= (this.room2a_puzzle5.x + distanceFrom))&&
+    (this.input.mousePointer.y >= this.room2a_puzzle5.y - distanceFrom) && this.input.mousePointer.y <= (this.room2a_puzzle5.y + distanceFrom)) {
+      if(this.input.activePointer.isDown && this.room2a_key_F.isDown) {
+        this.room2a_puzzle5.angle += 90;
+      }
     }
-    else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_activityZone11, this.room2a_character_north)) {
-        this.displayE();
-
-		if (this.room2a_key_E.isDown) {
-		}
+    if(((this.input.mousePointer.x >= this.room2a_puzzle6.x - distanceFrom) && this.input.mousePointer.x <= (this.room2a_puzzle6.x + distanceFrom)) &&
+    (this.input.mousePointer.y >= this.room2a_puzzle6.y - distanceFrom) && this.input.mousePointer.y <= (this.room2a_puzzle6.y + distanceFrom)){
+      if(this.input.activePointer.isDown && this.room2a_key_F.isDown) {
+        this.room2a_puzzle6.angle += 90;
+      }
     }
-    else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_activityZone12, this.room2a_character_north)) {
-        this.displayE();
-		if (this.room2a_key_E.isDown) {
-
-		}
+    if(((this.input.mousePointer.x >= this.room2a_puzzle7.x - distanceFrom) && this.input.mousePointer.x <= (this.room2a_puzzle7.x + distanceFrom)) &&
+        (this.input.mousePointer.y >= this.room2a_puzzle7.y - distanceFrom) && this.input.mousePointer.y <= (this.room2a_puzzle7.y + distanceFrom)) {
+      if(this.input.activePointer.isDown && this.room2a_key_F.isDown) {
+        this.room2a_puzzle7.angle += 90;
+      }
     }
-    else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_activityZone13, this.room2a_character_north)) {
-        this.displayE();
-		if (this.room2a_key_E.isDown) {
-
-		}
+    if(((this.input.mousePointer.x >= this.room2a_puzzle8.x - distanceFrom) && this.input.mousePointer.x <= (this.room2a_puzzle8.x + distanceFrom)) &&
+    (this.input.mousePointer.y >= this.room2a_puzzle8.y - distanceFrom) && this.input.mousePointer.y <= (this.room2a_puzzle8.y + distanceFrom)) {
+      if(this.input.activePointer.isDown && this.room2a_key_F.isDown) {
+        this.room2a_puzzle8.angle += 90;
+      }
     }
-    else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_activityZone14, this.room2a_character_north)) {
-        this.displayE();
-		if (this.room2a_key_E.isDown) {
-
-		}
+    if(((this.input.mousePointer.x >= this.room2a_puzzle9.x - distanceFrom) && this.input.mousePointer.x <= (this.room2a_puzzle9.x + distanceFrom)) &&
+    (this.input.mousePointer.y >= this.room2a_puzzle9.y - distanceFrom) && this.input.mousePointer.y <= (this.room2a_puzzle9.y + distanceFrom)){
+      if(this.input.activePointer.isDown && this.room2a_key_F.isDown) {
+        this.room2a_puzzle9.angle += 90;
+      }
     }
-    else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_activityZone15, this.room2a_character_north)) {
-        this.displayE();
-		if (this.room2a_key_E.isDown) {
-
-		}
+    if(((this.input.mousePointer.x >= this.room2a_puzzle10.x - distanceFrom) && this.input.mousePointer.x <= (this.room2a_puzzle10.x + distanceFrom))&&
+    (this.input.mousePointer.y >= this.room2a_puzzle10.y - distanceFrom) && this.input.mousePointer.y <= (this.room2a_puzzle10.y + distanceFrom)) {
+      if(this.input.activePointer.isDown && this.room2a_key_F.isDown) {
+        this.room2a_puzzle10.angle += 90;
+      }
     }
-    else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_activityZone16, this.room2a_character_north)){
-        this.displayE();
-		if (this.room2a_key_E.isDown) {
-
-		}
+    if(((this.input.mousePointer.x >= this.room2a_puzzle11.x - distanceFrom) && this.input.mousePointer.x <= (this.room2a_puzzle11.x + distanceFrom)) &&
+    (this.input.mousePointer.y >= this.room2a_puzzle11.y - distanceFrom) && this.input.mousePointer.y <= (this.room2a_puzzle11.y + distanceFrom)){
+      if(this.input.activePointer.isDown && this.room2a_key_F.isDown) {
+        this.room2a_puzzle11.angle += 90;
+      }
     }
-    else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_activityZone17, this.room2a_character_north)) {
-        this.displayE();
-		if (this.room2a_key_E.isDown) {
-
-		}
+    if(((this.input.mousePointer.x >= this.room2a_puzzle12.x - distanceFrom) && this.input.mousePointer.x <= (this.room2a_puzzle12.x + distanceFrom)) &&
+    (this.input.mousePointer.y >= this.room2a_puzzle12.y - distanceFrom) && this.input.mousePointer.y <= (this.room2a_puzzle12.y + distanceFrom)){
+      if(this.input.activePointer.isDown && this.room2a_key_F.isDown) {
+        this.room2a_puzzle12.angle += 90;
+      }
     }
-    else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_activityZone18, this.room2a_character_north)) {
-        this.displayE();
-		if (this.room2a_key_E.isDown) {
-
-		}
+    if(((this.input.mousePointer.x >= this.room2a_puzzle13.x - distanceFrom) && this.input.mousePointer.x <= (this.room2a_puzzle13.x + distanceFrom)) &&
+    (this.input.mousePointer.y >= this.room2a_puzzle13.y - distanceFrom) && this.input.mousePointer.y <= (this.room2a_puzzle13.y + distanceFrom)){
+      if(this.input.activePointer.isDown && this.room2a_key_F.isDown) {
+        this.room2a_puzzle13.angle += 90;
+      }
     }
-    else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_activityZone19, this.room2a_character_north)) {
-        this.displayE();
-		if (this.room2a_key_E.isDown) {
-
-		}
+    if(((this.input.mousePointer.x >= this.room2a_puzzle14.x - distanceFrom) && this.input.mousePointer.x <= (this.room2a_puzzle14.x + distanceFrom)) &&
+    (this.input.mousePointer.y >= this.room2a_puzzle14.y - distanceFrom) && this.input.mousePointer.y <= (this.room2a_puzzle14.y + distanceFrom)){
+      if(this.input.activePointer.isDown && this.room2a_key_F.isDown) {
+        this.room2a_puzzle14.angle += 90;
+      }
     }
-    else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_activityZone20, this.room2a_character_north)) {
-        this.displayE();
-		if (this.room2a_key_E.isDown) {
-
-		}
+    if(((this.input.mousePointer.x >= this.room2a_puzzle15.x - distanceFrom) && this.input.mousePointer.x <= (this.room2a_puzzle15.x + distanceFrom)) &&
+    (this.input.mousePointer.y >= this.room2a_puzzle15.y - distanceFrom) && this.input.mousePointer.y <= (this.room2a_puzzle15.y + distanceFrom)){
+      if(this.input.activePointer.isDown && this.room2a_key_F.isDown) {
+        this.room2a_puzzle15.angle += 90;
+      }
     }
-
+    if(((this.input.mousePointer.x >= this.room2a_puzzle16.x - distanceFrom) && this.input.mousePointer.x <= (this.room2a_puzzle16.x + distanceFrom)) &&
+    (this.input.mousePointer.y >= this.room2a_puzzle16.y - distanceFrom) && this.input.mousePointer.y <= (this.room2a_puzzle16.y + distanceFrom)){
+      if(this.input.activePointer.isDown && this.room2a_key_F.isDown) {
+        this.room2a_puzzle16.angle += 90;
+      }
+    }
+    if(((this.input.mousePointer.x >= this.room2a_puzzle17.x - distanceFrom) && this.input.mousePointer.x <= (this.room2a_puzzle17.x + distanceFrom)) &&
+    (this.input.mousePointer.y >= this.room2a_puzzle7.y - distanceFrom) && this.input.mousePointer.y <= (this.room2a_puzzle17.y + distanceFrom)){
+      if(this.input.activePointer.isDown && this.room2a_key_F.isDown) {
+        this.room2a_puzzle17.angle += 90;
+      }
+    }
+    if(((this.input.mousePointer.x >= this.room2a_puzzle18.x - distanceFrom) && this.input.mousePointer.x <= (this.room2a_puzzle18.x + distanceFrom)) &&
+    (this.input.mousePointer.y >= this.room2a_puzzle18.y - distanceFrom) && this.input.mousePointer.y <= (this.room2a_puzzle18.y + distanceFrom)){
+      if(this.input.activePointer.isDown && this.room2a_key_F.isDown) {
+        this.room2a_puzzle18.angle += 90;
+      }
+    }
+    if(((this.input.mousePointer.x >= this.room2a_puzzle19.x - distanceFrom) && this.input.mousePointer.x <= (this.room2a_puzzle19.x + distanceFrom)) &&
+    (this.input.mousePointer.y >= this.room2a_puzzle19.y - distanceFrom) && this.input.mousePointer.y <= (this.room2a_puzzle19.y + distanceFrom)){
+      if(this.input.activePointer.isDown && this.room2a_key_F.isDown) {
+        this.room2a_puzzle19.angle += 90;
+      }
+    }
+    if(((this.input.mousePointer.x >= this.room2a_puzzle20.x - distanceFrom) && this.input.mousePointer.x <= (this.room2a_puzzle20.x + distanceFrom)) &&
+    (this.input.mousePointer.y >= this.room2a_puzzle20.y - distanceFrom) && this.input.mousePointer.y <= (this.room2a_puzzle20.y + distanceFrom)){
+      if(this.input.activePointer.isDown && this.room2a_key_F.isDown) {
+        this.room2a_puzzle20.angle += 90;
+      }
+    }
     if(Phaser.Geom.Rectangle.ContainsPoint(this.room2a_puzz_zone, this.room2a_character_north)) {
       this.displayE();
       if(this.room2a_key_E.isDown) {
         this.scene.start("Building_Blocks");
-        this.room2a_activatedQuiz= false;
-        // this.quitInteraction();
+        //this.quitInteraction();
       }
     }
     else {
