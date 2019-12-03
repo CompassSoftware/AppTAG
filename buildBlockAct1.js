@@ -104,6 +104,7 @@ class buildBlockAct1 extends Phaser.Scene {
     this.load.image('room2a_activityLocked', 'assets/activityLocked.png');
     this.load.image('room2a_help_menu', 'assets/help_menu.png');
     this.load.image('room2a_hole', 'assets/hole.png');
+    this.load.image('room2a_couple', 'assets/Room2Act2/couple.png');
     this.load.image('room2a_puzzle1', 'assets/Room2Act1/Puzzle/Puzzle/Puzzle1A.png');
     this.load.image('room2a_puzzle2', 'assets/Room2Act1/Puzzle/Puzzle/Puzzle1B.png');
     this.load.image('room2a_puzzle3', 'assets/Room2Act1/Puzzle/Puzzle/Puzzle1C.png');
@@ -154,7 +155,9 @@ class buildBlockAct1 extends Phaser.Scene {
     this.room2a_act2_text = this.add.text(140, 200, "To Activity Two");
     this.room2a_act2_text.setFontSize(32);
     this.room2a_act2_text.setStroke("Black", 4);
-    this.room2a_act2_hole = this.add.image(275, 300, 'room2a_hole');
+    this.room2a_couple = this.add.image(275,300, 'room2a_couple');
+
+    // this.room2a_act2_hole = this.add.image(275, 300, 'room2a_hole');
 
     this.room2a_back_hole_text = this.add.text(168, 532, "Back to Room 2")
     this.room2a_back_hole_text.setFontSize(32);
@@ -220,7 +223,8 @@ class buildBlockAct1 extends Phaser.Scene {
     this.room2a_floor.scaleX = .791;
     this.room2a_Pfloor.scaleY = .8;
     this.room2a_Pfloor.scaleX = .8;
-
+    this.room2a_couple.setScale(0.3)
+;
   }
 
   /* setRotations
@@ -545,6 +549,29 @@ class buildBlockAct1 extends Phaser.Scene {
     this.room2a_floor.scaleX = .791;
     this.room2a_puzzle1.x = 1168;
     this.room2a_puzzle1.y = 432;
+
+
+    // this.input.setDraggable(this.room2a_puzzle1, false);
+    // this.input.setDraggable(this.room2a_puzzle2, false);
+    // this.input.setDraggable(this.room2a_puzzle3, false);
+    // this.input.setDraggable(this.room2a_puzzle4, false);
+    // this.input.setDraggable(this.room2a_puzzle5, false);
+    // this.input.setDraggable(this.room2a_puzzle6, false);
+    // this.input.setDraggable(this.room2a_puzzle7, false);
+    // this.input.setDraggable(this.room2a_puzzle8, false);
+    // this.input.setDraggable(this.room2a_puzzle9, false);
+    // this.input.setDraggable(this.room2a_puzzle10, false);
+    // this.input.setDraggable(this.room2a_puzzle11, false);
+    // this.input.setDraggable(this.room2a_puzzle12, false);
+    // this.input.setDraggable(this.room2a_puzzle13, false);
+    // this.input.setDraggable(this.room2a_puzzle14, false);
+    // this.input.setDraggable(this.room2a_puzzle15, false);
+    // this.input.setDraggable(this.room2a_puzzle16, false);
+    // this.input.setDraggable(this.room2a_puzzle17, false);
+    // this.input.setDraggable(this.room2a_puzzle18, false);
+    // this.input.setDraggable(this.room2a_puzzle19, false);
+    // this.input.setDraggable(this.room2a_puzzle20, false);
+
     //this.quitQuiz();
   }
 
@@ -592,6 +619,9 @@ class buildBlockAct1 extends Phaser.Scene {
     this.room2a_puzzleCount = 1;
     this.room2a_puzzleMoveable = true;
     this.room2a_back_hole.alpha = 0.0;
+    this.room2a_act2_hole_zone.alpha = 0.0;
+    this.room2a_couple.alpha = 0.0;
+    this.room2a_act2_text.alpha = 0.0;
     this.room2a_puzz_backHole.alpha = 1.0;
     this.room2a_puzz_holeText.alpha = 1.0;
     this.loadQuizImages();
@@ -885,10 +915,10 @@ class buildBlockAct1 extends Phaser.Scene {
     this.input.setDraggable(this.room2a_puzzle20, true);
 
 
-    if(this.room2a_puzzle1.x == 297 && this.room2a_puzzle1.y == 392) {
-      this.input.setDraggable(this.room2a_puzzle1, false);
+    // if(this.room2a_puzzle1.x == 297 && this.room2a_puzzle1.y == 392) {
+    //   this.input.setDraggable(this.room2a_puzzle1, false);
 
-    }
+    // }
     
 
     if(((this.input.mousePointer.x >= this.room2a_puzzle1.x - distanceFrom) && this.input.mousePointer.x <= (this.room2a_puzzle1.x + distanceFrom)) &&

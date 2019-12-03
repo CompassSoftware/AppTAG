@@ -179,7 +179,7 @@ class buildingBlocks extends Phaser.Scene {
         this.load.image('room2_notebook', 'assets/notebook.png');
         this.load.image('room2_activityLocked', 'assets/activityLocked.png');
         this.load.image('room2_help_menu', 'assets/help_menu.png');
-        this.load.image('rightArrow' , 'assets/rightArrowTest.png');
+        // this.load.image('rightArrow' , 'assets/rightArrowTest.png');
 	this.load.image('returnDoor', 'assets/dooropen_100x100.png');
 
     }
@@ -234,8 +234,8 @@ class buildingBlocks extends Phaser.Scene {
         this.room2_help_menu = this.add.image(768, 432, 'room2_help_menu');
         this.room2_hole_activity = this.add.image(350, 540, 'room2_hole_activity');
         this.room2_hole_nextRoom = this.add.image(350, 300, 'room2_hole_nextRoom');
-        this.rightArrow = this.add.image(1000, 650, 'rightArrow');
-        this.leftArrow = this.add.image(600, 650, 'rightArrow');
+        // this.rightArrow = this.add.image(1000, 650, 'rightArrow');
+        // this.leftArrow = this.add.image(600, 650, 'rightArrow');
     }
 
     /* setAlphas
@@ -251,8 +251,8 @@ class buildingBlocks extends Phaser.Scene {
         this.hideActivities();
         this.room2_hole_activity.alpha = 0.0;
         this.room2_hole_nextRoom.alpha = 0.0;
-        this.leftArrow.alpha = 0;
-        this.rightArrow.alpha = 0;
+        // this.leftArrow.alpha = 0;
+        // this.rightArrow.alpha = 0;
 	this.returnDoor.alpha = 1;
     }
 
@@ -317,8 +317,8 @@ class buildingBlocks extends Phaser.Scene {
         this.room2_character_east.setScale(3);
         this.room2_floor.scaleY = 0.71;
         this.room2_floor.scaleX = 0.99;
-        this.leftArrow.setScale(.2);
-        this.rightArrow.setScale(.2);
+        // this.leftArrow.setScale(.2);
+        // this.rightArrow.setScale(.2);
         this.room2_hole_activity.setScale(0.5);
 	this.returnDoor.setScale(1.5);
     }
@@ -331,7 +331,7 @@ class buildingBlocks extends Phaser.Scene {
         this.room2_wall_info_4.rotation = 3.14;
         this.room2_wall_info_5.rotation = 3.14;
         this.room2_wall_info_6.rotation = 3.14;
-        this.leftArrow.setRotation(3.14);
+        // this.leftArrow.setRotation(3.14);
 	this.returnDoor.angle = 270;
     }
 
@@ -670,8 +670,8 @@ class buildingBlocks extends Phaser.Scene {
         this.room2_activitySixOpened = false;
         this.room2_help_menu.alpha = 0.0;
         this.room2_activatedQuiz = false;
-        this.rightArrow.setVisible(false);
-        this.leftArrow.setVisible(false);
+        // this.rightArrow.setVisible(false);
+        // this.leftArrow.setVisible(false);
     }
 
 
@@ -708,8 +708,8 @@ class buildingBlocks extends Phaser.Scene {
         this.room2_activity6A.alpha = 0.0;
         this.room2_activity6B.alpha = 0.0;
         this.room2_activityLocked.alpha = 0.0;
-        this.rightArrow.setVisible(false);
-        this.leftArrow.setVisible(false);
+        // this.rightArrow.setVisible(false);
+        // this.leftArrow.setVisible(false);
     }
 
     activityAlphas(room2_oneA, room2_oneB, room2_oneC, room2_oneD, room2_twoA, room2_twoB, room2_twoC, room2_twoD, room2_threeA, room2_threeB, room2_fourA, room2_fourB, room2_fourC, room2_fourD, room2_fourE, room2_fiveA, room2_fiveB, room2_fiveC, room2_fiveD, room2_fiveE, room2_fiveF, room2_sixA, room2_sixB) {
@@ -741,26 +741,26 @@ class buildingBlocks extends Phaser.Scene {
     }
 
     resetArrows() {
-        this.rightArrow.alpha = 0;
-        this.rightArrow.setVisible(true);
+        // this.rightArrow.alpha = 0;
+        // this.rightArrow.setVisible(true);
 
-        this.leftArrow.alpha = 0;
-        this.leftArrow.setVisible(true);
+        // this.leftArrow.alpha = 0;
+        // this.leftArrow.setVisible(true);
     }
     loadArrows() {
-        if (this.rightArrowShown == true) {
-            this.rightArrow.alpha = 1;
-        }
-        else {
-            this.rightArrow.alpha = 0;
-        }
+        // if (this.rightArrowShown == true) {
+        //     this.rightArrow.alpha = 1;
+        // }
+        // else {
+        //     this.rightArrow.alpha = 0;
+        // }
 
-        if (this.leftArrowShown == true) {
-            this.leftArrow.alpha = 1;
-        }
-        else {
-            this.leftArrow.alpha = 0;
-        }
+        // if (this.leftArrowShown == true) {
+        //     this.leftArrow.alpha = 1;
+        // }
+        // else {
+        //     this.leftArrow.alpha = 0;
+        // }
     }
 
     /* checkNextPage
@@ -978,21 +978,22 @@ class buildingBlocks extends Phaser.Scene {
             }
         }
         if (this.room2_activitySixOpened == true) {
-            if (this.room2_activity6A.alpha == 1 && this.key_Right.isDown && this.counter > 15) {
-                this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1);
-                this.rightArrowShown = false;
-                this.leftArrowShown = true;
-                this.counter = 0;
-            } else if (this.room2_activity6A.alpha == 1) {
+            // if (this.room2_activity6A.alpha == 1 && this.key_Right.isDown && this.counter > 15) {
+            //     this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1);
+            //     this.rightArrowShown = false;
+            //     this.leftArrowShown = true;
+            //     this.counter = 0;
+            if (this.room2_activity6A.alpha == 1) {
                 this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0);
                 this.rightArrowShown = true;
                 this.leftArrowShown = false;
-            } else if(this.room2_activity6B.alpha == 1 && this.key_Left.isDown && this.counter > 15) {
-                this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0);
-                this.rightArrowShown = true;
-                this.leftArrowShown = true;
-                this.counter = 0;
-            }
+            } 
+            // else if(this.room2_activity6B.alpha == 1 && this.key_Left.isDown && this.counter > 15) {
+            //     this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0);
+            //     this.rightArrowShown = true;
+            //     this.leftArrowShown = true;
+            //     this.counter = 0;
+            // }
 
         }
         this.counter++;

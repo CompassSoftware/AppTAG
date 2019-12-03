@@ -108,8 +108,8 @@ class courseIntro extends Phaser.Scene {
         }
 
         if (this.quizActive == true && this.activatedQuiz == false && this.key_E.isDown) {
-	    //            this.activateQuiz();
-	    //            this.activatedQuiz = true;
+	               this.activateQuiz();
+	               this.activatedQuiz = true;
         }
 
         if (this.quizActive == true && this.key_Q.isDown && this.activatedQuiz == true) {
@@ -191,7 +191,7 @@ class courseIntro extends Phaser.Scene {
         this.load.image('retainedEarningsText' , 'assets/Room1/retainedEarningsText.png');
         this.load.image('hole', 'assets/hole.png');
         this.load.image('congrats', 'assets/Room1/congrats.png');
-	//        this.load.image('hole', 'assets/hole.png');
+	    this.load.image('hole', 'assets/hole.png');
         this.load.image('leftArrow' , 'assets/leftArrow.png');
         this.load.image('rightArrow' , 'assets/rightArrowTest.png');
     }
@@ -265,10 +265,10 @@ class courseIntro extends Phaser.Scene {
         this.congrats.alpha = 0;
 	    this.returnDoor.alpha = 1;
 	// FinStmt sorting activity w/ boxes is not in room1 anymore...
-	    this.cardboard_box_1.alpha = 0;
-	    this.cardboard_box_2.alpha = 0;
-	    this.cardboard_box_3.alpha = 0;
-	    this.paper_stack.alpha = 0;
+	    // this.cardboard_box_1.alpha = 0;
+	    // this.cardboard_box_2.alpha = 0;
+	    // this.cardboard_box_3.alpha = 0;
+	    // this.paper_stack.alpha = 0;
     }
 
     /* setDepths
@@ -571,8 +571,8 @@ class courseIntro extends Phaser.Scene {
                     roomProgress = 1030;
 
                 this.activity6.alpha = 1.0;
-		//		this.holeOpened = true;
-		//		this.hole.alpha = 1.0;
+				this.holeOpened = true;
+				this.hole.alpha = 1.0;
                 this.resetArrows();
                 this.checkActivityOpened(false, false, false, false, false, true);
 
@@ -580,7 +580,7 @@ class courseIntro extends Phaser.Scene {
                 this.activityLocked.alpha = 1.0;
                 this.characterMoveable = false;
             }
-	    /*
+	    
         } else if (Phaser.Geom.Rectangle.ContainsPoint(this.quiz1, this.character_north)){
             this.E_KeyImg.x = this.character_north.x+75;
             this.E_KeyImg.y = this.character_north.y;
@@ -591,7 +591,7 @@ class courseIntro extends Phaser.Scene {
             } else if (this.key_E.isDown && roomProgress < 1030){
                 this.activityLocked.alpha = 1.0;
             }
-	    */
+	    
         } else if (Phaser.Geom.Rectangle.ContainsPoint(this.exitDoor, this.character_north)){
             this.E_KeyImg.x = this.character_north.x+75;
             this.E_KeyImg.y = this.character_north.y;
@@ -929,12 +929,14 @@ class courseIntro extends Phaser.Scene {
                 this.updateCorrectImage();
 
             } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_2_zone, this.paper) /*&& this.paperCount == 1*/) {
+                document.getElementById("wrong").volume = 1;
                 document.getElementById("wrong").play();
                 this.paper.x = this.paper_stack.x;
                 this.paper.y = this.paper_stack.y + 600;
                 this.updateCorrectImage();
 
             } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_3_zone, this.paper)/* && this.paperCount == 1*/) {
+                document.getElementById("wrong").volume = 1;
                 document.getElementById("wrong").play();
                 this.paper.x = this.paper_stack.x;
                 this.paper.y = this.paper_stack.y + 600;
@@ -963,20 +965,22 @@ class courseIntro extends Phaser.Scene {
             this.updateCorrectImage();
 
         } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_1_zone, this.paperTwo) /*&& this.paperCount == 2*/) {
+            document.getElementById("wrong").volume = 1;
             document.getElementById("wrong").play();
             this.paperTwo.x = this.paper_stack.x;
             this.paperTwo.y = this.paper_stack.y + 600;
             this.updateCorrectImage();
 
         } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_3_zone, this.paperTwo) /*&& this.paperCount == 2*/) {
+            document.getElementById("wrong").volume = 1;
             document.getElementById("wrong").play();
             this.paperTwo.x = this.paper_stack.x;
             this.paperTwo.y = this.paper_stack.y + 600;
             this.updateCorrectImage();
 
-            //this.cardboard_box_3.setVisible(true);
+            this.cardboard_box_3.setVisible(true);
         }
-        //this.updateCorrectImage();
+        this.updateCorrectImage();
     }
 
     /* checkCorrectPaperThree
@@ -996,12 +1000,14 @@ class courseIntro extends Phaser.Scene {
             this.paperCount++;
             this.quitQuiz();
         } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_1_zone, this.paperThree) && this.paperCount == 3) {
+            document.getElementById("wrong").volume = 1;
             document.getElementById("wrong").play();
             this.paperThree.x = this.paper_stack.x;
             this.paperThree.y = this.paper_stack.y + 600;
 
 
         } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_2_zone, this.paperThree) && this.paperCount == 3) {
+            document.getElementById("wrong").volume = 1;
             document.getElementById("wrong").play();
             this.paperThree.x = this.paper_stack.x;
             this.paperThree.y = this.paper_stack.y + 600;
