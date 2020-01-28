@@ -568,7 +568,7 @@ class buildingBlocks extends Phaser.Scene {
 	    this.room2_E_KeyImg.y = this.room2_character_north.y;
 	    this.room2_E_KeyImg.alpha = 1.0;
 	    if (this.room2_key_E.isDown) {
-		this.scene.start("Course_Fin_Intro");
+		this.scene.start("Course_Intro");
 	    }
 	}	
 
