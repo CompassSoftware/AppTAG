@@ -323,7 +323,7 @@ class courseIntro extends Phaser.Scene {
         this.character_south.setScale(3);
         this.character_west.setScale(3);
         this.character_east.setScale(3);
-        this.hole.setScale(0.75);
+        //this.hole.setScale(0.75);
         this.leftArrow.setScale(.2);
         this.rightArrow.setScale(.2);
 	this.returnDoor.setScale(1.5);

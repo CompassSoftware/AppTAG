@@ -220,7 +220,7 @@ class accountEqn extends Phaser.Scene {
     this.room3_help_menu = this.add.image(768, 432, 'room3_help_menu');
     this.room3_rightArrow = this.add.image(1000, 650, 'room3_rightArrow');
     this.room3_leftArrow = this.add.image(600, 650, 'room3_rightArrow');
-    this.room3_hole = this.add.image(1200,450, 'room3_hole');
+    this.room3_hole = this.add.image(768, 432, 'room3_hole');
   }
 
   /* setAlphas
@@ -334,7 +334,7 @@ class accountEqn extends Phaser.Scene {
     this.room3_bot_right_info = new Phaser.Geom.Rectangle(1120,565,240,150);
     this.room3_graphics.fillRectShape(this.room3_bot_right_info);
 
-    this.room3_hole_info = new Phaser.Geom.Rectangle(1180, 400, 100, 100);
+    this.room3_hole_info = new Phaser.Geom.Rectangle(700,350,200,200);
     this.room3_graphics.fillRectShape(this.room3_hole_info);
   }
 
