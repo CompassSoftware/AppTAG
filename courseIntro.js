@@ -5,7 +5,7 @@ class courseIntro extends Phaser.Scene {
         this.quizActive = false;
         this.activatedQuiz = false;
         this.unlocked = false;
-        this.paperMoveable = false;
+        //this.paperMoveable = false;
         this.helpOpen = false;
         this.holeOpened = false;
         this.counter = 0;
@@ -97,43 +97,52 @@ class courseIntro extends Phaser.Scene {
             this.character_west.alpha = 0.0;
         }
 
+        if (this.key_H.isDown) {
+            helpMenu();
+            this.characterMoveable = false;
+            this.character_north.alpha = 0.0;
+            this.character_east.alpha = 0.0;
+            this.character_south.alpha = 0.0;
+            this.character_west.alpha = 0.0;
+        }
+
 
 
         if (this.key_Q.isDown && this.activatedQuiz == false) {
             this.quitInteraction();
-	    if (roomProgress >= 1030) {
-		this.hole.alpha = 1.0;
-		this.holeOpened = true;
+	        if (roomProgress >= 1030) {
+		        this.hole.alpha = 1.0;
+		        this.holeOpened = true;
 	    }
         }
 
-        if (this.quizActive == true && this.activatedQuiz == false && this.key_E.isDown) {
+        //if (this.quizActive == true && this.activatedQuiz == false && this.key_E.isDown) {
 	    //            this.activateQuiz();
 	    //            this.activatedQuiz = true;
-        }
+        //}
 
-        if (this.quizActive == true && this.key_Q.isDown && this.activatedQuiz == true) {
-            this.quitQuiz();
-            this.activatedQuiz = false;
-        }
+        //if (this.quizActive == true && this.key_Q.isDown && this.activatedQuiz == true) {
+        //    this.quitQuiz();
+        //    this.activatedQuiz = false;
+        //}
 
         if (this.activatedQuiz == false) {
             this.movePlayer();
             this.checkInteractValidity();
-        } else if (this.activatedQuiz = true) {
-            if (this.paperCount == 1) {
-                this.movePaper(this.paper);
-                this.checkCorrectPaperOne();
-            } else if (this.paperCount == 2) {
-                this.movePaper(this.paperTwo);
-                this.checkCorrectPaperTwo();
+        }// else if (this.activatedQuiz = true) {
+           // if (this.paperCount == 1) {
+           //     this.movePaper(this.paper);
+           //     this.checkCorrectPaperOne();
+           // } else if (this.paperCount == 2) {
+            //    this.movePaper(this.paperTwo);
+              //  this.checkCorrectPaperTwo();
 
-            } else if (this.paperCount == 3) {
-                this.movePaper(this.paperThree);
-                this.checkCorrectPaperThree();
-            }
+           // } else if (this.paperCount == 3) {
+             //   this.movePaper(this.paperThree);
+               // this.checkCorrectPaperThree();
+            //}
 
-        }
+        //}
         if (this.activatedQuiz == false)
             this.characterMoveable = true;
     }
@@ -173,24 +182,24 @@ class courseIntro extends Phaser.Scene {
         this.load.image('wall_info_5', 'assets/wall_art.png');
         this.load.image('wall_info_6', 'assets/wall_art.png');
         this.load.image('floor3', 'assets/Room1/floor_3.png');
-        this.load.image('cardboard_box', 'assets/Room1/cardboard_box.png');
-        this.load.image('paper_stack', 'assets/Room1/paper_stack.png');
-        this.load.image('paper', 'assets/single_paper.png');
+        //this.load.image('cardboard_box', 'assets/Room1/cardboard_box.png');
+        //this.load.image('paper_stack', 'assets/Room1/paper_stack.png');
+        //this.load.image('paper', 'assets/single_paper.png');
         this.load.image('r1_map', 'assets/Map/room2inprogress.png');
         this.load.image('notebook', 'assets/notebook.png');
         this.load.image('activityLocked', 'assets/activityLocked.png');
         this.load.image('help_menu', 'assets/help_menu.png');
-        this.load.image('correctPlacements0', 'assets/Room1/placements0.png');
-        this.load.image('correctPlacements1', 'assets/Room1/placements1.png');
-        this.load.image('correctPlacements2', 'assets/Room1/placements2.png');
-        this.load.image('incomeStatement' , 'assets/Documents/incomeStatement.png');
-        this.load.image('balanceSheet', 'assets/Documents/balanceSheet.png');
-        this.load.image('retainedEarnings' , 'assets/Documents/retainedEarnings.png');
-        this.load.image('incomeStatementText' ,'assets/Room1/incomeStatementText.png');
-        this.load.image('balanceSheetText', 'assets/Room1/balanceSheetText.png');
-        this.load.image('retainedEarningsText' , 'assets/Room1/retainedEarningsText.png');
+        //this.load.image('correctPlacements0', 'assets/Room1/placements0.png');
+        //this.load.image('correctPlacements1', 'assets/Room1/placements1.png');
+        //this.load.image('correctPlacements2', 'assets/Room1/placements2.png');
+        //this.load.image('incomeStatement' , 'assets/Documents/incomeStatement.png');
+        //this.load.image('balanceSheet', 'assets/Documents/balanceSheet.png');
+        //this.load.image('retainedEarnings' , 'assets/Documents/retainedEarnings.png');
+        //this.load.image('incomeStatementText' ,'assets/Room1/incomeStatementText.png');
+        //this.load.image('balanceSheetText', 'assets/Room1/balanceSheetText.png');
+        //this.load.image('retainedEarningsText' , 'assets/Room1/retainedEarningsText.png');
         this.load.image('hole', 'assets/hole.png');
-        this.load.image('congrats', 'assets/Room1/congrats.png');
+        //this.load.image('congrats', 'assets/Room1/congrats.png');
 	//        this.load.image('hole', 'assets/hole.png');
         this.load.image('leftArrow' , 'assets/leftArrow.png');
         this.load.image('rightArrow' , 'assets/rightArrowTest.png');
@@ -202,7 +211,7 @@ class courseIntro extends Phaser.Scene {
      */
     createImages() {
         this.e_pressed = false;
-        this.papers_moved = false;
+        //this.papers_moved = false;
 	    this.returnDoor = this.add.image(113, 385, 'returnDoor');
         this.background = this.add.image(768, 432, 'one_lesson_BG');
         this.character_north = this.add.image(768, 432, 'character_north');
@@ -228,24 +237,24 @@ class courseIntro extends Phaser.Scene {
         this.wall_info_5 = this.add.image(768, 790, 'wall_info_5');
         this.wall_info_6 = this.add.image(1232, 790, 'wall_info_6');
         this.floor3 = this.add.image(768, 432, 'floor3');
-        this.paper_stack = this.add.image(1215, 432, 'paper_stack');
-        this.cardboard_box_1 = this.add.image(1310, 320, 'cardboard_box');
-        this.cardboard_box_2 = this.add.image(1310, 432, 'cardboard_box');
-        this.cardboard_box_3 = this.add.image(1310, 530, 'cardboard_box');
+        //this.paper_stack = this.add.image(1215, 432, 'paper_stack');
+        //this.cardboard_box_1 = this.add.image(1310, 320, 'cardboard_box');
+        //this.cardboard_box_2 = this.add.image(1310, 432, 'cardboard_box');
+        //this.cardboard_box_3 = this.add.image(1310, 530, 'cardboard_box');
         this.r1_map = this.add.image(768, 432, 'r1_map');
         this.notebook = this.add.image(768, 432, 'notebook');
         this.activityLocked = this.add.image(768, 432, 'activityLocked');
         this.help_menu = this.add.image(768, 432, 'help_menu');
         this.hole = this.add.image(768, 432, 'hole');
-        this.congrats = this.add.image(810, 400, 'congrats');
+        //this.congrats = this.add.image(810, 400, 'congrats');
         this.rightArrow = this.add.image(1000, 650, 'rightArrow');
         this.leftArrow = this.add.image(600, 650, 'rightArrow');
-        this.placements0 = this.add.image(240, 800, 'correctPlacements0');
-        this.placements1 = this.add.image(240, 800, 'correctPlacements1');
-        this.placements2 = this.add.image(240, 800, 'correctPlacements2');
-        this.placements0.setVisible(false);
-        this.placements1.setVisible(false);
-        this.placements2.setVisible(false);
+        //this.placements0 = this.add.image(240, 800, 'correctPlacements0');
+        //this.placements1 = this.add.image(240, 800, 'correctPlacements1');
+        //this.placements2 = this.add.image(240, 800, 'correctPlacements2');
+        //this.placements0.setVisible(false);
+        //this.placements1.setVisible(false);
+        //this.placements2.setVisible(false);
     }
 
     /* setAlphas
@@ -262,13 +271,13 @@ class courseIntro extends Phaser.Scene {
         this.hideActivities();
         this.leftArrow.alpha = 0;
         this.rightArrow.alpha = 0;
-        this.congrats.alpha = 0;
+        //this.congrats.alpha = 0;
 	    this.returnDoor.alpha = 1;
 	// FinStmt sorting activity w/ boxes is not in room1 anymore...
-	    this.cardboard_box_1.alpha = 0;
-	    this.cardboard_box_2.alpha = 0;
-	    this.cardboard_box_3.alpha = 0;
-	    this.paper_stack.alpha = 0;
+	    //this.cardboard_box_1.alpha = 0;
+	    //this.cardboard_box_2.alpha = 0;
+	    //this.cardboard_box_3.alpha = 0;
+	    //this.paper_stack.alpha = 0;
     }
 
     /* setDepths
@@ -294,7 +303,7 @@ class courseIntro extends Phaser.Scene {
         this.activity5C.setDepth(96);
         this.activity6.setDepth(95);
         this.r1_map.setDepth(100);
-        this.paper_stack.setDepth(1);
+        //this.paper_stack.setDepth(1);
         this.notebook.setDepth(100);
         this.help_menu.setDepth(100);
         this.hole.setDepth(1);
@@ -315,10 +324,10 @@ class courseIntro extends Phaser.Scene {
         this.wall_info_6.setScale(0.75);
         this.notebook.setScale(0.75);
         this.r1_map.setScale(0.75);
-        this.cardboard_box_1.setScale(0.39);
-        this.cardboard_box_2.setScale(0.39);
-        this.cardboard_box_3.setScale(0.39);
-        this.paper_stack.setScale(0.35);
+        //this.cardboard_box_1.setScale(0.39);
+        //this.cardboard_box_2.setScale(0.39);
+        //this.cardboard_box_3.setScale(0.39);
+        //this.paper_stack.setScale(0.35);
         this.character_north.setScale(3);
         this.character_south.setScale(3);
         this.character_west.setScale(3);
@@ -348,9 +357,9 @@ class courseIntro extends Phaser.Scene {
         this.wall_info_4.rotation = 3.14;
         this.wall_info_5.rotation = 3.14;
         this.wall_info_6.rotation = 3.14;
-        this.cardboard_box_1.rotation = 0;
-        this.cardboard_box_2.rotation = 0;
-        this.cardboard_box_3.rotation = 0;
+        //this.cardboard_box_1.rotation = 0;
+        //this.cardboard_box_2.rotation = 0;
+        //this.cardboard_box_3.rotation = 0;
         this.leftArrow.setRotation(3.14);
         this.returnDoor.angle = 270;
     }
@@ -384,17 +393,17 @@ class courseIntro extends Phaser.Scene {
         this.graphics.fillRectShape(this.bot_right_info);
 
 
-        this.quiz1 = new Phaser.Geom.Rectangle(1120,308,240,250);
-        this.graphics.fillRectShape(this.quiz1);
+        //this.quiz1 = new Phaser.Geom.Rectangle(1120,308,240,250);
+        //this.graphics.fillRectShape(this.quiz1);
 
-        this.box_1_zone = new Phaser.Geom.Rectangle(1200,75,200,200);
-        this.graphics.fillRectShape(this.box_1_zone);
+        //this.box_1_zone = new Phaser.Geom.Rectangle(1200,75,200,200);
+        //this.graphics.fillRectShape(this.box_1_zone);
 
-        this.box_2_zone = new Phaser.Geom.Rectangle(1200,325,200,200);
-        this.graphics.fillRectShape(this.box_2_zone);
+        //this.box_2_zone = new Phaser.Geom.Rectangle(1200,325,200,200);
+        //this.graphics.fillRectShape(this.box_2_zone);
 
-        this.box_3_zone = new Phaser.Geom.Rectangle(1200,650,200,200);
-        this.graphics.fillRectShape(this.box_3_zone);
+        //this.box_3_zone = new Phaser.Geom.Rectangle(1200,650,200,200);
+        //this.graphics.fillRectShape(this.box_3_zone);
 
         this.middle_info = new Phaser.Geom.Rectangle(700, 350, 200, 200);
         this.graphics.fillRectShape(this.middle_info);
@@ -682,7 +691,7 @@ class courseIntro extends Phaser.Scene {
      *
      * makes the paper moveable in the test activity
      */
-    movePaper(moveThisPaper) {
+    /*movePaper(moveThisPaper) {
         if(this.key_W.isDown && this.paperMoveable == true && moveThisPaper.y > 75) {
             moveThisPaper.y -= 12;
         } if (this.key_A.isDown && this.paperMoveable == true && moveThisPaper.x > 50) {
@@ -692,9 +701,9 @@ class courseIntro extends Phaser.Scene {
         } if (this.key_D.isDown && this.paperMoveable == true && moveThisPaper.x < 1400) {
             moveThisPaper.x += 12;
         }
-    }
+    }*/
 
-    loadExit() {
+    /*loadExit() {
         if (this.paperCount >= 4) {
             this.congrats.alpha = 1;
             this.congrats.setScale(1.3);
@@ -703,48 +712,48 @@ class courseIntro extends Phaser.Scene {
             this.hole = this.add.image(768, 432, 'hole');
             this.holeOpened = true;
         }
-    }
+    }*/
 
     /* quitQuiz
      *
      * Allows the user to quit the quiz
      */
-    quitQuiz() {
+    /*quitQuiz() {
         //console.log("e");
-        this.loadExit();
-        this.papers_moved = false;
-        this.placements0.setVisible(false);
-        this.placements1.setVisible(false);
-        this.placements2.setVisible(false);
+        //this.loadExit();
+        //this.papers_moved = false;
+        //this.placements0.setVisible(false);
+        //this.placements1.setVisible(false);
+        //this.placements2.setVisible(false);
         this.pressr.setVisible(false);
-        this.incomeStatementText.setVisible(false);
-        this.retainedEarningsText.setVisible(false);
-        this.balanceSheetText.setVisible(false);
+        //this.incomeStatementText.setVisible(false);
+        //this.retainedEarningsText.setVisible(false);
+        //this.balanceSheetText.setVisible(false);
 
 
-        this.paper.alpha = 0;
-        this.paperTwo.alpha = 0;
-        this.paperThree.alpha = 0;
-        this.paper.setVisible(false);
-        this.paperTwo.setVisible(false);
-        this.paperThree.setVisible(false);
-        this.quizActive = false;
-        this.activatedQuiz = false;
+        //this.paper.alpha = 0;
+        //this.paperTwo.alpha = 0;
+        //this.paperThree.alpha = 0;
+        //this.paper.setVisible(false);
+        //this.paperTwo.setVisible(false);
+        //this.paperThree.setVisible(false);
+        //this.quizActive = false;
+        //this.activatedQuiz = false;
         this.background.alpha = 1.0;
         this.character_north.alpha = 1.0;
         this.character_east.alpha = 1.0;
         this.character_south.alpha = 1.0;
         this.character_west.alpha = 1.0;
         this.E_KeyImg.alpha = 1.0;
-        this.cardboard_box_1.setScale(0.39);
-        this.cardboard_box_2.setScale(0.39);
-        this.cardboard_box_3.setScale(0.39);
-        this.paper_stack.setScale(0.35);
-        this.paper_stack.x = 1215;
-        this.paper_stack.setVisible(true);
-        this.cardboard_box_1.x = 1310;
-        this.cardboard_box_2.x = 1310;
-        this.cardboard_box_3.x = 1310;
+        //this.cardboard_box_1.setScale(0.39);
+        //this.cardboard_box_2.setScale(0.39);
+        //this.cardboard_box_3.setScale(0.39);
+        //this.paper_stack.setScale(0.35);
+        //this.paper_stack.x = 1215;
+        //this.paper_stack.setVisible(true);
+        //this.cardboard_box_1.x = 1310;
+        //this.cardboard_box_2.x = 1310;
+        //this.cardboard_box_3.x = 1310;
         this.cardboard_box_1.y = 320;
         this.cardboard_box_2.y = 432;
         this.cardboard_box_3.y = 530;
@@ -770,13 +779,13 @@ class courseIntro extends Phaser.Scene {
         this.unlocked = true;
         document.getElementById("background").volume = 1;
 
-    }
+    }*/
 
     /* activateQuiz
      *
      * Method that starts the quiz
      */
-    activateQuiz() {
+    /*activateQuiz() {
         document.getElementById("background").volume = 0.2;
         this.hole.setVisible(false);
         this.paper_stack.setVisible(true);
@@ -849,7 +858,7 @@ class courseIntro extends Phaser.Scene {
                 this.alpha = 0;
 
                 });
-    }
+    }*/
 
     /* quitInteraction
      *
@@ -872,11 +881,11 @@ class courseIntro extends Phaser.Scene {
         this.activityFiveOpened = false;
         this.activitySixOpened = false;
         this.help_menu.alpha = 0.0;
-        this.activatedQuiz = false;
-        if (this.quizActive == true) {
-            this.quitQuiz();
-        }
-        this.congrats.setVisible(false);
+       // this.activatedQuiz = false;
+        //if (this.quizActive == true) {
+          //  this.quitQuiz();
+        //}
+        //this.congrats.setVisible(false);
         this.rightArrow.setVisible(false);
         this.leftArrow.setVisible(false);
     }
@@ -903,7 +912,7 @@ class courseIntro extends Phaser.Scene {
         this.activity5C.alpha = 0.0;
         this.activity6.alpha = 0.0;
         this.activityLocked.alpha = 0.0;
-        this.congrats.alpha = 0.0;
+        //this.congrats.alpha = 0.0;
         this.rightArrow.setVisible(false);
         this.leftArrow.setVisible(false);
     }
@@ -912,7 +921,7 @@ class courseIntro extends Phaser.Scene {
      *
      * Checks to see if the first paper is in the correct box.
      */
-    checkCorrectPaperOne() {
+    /*checkCorrectPaperOne() {
         if(this.activatedQuiz == true) {
             if (this.key_R.isDown) {
                 this.incomeStatement.setVisible(true);
@@ -928,33 +937,33 @@ class courseIntro extends Phaser.Scene {
                 this.paperCount++;
                 this.updateCorrectImage();
 
-            } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_2_zone, this.paper) /*&& this.paperCount == 1*/) {
+            } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_2_zone, this.paper) /*&& this.paperCount == /) {
                 document.getElementById("wrong").play();
                 this.paper.x = this.paper_stack.x;
                 this.paper.y = this.paper_stack.y + 600;
                 this.updateCorrectImage();
 
-            } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_3_zone, this.paper)/* && this.paperCount == 1*/) {
+            } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_3_zone, this.paper)/* && this.paperCount == /) {
                 document.getElementById("wrong").play();
                 this.paper.x = this.paper_stack.x;
                 this.paper.y = this.paper_stack.y + 600;
                 this.updateCorrectImage();
             }
         }
-    }
+    }*/
 
     /* checkCorrectPaperTwo
      *
      * Checks to see if the second paper is in the correct box.
      */
-    checkCorrectPaperTwo() {
+    /*checkCorrectPaperTwo() {
         this.incomeStatement.setVisible(false);
         if (this.key_R.isDown) {
             this.retainedEarnings.setVisible(true);
         } else
             this.retainedEarnings.setVisible(false);
 
-        if (Phaser.Geom.Rectangle.ContainsPoint(this.box_2_zone, this.paperTwo) /*&& this.paperCount == 2*/) {
+        if (Phaser.Geom.Rectangle.ContainsPoint(this.box_2_zone, this.paperTwo) /*&& this.paperCount == 2) {
             document.getElementById("correct").play();
             this.paperTwo.setVisible(false);
             this.paperThree.setVisible(true);
@@ -962,13 +971,13 @@ class courseIntro extends Phaser.Scene {
             this.paperCount++;
             this.updateCorrectImage();
 
-        } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_1_zone, this.paperTwo) /*&& this.paperCount == 2*/) {
+        } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_1_zone, this.paperTwo) /*&& this.paperCount == 2) {
             document.getElementById("wrong").play();
             this.paperTwo.x = this.paper_stack.x;
             this.paperTwo.y = this.paper_stack.y + 600;
             this.updateCorrectImage();
 
-        } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_3_zone, this.paperTwo) /*&& this.paperCount == 2*/) {
+        } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_3_zone, this.paperTwo) /*&& this.paperCount == 2) {
             document.getElementById("wrong").play();
             this.paperTwo.x = this.paper_stack.x;
             this.paperTwo.y = this.paper_stack.y + 600;
@@ -977,13 +986,13 @@ class courseIntro extends Phaser.Scene {
             //this.cardboard_box_3.setVisible(true);
         }
         //this.updateCorrectImage();
-    }
+    }*/
 
     /* checkCorrectPaperThree
      *
      * Checks to see if the third paper is in the correct box.
      */
-    checkCorrectPaperThree() {
+    /*checkCorrectPaperThree() {
         this.retainedEarnings.setVisible(false);
         if (this.key_R.isDown) {
             this.balanceSheet.setVisible(true);
@@ -1006,13 +1015,13 @@ class courseIntro extends Phaser.Scene {
             this.paperThree.x = this.paper_stack.x;
             this.paperThree.y = this.paper_stack.y + 600;
         }
-    }
+    }*/
 
     /* loadQuizImages
      *
      * Loads the images into the quiz Activity
      */
-    loadQuizImages(){
+    /*loadQuizImages(){
         this.pressr = this.add.image(650, 40, 'pressr');
         this.pressr.setScale(.8);
 
@@ -1045,13 +1054,13 @@ class courseIntro extends Phaser.Scene {
 
         this.retainedEarningsText = this.add.image(1350, 325, 'retainedEarningsText');
         this.retainedEarningsText.setScale(.6);
-    }
+    }*/
 
     /* updateCorrectImage
      *
      * Updates the image in the quiz that tells the user how many they have got right.
      */
-    updateCorrectImage() {
+    /*updateCorrectImage() {
         //console.log(this.paperCount);
         if (this.paperCount == 1) {
             this.placements0.setVisible(true);
@@ -1067,7 +1076,7 @@ class courseIntro extends Phaser.Scene {
             this.placements2.setVisible(true);
         }
 
-    }
+    }*/
 
 
 
