@@ -143,28 +143,31 @@ class buildingBlocks extends Phaser.Scene {
         this.load.image('room2_character_south', 'assets/character_south.png');
         this.load.image('room2_character_west', 'assets/character_west.png');
         this.load.image('room2_activity1A', 'assets/Panels/RoomTwo/PanelOneA.png');
-        this.load.image('room2_activity1B', 'assets/Panels/RoomTwo/PanelOneB.png');
-        this.load.image('room2_activity1C', 'assets/Panels/RoomTwo/PanelOneC.png');
-        this.load.image('room2_activity1D', 'assets/Panels/RoomTwo/PanelOneD.png');
+	//        this.load.image('room2_activity1B', 'assets/Panels/RoomTwo/PanelOneB.png');
+	//        this.load.image('room2_activity1C', 'assets/Panels/RoomTwo/PanelOneC.png');
+	//        this.load.image('room2_activity1D', 'assets/Panels/RoomTwo/PanelOneD.png');
         this.load.image('room2_activity2A', 'assets/Panels/RoomTwo/PanelTwoA.png');
         this.load.image('room2_activity2B', 'assets/Panels/RoomTwo/PanelTwoB.png');
-        this.load.image('room2_activity2C', 'assets/Panels/RoomTwo/PanelTwoC.png');
-        this.load.image('room2_activity2D', 'assets/Panels/RoomTwo/PanelTwoD.png');
+	//        this.load.image('room2_activity2C', 'assets/Panels/RoomTwo/PanelTwoC.png');
+	//        this.load.image('room2_activity2D', 'assets/Panels/RoomTwo/PanelTwoD.png');
         this.load.image('room2_activity3A', 'assets/Panels/RoomTwo/PanelThreeA.png');
         this.load.image('room2_activity3B', 'assets/Panels/RoomTwo/PanelThreeB.png');
         this.load.image('room2_activity4A', 'assets/Panels/RoomTwo/PanelFourA.png');
         this.load.image('room2_activity4B', 'assets/Panels/RoomTwo/PanelFourB.png');
-        this.load.image('room2_activity4C', 'assets/Panels/RoomTwo/PanelFourC.png');
-        this.load.image('room2_activity4D', 'assets/Panels/RoomTwo/PanelFourD.png');
-        this.load.image('room2_activity4E', 'assets/Panels/RoomTwo/PanelFourE.png');
+	//        this.load.image('room2_activity4C', 'assets/Panels/RoomTwo/PanelFourC.png');
+	//        this.load.image('room2_activity4D', 'assets/Panels/RoomTwo/PanelFourD.png');
+	//        this.load.image('room2_activity4E', 'assets/Panels/RoomTwo/PanelFourE.png');
         this.load.image('room2_activity5A', 'assets/Panels/RoomTwo/PanelFiveA.png');
         this.load.image('room2_activity5B', 'assets/Panels/RoomTwo/PanelFiveB.png');
-        this.load.image('room2_activity5C', 'assets/Panels/RoomTwo/PanelFiveC.png');
-        this.load.image('room2_activity5D', 'assets/Panels/RoomTwo/PanelFiveD.png');
-        this.load.image('room2_activity5E', 'assets/Panels/RoomTwo/PanelFiveE.png');
-        this.load.image('room2_activity5F', 'assets/Panels/RoomTwo/PanelFiveF.png');
+	//        this.load.image('room2_activity5C', 'assets/Panels/RoomTwo/PanelFiveC.png');
+	//        this.load.image('room2_activity5D', 'assets/Panels/RoomTwo/PanelFiveD.png');
+	//        this.load.image('room2_activity5E', 'assets/Panels/RoomTwo/PanelFiveE.png');
+	//        this.load.image('room2_activity5F', 'assets/Panels/RoomTwo/PanelFiveF.png');
         this.load.image('room2_activity6A', 'assets/Panels/RoomTwo/PanelSixA.png');
         this.load.image('room2_activity6B', 'assets/Panels/RoomTwo/PanelSixB.png');
+        this.load.image('room2_activity6C', 'assets/Panels/RoomTwo/PanelSixC.png');
+        this.load.image('room2_activity6D', 'assets/Panels/RoomTwo/PanelSixD.png');
+        this.load.image('room2_activity6E', 'assets/Panels/RoomTwo/PanelSixE.png');
         this.load.image('room2_E_KeyImg', 'assets/E_Key.png');
         this.load.image('room2_wall_info_1', 'assets/wall_art.png');
         this.load.image('room2_wall_info_2', 'assets/wall_art.png');
@@ -199,28 +202,31 @@ class buildingBlocks extends Phaser.Scene {
         this.room2_character_west = this.add.image(768, 432, 'room2_character_west');
         this.room2_E_KeyImg = this.add.image(this.room2_character_north.x+40, this.room2_character_north.y+40, 'room2_E_KeyImg');
         this.room2_activity1A = this.add.image(768, 432, 'room2_activity1A');
-        this.room2_activity1B = this.add.image(768, 432, 'room2_activity1B');
-        this.room2_activity1C = this.add.image(768, 432, 'room2_activity1C');
-        this.room2_activity1D = this.add.image(768, 432, 'room2_activity1D');
+	//        this.room2_activity1B = this.add.image(768, 432, 'room2_activity1B');
+	//        this.room2_activity1C = this.add.image(768, 432, 'room2_activity1C');
+	//        this.room2_activity1D = this.add.image(768, 432, 'room2_activity1D');
         this.room2_activity2A = this.add.image(768, 432, 'room2_activity2A');
         this.room2_activity2B = this.add.image(768, 432, 'room2_activity2B');
-        this.room2_activity2C = this.add.image(768, 432, 'room2_activity2C');
-        this.room2_activity2D = this.add.image(768, 432, 'room2_activity2D');
+	//        this.room2_activity2C = this.add.image(768, 432, 'room2_activity2C');
+	//        this.room2_activity2D = this.add.image(768, 432, 'room2_activity2D');
         this.room2_activity3A = this.add.image(768, 432, 'room2_activity3A');
         this.room2_activity3B = this.add.image(768, 432, 'room2_activity3B');
         this.room2_activity4A = this.add.image(768, 432, 'room2_activity4A');
         this.room2_activity4B = this.add.image(768, 432, 'room2_activity4B');
-        this.room2_activity4C = this.add.image(768, 432, 'room2_activity4C');
-        this.room2_activity4D = this.add.image(768, 432, 'room2_activity4D');
-        this.room2_activity4E = this.add.image(768, 432, 'room2_activity4E');
+	//        this.room2_activity4C = this.add.image(768, 432, 'room2_activity4C');
+	//        this.room2_activity4D = this.add.image(768, 432, 'room2_activity4D');
+	//        this.room2_activity4E = this.add.image(768, 432, 'room2_activity4E');
         this.room2_activity5A = this.add.image(768, 432, 'room2_activity5A');
         this.room2_activity5B = this.add.image(768, 432, 'room2_activity5B');
-        this.room2_activity5C = this.add.image(768, 432, 'room2_activity5C');
-        this.room2_activity5D = this.add.image(768, 432, 'room2_activity5D');
-        this.room2_activity5E = this.add.image(768, 432, 'room2_activity5E');
-        this.room2_activity5F = this.add.image(768, 432, 'room2_activity5F');
+	//        this.room2_activity5C = this.add.image(768, 432, 'room2_activity5C');
+	//        this.room2_activity5D = this.add.image(768, 432, 'room2_activity5D');
+	//        this.room2_activity5E = this.add.image(768, 432, 'room2_activity5E');
+	//        this.room2_activity5F = this.add.image(768, 432, 'room2_activity5F');
         this.room2_activity6A = this.add.image(768, 432, 'room2_activity6A');
         this.room2_activity6B = this.add.image(768, 432, 'room2_activity6B');
+        this.room2_activity6C = this.add.image(768, 432, 'room2_activity6C');
+        this.room2_activity6D = this.add.image(768, 432, 'room2_activity6D');
+        this.room2_activity6E = this.add.image(768, 432, 'room2_activity6E');
         this.room2_wall_info_1 = this.add.image(305, 75, 'room2_wall_info_1');
         this.room2_wall_info_2 = this.add.image(768, 75, 'room2_wall_info_2');
         this.room2_wall_info_3 = this.add.image(1232, 75, 'room2_wall_info_3');
@@ -268,28 +274,31 @@ class buildingBlocks extends Phaser.Scene {
         this.room2_character_west.setDepth(50);
         this.room2_E_KeyImg.setDepth(49);
         this.room2_activity1A.setDepth(100);
-        this.room2_activity1B.setDepth(100);
-        this.room2_activity1C.setDepth(100);
-        this.room2_activity1D.setDepth(100);
+	//        this.room2_activity1B.setDepth(100);
+	//        this.room2_activity1C.setDepth(100);
+	//        this.room2_activity1D.setDepth(100);
         this.room2_activity2A.setDepth(100);
         this.room2_activity2B.setDepth(100);
-        this.room2_activity2C.setDepth(100);
-        this.room2_activity2D.setDepth(100);
+	//        this.room2_activity2C.setDepth(100);
+	//        this.room2_activity2D.setDepth(100);
         this.room2_activity3A.setDepth(100);
         this.room2_activity3B.setDepth(100);
         this.room2_activity4A.setDepth(100);
         this.room2_activity4B.setDepth(100);
-        this.room2_activity4C.setDepth(100);
-        this.room2_activity4D.setDepth(100);
-        this.room2_activity4E.setDepth(100);
+	//        this.room2_activity4C.setDepth(100);
+	//        this.room2_activity4D.setDepth(100);
+	//        this.room2_activity4E.setDepth(100);
         this.room2_activity5A.setDepth(100);
         this.room2_activity5B.setDepth(100);
-        this.room2_activity5C.setDepth(100);
-        this.room2_activity5D.setDepth(100);
-        this.room2_activity5E.setDepth(100);
-        this.room2_activity5F.setDepth(100);
+	//        this.room2_activity5C.setDepth(100);
+	//        this.room2_activity5D.setDepth(100);
+	//        this.room2_activity5E.setDepth(100);
+	//        this.room2_activity5F.setDepth(100);
         this.room2_activity6A.setDepth(100);
         this.room2_activity6B.setDepth(100);
+        this.room2_activity6C.setDepth(100);
+        this.room2_activity6D.setDepth(100);
+        this.room2_activity6E.setDepth(100);
 
         this.room2_map.setDepth(100);
         this.room2_notebook.setDepth(100);
@@ -304,6 +313,20 @@ class buildingBlocks extends Phaser.Scene {
     setScales() {
         this.room2_E_KeyImg.setScale(0.4);
         this.room2_wall_info_1.setScale(0.75);
+        this.room2_activity1A.setScale(0.67);
+        this.room2_activity2A.setScale(0.5);
+        this.room2_activity2B.setScale(0.67);
+        this.room2_activity3A.setScale(0.67);
+        this.room2_activity3B.setScale(0.67);
+	this.room2_activity4A.setScale(0.45);
+	this.room2_activity4B.setScale(0.67);
+        this.room2_activity5A.setScale(0.5);
+	this.room2_activity5B.setScale(0.67);
+        this.room2_activity6A.setScale(0.67);
+	this.room2_activity6B.setScale(0.67);
+	this.room2_activity6C.setScale(0.67);
+	this.room2_activity6D.setScale(0.67);
+	this.room2_activity6E.setScale(0.67);
         this.room2_wall_info_2.setScale(0.75);
         this.room2_wall_info_3.setScale(0.75);
         this.room2_wall_info_4.setScale(0.75);
@@ -445,7 +468,7 @@ class buildingBlocks extends Phaser.Scene {
                     roomProgress = 2005;
 
                 this.room2_activity1A.alpha = 1.0;
-                this.resetArrows();
+		//                this.resetArrows();
                 this.room2_characterMoveable = false;
                 this.checkActivityOpened(true, false, false, false, false, false);
             }
@@ -685,57 +708,65 @@ class buildingBlocks extends Phaser.Scene {
      */
     hideActivities() {
         this.room2_activity1A.alpha = 0.0;
-        this.room2_activity1B.alpha = 0.0;
-        this.room2_activity1C.alpha = 0.0;
-        this.room2_activity1D.alpha = 0.0;
+	//        this.room2_activity1B.alpha = 0.0;
+	//        this.room2_activity1C.alpha = 0.0;
+	//        this.room2_activity1D.alpha = 0.0;
         this.room2_activity2A.alpha = 0.0;
         this.room2_activity2B.alpha = 0.0;
-        this.room2_activity2C.alpha = 0.0;
-        this.room2_activity2D.alpha = 0.0;
+	//        this.room2_activity2C.alpha = 0.0;
+	//        this.room2_activity2D.alpha = 0.0;
         this.room2_activity3A.alpha = 0.0;
         this.room2_activity3B.alpha = 0.0;
         this.room2_activity4A.alpha = 0.0;
         this.room2_activity4B.alpha = 0.0;
-        this.room2_activity4C.alpha = 0.0;
-        this.room2_activity4D.alpha = 0.0;
-        this.room2_activity4E.alpha = 0.0;
+	//        this.room2_activity4C.alpha = 0.0;
+	//        this.room2_activity4D.alpha = 0.0;
+	//        this.room2_activity4E.alpha = 0.0;
         this.room2_activity5A.alpha = 0.0;
         this.room2_activity5B.alpha = 0.0;
-        this.room2_activity5C.alpha = 0.0;
-        this.room2_activity5D.alpha = 0.0;
-        this.room2_activity5E.alpha = 0.0;
-        this.room2_activity5F.alpha = 0.0;
+	//        this.room2_activity5C.alpha = 0.0;
+	//        this.room2_activity5D.alpha = 0.0;
+	//        this.room2_activity5E.alpha = 0.0;
+	//        this.room2_activity5F.alpha = 0.0;
         this.room2_activity6A.alpha = 0.0;
         this.room2_activity6B.alpha = 0.0;
+        this.room2_activity6C.alpha = 0.0;
+        this.room2_activity6D.alpha = 0.0;
+        this.room2_activity6E.alpha = 0.0;
         this.room2_activityLocked.alpha = 0.0;
         this.rightArrow.setVisible(false);
         this.leftArrow.setVisible(false);
     }
 
+    /* Jay: Overloading 5D,5E,5F for 6C,6D,6E */
     activityAlphas(room2_oneA, room2_oneB, room2_oneC, room2_oneD, room2_twoA, room2_twoB, room2_twoC, room2_twoD, room2_threeA, room2_threeB, room2_fourA, room2_fourB, room2_fourC, room2_fourD, room2_fourE, room2_fiveA, room2_fiveB, room2_fiveC, room2_fiveD, room2_fiveE, room2_fiveF, room2_sixA, room2_sixB) {
         this.room2_activity1A.alpha = room2_oneA;
-        this.room2_activity1B.alpha = room2_oneB;
-        this.room2_activity1C.alpha = room2_oneC;
-        this.room2_activity1D.alpha = room2_oneD;
+	//        this.room2_activity1B.alpha = room2_oneB;
+	//        this.room2_activity1C.alpha = room2_oneC;
+	//        this.room2_activity1D.alpha = room2_oneD;
         this.room2_activity2A.alpha = room2_twoA;
         this.room2_activity2B.alpha = room2_twoB;
-        this.room2_activity2C.alpha = room2_twoC;
-        this.room2_activity2D.alpha = room2_twoD;
+	//        this.room2_activity2C.alpha = room2_twoC;
+	//        this.room2_activity2D.alpha = room2_twoD;
         this.room2_activity3A.alpha = room2_threeA;
         this.room2_activity3B.alpha = room2_threeB;
         this.room2_activity4A.alpha = room2_fourA;
         this.room2_activity4B.alpha = room2_fourB;
-        this.room2_activity4C.alpha = room2_fourC;
-        this.room2_activity4D.alpha = room2_fourD;
-        this.room2_activity4E.alpha = room2_fourE;
+	//        this.room2_activity4C.alpha = room2_fourC;
+	//        this.room2_activity4D.alpha = room2_fourD;
+	//        this.room2_activity4E.alpha = room2_fourE;
         this.room2_activity5A.alpha = room2_fiveA;
         this.room2_activity5B.alpha = room2_fiveB;
-        this.room2_activity5C.alpha = room2_fiveC;
-        this.room2_activity5D.alpha = room2_fiveD;
-        this.room2_activity5E.alpha = room2_fiveE;
-        this.room2_activity5F.alpha = room2_fiveF;
+	//        this.room2_activity5C.alpha = room2_fiveC;
+	//        this.room2_activity5D.alpha = room2_fiveD;
+	//        this.room2_activity5E.alpha = room2_fiveE;
+	//        this.room2_activity5F.alpha = room2_fiveF;
         this.room2_activity6A.alpha = room2_sixA;
         this.room2_activity6B.alpha = room2_sixB;
+	// Jay: Overloading...
+	this.room2_activity6C.alpha = room2_fiveD;
+	this.room2_activity6D.alpha = room2_fiveE;
+	this.room2_activity6E.alpha = room2_fiveF;
 
 
     }
@@ -770,31 +801,44 @@ class buildingBlocks extends Phaser.Scene {
 
     checkNextPage() {
         //ACTIVITY ONE PANELS
+	/*
         if (this.room2_activityOneOpened == true && this.room2_activity1A.alpha == 1 && this.key_Right.isDown && this.counter > 15) {
             this.activityAlphas(0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-            this.rightArrowShown = true;
-            this.leftArrowShown = true;
+	    //            this.rightArrowShown = true;
+	    //            this.leftArrowShown = true;
             this.counter = 0;
-        } else   if (this.room2_activityOneOpened == true && this.room2_activity1A.alpha == 1) {
+        } 
+	else   
+	*/
+	if (this.room2_activityOneOpened == true && this.room2_activity1A.alpha == 1) {
             this.activityAlphas(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-            this.rightArrowShown = true;
-            this.leftArrowShown = false;
-        } else if(this.room2_activityOneOpened == true && this.room2_activity1B.alpha == 1 && this.key_Right.isDown && this.counter > 15) {
+	    //            this.rightArrowShown = true;
+	    //            this.leftArrowShown = false;
+        } 
+	/*
+	else 
+	    if(this.room2_activityOneOpened == true && this.room2_activity1B.alpha == 1 && this.key_Right.isDown && this.counter > 15) {
             this.activityAlphas(0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-            this.rightArrowShown = true;
-            this.leftArrowShown = true;
+	    //            this.rightArrowShown = true;
+	    //            this.leftArrowShown = true;
             this.counter = 0;
-        } else if(this.room2_activityOneOpened == true && this.room2_activity1B.alpha == 1 && this.key_Left.isDown && this.counter > 15) {
+	    } 
+	    else 
+	   if(this.room2_activityOneOpened == true && this.room2_activity1B.alpha == 1 && this.key_Left.isDown && this.counter > 15) {
             this.activityAlphas(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-            this.rightArrowShown = true;
-            this.leftArrowShown = false;
+	    //            this.rightArrowShown = true;
+	    //            this.leftArrowShown = false;
             this.counter = 0;
-        } else if(this.room2_activityOneOpened == true && this.room2_activity1C.alpha == 1 && this.key_Right.isDown && this.counter > 15) {
+        } 
+	else 
+	if(this.room2_activityOneOpened == true && this.room2_activity1C.alpha == 1 && this.key_Right.isDown && this.counter > 15) {
             this.activityAlphas(0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
             this.rightArrowShown = false;
             this.leftArrowShown = true;
             this.counter = 0;
-        } else if(this.room2_activityOneOpened == true && this.room2_activity1C.alpha == 1 && this.key_Left.isDown && this.counter > 15) {
+        } 
+        else 
+            if(this.room2_activityOneOpened == true && this.room2_activity1C.alpha == 1 && this.key_Left.isDown && this.counter > 15) {
             this.activityAlphas(0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
             this.rightArrowShown = true;
             this.leftArrowShown = true;
@@ -805,31 +849,33 @@ class buildingBlocks extends Phaser.Scene {
             this.leftArrowShown = true;
             this.counter = 0;
         }
-
+*/
 
         //PANEL 2 PAGES
         if (this.room2_activityTwoOpened == true) {
             if (this.room2_activity2A.alpha == 1 && this.key_Right.isDown && this.counter > 15) {
                 this.activityAlphas(0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-                this.rightArrowShown = true;
-                this.leftArrowShown = true;
+		//                this.rightArrowShown = true;
+		//                this.leftArrowShown = true;
                 this.counter = 0;
-                console.log("aaaa");
+		//                console.log("aaaa");
             } else if (this.room2_activity2A.alpha == 1) {
                 this.activityAlphas(0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-                this.rightArrowShown = true;
-                this.leftArrowShown = false;
+		//                this.rightArrowShown = true;
+		//                this.leftArrowShown = false;
             } else if(this.room2_activity2B.alpha == 1 && this.key_Right.isDown && this.counter > 15) {
                 this.activityAlphas(0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-                this.rightArrowShown = true;
-                this.leftArrowShown = true;
+		//                this.rightArrowShown = true;
+		//                this.leftArrowShown = true;
                 this.counter = 0;
             } else if(this.room2_activity2B.alpha == 1 && this.key_Left.isDown && this.counter > 15) {
                 this.activityAlphas(0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-                this.rightArrowShown = true;
-                this.leftArrowShown = false;
+		//                this.rightArrowShown = true;
+		//                this.leftArrowShown = false;
                 this.counter = 0;
-            } else if (this.room2_activity2C.alpha == 1 && this.key_Right.isDown && this.counter > 15) {
+            } 
+	    /*
+	    else if (this.room2_activity2C.alpha == 1 && this.key_Right.isDown && this.counter > 15) {
                 this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
                 this.rightArrowShown = false;
                 this.leftArrowShown = true;
@@ -845,24 +891,25 @@ class buildingBlocks extends Phaser.Scene {
                 this.leftArrowShown = true;
                 this.counter = 0;
             }
+	    */
         }
 
         //PANEL THREE IMAGES
         if (this.room2_activityThreeOpened == true) {
             if (this.room2_activity3A.alpha == 1 && this.key_Right.isDown && this.counter > 15) {
                 this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0);
-                this.rightArrowShown = false;
-                this.leftArrowShown = true;
+		//                this.rightArrowShown = false;
+		//                this.leftArrowShown = true;
                 this.counter = 0;
-                console.log("aaaa");
+		//                console.log("aaaa");
             } else if (this.room2_activity3A.alpha == 1) {
                 this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-                this.rightArrowShown = true;
-                this.leftArrowShown = false;
+		//                this.rightArrowShown = true;
+		//                this.leftArrowShown = false;
             } else if (this.room2_activity3B.alpha == 1 && this.key_Left.isDown && this.counter > 15) {
                 this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-                this.rightArrowShown = true;
-                this.leftArrowShown = false;
+		//                this.rightArrowShown = true;
+		//                this.leftArrowShown = false;
                 this.counter = 0;
             }
         }
@@ -871,25 +918,25 @@ class buildingBlocks extends Phaser.Scene {
         if (this.room2_activityFourOpened == true) {
             if (this.room2_activity4A.alpha == 1 && this.key_Right.isDown && this.counter > 15) {
                 this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0);
-                this.rightArrowShown = true;
-                this.leftArrowShown = true;
+		//                this.rightArrowShown = true;
+		//                this.leftArrowShown = true;
                 this.counter = 0;
-                console.log("aaaa");
+		//                console.log("aaaa");
             } else if (this.room2_activity4A.alpha == 1) {
                 this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0);
-                this.rightArrowShown = true;
-                this.leftArrowShown = false;
+		//                this.rightArrowShown = true;
+		//                this.leftArrowShown = false;
             } else if(this.room2_activity4B.alpha == 1 && this.key_Right.isDown && this.counter > 15) {
                 this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0);
-                this.rightArrowShown = true;
-                this.leftArrowShown = true;
+		//                this.rightArrowShown = true;
+		//                this.leftArrowShown = true;
                 this.counter = 0;
             } else if(this.room2_activity4B.alpha == 1 && this.key_Left.isDown && this.counter > 15) {
                 this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0);
-                this.rightArrowShown = true;
-                this.leftArrowShown = true;
+		//                this.rightArrowShown = true;
+		//                this.leftArrowShown = true;
                 this.counter = 0;
-            } else if (this.room2_activity4C.alpha == 1 && this.key_Right.isDown && this.counter > 15) {
+            } /*else if (this.room2_activity4C.alpha == 1 && this.key_Right.isDown && this.counter > 15) {
                 this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0);
                 this.rightArrowShown = true;
                 this.leftArrowShown = true;
@@ -915,30 +962,30 @@ class buildingBlocks extends Phaser.Scene {
                 this.rightArrowShown = true;
                 this.leftArrowShown = true;
                 this.counter = 0;
-            }
+		}*/
         }
 
         if (this.room2_activityFiveOpened == true) {
             if (this.room2_activity5A.alpha == 1 && this.key_Right.isDown && this.counter > 15) {
                 this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0);
-                this.rightArrowShown = true;
-                this.leftArrowShown = true;
+		//                this.rightArrowShown = true;
+		//                this.leftArrowShown = true;
                 this.counter = 0;
             } else if (this.room2_activity5A.alpha == 1) {
                 this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0);
-                this.rightArrowShown = true;
-                this.leftArrowShown = false;
+		//                this.rightArrowShown = true;
+		//                this.leftArrowShown = false;
             } else if(this.room2_activity5B.alpha == 1 && this.key_Right.isDown && this.counter > 15) {
                 this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0);
-                this.rightArrowShown = true;
-                this.leftArrowShown = true;
+		//                this.rightArrowShown = true;
+		//                this.leftArrowShown = true;
                 this.counter = 0;
             } else if(this.room2_activity5B.alpha == 1 && this.key_Left.isDown && this.counter > 15) {
                 this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0);
-                this.rightArrowShown = true;
-                this.leftArrowShown = true;
+		//                this.rightArrowShown = true;
+		//                this.leftArrowShown = true;
                 this.counter = 0;
-            } else if (this.room2_activity5C.alpha == 1 && this.key_Right.isDown && this.counter > 15) {
+            } /*else if (this.room2_activity5C.alpha == 1 && this.key_Right.isDown && this.counter > 15) {
                 this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0);
                 this.rightArrowShown = true;
                 this.leftArrowShown = true;
@@ -975,25 +1022,55 @@ class buildingBlocks extends Phaser.Scene {
                 this.rightArrowShown = true;
                 this.leftArrowShown = true;
                 this.counter = 0;
-            }
+		}*/
         }
         if (this.room2_activitySixOpened == true) {
             if (this.room2_activity6A.alpha == 1 && this.key_Right.isDown && this.counter > 15) {
                 this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1);
-                this.rightArrowShown = false;
-                this.leftArrowShown = true;
+		//                this.rightArrowShown = false;
+		//                this.leftArrowShown = true;
                 this.counter = 0;
             } else if (this.room2_activity6A.alpha == 1) {
                 this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0);
-                this.rightArrowShown = true;
-                this.leftArrowShown = false;
+		//                this.rightArrowShown = true;
+		//                this.leftArrowShown = false;
             } else if(this.room2_activity6B.alpha == 1 && this.key_Left.isDown && this.counter > 15) {
                 this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0);
-                this.rightArrowShown = true;
-                this.leftArrowShown = true;
+		//                this.rightArrowShown = true;
+		//                this.leftArrowShown = true;
                 this.counter = 0;
-            }
+            }else if(this.room2_activity6B.alpha == 1 && this.key_Right.isDown && this.counter > 15) {
+                this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0);
+		//                this.rightArrowShown = true;
+		//                this.leftArrowShown = true;
+                this.counter = 0;
+            }else if (this.room2_activity6C.alpha == 1 && this.key_Right.isDown && this.counter > 15) {
+                this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0);
+		//                this.rightArrowShown = true;
+		//                this.leftArrowShown = true;
+                this.counter = 0;
+            } else if(this.room2_activity6C.alpha == 1 && this.key_Left.isDown && this.counter > 15) {
+                this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1);
+		//                this.rightArrowShown = true;
+		//                this.leftArrowShown = true;
+                this.counter = 0;
+            } else if(this.room2_activity6D.alpha == 1 && this.key_Left.isDown && this.counter > 15) {
+                this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0);
+		//                this.rightArrowShown = true;
+		//                this.leftArrowShown = true;
+                this.counter = 0;
+            } else if(this.room2_activity6D.alpha == 1 && this.key_Right.isDown && this.counter > 15) {
+                this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0);
+		//                this.rightArrowShown = true;
+		//                this.leftArrowShown = true;
+                this.counter = 0;
 
+            } else if(this.room2_activity6E.alpha == 1 && this.key_Left.isDown && this.counter > 15) {
+                this.activityAlphas(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0);
+		//                this.rightArrowShown = true;
+		//                this.leftArrowShown = true;
+                this.counter = 0;
+            }  
         }
         this.counter++;
         this.loadArrows();

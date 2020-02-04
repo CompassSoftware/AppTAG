@@ -192,7 +192,7 @@ Info Panels like these contain important information and lessons that help you p
     this.character_south.setScale(3);
     this.character_west.setScale(3);
     this.character_east.setScale(3);
-    this.approachImg.setScale(0.5);
+    this.approachImg.setScale(0.4);
     this.tut1.setScale(0.5);
   }
 
@@ -403,7 +403,6 @@ Info Panels like these contain important information and lessons that help you p
     this.character_south.alpha = 0.0;
     this.character_west.alpha = 0.0;
     this.E_KeyImg.alpha = 0.0;
-	this.approachImg.alpha = 0.0;
 	this.approachImg.alpha = 0.0;
     this.wall_info_2.alpha = 0.0;
     this.floor.scaleX = 1.5;
