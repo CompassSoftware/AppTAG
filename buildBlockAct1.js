@@ -927,7 +927,8 @@ class buildBlockAct1 extends Phaser.Scene {
 
 		}
     }
-
+    // Exit door?
+    else
     if(Phaser.Geom.Rectangle.ContainsPoint(this.room2a_puzz_zone, this.room2a_character_north)) {
       this.displayE();
       if(this.room2a_key_E.isDown) {

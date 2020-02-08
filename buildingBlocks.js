@@ -582,7 +582,7 @@ class buildingBlocks extends Phaser.Scene {
               if(this.room2_key_E.isDown) {
                   if(roomProgress <= 2100)
                         roomProgress = 2100;
-                this.scene.start("BuildBlock_Act1");
+		  this.scene.start("BB_ActRoom");
               }
             }
         }
