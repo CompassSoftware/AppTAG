@@ -517,7 +517,7 @@ class courseIntro extends Phaser.Scene {
             }
 
         } else if (Phaser.Geom.Rectangle.ContainsPoint(this.top_mid_info, this.character_north)) {
-            console.log(roomProgress);
+	    //            console.log(roomProgress);
             this.E_KeyImg.x = this.character_north.x;
             this.E_KeyImg.y = this.character_north.y-75;
             this.E_KeyImg.alpha = 1.0;

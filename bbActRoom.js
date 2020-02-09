@@ -33,6 +33,11 @@ class bbActRoom extends Phaser.Scene {
       this.helpMenu();
     }
 
+    if (this.room2a_key_U.isDown) {
+	// let's us jump into parents activity
+	roomProgress = 2400;
+    }
+
     if (this.room2a_key_M.isDown) {
       this.room2a_map.alpha = 1.0;
       characterMoveable = false;
@@ -280,13 +285,12 @@ class bbActRoom extends Phaser.Scene {
     else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_parents_zone, this.room2a_character_north)) {
 		this.displayE();
 		if (this.room2a_key_E.isDown) {
-		    if (roomProgress < 2399) {
+		    if (roomProgress < 2299) {
 			this.room2a_activityLocked.alpha = 1.0;
 		    }
 		    else {
-			if (roomProgress <= 2400) { roomProgress = 2400; }
-			//			this.scene.start("BuildBlock_Act2");
-			this.scene.start("TAG_intro");
+			if (roomProgress <= 2300) { roomProgress = 2400; }
+			this.scene.start("BuildBlock_Act2");
 		    }
 		}
     }
