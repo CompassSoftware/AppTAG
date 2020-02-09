@@ -83,7 +83,7 @@ class bbActRoom extends Phaser.Scene {
     this.load.image('room2a_help_menu', 'assets/help_menu.png');
 
     this.load.image('room2a_box', 'assets/Room2Act0/cardboard_box.png');
-    this.load.image('room2a_puzzle1', 'assets/Room2Act1/Puzzle/Puzzle/Puzzle1A.png');
+    //    this.load.image('room2a_puzzle1', 'assets/Room2Act1/Puzzle/Puzzle/Puzzle1A.png');
     this.load.image('room2a_parents', 'assets/Room2Act2/couple.png');
   }
 
@@ -108,7 +108,7 @@ class bbActRoom extends Phaser.Scene {
     this.room2a_returnDoor = this.add.image(113, 385, 'returnDoor');
 
     this.room2a_box = this.add.image(288, 232, 'room2a_box');
-    this.room2a_puzzle1 = this.add.image(1168, 400, 'room2a_puzzle1');
+    //    this.room2a_puzzle1 = this.add.image(1168, 400, 'room2a_puzzle1');
     this.room2a_parents = this.add.image(868, 611, 'room2a_parents');
   }
 
@@ -124,7 +124,7 @@ class bbActRoom extends Phaser.Scene {
     this.room2a_help_menu.alpha = 0.0;
     //    this.hideActivities();
     this.room2a_box.alpha = 1.0;
-    this.room2a_puzzle1.alpha = 1.0;
+    //    this.room2a_puzzle1.alpha = 1.0;
     this.room2a_parents.alpha = 1.0;
   }
 
@@ -152,7 +152,7 @@ class bbActRoom extends Phaser.Scene {
     this.room2a_E_KeyImg.setScale(0.4);
     this.room2a_notebook.setScale(0.75);
     this.room2a_map.setScale(0.75);
-    this.room2a_puzzle1.setScale(0.6);
+    //    this.room2a_puzzle1.setScale(0.6);
     this.room2a_box.setScale(0.5);
     this.room2a_parents.setScale(0.35);
     this.room2a_character_north.setScale(3);
@@ -169,7 +169,7 @@ class bbActRoom extends Phaser.Scene {
    * Sets the rotation that each object sits at.
   */
   setRotations() {
-    this.room2a_puzzle1.angle = 90;
+      //    this.room2a_puzzle1.angle = 90;
     this.room2a_returnDoor.angle = 270;
    }
   /* assignKeybinds
@@ -223,8 +223,8 @@ class bbActRoom extends Phaser.Scene {
     this.room2a_returnDoor_zone = new Phaser.Geom.Rectangle(113,320,100,100);
     this.room2a_graphics.fillRectShape(this.room2a_returnDoor_zone);
 
-    this.room2a_P1A = new Phaser.Geom.Rectangle(1118, 332,160,110);
-    this.room2a_graphics.fillRectShape(this.room2a_P1A);
+    //    this.room2a_P1A = new Phaser.Geom.Rectangle(1118, 332,160,110);
+    //    this.room2a_graphics.fillRectShape(this.room2a_P1A);
 
     this.room2a_box_zone = new Phaser.Geom.Rectangle(238,182,100,100);
     this.room2a_graphics.fillRectShape(this.room2a_box_zone);
@@ -261,6 +261,7 @@ class bbActRoom extends Phaser.Scene {
 		    }
 		}
     }
+    /*
     else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_P1A, this.room2a_character_north)) {
 		this.displayE();
 		if (this.room2a_key_E.isDown) {
@@ -275,6 +276,7 @@ class bbActRoom extends Phaser.Scene {
 		    }
 		}
     }
+    */
     else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2a_parents_zone, this.room2a_character_north)) {
 		this.displayE();
 		if (this.room2a_key_E.isDown) {
@@ -388,11 +390,11 @@ class bbActRoom extends Phaser.Scene {
     this.room2a_floor.scaleX = 1.0;
     this.room2a_floor.scaleY = 1.0;
     this.room2a_background.alpha = 1.0;
-    this.room2a_puzzle1.setVisible(true);
     this.room2a_floor.scaleY = .513;
     this.room2a_floor.scaleX = .791;
-    this.room2a_puzzle1.x = 1168;
-    this.room2a_puzzle1.y = 432;
+    //    this.room2a_puzzle1.setVisible(true);
+    //    this.room2a_puzzle1.x = 1168;
+    //    this.room2a_puzzle1.y = 432;
   }
 
 

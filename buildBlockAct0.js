@@ -7,7 +7,8 @@ class buildBlockAct0 extends Phaser.Scene {
         this.quizActive = true;
         //this.paperMoveable = false;
         this.helpOpen = false;
-        this.holeOpened = false;
+        this.paperCount = 1;
+        this.maxPaper = 3;
         this.counter = 0;
         document.getElementById("background").volume = 0.8;
     }
@@ -26,28 +27,58 @@ class buildBlockAct0 extends Phaser.Scene {
         this.setRotations();
         this.createInteractionZones();
         this.assignKeybinds();
-        this.imagesDraggable();
+	//        this.imagesDraggable();
     }
 
     update(delta) {
 	// This runs all the time in a game loop!!
-	if (roomProgress <= 2200) { this.quizActive = true; }
-	else { this.quizActive = false; }
+
+	//	console.log("update: roomProgress="+ roomProgress);
+	if (roomProgress <= 2200) { 
+	    this.quizActive = true; 
+	    //	    this.paperCount = 1;
+	    this.paper.alpha = 1;
+	    this.setCharacterAlpha(0,0,0,0);
+	}
+	else { 
+	    this.quizActive = false; 
+	    this.paper.alpha = 0;
+	    this.setCharacterAlpha(0,0,1,0);
+	}
 
 
+            if (this.key_R.isDown) {
+		//		console.log("R key: paper="+this.paperCount);
+		if (this.paperCount == 1) { 
+		    this.incomeStatement.alpha = 0; 
+		    this.balanceSheet.alpha = 0; 
+		    this.retainedEarnings.alpha = 1; 
+		}
+		else if (this.paperCount == 2) { 
+		    this.incomeStatement.alpha = 1; 
+		    this.balanceSheet.alpha = 0; 
+		    this.retainedEarnings.alpha = 0; 
+		}
+		else if (this.paperCount == 3) { 
+		    this.incomeStatement.alpha = 0; 
+		    this.balanceSheet.alpha = 1; 
+		    this.retainedEarnings.alpha = 0; 
+		}
+            }
+	    else {
+		    this.incomeStatement.alpha = 0; 
+		    this.balanceSheet.alpha = 0; 
+		    this.retainedEarnings.alpha = 0; 
+	    }
 
-        //TEMPORARY FOR TESTING
-        //vvvvvvvvvvvvvvvvvvv//
-
-	/*
-        if (this.key_U.isDown && this.unlocked == false) {
-            roomProgress = 1030;
-            this.unlocked = true;
-        }
-	*/
-
-	//	console.log("update: "+ roomProgress + ":" + this.holeOpened);
-
+	if (this.key_Q.isDown) {
+	    this.activityLocked.alpha = 0.0;
+	    this.top_mid_panel.alpha = 0.0;
+	    this.r1_map.alpha = 0;
+	    this.notebook.alpha = 0;
+	    this.help_menu.alpha = 0.0;
+	    this.helpOpen = false;
+	}
 
         if (this.key_M.isDown) {
             this.r1_map.alpha = 1.0;
@@ -56,6 +87,7 @@ class buildBlockAct0 extends Phaser.Scene {
             this.character_east.alpha = 0.0;
             this.character_south.alpha = 0.0;
             this.character_west.alpha = 0.0;
+	    this.paper.alpha = 0.0;
         }
 
         if (this.key_B.isDown) {
@@ -65,6 +97,7 @@ class buildBlockAct0 extends Phaser.Scene {
             this.character_east.alpha = 0.0;
             this.character_south.alpha = 0.0;
             this.character_west.alpha = 0.0;
+	    this.paper.alpha = 0.0;
         }
 
         if (this.key_H.isDown) {
@@ -74,45 +107,25 @@ class buildBlockAct0 extends Phaser.Scene {
             this.character_east.alpha = 0.0;
             this.character_south.alpha = 0.0;
             this.character_west.alpha = 0.0;
+	    this.paper.alpha = 0.0;
         }
 
         if (this.quizActive == false) {
+	    // character visible (quiz is done)
+	    //	    console.log("moving accacio");
             this.moveSprite(true);
         }
 	else {
+	    // paper visible (quiz is active)
+	    //	    console.log("moving paper");
 	    this.moveSprite(false);
+	    //	    this.checkPaper(this.paperCount);
 	}
-	//	this.checkInteractValidity();
-
-	//        if (this.quizActive == true && this.activatedQuiz == false && this.key_E.isDown) {
-	//	            this.activateQuiz();
-	//	            this.activatedQuiz = true;
-	//        }
-
-        //if (this.quizActive == true && this.key_Q.isDown && this.activatedQuiz == true) {
-        //    this.quitQuiz();
-        //    this.activatedQuiz = false;
-        //}
-
-	//        if (this.activatedQuiz == false) {
-	//            this.movePlayer();
-	//            this.checkInteractValidity();
-	//        }// else if (this.activatedQuiz = true) {
-           // if (this.paperCount == 1) {
-           //     this.movePaper(this.paper);
-           //     this.checkCorrectPaperOne();
-           // } else if (this.paperCount == 2) {
-            //    this.movePaper(this.paperTwo);
-              //  this.checkCorrectPaperTwo();
-
-           // } else if (this.paperCount == 3) {
-             //   this.movePaper(this.paperThree);
-               // this.checkCorrectPaperThree();
-            //}
-
-        //}
-	//        if (this.activatedQuiz == false)
-	//            this.characterMoveable = true;
+	this.checkInteractValidity();
+	if (this.paperCount > this.maxPaper) {
+	    //	    console.log("paper > max");
+	    if (roomProgress < 2299) { roomProgress = 2299; }
+	}
     }
 
 
@@ -124,7 +137,8 @@ class buildBlockAct0 extends Phaser.Scene {
      * Loads images to be used and sets them into a variable name.
      */
     loadAssets() {
-	      this.load.image('returnDoor', 'assets/dooropen_100x100.png');
+	this.load.image('top_mid_panel', 'assets/Room2Act0/topmidpanel_t.png');
+	this.load.image('returnDoor', 'assets/dooropen_100x100.png');
         this.load.image('pressr', 'assets/Room1/pressr.png');
         this.load.image('character_north', 'assets/character_north.png');
         this.load.image('character_east', 'assets/character_east.png');
@@ -144,20 +158,9 @@ class buildBlockAct0 extends Phaser.Scene {
         this.load.image('notebook', 'assets/notebook.png');
         this.load.image('activityLocked', 'assets/activityLocked.png');
         this.load.image('help_menu', 'assets/help_menu.png');
-        //this.load.image('correctPlacements0', 'assets/Room1/placements0.png');
-        //this.load.image('correctPlacements1', 'assets/Room1/placements1.png');
-        //this.load.image('correctPlacements2', 'assets/Room1/placements2.png');
         this.load.image('incomeStatement' , 'assets/Documents/incomeStatement.png');
         this.load.image('balanceSheet', 'assets/Documents/balanceSheet.png');
         this.load.image('retainedEarnings' , 'assets/Documents/retainedEarnings.png');
-	//        this.load.image('incomeStatementText' ,'assets/Room1/incomeStatementText.png');
-	//        this.load.image('balanceSheetText', 'assets/Room1/balanceSheetText.png');
-	//        this.load.image('retainedEarningsText' , 'assets/Room1/retainedEarningsText.png');
-        //this.load.image('hole', 'assets/hole.png');
-        //this.load.image('congrats', 'assets/Room1/congrats.png');
-	//        this.load.image('hole', 'assets/hole.png');
-        //this.load.image('leftArrow' , 'assets/leftArrow.png');
-        //this.load.image('rightArrow' , 'assets/rightArrowTest.png');
     }
 
     /* createImages
@@ -167,6 +170,7 @@ class buildBlockAct0 extends Phaser.Scene {
     createImages() {
         this.e_pressed = false;
         this.papers_moved = false;
+	this.top_mid_panel = this.add.image(768, 432, 'top_mid_panel');
 	this.returnDoor = this.add.image(113, 385, 'returnDoor');
 	this.r2a0_walls = this.add.image(768, 432, 'r2a0_walls');
         this.r2a0_floor = this.add.image(768, 432, 'r2a0_floor');
@@ -187,6 +191,9 @@ class buildBlockAct0 extends Phaser.Scene {
         this.activityLocked = this.add.image(768, 432, 'activityLocked');
         this.help_menu = this.add.image(768, 432, 'help_menu');
         this.hole = this.add.image(768, 432, 'hole');
+        this.incomeStatement = this.add.image(768, 432, 'incomeStatement');
+        this.balanceSheet = this.add.image(768, 432, 'balanceSheet');
+        this.retainedEarnings = this.add.image(768, 432, 'retainedEarnings');
     }
 
     /* setAlphas
@@ -194,6 +201,7 @@ class buildBlockAct0 extends Phaser.Scene {
      * sets the alphas to to items in the game to zero so they are not visible at the beginning.
      */
     setAlphas() {
+        this.top_mid_panel.alpha = 0.0;
         this.r1_map.alpha = 0.0;
         this.notebook.alpha = 0.0;
         this.activityLocked.alpha = 0.0;
@@ -211,6 +219,9 @@ class buildBlockAct0 extends Phaser.Scene {
 	//	this.paper_stack.alpha = 1;
 
 	this.wall_info_2.alpha = 1;
+        this.incomeStatement.alpha = 0;
+        this.balanceSheet.alpha = 0;
+        this.retainedEarnings.alpha = 0;
     }
 
     /* setDepths
@@ -226,11 +237,16 @@ class buildBlockAct0 extends Phaser.Scene {
         this.character_south.setDepth(50);
         this.character_west.setDepth(50);
         this.paper.setDepth(50);
-        this.E_KeyImg.setDepth(49);
+        this.E_KeyImg.setDepth(50);
         this.r1_map.setDepth(100);
 	//        this.paper_stack.setDepth(2);
         this.notebook.setDepth(100);
         this.help_menu.setDepth(100);
+        this.top_mid_panel.setDepth(100);
+        this.activityLocked.setDepth(100);
+        this.balanceSheet.setDepth(100);
+        this.incomeStatement.setDepth(100);
+        this.retainedEarnings.setDepth(100);
         this.SreBox.setDepth(2);
         this.ScfBox.setDepth(2);
         this.IncStmBox.setDepth(2);
@@ -281,21 +297,24 @@ class buildBlockAct0 extends Phaser.Scene {
     createInteractionZones() {
         this.graphics = this.add.graphics({fillStyle: {color: 0xFFFFFF, alpha: 0.0}});
 
-        this.top_mid_info = new Phaser.Geom.Rectangle(650,150,240,150);
+        this.top_mid_info = new Phaser.Geom.Rectangle(670,100,170,100);
         this.graphics.fillRectShape(this.top_mid_info);
 
-        this.box_1_zone = new Phaser.Geom.Rectangle(1200,75,200,200);
-        this.graphics.fillRectShape(this.box_1_zone);
+        this.sre_box_zone = new Phaser.Geom.Rectangle(260,100,140,200);
+        this.graphics.fillRectShape(this.sre_box_zone);
 
-        this.box_2_zone = new Phaser.Geom.Rectangle(1200,325,200,200);
-        this.graphics.fillRectShape(this.box_2_zone);
+        this.scf_box_zone = new Phaser.Geom.Rectangle(1200,100,140,200);
+        this.graphics.fillRectShape(this.scf_box_zone);
 
-        this.box_3_zone = new Phaser.Geom.Rectangle(1200,650,200,200);
-        this.graphics.fillRectShape(this.box_3_zone);
+        this.incstm_box_zone = new Phaser.Geom.Rectangle(1170,570,140,200);
+        this.graphics.fillRectShape(this.incstm_box_zone);
+
+        this.balsht_box_zone = new Phaser.Geom.Rectangle(260,600,140,200);
+        this.graphics.fillRectShape(this.balsht_box_zone);
 
 	// return door located at 113,385
-	this.returnDoor = new Phaser.Geom.Rectangle(113,320,100,100);
-        this.graphics.fillRectShape(this.returnDoor);
+	this.returnDoorZone = new Phaser.Geom.Rectangle(120,355,100,95);
+        this.graphics.fillRectShape(this.returnDoorZone);
     }
 
     /* assignKeybinds
@@ -329,6 +348,7 @@ class buildBlockAct0 extends Phaser.Scene {
      *
      * Makes an image draggable
      */
+    /*
     imagesDraggable() {
         this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
 
@@ -338,6 +358,7 @@ class buildBlockAct0 extends Phaser.Scene {
                 });
 
     }
+    */
 
     /* checkInteractValidity
      *
@@ -345,25 +366,77 @@ class buildBlockAct0 extends Phaser.Scene {
      */
 
     checkInteractValidity() {
-        if (Phaser.Geom.Rectangle.ContainsPoint(this.top_mid_info, this.character_north)){
+        if (Phaser.Geom.Rectangle.ContainsPoint(this.top_mid_info, this.character_north)) {
             this.E_KeyImg.x = this.character_north.x+75;
             this.E_KeyImg.y = this.character_north.y;
             this.E_KeyImg.alpha = 1.0;
             if (this.key_E.isDown) {
-		this.activityLocked.alpha = 1.0;
+		this.top_mid_panel.alpha = 1.0;
             }
+	} else if (Phaser.Geom.Rectangle.ContainsPoint(this.returnDoorZone, this.character_north)){
+            this.E_KeyImg.x = this.character_north.x+75;
+            this.E_KeyImg.y = this.character_north.y;
+            this.E_KeyImg.alpha = 1.0;
+            if (this.key_E.isDown) {
+		this.scene.start("BB_ActRoom");
+            }
+        } else if (Phaser.Geom.Rectangle.ContainsPoint(this.sre_box_zone, this.paper)) {
+	    this.E_KeyImg.x = this.character_north.x+75;
+	    this.E_KeyImg.y = this.character_north.y;
+	    this.E_KeyImg.alpha = 1.0;
+	    if (this.key_E.isDown) {
+		if (this.paperCount == 1) {
+		    this.paperCount = 2;
+		    document.getElementById("correct").play();
+		} else { 
+		    document.getElementById("wrong").play(); 
+		}
+		this.centerSprite();
+	    }
+        } else if (Phaser.Geom.Rectangle.ContainsPoint(this.scf_box_zone, this.paper)) {
+	    this.E_KeyImg.x = this.character_north.x+75;
+	    this.E_KeyImg.y = this.character_north.y;
+	    this.E_KeyImg.alpha = 1.0;
+	    if (this.key_E.isDown) {
+		if (this.paperCount == 4) {
+		    this.paperCount = 5;
+		    document.getElementById("correct").play();
+		} else { 
+		    document.getElementById("wrong").play(); 
+		}
+		this.centerSprite();
+	    }
+        } else if (Phaser.Geom.Rectangle.ContainsPoint(this.incstm_box_zone, this.paper)) {
+	    this.E_KeyImg.x = this.character_north.x+75;
+	    this.E_KeyImg.y = this.character_north.y;
+	    this.E_KeyImg.alpha = 1.0;
+	    if (this.key_E.isDown) {
+		if (this.paperCount == 2) {
+		    this.paperCount = 3;
+		    document.getElementById("correct").play();
+		} else { 
+		    document.getElementById("wrong").play(); 
+		}
+		this.centerSprite();
+	    }
+        } else if (Phaser.Geom.Rectangle.ContainsPoint(this.balsht_box_zone, this.paper)) {
+	    this.E_KeyImg.x = this.character_north.x+75;
+	    this.E_KeyImg.y = this.character_north.y;
+	    this.E_KeyImg.alpha = 1.0;
+	    if (this.key_E.isDown) {
+		if (this.paperCount == 3) {
+		    this.paperCount = 4;
+		    document.getElementById("correct").play();
+		} else { 
+		    document.getElementById("wrong").play(); 
+		}
+		this.centerSprite();
+	    }
 	}
-
-	else if (Phaser.Geom.Rectangle.ContainsPoint(this.exitDoor, this.character_north)){
-            this.E_KeyImg.x = this.character_north.x+75;
-            this.E_KeyImg.y = this.character_north.y;
-            this.E_KeyImg.alpha = 1.0;
-            if (this.key_E.isDown) {
-		    this.scene.start("BB_ActRoom");
-            }
-        } else {
+	else {
             this.hideActivities();
-            this.E_KeyImg.alpha = 0.0;
+	    this.activityLocked.alpha = 0;
+	    this.E_KeyImg.alpha = 0.0;
         }
     }
 
@@ -381,66 +454,6 @@ class buildBlockAct0 extends Phaser.Scene {
         this.character_west.alpha = arguments[3];
     }
 
-    /* movePlayer
-     *
-     *
-     */
-    /*
-    movePlayer() {
-        //setCharacterAlpha is in helper.js and arguments go N,E,S,W
-        this.setCharacterAlpha(0,0,1,0);
-
-
-        //Character moves up
-        if(this.key_W.isDown && characterMoveable == true) {
-            if(this.character_north.y > 185){
-                this.character_north.y -= 5;
-                this.character_east.y -= 5;
-                this.character_south.y -= 5;
-                this.character_west.y -= 5;
-
-                this.setCharacterAlpha(1,0,0,0);
-
-
-
-            }
-            //Character moves left
-        } if (this.key_A.isDown && characterMoveable == true) {
-            if(this.character_west.x > 210){
-                this.character_west.x -= 5;
-                this.character_east.x -= 5;
-                this.character_south.x -= 5;
-                this.character_north.x -= 5;
-
-                this.setCharacterAlpha(0,0,0,1);
-            }
-
-        }
-        //Character moves down
-        if (this.key_S.isDown && characterMoveable == true) {
-            if(this.character_south.y < 670){
-                this.character_south.y += 5;
-                this.character_east.y += 5;
-                this.character_north.y += 5;
-                this.character_west.y += 5;
-
-                this.setCharacterAlpha(0,0,1,0);
-            }
-
-        }
-        //Character moves right
-        if (this.key_D.isDown && characterMoveable == true) {
-            if(this.character_east.x < 1325){
-                this.character_east.x += 5;
-                this.character_north.x += 5;
-                this.character_south.x += 5;
-                this.character_west.x += 5;
-
-                this.setCharacterAlpha(0,1,0,0);
-            }
-        }
-    }
-    */
 
     moveSprite(isPlayer) {
         //setCharacterAlpha is in helper.js and arguments go N,E,S,W
@@ -506,192 +519,6 @@ class buildBlockAct0 extends Phaser.Scene {
         }
     }
 
-    /* movePaper
-     *
-     * makes the paper moveable in the test activity
-     */
-    /*
-    movePaper(moveThisPaper) {
-        if(this.key_W.isDown && this.paperMoveable == true && moveThisPaper.y > 75) {
-            moveThisPaper.y -= 12;
-        } if (this.key_A.isDown && this.paperMoveable == true && moveThisPaper.x > 50) {
-            moveThisPaper.x -= 12;
-        } if (this.key_S.isDown && this.paperMoveable == true && moveThisPaper.y < 800) {
-            moveThisPaper.y += 12;
-        } if (this.key_D.isDown && this.paperMoveable == true && moveThisPaper.x < 1400) {
-            moveThisPaper.x += 12;
-        }
-    }
-    */
-
-    /*loadExit() {
-        if (this.paperCount >= 4) {
-            this.congrats.alpha = 1;
-            this.congrats.setScale(1.3);
-            this.congrats.depth = 200;
-
-            this.hole = this.add.image(768, 432, 'hole');
-            this.holeOpened = true;
-        }
-    }*/
-
-    /* quitQuiz
-     *
-     * Allows the user to quit the quiz
-     */
-    /*quitQuiz() {
-        //console.log("e");
-        //this.loadExit();
-        //this.papers_moved = false;
-        //this.placements0.setVisible(false);
-        //this.placements1.setVisible(false);
-        //this.placements2.setVisible(false);
-        this.pressr.setVisible(false);
-        //this.incomeStatementText.setVisible(false);
-        //this.retainedEarningsText.setVisible(false);
-        //this.balanceSheetText.setVisible(false);
-
-
-        //this.paper.alpha = 0;
-        //this.paperTwo.alpha = 0;
-        //this.paperThree.alpha = 0;
-        //this.paper.setVisible(false);
-        //this.paperTwo.setVisible(false);
-        //this.paperThree.setVisible(false);
-        //this.quizActive = false;
-        //this.activatedQuiz = false;
-        this.background.alpha = 1.0;
-        this.character_north.alpha = 1.0;
-        this.character_east.alpha = 1.0;
-        this.character_south.alpha = 1.0;
-        this.character_west.alpha = 1.0;
-        this.E_KeyImg.alpha = 1.0;
-        //this.cardboard_box_1.setScale(0.39);
-        //this.cardboard_box_2.setScale(0.39);
-        //this.cardboard_box_3.setScale(0.39);
-        //this.paper_stack.setScale(0.35);
-        //this.paper_stack.x = 1215;
-        //this.paper_stack.setVisible(true);
-        //this.cardboard_box_1.x = 1310;
-        //this.cardboard_box_2.x = 1310;
-        //this.cardboard_box_3.x = 1310;
-        this.cardboard_box_1.y = 320;
-        this.cardboard_box_2.y = 432;
-        this.cardboard_box_3.y = 530;
-        this.wall_info_1.alpha = 1;
-        this.wall_info_2.alpha = 1;
-        this.wall_info_3.alpha = 1;
-        this.wall_info_4.alpha = 1;
-        this.wall_info_5.alpha = 1;
-        this.wall_info_6.alpha = 1;
-        this.floor3.scaleX = 1.0;
-        this.floor3.scaleY = 1.0;
-        this.paper_stack.x = 1215;
-        this.paper_stack.y = 432;
-        this.paperCount = 1;
-        this.paperMoveable = false;
-	this.returnDoor.x += 40;
-
-        this.quizActive = false;
-        this.characterMoveable = true;
-        this.incomeStatement.alpha = 0.0;
-        this.balanceSheet.alpha = 0.0;
-        this.retainedEarnings.alpha = 0.0;
-        this.unlocked = true;
-        document.getElementById("background").volume = 1;
-
-    }*/
-
-    /* activateQuiz
-     *
-     * Method that starts the quiz
-     */
-    activateQuiz() {
-        document.getElementById("background").volume = 0.2;
-	//        this.paper_stack.setVisible(true);
-
-        this.paperMoveable = true;
-        this.paperCount = 1;
-        this.loadQuizImages();
-        this.updateCorrectImage();
-
-        if(this.papers_moved == false) {
-	    //            this.paper_stack.x -= 1025;
-	    //            this.paper_stack.y -= 275;
-            this.papers_moved = true;
-        }
-
-	this.paper = this.add.image(768, 432, 'paper');
-	this.paperTwo = this.add.image(768, 423, 'paper');
-	this.paperThree = this.add.image(768, 432, 'paper');
-
-	this.paperTwo.setVisible(false);
-	this.paperThree.setVisible(false);
-
-        this.paper.setInteractive();
-        this.paper.alpha = 1;
-        this.paper.setDepth(100);
-        this.paperTwo.setDepth(100);
-        this.paperThree.setDepth(100);
-
-        this.background.alpha = 0.0;
-        this.character_north.alpha = 0.0;
-        this.character_east.alpha = 0.0;
-        this.character_south.alpha = 0.0;
-        this.character_west.alpha = 0.0;
-        this.E_KeyImg.alpha = 0.0;
-        this.cardboard_box_1.setScale(1.1);
-        this.cardboard_box_2.setScale(1.1);
-        this.cardboard_box_3.setScale(1.1);
-	//        this.paper_stack.setScale(1.0);
-        this.cardboard_box_1.x = 1350;
-        this.cardboard_box_2.x = 1350;
-        this.cardboard_box_3.x = 1350;
-        this.cardboard_box_1.y = 150;
-        this.cardboard_box_2.y = 450;
-        this.cardboard_box_3.y = 750;
-        this.r2a0_floor.scaleX = 1.5;
-        this.r2a0_floor.scaleY = 2.0;
-
-        this.box1_frame = new Phaser.Geom.Rectangle(this.cardboard_box_1.x, this.cardboard_box_1.y, 240,240);
-        this.graphics.fillRectShape(this.box1_frame);
-
-
-        this.box2_frame = new Phaser.Geom.Rectangle(this.cardboard_box_2.x,this.cardboard_box_2.y,240,200);
-        this.graphics.fillRectShape(this.box2_frame);
-
-        this.box3_frame = new Phaser.Geom.Rectangle(this.cardboard_box_3.x,this.cardboard_box_3.y,240,200);
-        this.graphics.fillRectShape(this.box3_frame);
-
-        this.paper.on('pointerdown', function(pointer, localX, localY, event) {
-                console.log("click");
-                this.alpha = 0;
-
-                });
-    }
-
-    /* quitInteraction
-     *
-     * Sets the alphas to 0 so that the interaction is quit.
-     */
-    quitInteraction() {
-        this.r1_map.alpha = 0.0;
-        this.notebook.alpha = 0.0;
-        this.hideActivities();
-        this.activityLocked.alpha = 0.0;
-        this.character_north.alpha = 1.0;
-        this.character_east.alpha = 1.0;
-        this.character_south.alpha = 1.0;
-        this.character_west.alpha = 1.0;
-        this.characterMoveable = true;
-        this.help_menu.alpha = 0.0;
-       // this.activatedQuiz = false;
-        //if (this.quizActive == true) {
-          //  this.quitQuiz();
-        //}
-        //this.congrats.setVisible(false);
-    }
-
 
     hideInteractionBoxes() {
 
@@ -702,154 +529,27 @@ class buildBlockAct0 extends Phaser.Scene {
      * Sets the alphas to the activities to 0 so that they are hidden.
      */
     hideActivities() {
-        this.activityLocked.alpha = 0.0;
+	    this.activityLocked.alpha = 0.0;
+	    this.top_mid_panel.alpha = 0.0;
+	    this.r1_map.alpha = 0;
+	    this.notebook.alpha = 0;
+	    this.help_menu.alpha = 0.0;
+	    this.helpOpen = false;
     }
 
-    /* checkCorrectPaperOne
-     *
-     * Checks to see if the first paper is in the correct box.
-     */
-    checkCorrectPaperOne() {
-        if(this.activatedQuiz == true) {
-            if (this.key_R.isDown) {
-                this.incomeStatement.setVisible(true);
-            }
-            else
-                this.incomeStatement.setVisible(false);
-            //THE RIGHT BOX
-            if (Phaser.Geom.Rectangle.ContainsPoint(this.box_1_zone, this.paper)) {
-                document.getElementById("correct").play();
-                this.paper.setVisible(false);
-                this.paperTwo.setVisible(true);
-                this.paperTwo.setInteractive();
-                this.paperCount++;
-                this.updateCorrectImage();
-
-            } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_2_zone, this.paper) && this.paperCount == 1) {
-                document.getElementById("wrong").play();
-                this.paper.x = this.paper_stack.x;
-                this.paper.y = this.paper_stack.y + 600;
-                this.updateCorrectImage();
-
-            } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_3_zone, this.paper) && this.paperCount == 1) {
-                document.getElementById("wrong").play();
-                this.paper.x = this.paper_stack.x;
-                this.paper.y = this.paper_stack.y + 600;
-                this.updateCorrectImage();
-            }
-        }
+    centerSprite() {
+	//	console.log("jump: ");
+	this.paper.x = 768;
+	this.paper.y = 432;
+	this.character_north.x = 768;
+	this.character_north.y = 432;
+	this.character_south.x = 768;
+	this.character_south.y = 432;
+	this.character_east.x = 768;
+	this.character_east.y = 432;
+	this.character_west.x = 768;
+	this.character_west.y = 432;
     }
-
-    /* checkCorrectPaperTwo
-     *
-     * Checks to see if the second paper is in the correct box.
-     */
-    checkCorrectPaperTwo() {
-        this.incomeStatement.setVisible(false);
-        if (this.key_R.isDown) {
-            this.retainedEarnings.setVisible(true);
-        } else
-            this.retainedEarnings.setVisible(false);
-
-        if (Phaser.Geom.Rectangle.ContainsPoint(this.box_2_zone, this.paperTwo) && this.paperCount == 2) {
-            document.getElementById("correct").play();
-            this.paperTwo.setVisible(false);
-            this.paperThree.setVisible(true);
-            this.paperThree.setInteractive();
-            this.paperCount++;
-            this.updateCorrectImage();
-
-        } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_1_zone, this.paperTwo) && this.paperCount == 2) {
-            document.getElementById("wrong").play();
-            this.paperTwo.x = this.paper_stack.x;
-            this.paperTwo.y = this.paper_stack.y + 600;
-            this.updateCorrectImage();
-
-        } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_3_zone, this.paperTwo) && this.paperCount == 2) {
-            document.getElementById("wrong").play();
-            this.paperTwo.x = this.paper_stack.x;
-            this.paperTwo.y = this.paper_stack.y + 600;
-            this.updateCorrectImage();
-
-            //this.cardboard_box_3.setVisible(true);
-        }
-        //this.updateCorrectImage();
-    }
-
-    /* checkCorrectPaperThree
-     *
-     * Checks to see if the third paper is in the correct box.
-     */
-    checkCorrectPaperThree() {
-        this.retainedEarnings.setVisible(false);
-        if (this.key_R.isDown) {
-            this.balanceSheet.setVisible(true);
-        }	else
-            this.balanceSheet.setVisible(false);
-
-        if (Phaser.Geom.Rectangle.ContainsPoint(this.box_3_zone, this.paperThree) && this.paperCount == 3) {
-            document.getElementById("correct").play();
-            this.paperThree.setVisible(false);
-            this.paperCount++;
-            this.quitQuiz();
-        } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_1_zone, this.paperThree) && this.paperCount == 3) {
-            document.getElementById("wrong").play();
-            this.paperThree.x = this.paper_stack.x;
-            this.paperThree.y = this.paper_stack.y + 600;
-
-
-        } else if (Phaser.Geom.Rectangle.ContainsPoint(this.box_2_zone, this.paperThree) && this.paperCount == 3) {
-            document.getElementById("wrong").play();
-            this.paperThree.x = this.paper_stack.x;
-            this.paperThree.y = this.paper_stack.y + 600;
-        }
-    }
-
-    /* loadQuizImages
-     *
-     * Loads the images into the quiz Activity
-     */
-    loadQuizImages(){
-        this.pressr = this.add.image(650, 40, 'pressr');
-        this.pressr.setScale(.8);
-
-	this.incomeStatement = this.add.image(675, 350, 'incomeStatement');
-        this.incomeStatement.setVisible(false);
-        this.incomeStatement.setDepth(500);
-
-        this.balanceSheet = this.add.image(675, 410, 'balanceSheet');
-        this.balanceSheet.setVisible(false);
-        this.balanceSheet.setDepth(500);
-        this.balanceSheet.setScale(.85);
-
-        this.retainedEarnings = this.add.image(675, 210, 'retainedEarnings');
-        this.retainedEarnings.setVisible(false);
-        this.retainedEarnings.setDepth(500);
-
-    }
-
-    /* updateCorrectImage
-     *
-     * Updates the image in the quiz that tells the user how many they have got right.
-     */
-    /*updateCorrectImage() {
-        //console.log(this.paperCount);
-        if (this.paperCount == 1) {
-            this.placements0.setVisible(true);
-            this.placements1.setVisible(false);
-            this.placements2.setVisible(false);
-        }	else if (this.paperCount == 2) {
-            this.placements0.setVisible(false);
-            this.placements1.setVisible(true);
-            this.placements2.setVisible(false);
-        }	else if (this.paperCount == 3) {
-            this.placements0.setVisible(false);
-            this.placements1.setVisible(false);
-            this.placements2.setVisible(true);
-        }
-
-    }*/
-
 
 
 
