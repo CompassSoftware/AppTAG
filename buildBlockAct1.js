@@ -2,8 +2,8 @@ class buildBlockAct1 extends Phaser.Scene {
 
   constructor() {
     super("BuildBlock_Act1");
-    this.room2a_quizActive = false;
-    this.room2a_activatedQuiz = false;
+    this.room2a_quizActive = true;
+    this.room2a_activatedQuiz = true;
     this.room2a_helpOpen = false;
     this.room2a_puzzleMoveable = false;
     this.room2a_isPuzzle = false;
@@ -55,9 +55,9 @@ class buildBlockAct1 extends Phaser.Scene {
 
 
     if (this.room2a_key_Q.isDown) {
-        this.quitInteraction();
-        this.room2a_activatedQuiz = false;
-        this.room2a_quizActive = false;
+	//        this.quitInteraction();
+	//n        this.room2a_activatedQuiz = false;
+	//        this.room2a_quizActive = false;
     }
 
     if (this.room2a_quizActive == true && this.room2a_activatedQuiz == false && this.room2a_key_E.isDown) {

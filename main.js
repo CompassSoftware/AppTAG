@@ -4,7 +4,9 @@ var config = {
   height: 864,
 
   //  scene: [tagIntro, courseIntro, buildingBlocks, buildBlockActRoom, buildBlockAct1, accountEqn, accountEqnAct, winners_room]
-  scene: [tagIntro, courseIntro, buildingBlocks, bbActRoom, buildBlockAct1, accountEqn, accountEqnAct, winners_room]
+  scene: [tagIntro, courseIntro, buildingBlocks, bbActRoom, buildBlockAct0]
+  //, buildBlockAct1]
+  //, accountEqn, accountEqnAct, winners_room]
 
 };
 

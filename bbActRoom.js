@@ -255,11 +255,9 @@ class bbActRoom extends Phaser.Scene {
 		    }
 		    else {
 			if (roomProgress <= 2200) { roomProgress = 2200; }
-			
-			roomProgress=2299; // just for jbf testing 2/6/20
-			this.scene.start("Course_Intro");
+			//roomProgress=2299; // just for jbf testing 2/6/20
+			this.scene.start("BuildBlock_Act0");
 			// if complete that scene roomProg==2299
-			//			this.scene.start("BuildBlock_Act0");
 		    }
 		}
     }
