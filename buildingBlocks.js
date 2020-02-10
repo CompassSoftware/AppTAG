@@ -239,7 +239,7 @@ class buildingBlocks extends Phaser.Scene {
         this.room2_activityLocked = this.add.image(768, 432, 'room2_activityLocked');
         this.room2_help_menu = this.add.image(768, 432, 'room2_help_menu');
         this.room2_hole_activity = this.add.image(350, 540, 'room2_hole_activity');
-        this.room2_hole_nextRoom = this.add.image(350, 300, 'room2_hole_nextRoom');
+        this.room2_hole_nextRoom = this.add.image(768, 432, 'room2_hole_nextRoom');
         this.rightArrow = this.add.image(1000, 650, 'rightArrow');
         this.leftArrow = this.add.image(600, 650, 'rightArrow');
     }
@@ -386,7 +386,7 @@ class buildingBlocks extends Phaser.Scene {
         this.room2_bot_right_info = new Phaser.Geom.Rectangle(1120,565,240,150);
         this.room2_graphics.fillRectShape(this.room2_bot_right_info);
 
-        this.room2_hole_zone_nextRoom = new Phaser.Geom.Rectangle(220, 200,220,150);
+        this.room2_hole_zone_nextRoom = new Phaser.Geom.Rectangle(700,350,200,200);
         this.room2_graphics.fillRectShape(this.room2_hole_zone_nextRoom);
 
 
