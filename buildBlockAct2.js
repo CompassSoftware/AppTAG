@@ -4,11 +4,9 @@ class buildBlockAct2 extends Phaser.Scene {
     constructor() {
         super("BuildBlock_Act2");
         this.room2b_quizActive = true;
-	//        this.room2b_activatedQuiz = true;
         this.room2b_unlocked = false;
-	//        this.room2b_paperMoveable = false;
         this.room2b_helpOpen = false;
-	//        this.holeOpened = false;
+	this.room2b_count = 1;
     }
     //load assets in preload()
 
@@ -29,10 +27,9 @@ class buildBlockAct2 extends Phaser.Scene {
     }
 
     update(delta) {
-	console.log("parents room: progress="+roomProgress);
-	if (roomProgress <= 2400) { 
+	//	console.log("parents room: progress="+roomProgress);
+	if (roomProgress < 2440) { 
 	    this.room2b_quizActive = true; 
-	    //	    this.paperCount = 1;
 	    this.qmark.alpha = 1;
 	    this.setCharacterAlpha(0,0,0,0);
 	}
@@ -67,10 +64,15 @@ class buildBlockAct2 extends Phaser.Scene {
         }
 	*/
 
-	/*
         if (this.room2b_key_Q.isDown) {
-            this.quitInteraction();
+	    this.room2b_activityLocked.alpha = 0.0;
+	    this.room2b_map.alpha = 0;
+	    this.room2b_notebook.alpha = 0;
+	    this.room2b_help_menu.alpha = 0.0;
+	    this.room2b_helpOpen = false;
+	    //            this.quitInteraction();
         }
+	/*
 
         if (this.room2b_quizActive == true && this.room2b_activatedQuiz == false && this.room2b_key_E.isDown) {
             this.activateQuiz();
@@ -193,6 +195,12 @@ class buildBlockAct2 extends Phaser.Scene {
      * Loads images to be used and sets them into a variable name.
      */
     loadAssets() {
+        this.load.image('r2a2_goldcoin', 'assets/Room2Act2/goldcoin_t.png');
+        this.load.image('r2a2_q1_incstmC', 'assets/Room2Act2/r2a2_q1_incstmC_t.png');
+        this.load.image('r2a2_q1_balshtW', 'assets/Room2Act2/r2a2_q1_balshtW_t.png');
+        this.load.image('r2a2_q1_sreW', 'assets/Room2Act2/r2a2_q1_sreW_t.png');
+        this.load.image('r2a2_q1_scfW', 'assets/Room2Act2/r2a2_q1_scfW_t.png');
+        this.load.image('r2a2_q1', 'assets/Room2Act2/r2a2_q1_t.png');
 	this.load.image('r2a2_returnDoor', 'assets/dooropen_100x100.png');
         this.load.image('room2b_one_lesson_BG', 'assets/one_lesson_BG.png');
         this.load.image('room2b_character_north', 'assets/character_north.png');
@@ -202,6 +210,7 @@ class buildBlockAct2 extends Phaser.Scene {
         this.load.image('room2b_E_KeyImg', 'assets/E_Key.png');
         this.load.image('room2b_floor', 'assets/Room2Act2/floor_two_activity_2.jpg');
         this.load.image('r2a2_UMpanel', 'assets/wall_art.png');
+        this.load.image('r2a2_UMpanel_info', 'assets/Room2Act2/r2a2_UMpanel_t.png');
         this.load.image('room2b_map', 'assets/map.png');
         this.load.image('room2b_notebook', 'assets/notebook.png');
         this.load.image('room2b_activityLocked', 'assets/activityLocked.png');
@@ -209,7 +218,10 @@ class buildBlockAct2 extends Phaser.Scene {
         this.load.image('couple', 'assets/Room2Act2/couple.png');
         this.load.image('question', 'assets/Room2Act2/question.png');
         this.load.image('questionStack', 'assets/Room2Act2/questionStack.png');
-	//        this.load.image('incomeStatement' , 'assets/Documents/incomeStatement.png');
+	this.load.image('r2a2_incstm' , 'assets/Room2Act2/r2a2_IncStm_icon_t.png');
+	this.load.image('r2a2_balsht' , 'assets/Room2Act2/r2a2_BalSht_icon_t.png');
+	this.load.image('r2a2_sre' , 'assets/Room2Act2/r2a2_SRE_icon_t.png');
+	this.load.image('r2a2_scf' , 'assets/Room2Act2/r2a2_SCF_icon_t.png');
 	//        this.load.image('balanceSheet', 'assets/Documents/balanceSheet.png');
 	//        this.load.image('retainedEarnings' , 'assets/Documents/retainedEarnings.png')
 	//        this.load.image('cashFlows' , 'assets/Documents/cashFlows.jpg');
@@ -223,9 +235,21 @@ class buildBlockAct2 extends Phaser.Scene {
     createImages() {
         this.room2b_e_pressed = false;
         this.room2b_papers_moved = false;
+        this.r2a2_goldcoin = this.add.image(210, 400, 'r2a2_goldcoin');
+        this.r2a2_q1 = this.add.image(768, 432, 'r2a2_q1');
+        this.r2a2_q1_incstmC = this.add.image(768, 432, 'r2a2_q1_incstmC');
+        this.r2a2_q1_balshtW = this.add.image(768, 432, 'r2a2_q1_balshtW');
+        this.r2a2_q1_sreW = this.add.image(768, 432, 'r2a2_q1_sreW');
+        this.r2a2_q1_scfW = this.add.image(768, 432, 'r2a2_q1_scfW');
+        this.r2a2_incstm = this.add.image(300, 630, 'r2a2_incstm');
+        this.r2a2_balsht = this.add.image(600, 630, 'r2a2_balsht');
+        this.r2a2_sre = this.add.image(900, 630, 'r2a2_sre');
+        this.r2a2_scf = this.add.image(1200, 630, 'r2a2_scf');
+
 	this.r2a2_returnDoor = this.add.image(113, 385, 'r2a2_returnDoor');
         this.room2b_walls = this.add.image(768, 432, 'room2b_one_lesson_BG');
         this.r2a2_UMpanel = this.add.image(768, 75, 'r2a2_UMpanel');
+        this.r2a2_UMpanel_info = this.add.image(768, 432, 'r2a2_UMpanel_info');
         this.room2b_character_north = this.add.image(768, 432, 'room2b_character_north');
         this.room2b_character_east = this.add.image(768, 432, 'room2b_character_east');
         this.room2b_character_south = this.add.image(768, 432, 'room2b_character_south');
@@ -253,7 +277,18 @@ class buildBlockAct2 extends Phaser.Scene {
         this.room2b_walls.alpha = 1.0;
 	this.r2a2_returnDoor.alpha = 1;
 	this.r2a2_UMpanel.alpha = 1;
+	this.r2a2_UMpanel_info.alpha = 0;
+	this.r2a2_goldcoin.alpha = 0;
+	this.r2a2_q1.alpha = 0;
+	this.r2a2_q1_incstmC.alpha = 0;
+	this.r2a2_q1_balshtW.alpha = 0;
+	this.r2a2_q1_sreW.alpha = 0;
+	this.r2a2_q1_scfW.alpha = 0;
 	this.couple.alpha = 1;
+	this.r2a2_balsht.alpha = 1;
+	this.r2a2_incstm.alpha = 1;
+	this.r2a2_scf.alpha = 1;
+	this.r2a2_sre.alpha = 1;
         this.room2b_map.alpha = 0.0;
         this.room2b_notebook.alpha = 0.0;
         this.room2b_activityLocked.alpha = 0.0;
@@ -272,28 +307,45 @@ class buildBlockAct2 extends Phaser.Scene {
         this.room2b_floor.setDepth(2);
 	this.r2a2_returnDoor.setDepth(2);
 	this.r2a2_UMpanel.setDepth(2);
+	this.r2a2_incstm.setDepth(3);
+	this.r2a2_balsht.setDepth(3);
+	this.r2a2_scf.setDepth(3);
+	this.r2a2_sre.setDepth(3);
         this.room2b_character_north.setDepth(50);
         this.room2b_character_east.setDepth(50);
         this.room2b_character_south.setDepth(50);
         this.room2b_character_west.setDepth(50);
 	this.qmark.setDepth(50);
-	this.couple.setDepth(50);
-        this.room2b_E_KeyImg.setDepth(49);
+	this.couple.setDepth(49);
+	this.r2a2_goldcoin.setDepth(49);
+        this.room2b_E_KeyImg.setDepth(100);
         this.room2b_map.setDepth(100);
         this.room2b_notebook.setDepth(100);
         this.room2b_help_menu.setDepth(100);
+        this.r2a2_UMpanel_info.setDepth(100);
+        this.room2b_activityLocked.setDepth(100);
+        this.r2a2_q1.setDepth(100);
+        this.r2a2_q1_sreW.setDepth(100);
+        this.r2a2_q1_scfW.setDepth(100);
+        this.r2a2_q1_balshtW.setDepth(100);
+        this.r2a2_q1_incstmC.setDepth(100);
     }
 
     /* setScales
-     *
-     * Scales the size of each object.
+
      */
     setScales() {
         this.room2b_E_KeyImg.setScale(0.4);
 	this.r2a2_returnDoor.setScale(1.5);
         this.r2a2_UMpanel.setScale(0.75);
+        this.r2a2_UMpanel_info.setScale(0.75);
+        this.r2a2_incstm.setScale(0.33);
+        this.r2a2_balsht.setScale(0.33);
+        this.r2a2_sre.setScale(0.33);
+        this.r2a2_scf.setScale(0.33);
         this.room2b_notebook.setScale(0.75);
         this.room2b_map.setScale(0.75);
+        this.r2a2_goldcoin.setScale(0.1);
         this.room2b_character_north.setScale(3);
         this.room2b_character_south.setScale(3);
         this.room2b_character_west.setScale(3);
@@ -302,6 +354,7 @@ class buildBlockAct2 extends Phaser.Scene {
         this.room2b_floor.scaleX = 1.395;
         this.couple.setScale(.4);
         this.qmark.setScale(.15);
+        this.r2a2_q1.setScale(0.75);
         this.question1.setScale(.09);
         this.question2.setScale(.09);
         this.question3.setScale(.09);
@@ -327,13 +380,25 @@ class buildBlockAct2 extends Phaser.Scene {
         //TOP ZONES
         //xpos ypos x   y
         this.r2a2_topmid = new Phaser.Geom.Rectangle(670,100,170,100);
-        this.graphics.fillRectShape(this.r2a2_topmid);
+        this.room2b_graphics.fillRectShape(this.r2a2_topmid);
 
-        this.room2b_quiz_info = new Phaser.Geom.Rectangle(975,250,250,250);
-        this.room2b_graphics.fillRectShape(this.room2b_quiz_info);
+        this.r2a2_coin_zone = new Phaser.Geom.Rectangle(190,380,100,100);
+        this.room2b_graphics.fillRectShape(this.r2a2_coin_zone);
 
-        this.room2b_middle_info = new Phaser.Geom.Rectangle(700, 350, 200,200);
-        this.room2b_graphics.fillRectShape(this.room2b_middle_info);
+        this.couple_zone = new Phaser.Geom.Rectangle(1150,220,100,100);
+        this.room2b_graphics.fillRectShape(this.couple_zone);
+
+        this.r2a2_incstm_zone = new Phaser.Geom.Rectangle(280, 610, 75,75);
+        this.room2b_graphics.fillRectShape(this.r2a2_incstm_zone);
+
+        this.r2a2_balsht_zone = new Phaser.Geom.Rectangle(580, 610, 75,75);
+        this.room2b_graphics.fillRectShape(this.r2a2_balsht_zone);
+
+        this.r2a2_sre_zone = new Phaser.Geom.Rectangle(880, 610, 75,75);
+        this.room2b_graphics.fillRectShape(this.r2a2_sre_zone);
+
+        this.r2a2_scf_zone = new Phaser.Geom.Rectangle(1180, 610, 75,75);
+        this.room2b_graphics.fillRectShape(this.r2a2_scf_zone);
 
 	// exit door
         this.r2a2_returnDoor_zone = new Phaser.Geom.Rectangle(120, 355,100,95);
@@ -391,17 +456,87 @@ class buildBlockAct2 extends Phaser.Scene {
             this.room2b_E_KeyImg.y = this.room2b_character_north.y;
             this.room2b_E_KeyImg.alpha = 1.0;
             if (this.room2b_key_E.isDown) {
-		this.room2b_activityLocked.alpha = 1.0;
+		this.r2a2_UMpanel_info.alpha = 1.0;
+		if (roomProgress < 2410) { roomProgress = 2410; }
             }
 	} else if (Phaser.Geom.Rectangle.ContainsPoint(this.r2a2_returnDoor_zone, this.room2b_character_north)) {
-        this.room2b_E_KeyImg.x = this.room2b_character_north.x;
-        this.room2b_E_KeyImg.y = this.room2b_character_north.y-75;
-        this.room2b_E_KeyImg.alpha = 1.0;
-        if (this.room2b_key_E.isDown) {
-            this.scene.start("BB_ActRoom");
-
-        }
-       }
+	    this.room2b_E_KeyImg.x = this.room2b_character_north.x;
+	    this.room2b_E_KeyImg.y = this.room2b_character_north.y-75;
+	    this.room2b_E_KeyImg.alpha = 1.0;
+	    if (this.room2b_key_E.isDown) {
+		this.scene.start("BB_ActRoom");
+	    }
+	} else if (Phaser.Geom.Rectangle.ContainsPoint(this.couple_zone, this.room2b_character_north)) {
+	    this.room2b_E_KeyImg.x = this.room2b_character_north.x;
+	    this.room2b_E_KeyImg.y = this.room2b_character_north.y-75;
+	    this.room2b_E_KeyImg.alpha = 1.0;
+	    if (this.room2b_key_E.isDown) {
+		if (roomProgress < 2410) {
+		    this.room2b_activityLocked.alpha = 1.0;
+		}
+		else if (this.room2b_count == 1) {
+		    this.r2a2_q1.alpha = 1.0;
+		    if (roomProgress < 2415) { roomProgress = 2415; }
+		}
+	    }
+	} else if (Phaser.Geom.Rectangle.ContainsPoint(this.r2a2_incstm_zone, this.room2b_character_north)) {
+	    this.room2b_E_KeyImg.x = this.room2b_character_north.x;
+	    this.room2b_E_KeyImg.y = this.room2b_character_north.y-75;
+	    this.room2b_E_KeyImg.alpha = 1.0;
+	    if (this.room2b_key_E.isDown) {
+		if (roomProgress < 2410) {
+		    this.room2b_activityLocked.alpha = 1.0;
+		}
+		else if (roomProgress == 2415) {
+		    this.r2a2_q1_incstmC.alpha = 1.0;
+		    this.room2b_count = 2;
+		}
+	    }
+	} else if (Phaser.Geom.Rectangle.ContainsPoint(this.r2a2_balsht_zone, this.room2b_character_north)) {
+	    this.room2b_E_KeyImg.x = this.room2b_character_north.x;
+	    this.room2b_E_KeyImg.y = this.room2b_character_north.y-75;
+	    this.room2b_E_KeyImg.alpha = 1.0;
+	    if (this.room2b_key_E.isDown) {
+		if (roomProgress < 2410) {
+		    this.room2b_activityLocked.alpha = 1.0;
+		}
+		if (this.room2b_count == 1) {
+		    this.r2a2_q1_balshtW.alpha = 1.0;
+		}
+	    }
+	} else if (Phaser.Geom.Rectangle.ContainsPoint(this.r2a2_sre_zone, this.room2b_character_north)) {
+	    this.room2b_E_KeyImg.x = this.room2b_character_north.x;
+	    this.room2b_E_KeyImg.y = this.room2b_character_north.y-75;
+	    this.room2b_E_KeyImg.alpha = 1.0;
+	    if (this.room2b_key_E.isDown) {
+		if (roomProgress < 2410) {
+		    this.room2b_activityLocked.alpha = 1.0;
+		}
+		if (this.room2b_count == 1) {
+		    this.r2a2_q1_sreW.alpha = 1.0;
+		}
+	    }
+	} else if (Phaser.Geom.Rectangle.ContainsPoint(this.r2a2_scf_zone, this.room2b_character_north)) {
+	    this.room2b_E_KeyImg.x = this.room2b_character_north.x;
+	    this.room2b_E_KeyImg.y = this.room2b_character_north.y-75;
+	    this.room2b_E_KeyImg.alpha = 1.0;
+	    console.log("scfzone prog="+roomProgress+" count="+this.room2b_count);
+	    if (this.room2b_key_E.isDown) {
+		if (roomProgress < 2410) {
+		    this.room2b_activityLocked.alpha = 1.0;
+		}
+		if (this.room2b_count == 1) {
+		    this.r2a2_q1_scfW.alpha = 1.0;
+		}
+	    }
+	} else if (Phaser.Geom.Rectangle.ContainsPoint(this.r2a2_coin_zone, this.room2b_character_north)) {
+	    this.room2b_E_KeyImg.x = this.room2b_character_north.x;
+	    this.room2b_E_KeyImg.y = this.room2b_character_north.y-75;
+	    this.room2b_E_KeyImg.alpha = 1.0;
+	    if (this.room2b_key_E.isDown) {
+		this.room2b_activityLocked.alpha = 1.0;
+	    }
+	}
       /*
         else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2b_quiz_info, this.room2b_character_north)) {
             this.room2b_E_KeyImg.x = this.room2b_character_north.x;
@@ -429,6 +564,11 @@ class buildBlockAct2 extends Phaser.Scene {
         else {
             this.hideActivities();
             this.room2b_E_KeyImg.alpha = 0.0;
+	    if (this.room2b_count == 2 && roomProgress < 2440) {
+		if (roomProgress < 2440) { roomProgress = 2440; }
+		this.room2b_centerSprite();
+		this.r2a2_goldcoin.alpha = 1;
+	    }
         }
     }
 
@@ -443,6 +583,20 @@ class buildBlockAct2 extends Phaser.Scene {
         this.room2b_character_east.alpha = arguments[1];
         this.room2b_character_south.alpha = arguments[2];
         this.room2b_character_west.alpha = arguments[3];
+    }
+
+    room2b_centerSprite() {
+	//	console.log("jump: ");
+	this.qmark.x = 768;
+	this.qmark.y = 432;
+	this.room2b_character_north.x = 768;
+	this.room2b_character_north.y = 432;
+	this.room2b_character_south.x = 768;
+	this.room2b_character_south.y = 432;
+	this.room2b_character_east.x = 768;
+	this.room2b_character_east.y = 432;
+	this.room2b_character_west.x = 768;
+	this.room2b_character_west.y = 432;
     }
 
     /* movePlayer
@@ -550,7 +704,13 @@ class buildBlockAct2 extends Phaser.Scene {
      * Sets the alphas to the activities to 0 so that they are hidden.
      */
     hideActivities() {
-
+	this.room2b_activityLocked.alpha = 0;
+	this.r2a2_UMpanel_info.alpha = 0;
+	this.r2a2_q1.alpha = 0;
+	this.r2a2_q1_incstmC.alpha = 0;
+	this.r2a2_q1_balshtW.alpha = 0;
+	this.r2a2_q1_sreW.alpha = 0;
+	this.r2a2_q1_scfW.alpha = 0;
     }
 
     /*
