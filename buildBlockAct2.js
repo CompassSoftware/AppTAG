@@ -70,6 +70,14 @@ class buildBlockAct2 extends Phaser.Scene {
 	    this.room2b_notebook.alpha = 0;
 	    this.room2b_help_menu.alpha = 0.0;
 	    this.room2b_helpOpen = false;
+	this.r2a2_UMpanel_info.alpha = 0;
+	this.r2a2_congrats.alpha = 0;
+	this.r2a2_goldcoin.alpha = 0;
+	this.r2a2_q1.alpha = 0;
+	this.r2a2_q1_incstmC.alpha = 0;
+	this.r2a2_q1_balshtW.alpha = 0;
+	this.r2a2_q1_sreW.alpha = 0;
+	this.r2a2_q1_scfW.alpha = 0;
 	    //            this.quitInteraction();
         }
 	/*
@@ -196,6 +204,7 @@ class buildBlockAct2 extends Phaser.Scene {
      */
     loadAssets() {
         this.load.image('r2a2_goldcoin', 'assets/Room2Act2/goldcoin_t.png');
+        this.load.image('r2a2_congrats', 'assets/Room2Act2/r2a2_congrats_t.png');
         this.load.image('r2a2_q1_incstmC', 'assets/Room2Act2/r2a2_q1_incstmC_t.png');
         this.load.image('r2a2_q1_balshtW', 'assets/Room2Act2/r2a2_q1_balshtW_t.png');
         this.load.image('r2a2_q1_sreW', 'assets/Room2Act2/r2a2_q1_sreW_t.png');
@@ -235,7 +244,8 @@ class buildBlockAct2 extends Phaser.Scene {
     createImages() {
         this.room2b_e_pressed = false;
         this.room2b_papers_moved = false;
-        this.r2a2_goldcoin = this.add.image(210, 400, 'r2a2_goldcoin');
+        this.r2a2_goldcoin = this.add.image(270, 400, 'r2a2_goldcoin');
+        this.r2a2_congrats = this.add.image(768, 443, 'r2a2_congrats');
         this.r2a2_q1 = this.add.image(768, 432, 'r2a2_q1');
         this.r2a2_q1_incstmC = this.add.image(768, 432, 'r2a2_q1_incstmC');
         this.r2a2_q1_balshtW = this.add.image(768, 432, 'r2a2_q1_balshtW');
@@ -278,6 +288,7 @@ class buildBlockAct2 extends Phaser.Scene {
 	this.r2a2_returnDoor.alpha = 1;
 	this.r2a2_UMpanel.alpha = 1;
 	this.r2a2_UMpanel_info.alpha = 0;
+	this.r2a2_congrats.alpha = 0;
 	this.r2a2_goldcoin.alpha = 0;
 	this.r2a2_q1.alpha = 0;
 	this.r2a2_q1_incstmC.alpha = 0;
@@ -329,6 +340,7 @@ class buildBlockAct2 extends Phaser.Scene {
         this.r2a2_q1_scfW.setDepth(100);
         this.r2a2_q1_balshtW.setDepth(100);
         this.r2a2_q1_incstmC.setDepth(100);
+        this.r2a2_congrats.setDepth(100);
     }
 
     /* setScales
@@ -346,6 +358,7 @@ class buildBlockAct2 extends Phaser.Scene {
         this.room2b_notebook.setScale(0.75);
         this.room2b_map.setScale(0.75);
         this.r2a2_goldcoin.setScale(0.1);
+        this.r2a2_congrats.setScale(0.75);
         this.room2b_character_north.setScale(3);
         this.room2b_character_south.setScale(3);
         this.room2b_character_west.setScale(3);
@@ -382,7 +395,7 @@ class buildBlockAct2 extends Phaser.Scene {
         this.r2a2_topmid = new Phaser.Geom.Rectangle(670,100,170,100);
         this.room2b_graphics.fillRectShape(this.r2a2_topmid);
 
-        this.r2a2_coin_zone = new Phaser.Geom.Rectangle(190,380,100,100);
+        this.r2a2_coin_zone = new Phaser.Geom.Rectangle(250,380,100,100);
         this.room2b_graphics.fillRectShape(this.r2a2_coin_zone);
 
         this.couple_zone = new Phaser.Geom.Rectangle(1150,220,100,100);
@@ -484,10 +497,10 @@ class buildBlockAct2 extends Phaser.Scene {
 	    this.room2b_E_KeyImg.y = this.room2b_character_north.y-75;
 	    this.room2b_E_KeyImg.alpha = 1.0;
 	    if (this.room2b_key_E.isDown) {
-		if (roomProgress < 2410) {
+		if (roomProgress < 2415) {
 		    this.room2b_activityLocked.alpha = 1.0;
 		}
-		else if (roomProgress == 2415) {
+		else if (roomProgress == 2415 && this.room2b_count == 1) {
 		    this.r2a2_q1_incstmC.alpha = 1.0;
 		    this.room2b_count = 2;
 		}
@@ -497,10 +510,10 @@ class buildBlockAct2 extends Phaser.Scene {
 	    this.room2b_E_KeyImg.y = this.room2b_character_north.y-75;
 	    this.room2b_E_KeyImg.alpha = 1.0;
 	    if (this.room2b_key_E.isDown) {
-		if (roomProgress < 2410) {
+		if (roomProgress < 2415) {
 		    this.room2b_activityLocked.alpha = 1.0;
 		}
-		if (this.room2b_count == 1) {
+		else if (roomProgress == 2415 && this.room2b_count == 1) {
 		    this.r2a2_q1_balshtW.alpha = 1.0;
 		}
 	    }
@@ -509,10 +522,10 @@ class buildBlockAct2 extends Phaser.Scene {
 	    this.room2b_E_KeyImg.y = this.room2b_character_north.y-75;
 	    this.room2b_E_KeyImg.alpha = 1.0;
 	    if (this.room2b_key_E.isDown) {
-		if (roomProgress < 2410) {
+		if (roomProgress < 2415) {
 		    this.room2b_activityLocked.alpha = 1.0;
 		}
-		if (this.room2b_count == 1) {
+		else if (roomProgress == 2415 && this.room2b_count == 1) {
 		    this.r2a2_q1_sreW.alpha = 1.0;
 		}
 	    }
@@ -522,19 +535,24 @@ class buildBlockAct2 extends Phaser.Scene {
 	    this.room2b_E_KeyImg.alpha = 1.0;
 	    console.log("scfzone prog="+roomProgress+" count="+this.room2b_count);
 	    if (this.room2b_key_E.isDown) {
-		if (roomProgress < 2410) {
+		if (roomProgress < 2415) {
 		    this.room2b_activityLocked.alpha = 1.0;
 		}
-		if (this.room2b_count == 1) {
+		else if (roomProgress == 2415 && this.room2b_count == 1) {
 		    this.r2a2_q1_scfW.alpha = 1.0;
 		}
 	    }
 	} else if (Phaser.Geom.Rectangle.ContainsPoint(this.r2a2_coin_zone, this.room2b_character_north)) {
 	    this.room2b_E_KeyImg.x = this.room2b_character_north.x;
 	    this.room2b_E_KeyImg.y = this.room2b_character_north.y-75;
-	    this.room2b_E_KeyImg.alpha = 1.0;
+	    if (roomProgress == 2440) { this.room2b_E_KeyImg.alpha = 1.0; }
 	    if (this.room2b_key_E.isDown) {
-		this.room2b_activityLocked.alpha = 1.0;
+		console.log("coinzone E down: progress="+roomProgress);
+		if (roomProgress == 2440) {
+		    this.r2a2_congrats.alpha = 1.0;
+		    this.r2a2_goldcoin.alpha = 0;
+		    if (roomProgress < 2500) { roomProgress = 2500; }
+		}
 	    }
 	}
       /*
@@ -711,6 +729,8 @@ class buildBlockAct2 extends Phaser.Scene {
 	this.r2a2_q1_balshtW.alpha = 0;
 	this.r2a2_q1_sreW.alpha = 0;
 	this.r2a2_q1_scfW.alpha = 0;
+	this.r2a2_congrats.alpha = 0;
+
     }
 
     /*
