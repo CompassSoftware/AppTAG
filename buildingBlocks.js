@@ -84,12 +84,15 @@ class buildingBlocks extends Phaser.Scene {
 
         if (roomProgress >= 2030) {
           this.room2_hole_activity.alpha = 1.0;
+        }
+
+        if (roomProgress >= 2500) {
           this.room2_hole_nextRoom.alpha = 1.0;
         }
 
 
         if (this.room2_key_U.isDown) {
-            roomProgress = 2030;
+            roomProgress = 2035;
             this.room2_unlocked = true;
         }
 
@@ -561,7 +564,7 @@ class buildingBlocks extends Phaser.Scene {
 
         }
         else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2_hole_zone_nextRoom, this.room2_character_north)) {
-            if(roomProgress >= 2030) {
+            if(roomProgress >= 2500) {
               this.room2_E_KeyImg.x = this.room2_character_north.x;
               this.room2_E_KeyImg.y = this.room2_character_north.y+75;
               this.room2_E_KeyImg.alpha = 1.0;
