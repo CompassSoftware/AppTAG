@@ -220,7 +220,8 @@ class accountEqn extends Phaser.Scene {
     this.room3_help_menu = this.add.image(768, 432, 'room3_help_menu');
     this.room3_rightArrow = this.add.image(1000, 650, 'room3_rightArrow');
     this.room3_leftArrow = this.add.image(600, 650, 'room3_rightArrow');
-    this.room3_hole = this.add.image(768, 432, 'room3_hole');
+    this.room3_hole = this.add.image(1200,450, 'room3_hole');
+    this.returnDoor = this.add.image(113, 385, 'returnDoor');
   }
 
   /* setAlphas
@@ -291,6 +292,7 @@ class accountEqn extends Phaser.Scene {
     this.room3_floor.scaleX = 0.6178;
     this.room3_leftArrow.setScale(.2);
     this.room3_rightArrow.setScale(.2);
+    this.returnDoor.setScale(1.5);
 
   }
 
@@ -303,6 +305,7 @@ class accountEqn extends Phaser.Scene {
     this.room3_wall_info_5.rotation = 3.14;
     this.room3_wall_info_6.rotation = 3.14;
     this.room3_leftArrow.setRotation(3.14);
+    this.returnDoor.angle = 270;
    }
 
   /* createInteractionZones
@@ -336,6 +339,7 @@ class accountEqn extends Phaser.Scene {
 
     this.room3_hole_info = new Phaser.Geom.Rectangle(700,350,200,200);
     this.room3_graphics.fillRectShape(this.room3_hole_info);
+    this.exitDoor = new Phaser.Geom.Rectangle(113, 320, 100, 100);
   }
 
   /* assignKeybinds
@@ -501,6 +505,13 @@ class accountEqn extends Phaser.Scene {
         this.scene.start("winners_Room");
       }
     }
+  else if (Phaser.Geom.Rectangle.ContainsPoint(this.exitDoor, this.room3_character_north)) {
+      this.displayE();
+      if (this.room3_key_E.isDown) {
+          console.log("from room 3 to room 2")
+          this.scene.start("Building_Blocks");
+      }
+  }
     else {
     this.hideActivities();
     this.room3_E_KeyImg.alpha = 0.0;

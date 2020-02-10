@@ -1,13 +1,12 @@
 class buildBlockAct2 extends Phaser.Scene {
+    // roomProgress coming in is 2400
+
     constructor() {
-        super("BuidBlock_Act2");
-        this.room2b_quizActive = false;
-        this.room2b_activatedQuiz = false;
+        super("BuildBlock_Act2");
+        this.room2b_quizActive = true;
         this.room2b_unlocked = false;
-        this.room2b_paperMoveable = false;
         this.room2b_helpOpen = false;
-        this.holeOpened = false;
-        
+	this.room2b_count = 1;
     }
     //load assets in preload()
 
@@ -17,7 +16,6 @@ class buildBlockAct2 extends Phaser.Scene {
 
     //when scene is created
     create() {
-
         this.createImages();
         this.setAlphas();
         this.setDepths();
@@ -25,20 +23,28 @@ class buildBlockAct2 extends Phaser.Scene {
         this.setRotations();
         this.createInteractionZones();
         this.assignKeybinds();
-        this.imagesDraggable();
+	//        this.imagesDraggable();
     }
 
     update(delta) {
+	//	console.log("parents room: progress="+roomProgress);
+	if (roomProgress < 2440) { 
+	    this.room2b_quizActive = true; 
+	    this.qmark.alpha = 1;
+	    this.setCharacterAlpha(0,0,0,0);
+	}
+	else { 
+	    this.room2b_quizActive = false; 
+	    this.qmark.alpha = 0;
+	    this.setCharacterAlpha(0,0,1,0);
+	}
         //TEMPORARY FOR TESTING
         //vvvvvvvvvvvvvvvvvvv//
         if (this.room2b_key_H.isDown) {
             this.helpMenu();
         }
 
-        if (this.room2b_key_U.isDown && this.room2b_unlocked == false) {
-            this.room2b_unlocked = true;
-        }
-
+	/*
         if (this.room2b_key_M.isDown) {
             this.room2b_map.alpha = 1.0;
             characterMoveable = false;
@@ -56,11 +62,25 @@ class buildBlockAct2 extends Phaser.Scene {
             this.room2b_character_south.alpha = 0.0;
             this.room2b_character_west.alpha = 0.0;
         }
-
+	*/
 
         if (this.room2b_key_Q.isDown) {
-            this.quitInteraction();
+	    this.room2b_activityLocked.alpha = 0.0;
+	    this.room2b_map.alpha = 0;
+	    this.room2b_notebook.alpha = 0;
+	    this.room2b_help_menu.alpha = 0.0;
+	    this.room2b_helpOpen = false;
+	this.r2a2_UMpanel_info.alpha = 0;
+	this.r2a2_congrats.alpha = 0;
+	this.r2a2_goldcoin.alpha = 0;
+	this.r2a2_q1.alpha = 0;
+	this.r2a2_q1_incstmC.alpha = 0;
+	this.r2a2_q1_balshtW.alpha = 0;
+	this.r2a2_q1_sreW.alpha = 0;
+	this.r2a2_q1_scfW.alpha = 0;
+	    //            this.quitInteraction();
         }
+	/*
 
         if (this.room2b_quizActive == true && this.room2b_activatedQuiz == false && this.room2b_key_E.isDown) {
             this.activateQuiz();
@@ -71,7 +91,22 @@ class buildBlockAct2 extends Phaser.Scene {
             this.quitQuiz();
             this.room2b_activatedQuiz = false;
         }
+	*/
 
+        if (this.room2b_quizActive == false) {
+	    // character visible (quiz is done)
+	    //	    console.log("moving accacio");
+            this.moveSprite(true);
+        }
+	else {
+	    // paper visible (quiz is active)
+	    //	    console.log("moving paper");
+	    this.moveSprite(false);
+	    //	    this.checkPaper(this.paperCount);
+	}
+	this.checkInteractValidity();
+
+	/*
         if (this.room2b_activatedQuiz == false) {
             this.movePlayer();
             this.checkInteractValidity();
@@ -90,10 +125,75 @@ class buildBlockAct2 extends Phaser.Scene {
                 this.moveQuestion(this.quizQuestion4);
                 this.checkCorrectQuestionFour();
             }
+        }
+	*/
+    }
 
+    moveSprite(isPlayer) {
+        //setCharacterAlpha is in helper.js and arguments go N,E,S,W
+	if (isPlayer == true) { 
+	    this.setCharacterAlpha(0,0,1,0); 
+	    this.qmark.alpha = 0;
+	}
+	else { 
+	    this.setCharacterAlpha(0,0,0,0); 
+	    this.qmark.alpha = 1;
+	}
+
+        //Character moves up
+        if(this.room2b_key_W.isDown) {// && characterMoveable == true) {
+            if(this.room2b_character_north.y > 185){
+                this.room2b_character_north.y -= 5;
+                this.room2b_character_east.y -= 5;
+                this.room2b_character_south.y -= 5;
+                this.room2b_character_west.y -= 5;
+		this.qmark.y -= 5;
+
+                if (isPlayer) { this.setCharacterAlpha(1,0,0,0); }
+            }
+        } 
+
+	//Character moves left
+	if (this.room2b_key_A.isDown) { // && characterMoveable == true) {
+            if(this.room2b_character_west.x > 210){
+                this.room2b_character_west.x -= 5;
+                this.room2b_character_east.x -= 5;
+                this.room2b_character_south.x -= 5;
+                this.room2b_character_north.x -= 5;
+		this.qmark.x -= 5;
+
+                if (isPlayer) { this.setCharacterAlpha(0,0,0,1); }
+            }
         }
 
+        //Character moves down
+        if (this.room2b_key_S.isDown) {// && characterMoveable == true) {
+            if(this.room2b_character_south.y < 670){
+                this.room2b_character_south.y += 5;
+                this.room2b_character_east.y += 5;
+                this.room2b_character_north.y += 5;
+                this.room2b_character_west.y += 5;
+		this.qmark.y += 5;
+
+                if (isPlayer) { this.setCharacterAlpha(0,0,1,0); }
+            }
+        }
+
+        //Character moves right
+        if (this.room2b_key_D.isDown) { // && characterMoveable == true) {
+            if(this.room2b_character_east.x < 1325){
+                this.room2b_character_east.x += 5;
+                this.room2b_character_north.x += 5;
+                this.room2b_character_south.x += 5;
+                this.room2b_character_west.x += 5;
+		this.qmark.x += 5;
+
+                if (isPlayer) { this.setCharacterAlpha(0,1,0,0); }
+            }
+        }
     }
+
+
 
     /***********************************************************************************************
       ======================================HELPER METHODS============================================
@@ -103,6 +203,14 @@ class buildBlockAct2 extends Phaser.Scene {
      * Loads images to be used and sets them into a variable name.
      */
     loadAssets() {
+        this.load.image('r2a2_goldcoin', 'assets/Room2Act2/goldcoin_t.png');
+        this.load.image('r2a2_congrats', 'assets/Room2Act2/r2a2_congrats_t.png');
+        this.load.image('r2a2_q1_incstmC', 'assets/Room2Act2/r2a2_q1_incstmC_t.png');
+        this.load.image('r2a2_q1_balshtW', 'assets/Room2Act2/r2a2_q1_balshtW_t.png');
+        this.load.image('r2a2_q1_sreW', 'assets/Room2Act2/r2a2_q1_sreW_t.png');
+        this.load.image('r2a2_q1_scfW', 'assets/Room2Act2/r2a2_q1_scfW_t.png');
+        this.load.image('r2a2_q1', 'assets/Room2Act2/r2a2_q1_t.png');
+	this.load.image('r2a2_returnDoor', 'assets/dooropen_100x100.png');
         this.load.image('room2b_one_lesson_BG', 'assets/one_lesson_BG.png');
         this.load.image('room2b_character_north', 'assets/character_north.png');
         this.load.image('room2b_character_east', 'assets/character_east.png');
@@ -110,6 +218,8 @@ class buildBlockAct2 extends Phaser.Scene {
         this.load.image('room2b_character_west', 'assets/character_west.png');
         this.load.image('room2b_E_KeyImg', 'assets/E_Key.png');
         this.load.image('room2b_floor', 'assets/Room2Act2/floor_two_activity_2.jpg');
+        this.load.image('r2a2_UMpanel', 'assets/wall_art.png');
+        this.load.image('r2a2_UMpanel_info', 'assets/Room2Act2/r2a2_UMpanel_t.png');
         this.load.image('room2b_map', 'assets/map.png');
         this.load.image('room2b_notebook', 'assets/notebook.png');
         this.load.image('room2b_activityLocked', 'assets/activityLocked.png');
@@ -117,12 +227,14 @@ class buildBlockAct2 extends Phaser.Scene {
         this.load.image('couple', 'assets/Room2Act2/couple.png');
         this.load.image('question', 'assets/Room2Act2/question.png');
         this.load.image('questionStack', 'assets/Room2Act2/questionStack.png');
-        this.load.image('incomeStatement' , 'assets/Documents/incomeStatement.png');
-        this.load.image('balanceSheet', 'assets/Documents/balanceSheet.png');
-        this.load.image('retainedEarnings' , 'assets/Documents/retainedEarnings.png')
-        this.load.image('cashFlows' , 'assets/Documents/cashFlows.jpg');
-        this.load.image('room2b_hole', 'assets/hole.png');
-
+	this.load.image('r2a2_incstm' , 'assets/Room2Act2/r2a2_IncStm_icon_t.png');
+	this.load.image('r2a2_balsht' , 'assets/Room2Act2/r2a2_BalSht_icon_t.png');
+	this.load.image('r2a2_sre' , 'assets/Room2Act2/r2a2_SRE_icon_t.png');
+	this.load.image('r2a2_scf' , 'assets/Room2Act2/r2a2_SCF_icon_t.png');
+	//        this.load.image('balanceSheet', 'assets/Documents/balanceSheet.png');
+	//        this.load.image('retainedEarnings' , 'assets/Documents/retainedEarnings.png')
+	//        this.load.image('cashFlows' , 'assets/Documents/cashFlows.jpg');
+	//        this.load.image('room2b_hole', 'assets/hole.png');
     }
 
     /* createImages
@@ -132,7 +244,22 @@ class buildBlockAct2 extends Phaser.Scene {
     createImages() {
         this.room2b_e_pressed = false;
         this.room2b_papers_moved = false;
-        this.room2b_background = this.add.image(768, 432, 'room2b_one_lesson_BG');
+        this.r2a2_goldcoin = this.add.image(270, 400, 'r2a2_goldcoin');
+        this.r2a2_congrats = this.add.image(768, 443, 'r2a2_congrats');
+        this.r2a2_q1 = this.add.image(768, 432, 'r2a2_q1');
+        this.r2a2_q1_incstmC = this.add.image(768, 432, 'r2a2_q1_incstmC');
+        this.r2a2_q1_balshtW = this.add.image(768, 432, 'r2a2_q1_balshtW');
+        this.r2a2_q1_sreW = this.add.image(768, 432, 'r2a2_q1_sreW');
+        this.r2a2_q1_scfW = this.add.image(768, 432, 'r2a2_q1_scfW');
+        this.r2a2_incstm = this.add.image(300, 630, 'r2a2_incstm');
+        this.r2a2_balsht = this.add.image(600, 630, 'r2a2_balsht');
+        this.r2a2_sre = this.add.image(900, 630, 'r2a2_sre');
+        this.r2a2_scf = this.add.image(1200, 630, 'r2a2_scf');
+
+	this.r2a2_returnDoor = this.add.image(113, 385, 'r2a2_returnDoor');
+        this.room2b_walls = this.add.image(768, 432, 'room2b_one_lesson_BG');
+        this.r2a2_UMpanel = this.add.image(768, 75, 'r2a2_UMpanel');
+        this.r2a2_UMpanel_info = this.add.image(768, 432, 'r2a2_UMpanel_info');
         this.room2b_character_north = this.add.image(768, 432, 'room2b_character_north');
         this.room2b_character_east = this.add.image(768, 432, 'room2b_character_east');
         this.room2b_character_south = this.add.image(768, 432, 'room2b_character_south');
@@ -143,12 +270,13 @@ class buildBlockAct2 extends Phaser.Scene {
         this.room2b_notebook = this.add.image(768, 432, 'room2b_notebook');
         this.room2b_activityLocked = this.add.image(768, 432, 'room2b_activityLocked');
         this.room2b_help_menu = this.add.image(768, 432, 'room2b_help_menu');
-        this.couple = this.add.image(1100, 400, 'couple');
+        this.couple = this.add.image(1200, 250, 'couple');
+        this.qmark = this.add.image(768, 432, 'question');
         this.question1 = this.add.image(1095, 305, 'question');
         this.question2 = this.add.image(1125, 310, 'question');
         this.question3 = this.add.image(1060, 310, 'question');
         this.questionStack = this.add.image(100, 100, 'questionStack');
-        this.room2b_hole = this.add.image(268, 432, 'room2b_hole');
+	//        this.room2b_hole = this.add.image(268, 432, 'room2b_hole');
     }
 
     /* setAlphas
@@ -156,6 +284,22 @@ class buildBlockAct2 extends Phaser.Scene {
      * sets the alphas to to items in the game to zero so they are not visible at the beginning.
      */
     setAlphas() {
+        this.room2b_walls.alpha = 1.0;
+	this.r2a2_returnDoor.alpha = 1;
+	this.r2a2_UMpanel.alpha = 1;
+	this.r2a2_UMpanel_info.alpha = 0;
+	this.r2a2_congrats.alpha = 0;
+	this.r2a2_goldcoin.alpha = 0;
+	this.r2a2_q1.alpha = 0;
+	this.r2a2_q1_incstmC.alpha = 0;
+	this.r2a2_q1_balshtW.alpha = 0;
+	this.r2a2_q1_sreW.alpha = 0;
+	this.r2a2_q1_scfW.alpha = 0;
+	this.couple.alpha = 1;
+	this.r2a2_balsht.alpha = 1;
+	this.r2a2_incstm.alpha = 1;
+	this.r2a2_scf.alpha = 1;
+	this.r2a2_sre.alpha = 1;
         this.room2b_map.alpha = 0.0;
         this.room2b_notebook.alpha = 0.0;
         this.room2b_activityLocked.alpha = 0.0;
@@ -170,25 +314,51 @@ class buildBlockAct2 extends Phaser.Scene {
      * Sets the depth of each object on the screen.
      */
     setDepths() {
-        this.room2b_floor.setDepth(0);
+        this.room2b_walls.setDepth(1);
+        this.room2b_floor.setDepth(2);
+	this.r2a2_returnDoor.setDepth(2);
+	this.r2a2_UMpanel.setDepth(2);
+	this.r2a2_incstm.setDepth(3);
+	this.r2a2_balsht.setDepth(3);
+	this.r2a2_scf.setDepth(3);
+	this.r2a2_sre.setDepth(3);
         this.room2b_character_north.setDepth(50);
         this.room2b_character_east.setDepth(50);
         this.room2b_character_south.setDepth(50);
         this.room2b_character_west.setDepth(50);
-        this.room2b_E_KeyImg.setDepth(49);
+	this.qmark.setDepth(50);
+	this.couple.setDepth(49);
+	this.r2a2_goldcoin.setDepth(49);
+        this.room2b_E_KeyImg.setDepth(100);
         this.room2b_map.setDepth(100);
         this.room2b_notebook.setDepth(100);
         this.room2b_help_menu.setDepth(100);
+        this.r2a2_UMpanel_info.setDepth(100);
+        this.room2b_activityLocked.setDepth(100);
+        this.r2a2_q1.setDepth(100);
+        this.r2a2_q1_sreW.setDepth(100);
+        this.r2a2_q1_scfW.setDepth(100);
+        this.r2a2_q1_balshtW.setDepth(100);
+        this.r2a2_q1_incstmC.setDepth(100);
+        this.r2a2_congrats.setDepth(100);
     }
 
     /* setScales
-     *
-     * Scales the size of each object.
+
      */
     setScales() {
         this.room2b_E_KeyImg.setScale(0.4);
+	this.r2a2_returnDoor.setScale(1.5);
+        this.r2a2_UMpanel.setScale(0.75);
+        this.r2a2_UMpanel_info.setScale(0.75);
+        this.r2a2_incstm.setScale(0.33);
+        this.r2a2_balsht.setScale(0.33);
+        this.r2a2_sre.setScale(0.33);
+        this.r2a2_scf.setScale(0.33);
         this.room2b_notebook.setScale(0.75);
         this.room2b_map.setScale(0.75);
+        this.r2a2_goldcoin.setScale(0.1);
+        this.r2a2_congrats.setScale(0.75);
         this.room2b_character_north.setScale(3);
         this.room2b_character_south.setScale(3);
         this.room2b_character_west.setScale(3);
@@ -196,6 +366,8 @@ class buildBlockAct2 extends Phaser.Scene {
         this.room2b_floor.scaleY = 1.185;
         this.room2b_floor.scaleX = 1.395;
         this.couple.setScale(.4);
+        this.qmark.setScale(.15);
+        this.r2a2_q1.setScale(0.75);
         this.question1.setScale(.09);
         this.question2.setScale(.09);
         this.question3.setScale(.09);
@@ -208,6 +380,7 @@ class buildBlockAct2 extends Phaser.Scene {
     setRotations() {
         this.question3.rotation = -.9;
         this.question2.rotation = .9;
+        this.r2a2_returnDoor.angle = 270;
     }
 
     /* createInteractionZones
@@ -219,15 +392,30 @@ class buildBlockAct2 extends Phaser.Scene {
         //this.graphicsTest = this.add.graphics({fillStyle: {color: 0x4F4F4F, alpha: 1.0}});
         //TOP ZONES
         //xpos ypos x   y
-        this.room2b_quiz_info = new Phaser.Geom.Rectangle(975,250,250,250);
-        this.room2b_graphics.fillRectShape(this.room2b_quiz_info);
+        this.r2a2_topmid = new Phaser.Geom.Rectangle(670,100,170,100);
+        this.room2b_graphics.fillRectShape(this.r2a2_topmid);
 
-        this.room2b_middle_info = new Phaser.Geom.Rectangle(700, 350, 200, 200);
-        this.room2b_graphics.fillRectShape(this.room2b_middle_info);
+        this.r2a2_coin_zone = new Phaser.Geom.Rectangle(250,380,100,100);
+        this.room2b_graphics.fillRectShape(this.r2a2_coin_zone);
 
-        this.room2b_hole_zone = new Phaser.Geom.Rectangle(150, 332,240,150);
-        this.room2b_graphics.fillRectShape(this.room2b_hole_zone);
+        this.couple_zone = new Phaser.Geom.Rectangle(1150,220,100,100);
+        this.room2b_graphics.fillRectShape(this.couple_zone);
 
+        this.r2a2_incstm_zone = new Phaser.Geom.Rectangle(280, 610, 75,75);
+        this.room2b_graphics.fillRectShape(this.r2a2_incstm_zone);
+
+        this.r2a2_balsht_zone = new Phaser.Geom.Rectangle(580, 610, 75,75);
+        this.room2b_graphics.fillRectShape(this.r2a2_balsht_zone);
+
+        this.r2a2_sre_zone = new Phaser.Geom.Rectangle(880, 610, 75,75);
+        this.room2b_graphics.fillRectShape(this.r2a2_sre_zone);
+
+        this.r2a2_scf_zone = new Phaser.Geom.Rectangle(1180, 610, 75,75);
+        this.room2b_graphics.fillRectShape(this.r2a2_scf_zone);
+
+	// exit door
+        this.r2a2_returnDoor_zone = new Phaser.Geom.Rectangle(120, 355,100,95);
+        this.room2b_graphics.fillRectShape(this.r2a2_returnDoor_zone);
 
     }
 
@@ -276,15 +464,98 @@ class buildBlockAct2 extends Phaser.Scene {
      */
 
     checkInteractValidity() {
-      if (Phaser.Geom.Rectangle.ContainsPoint(this.room2b_hole_zone, this.room2b_character_north)) {
-        this.room2b_E_KeyImg.x = this.room2b_character_north.x;
-        this.room2b_E_KeyImg.y = this.room2b_character_north.y-75;
-        this.room2b_E_KeyImg.alpha = 1.0;
-        if (this.room2b_key_E.isDown) {
-            this.scene.start("one_Lesson");
-
-        }
-       }
+        if (Phaser.Geom.Rectangle.ContainsPoint(this.r2a2_topmid, this.room2b_character_north)) {
+            this.room2b_E_KeyImg.x = this.room2b_character_north.x+75;
+            this.room2b_E_KeyImg.y = this.room2b_character_north.y;
+            this.room2b_E_KeyImg.alpha = 1.0;
+            if (this.room2b_key_E.isDown) {
+		this.r2a2_UMpanel_info.alpha = 1.0;
+		if (roomProgress < 2410) { roomProgress = 2410; }
+            }
+	} else if (Phaser.Geom.Rectangle.ContainsPoint(this.r2a2_returnDoor_zone, this.room2b_character_north)) {
+	    this.room2b_E_KeyImg.x = this.room2b_character_north.x;
+	    this.room2b_E_KeyImg.y = this.room2b_character_north.y-75;
+	    this.room2b_E_KeyImg.alpha = 1.0;
+	    if (this.room2b_key_E.isDown) {
+		this.scene.start("BB_ActRoom");
+	    }
+	} else if (Phaser.Geom.Rectangle.ContainsPoint(this.couple_zone, this.room2b_character_north)) {
+	    this.room2b_E_KeyImg.x = this.room2b_character_north.x;
+	    this.room2b_E_KeyImg.y = this.room2b_character_north.y-75;
+	    this.room2b_E_KeyImg.alpha = 1.0;
+	    if (this.room2b_key_E.isDown) {
+		if (roomProgress < 2410) {
+		    this.room2b_activityLocked.alpha = 1.0;
+		}
+		else if (this.room2b_count == 1) {
+		    this.r2a2_q1.alpha = 1.0;
+		    if (roomProgress < 2415) { roomProgress = 2415; }
+		}
+	    }
+	} else if (Phaser.Geom.Rectangle.ContainsPoint(this.r2a2_incstm_zone, this.room2b_character_north)) {
+	    this.room2b_E_KeyImg.x = this.room2b_character_north.x;
+	    this.room2b_E_KeyImg.y = this.room2b_character_north.y-75;
+	    this.room2b_E_KeyImg.alpha = 1.0;
+	    if (this.room2b_key_E.isDown) {
+		if (roomProgress < 2415) {
+		    this.room2b_activityLocked.alpha = 1.0;
+		}
+		else if (roomProgress == 2415 && this.room2b_count == 1) {
+		    this.r2a2_q1_incstmC.alpha = 1.0;
+		    this.room2b_count = 2;
+		}
+	    }
+	} else if (Phaser.Geom.Rectangle.ContainsPoint(this.r2a2_balsht_zone, this.room2b_character_north)) {
+	    this.room2b_E_KeyImg.x = this.room2b_character_north.x;
+	    this.room2b_E_KeyImg.y = this.room2b_character_north.y-75;
+	    this.room2b_E_KeyImg.alpha = 1.0;
+	    if (this.room2b_key_E.isDown) {
+		if (roomProgress < 2415) {
+		    this.room2b_activityLocked.alpha = 1.0;
+		}
+		else if (roomProgress == 2415 && this.room2b_count == 1) {
+		    this.r2a2_q1_balshtW.alpha = 1.0;
+		}
+	    }
+	} else if (Phaser.Geom.Rectangle.ContainsPoint(this.r2a2_sre_zone, this.room2b_character_north)) {
+	    this.room2b_E_KeyImg.x = this.room2b_character_north.x;
+	    this.room2b_E_KeyImg.y = this.room2b_character_north.y-75;
+	    this.room2b_E_KeyImg.alpha = 1.0;
+	    if (this.room2b_key_E.isDown) {
+		if (roomProgress < 2415) {
+		    this.room2b_activityLocked.alpha = 1.0;
+		}
+		else if (roomProgress == 2415 && this.room2b_count == 1) {
+		    this.r2a2_q1_sreW.alpha = 1.0;
+		}
+	    }
+	} else if (Phaser.Geom.Rectangle.ContainsPoint(this.r2a2_scf_zone, this.room2b_character_north)) {
+	    this.room2b_E_KeyImg.x = this.room2b_character_north.x;
+	    this.room2b_E_KeyImg.y = this.room2b_character_north.y-75;
+	    this.room2b_E_KeyImg.alpha = 1.0;
+	    console.log("scfzone prog="+roomProgress+" count="+this.room2b_count);
+	    if (this.room2b_key_E.isDown) {
+		if (roomProgress < 2415) {
+		    this.room2b_activityLocked.alpha = 1.0;
+		}
+		else if (roomProgress == 2415 && this.room2b_count == 1) {
+		    this.r2a2_q1_scfW.alpha = 1.0;
+		}
+	    }
+	} else if (Phaser.Geom.Rectangle.ContainsPoint(this.r2a2_coin_zone, this.room2b_character_north)) {
+	    this.room2b_E_KeyImg.x = this.room2b_character_north.x;
+	    this.room2b_E_KeyImg.y = this.room2b_character_north.y-75;
+	    if (roomProgress == 2440) { this.room2b_E_KeyImg.alpha = 1.0; }
+	    if (this.room2b_key_E.isDown) {
+		console.log("coinzone E down: progress="+roomProgress);
+		if (roomProgress == 2440) {
+		    this.r2a2_congrats.alpha = 1.0;
+		    this.r2a2_goldcoin.alpha = 0;
+		    if (roomProgress < 2500) { roomProgress = 2500; }
+		}
+	    }
+	}
+      /*
         else if (Phaser.Geom.Rectangle.ContainsPoint(this.room2b_quiz_info, this.room2b_character_north)) {
             this.room2b_E_KeyImg.x = this.room2b_character_north.x;
             this.room2b_E_KeyImg.y = this.room2b_character_north.y-75;
@@ -307,9 +578,15 @@ class buildBlockAct2 extends Phaser.Scene {
                 }
             }
         }
+      */
         else {
             this.hideActivities();
             this.room2b_E_KeyImg.alpha = 0.0;
+	    if (this.room2b_count == 2 && roomProgress < 2440) {
+		if (roomProgress < 2440) { roomProgress = 2440; }
+		this.room2b_centerSprite();
+		this.r2a2_goldcoin.alpha = 1;
+	    }
         }
     }
 
@@ -326,10 +603,25 @@ class buildBlockAct2 extends Phaser.Scene {
         this.room2b_character_west.alpha = arguments[3];
     }
 
+    room2b_centerSprite() {
+	//	console.log("jump: ");
+	this.qmark.x = 768;
+	this.qmark.y = 432;
+	this.room2b_character_north.x = 768;
+	this.room2b_character_north.y = 432;
+	this.room2b_character_south.x = 768;
+	this.room2b_character_south.y = 432;
+	this.room2b_character_east.x = 768;
+	this.room2b_character_east.y = 432;
+	this.room2b_character_west.x = 768;
+	this.room2b_character_west.y = 432;
+    }
+
     /* movePlayer
      *
      *
      */
+    /*
     movePlayer() {
         //setCharacterAlpha is in helper.js and arguments go N,E,S,W
         this.setCharacterAlpha(0,0,1,0);
@@ -383,11 +675,13 @@ class buildBlockAct2 extends Phaser.Scene {
             }
         }
     }
+    */
 
     /* movePaper
      *
      * makes the paper moveable in the test activity
      */
+    /*
     moveQuestion(moveThis) {
         if(this.room2b_key_W.isDown && this.questionMoveable == true) {
             moveThis.y -= 7;
@@ -399,11 +693,13 @@ class buildBlockAct2 extends Phaser.Scene {
             moveThis.x += 7;
         }
     }
+    */
 
     /* quitInteraction
      *
      * Sets the alphas to 0 so that the interaction is quit.
      */
+    /*
     quitInteraction() {
         this.room2b_map.alpha = 0.0;
         this.room2b_notebook.alpha = 0.0;
@@ -415,7 +711,7 @@ class buildBlockAct2 extends Phaser.Scene {
             this.quitQuiz();
         }
     }
-
+    */
 
     hideInteractionBoxes() {
 
@@ -426,9 +722,18 @@ class buildBlockAct2 extends Phaser.Scene {
      * Sets the alphas to the activities to 0 so that they are hidden.
      */
     hideActivities() {
+	this.room2b_activityLocked.alpha = 0;
+	this.r2a2_UMpanel_info.alpha = 0;
+	this.r2a2_q1.alpha = 0;
+	this.r2a2_q1_incstmC.alpha = 0;
+	this.r2a2_q1_balshtW.alpha = 0;
+	this.r2a2_q1_sreW.alpha = 0;
+	this.r2a2_q1_scfW.alpha = 0;
+	this.r2a2_congrats.alpha = 0;
 
     }
 
+    /*
     activateQuiz() {
         this.questionStack.setVisible(true);
         this.room2b_quizActivated = true;
@@ -491,7 +796,9 @@ class buildBlockAct2 extends Phaser.Scene {
         this.room2b_E_KeyImg.alpha = 0.0;
         this.room2b_characterMoveable = false;
     }
+    */
 
+    /*
     quitQuiz() {
         this.loadExit();
         this.papers_moved = false;
@@ -525,11 +832,13 @@ class buildBlockAct2 extends Phaser.Scene {
         this.questionMoveable = false;
 
     }
+    */
 
     /* checkCorrectPaperOne
      *
      * Checks to see if the first paper is in the correct box.
      */
+    /*
     checkCorrectQuestionOne() {
         if(this.activatedQuiz == true) {
             if (this.room2b_key_R.isDown) {
@@ -557,11 +866,13 @@ class buildBlockAct2 extends Phaser.Scene {
             }
         }
     }
+    */
 
     /* checkCorrectPaperTwo
      *
      * Checks to see if the second paper is in the correct box.
      */
+    /*
     checkCorrectQuestionTwo() {
         if (this.room2b_key_R.isDown) {
             //this.retainedEarnings.setVisible(true);
@@ -586,11 +897,13 @@ class buildBlockAct2 extends Phaser.Scene {
             this.quizQuestion.y = this.questionStack.y + 300;
         }
     }
+    */
 
     /* checkCorrectPaperThree
      *
      * Checks to see if the third paper is in the correct box.
      */
+    /*
     checkCorrectQuestionThree() {
         if (this.room2b_key_R.isDown) {
 
@@ -618,8 +931,9 @@ class buildBlockAct2 extends Phaser.Scene {
             this.quizQuestion.y = this.questionStack.y + 300;
         }
     }
+    */
 
-
+    /*
     checkCorrectQuestionFour() {
         if (this.room2b_key_R.isDown) {
             this.quitQuiz();
@@ -643,16 +957,16 @@ class buildBlockAct2 extends Phaser.Scene {
             this.quizQuestion.y = this.questionStack.y + 300;
         }
     }
+    */
 
     /* loadQuizImages
      *
      * Loads the images into the quiz Activity
      */
+    /*
     loadQuizImages(){
-        /*
-           this.pressr = this.add.image(650, 40, 'pressr');
-           this.pressr.setScale(.8);
-           */
+    // this.pressr = this.add.image(650, 40, 'pressr');
+    // this.pressr.setScale(.8);
 
         this.incomeStatement = this.add.image(1370, 200, 'incomeStatement');
         this.incomeStatement.setScale(.5);
@@ -683,7 +997,9 @@ class buildBlockAct2 extends Phaser.Scene {
         this.box_4_zone = new Phaser.Geom.Rectangle(250,520,200,400);
         this.room2b_graphics.fillRectShape(this.box_4_zone);
     }
-
+    */
+    
+    /*
     loadPlacements() {
         if (this.correctCount == 1)
             this.placements.setText("Correct Placements: 0");
@@ -699,7 +1015,9 @@ class buildBlockAct2 extends Phaser.Scene {
 
         }
     }
+    */
 
+    /*
     loadExit() {
         if (this.holeOpened == true)
             this.hole.alpha = 1;
@@ -708,6 +1026,7 @@ class buildBlockAct2 extends Phaser.Scene {
             this.holeOpened = true;
         }
     }
+    */
 
 
     /* helpMenu
