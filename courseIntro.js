@@ -80,25 +80,35 @@ class courseIntro extends Phaser.Scene {
 
 
         if (this.key_M.isDown) {
-            this.r1_map.alpha = 1.0;
-            this.characterMoveable = false;
-            this.character_north.alpha = 0.0;
-            this.character_east.alpha = 0.0;
-            this.character_south.alpha = 0.0;
-            this.character_west.alpha = 0.0;
+            if (this.r1_map.alpha == 0.0) {
+                this.r1_map.alpha = 1.0;
+                this.characterMoveable = false;
+                this.character_north.alpha = 0.0;
+                this.character_east.alpha = 0.0;
+                this.character_south.alpha = 0.0;
+                this.character_west.alpha = 0.0;
+            }
+            else {
+                this.quitInteraction();
+            }
         }
 
         if (this.key_B.isDown) {
-            this.notebook.alpha = 1.0;
-            this.characterMoveable = false;
-            this.character_north.alpha = 0.0;
-            this.character_east.alpha = 0.0;
-            this.character_south.alpha = 0.0;
-            this.character_west.alpha = 0.0;
+            if (this.notebook.alpha == 0.0) {
+                this.notebook.alpha = 1.0;
+                this.characterMoveable = false;
+                this.character_north.alpha = 0.0;
+                this.character_east.alpha = 0.0;
+                this.character_south.alpha = 0.0;
+                this.character_west.alpha = 0.0;
+            }
+            else {
+                this.quitInteraction();
+            }
         }
 
         if (this.key_H.isDown) {
-            helpMenu();
+            this.helpMenu();
             this.characterMoveable = false;
             this.character_north.alpha = 0.0;
             this.character_east.alpha = 0.0;
@@ -185,8 +195,9 @@ class courseIntro extends Phaser.Scene {
         //this.load.image('cardboard_box', 'assets/Room1/cardboard_box.png');
         //this.load.image('paper_stack', 'assets/Room1/paper_stack.png');
         //this.load.image('paper', 'assets/single_paper.png');
-        this.load.image('r1_map', 'assets/Map/room2inprogress.png');
-        this.load.image('notebook', 'assets/notebook.png');
+        //this.load.image('r1_map', 'assets/Map/room2inprogress.png');
+        //this.load.image('notebook', 'assets/notebook.png');
+        this.load.image('featNotAvail', 'assets/featNotAvail.png');
         this.load.image('activityLocked', 'assets/activityLocked.png');
         this.load.image('help_menu', 'assets/help_menu.png');
         //this.load.image('correctPlacements0', 'assets/Room1/placements0.png');
@@ -241,8 +252,8 @@ class courseIntro extends Phaser.Scene {
         //this.cardboard_box_1 = this.add.image(1310, 320, 'cardboard_box');
         //this.cardboard_box_2 = this.add.image(1310, 432, 'cardboard_box');
         //this.cardboard_box_3 = this.add.image(1310, 530, 'cardboard_box');
-        this.r1_map = this.add.image(768, 432, 'r1_map');
-        this.notebook = this.add.image(768, 432, 'notebook');
+        this.r1_map = this.add.image(768, 432, 'featNotAvail');
+        this.notebook = this.add.image(768, 432, 'featNotAvail');
         this.activityLocked = this.add.image(768, 432, 'activityLocked');
         this.help_menu = this.add.image(768, 432, 'help_menu');
         this.hole = this.add.image(768, 432, 'hole');
