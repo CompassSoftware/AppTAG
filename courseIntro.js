@@ -44,7 +44,7 @@ class courseIntro extends Phaser.Scene {
         }
 
         if (this.key_U.isDown && this.unlocked == false) {
-            roomProgress = 1030;
+            if (roomProgress < 1030) { roomProgress = 1030; }
             activity6Complete = true;
             this.unlocked = true;
         }
@@ -494,7 +494,7 @@ class courseIntro extends Phaser.Scene {
                 this.E_KeyImg.y = this.character_north.y + 75;
                 this.E_KeyImg.alpha = 1.0;
                 if(this.key_E.isDown) {
-                    roomProgress = 2000;
+                    if (roomProgress < 2000) { roomProgress = 2000; }
                     this.scene.start("Building_Blocks");
                 }
             }
