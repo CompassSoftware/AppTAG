@@ -481,7 +481,7 @@ class courseIntro extends Phaser.Scene {
             if (this.key_E.isDown) {
                 if(roomProgress <= 1005)
                     roomProgress = 1005;
-
+                    if(this.activity1B.alpha == 1) this.activity1B.alpha = 0;
                 this.activity1A.alpha = 1.0;
                 this.resetArrows();
                 this.characterMoveable = false;
