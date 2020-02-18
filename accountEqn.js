@@ -32,6 +32,16 @@ class accountEqn extends Phaser.Scene {
     this.createInteractionZones();
     this.assignKeybinds();
     this.imagesDraggable();
+
+    this.roomLabel = this.add.text(650, 6, "Account Equation Room", {
+	    font: "24px arial", 
+	    color: "#FFFFFF", 
+	    align:'left', 
+	    fontWeight:'bold',
+	});
+    //    this.roomLabel.setFontSize(24);
+    //    var txt = this.game.add.text(10, 10, '0', {
+    //	});
   }
 
   update(delta) {
