@@ -79,7 +79,7 @@ class courseIntro extends Phaser.Scene {
 	}
 
 
-        if (this.key_M.isDown) {
+        if (Phaser.Input.Keyboard.JustDown(this.key_M)) {
             if (this.r1_map.alpha == 0.0) {
                 this.r1_map.alpha = 1.0;
                 this.characterMoveable = false;
@@ -93,7 +93,7 @@ class courseIntro extends Phaser.Scene {
             }
         }
 
-        if (this.key_B.isDown) {
+        if (Phaser.Input.Keyboard.JustDown(this.key_B)) {
             if (this.notebook.alpha == 0.0) {
                 this.notebook.alpha = 1.0;
                 this.characterMoveable = false;
@@ -107,13 +107,18 @@ class courseIntro extends Phaser.Scene {
             }
         }
 
-        if (this.key_H.isDown) {
-            this.helpMenu();
-            this.characterMoveable = false;
-            this.character_north.alpha = 0.0;
-            this.character_east.alpha = 0.0;
-            this.character_south.alpha = 0.0;
-            this.character_west.alpha = 0.0;
+        if (Phaser.Input.Keyboard.JustDown(this.key_H)) {
+            if (this.help_menu.alpha == 0.0) { 
+                this.helpMenu();
+                this.characterMoveable = false;
+                this.character_north.alpha = 0.0;
+                this.character_east.alpha = 0.0;
+                this.character_south.alpha = 0.0;
+                this.character_west.alpha = 0.0;
+            }
+            else {
+                this.quitInteraction();
+            }
         }
 
 

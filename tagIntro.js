@@ -36,8 +36,11 @@ Info Panels like these contain important information and lessons that help you p
   update(delta) {
     //TEMPORARY FOR TESTING
     //vvvvvvvvvvvvvvvvvvv//
-    if (this.key_H.isDown) {
-    	this.helpMenu();
+    if (Phaser.Input.Keyboard.JustDown(this.key_H)) {
+    	if (this.help_menu.alpha == 0.0)
+            this.helpMenu();
+        else
+            this.quitInteraction();
     }
 
     if (this.activityOneOpened) {
@@ -54,7 +57,7 @@ Info Panels like these contain important information and lessons that help you p
       this.unlocked = true;
     }
 
-    if (this.key_M.isDown) {
+    if (Phaser.Input.Keyboard.JustDown(this.key_M)) {
       if (this.map.alpha == 0.0) {
         this.map.alpha = 1.0;
         this.characterMoveable = false;
@@ -68,7 +71,7 @@ Info Panels like these contain important information and lessons that help you p
       }
     }
 
-    if (this.key_B.isDown) {
+    if (Phaser.Input.Keyboard.JustDown(this.key_B)) {
       if (this.notebook.alpha == 0.0) {
         this.notebook.alpha = 1.0;
         this.characterMoveable = false;
