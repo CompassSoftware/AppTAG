@@ -54,22 +54,37 @@ class winners_room extends Phaser.Scene {
       this.winnerRoom_unlocked = true;
     }
 
-    if (this.winnerRoom_key_M.isDown) {
-      this.winnerRoom_map.alpha = 1.0;
-      this.characterMoveable = false;
-      this.winnerRoom_character_north.alpha = 0.0;
-      this.winnerRoom_character_east.alpha = 0.0;
-      this.winnerRoom_character_south.alpha = 0.0;
-      this.winnerRoom_character_west.alpha = 0.0;
+    if (Phaser.Input.Keyboard.JustDown(this.winnerRoom_key_M)) {
+        if (this.winnerRoom_map.alpha == 0.0) {
+            this.winnerRoom_map.alpha = 1.0;
+            this.characterMoveable = false;
+            this.winnerRoom_character_north.alpha = 0.0;
+            this.winnerRoom_character_east.alpha = 0.0;
+            this.winnerRoom_character_south.alpha = 0.0;
+            this.winnerRoom_character_west.alpha = 0.0;
+        }
+        else
+            this.quitInteraction();
     }
 
-    if (this.winnerRoom_key_B.isDown) {
-      this.winnerRoom_notebook.alpha = 1.0;
-      this.winnerRoom_characterMoveable = false;
-      this.winnerRoom_character_north.alpha = 0.0;
-      this.winnerRoom_character_east.alpha = 0.0;
-      this.winnerRoom_character_south.alpha = 0.0;
-      this.winnerRoom_character_west.alpha = 0.0;
+    if (Phaser.Input.Keyboard.JustDown(this.winnerRoom_key_B)) {
+        if (this.winnerRoom_notebook.alpha == 0.0) {
+            this.winnerRoom_notebook.alpha = 1.0;
+            this.winnerRoom_characterMoveable = false;
+            this.winnerRoom_character_north.alpha = 0.0;
+            this.winnerRoom_character_east.alpha = 0.0;
+            this.winnerRoom_character_south.alpha = 0.0;
+            this.winnerRoom_character_west.alpha = 0.0;
+        }
+        else
+            this.quitInteraction();
+    }
+
+    if (Phaser.Input.Keyboard.JustDown(this.winnerRoom_key_H)) {
+        if (this.winnerRoom_help_menu.alpha == 0.0) 
+            this.helpMenu();
+        else
+            this.quitInteraction();
     }
 
 
@@ -132,8 +147,8 @@ class winners_room extends Phaser.Scene {
     this.load.image('winnerRoom_wall_info_5', 'assets/wall_art.png');
     this.load.image('winnerRoom_wall_info_6', 'assets/wall_art.png');
     this.load.image('winnerRoom_floor', 'assets/WinnersRoom/winnerFloor.jpeg');
-    this.load.image('winnerRoom_map', 'assets/map.png');
-    this.load.image('winnerRoom_notebook', 'assets/notebook.png');
+    this.load.image('winnerRoom_map', 'assets/featNotAvail.png');
+    this.load.image('winnerRoom_notebook', 'assets/featNotAvail.png');
     this.load.image('winnerRoom_activityLocked', 'assets/activityLocked.png');
     this.load.image('winnerRoom_help_menu', 'assets/help_menu.png');
     this.load.image('winnerRoom_rightArrow' , 'assets/rightArrowTest.png');

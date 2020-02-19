@@ -40,8 +40,11 @@ class buildingBlocks extends Phaser.Scene {
     update(delta) {
         //TEMPORARY FOR TESTING
         //vvvvvvvvvvvvvvvvvvv//
-        if (this.room2_key_H.isDown) {
-            this.helpMenu();
+        if (Phaser.Input.Keyboard.JustDown(this.room2_key_H)) {
+            if (this.room2_help_menu.alpha == 0.0)
+                this.helpMenu();
+            else
+                this.quitInteraction();
         }
 
         if (this.room2_activityOneOpened) {
@@ -96,22 +99,32 @@ class buildingBlocks extends Phaser.Scene {
             this.room2_unlocked = true;
         }
 
-        if (this.room2_key_M.isDown) {
-            this.room2_map.alpha = 1.0;
-            this.characterMoveable = false;
-            this.room2_character_north.alpha = 0.0;
-            this.room2_character_east.alpha = 0.0;
-            this.room2_character_south.alpha = 0.0;
-            this.room2_character_west.alpha = 0.0;
+        if (Phaser.Input.Keyboard.JustDown(this.room2_key_M)) {
+            if (this.room2_map.alpha == 0.0) {
+                this.room2_map.alpha = 1.0;
+                this.characterMoveable = false;
+                this.room2_character_north.alpha = 0.0;
+                this.room2_character_east.alpha = 0.0;
+                this.room2_character_south.alpha = 0.0;
+                this.room2_character_west.alpha = 0.0;
+            }
+            else {
+                this.quitInteraction();
+            }
         }
 
-        if (this.room2_key_B.isDown) {
-            this.room2_notebook.alpha = 1.0;
-            this.room2_characterMoveable = false;
-            this.room2_character_north.alpha = 0.0;
-            this.room2_character_east.alpha = 0.0;
-            this.room2_character_south.alpha = 0.0;
-            this.room2_character_west.alpha = 0.0;
+        if (Phaser.Input.Keyboard.JustDown(this.room2_key_B)) {
+            if (this.room2_notebook.alpha == 0.0) {
+                this.room2_notebook.alpha = 1.0;
+                this.room2_characterMoveable = false;
+                this.room2_character_north.alpha = 0.0;
+                this.room2_character_east.alpha = 0.0;
+                this.room2_character_south.alpha = 0.0;
+                this.room2_character_west.alpha = 0.0;
+            }
+            else {
+                this.quitInteraction();
+            }
         }
 
         if (this.room2_key_Q.isDown && this.room2_activatedQuiz == false) {
@@ -181,8 +194,8 @@ class buildingBlocks extends Phaser.Scene {
         this.load.image('room2_floor', 'assets/Room2/floor_1.jpg');
         this.load.image('room2_hole_activity', 'assets/Room2/crackedHole.png');
         this.load.image('room2_hole_nextRoom', 'assets/hole.png');
-        this.load.image('room2_map', 'assets/map/room3inprogress.png');
-        this.load.image('room2_notebook', 'assets/notebook.png');
+        this.load.image('room2_map', 'assets/featNotAvail.png');
+        this.load.image('room2_notebook', 'assets/featNotAvail.png');
         this.load.image('room2_activityLocked', 'assets/activityLocked.png');
         this.load.image('room2_help_menu', 'assets/help_menu.png');
         this.load.image('rightArrow' , 'assets/rightArrowTest.png');

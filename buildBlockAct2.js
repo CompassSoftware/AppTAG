@@ -40,29 +40,38 @@ class buildBlockAct2 extends Phaser.Scene {
 	}
         //TEMPORARY FOR TESTING
         //vvvvvvvvvvvvvvvvvvv//
-        if (this.room2b_key_H.isDown) {
-            this.helpMenu();
+        if (Phaser.Input.Keyboard.JustDown(this.room2b_key_H)) {
+            if (this.room2b_help_menu.alpha == 0.0)
+                this.helpMenu();
+            else
+                this.quitInteraction();
         }
 
-	/*
-        if (this.room2b_key_M.isDown) {
-            this.room2b_map.alpha = 1.0;
-            characterMoveable = false;
-            this.room2b_character_north.alpha = 0.0;
-            this.room2b_character_east.alpha = 0.0;
-            this.room2b_character_south.alpha = 0.0;
-            this.room2b_character_west.alpha = 0.0;
+        if (Phaser.Input.Keyboard.JustDown(this.room2b_key_M)) {
+            if (this.room2b_map.alpha == 0.0) {
+                this.room2b_map.alpha = 1.0;
+                characterMoveable = false;
+                this.room2b_character_north.alpha = 0.0;
+                this.room2b_character_east.alpha = 0.0;
+                this.room2b_character_south.alpha = 0.0;
+                this.room2b_character_west.alpha = 0.0;
+            }
+            else 
+                this.quitInteraction();
         }
 
-        if (this.room2b_key_B.isDown) {
-            this.room2b_notebook.alpha = 1.0;
-            room2b_characterMoveable = false;
-            this.room2b_character_north.alpha = 0.0;
-            this.room2b_character_east.alpha = 0.0;
-            this.room2b_character_south.alpha = 0.0;
-            this.room2b_character_west.alpha = 0.0;
+        if (Phaser.Input.Keyboard.JustDown(this.room2b_key_B)) {
+            if (this.room2b_notebook.alpha == 0.0) {
+                this.room2b_notebook.alpha = 1.0;
+                room2b_characterMoveable = false;
+                this.room2b_character_north.alpha = 0.0;
+                this.room2b_character_east.alpha = 0.0;
+                this.room2b_character_south.alpha = 0.0;
+                this.room2b_character_west.alpha = 0.0;
+            }
+            else
+                this.quitInteraction();
         }
-	*/
 
         if (this.room2b_key_Q.isDown) {
 	    this.room2b_activityLocked.alpha = 0.0;
@@ -230,8 +239,8 @@ class buildBlockAct2 extends Phaser.Scene {
         this.load.image('room2b_floor', 'assets/Room2Act2/floor_two_activity_2.jpg');
         this.load.image('r2a2_UMpanel', 'assets/wall_art.png');
         this.load.image('r2a2_UMpanel_info', 'assets/Room2Act2/r2a2_UMpanel_t.png');
-        this.load.image('room2b_map', 'assets/map.png');
-        this.load.image('room2b_notebook', 'assets/notebook.png');
+        this.load.image('room2b_map', 'assets/featNotAvail.png');
+        this.load.image('room2b_notebook', 'assets/featNotAvail.png');
         this.load.image('room2b_activityLocked', 'assets/activityLocked.png');
         this.load.image('room2b_help_menu', 'assets/help_menu.png');
         this.load.image('couple', 'assets/Room2Act2/couple.png');
@@ -768,7 +777,6 @@ class buildBlockAct2 extends Phaser.Scene {
      *
      * Sets the alphas to 0 so that the interaction is quit.
      */
-    /*
     quitInteraction() {
         this.room2b_map.alpha = 0.0;
         this.room2b_notebook.alpha = 0.0;
@@ -780,7 +788,6 @@ class buildBlockAct2 extends Phaser.Scene {
             this.quitQuiz();
         }
     }
-    */
 
     hideInteractionBoxes() {
 
