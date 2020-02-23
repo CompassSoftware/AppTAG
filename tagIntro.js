@@ -227,6 +227,7 @@ Info Panels like these contain important information and lessons that help you p
     this.key_2 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TWO);
     this.key_R = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
     this.key_H = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.H);
+    this.key_N = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.N);
   }
 
   imagesDraggable() {
@@ -260,6 +261,7 @@ Info Panels like these contain important information and lessons that help you p
 
           if(roomProgress < 1000)
             roomProgress = 1000;
+            document.getElementById("background").play();
 
           this.scene.start("Course_Intro");
       }
