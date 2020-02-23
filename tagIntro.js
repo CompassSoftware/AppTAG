@@ -1,5 +1,6 @@
 class tagIntro extends Phaser.Scene {
 
+    
   constructor() {
     super("TAG_Intro");
     this.quizActive = false;
@@ -8,12 +9,14 @@ class tagIntro extends Phaser.Scene {
     this.paperMoveable = false;
     this.activityOneOpened = false;
     this.helpOpen = false;
+    this.musicToggle = false;
   }
   //load assets in preload()
 
   preload() {
     this.loadAssets();
     this.createImages();
+
   }
   /*
   Welcome to The Accounting Game(TAG) Tutorial!
@@ -32,10 +35,23 @@ Info Panels like these contain important information and lessons that help you p
     this.assignKeybinds();
     this.imagesDraggable();
   }
-
+    
   update(delta) {
     //TEMPORARY FOR TESTING
     //vvvvvvvvvvvvvvvvvvv//
+    if (Phaser.Input.Keyboard.JustDown(this.key_N)) {
+
+        document.getElementById("background").play();
+        if (this.musicToggle == false) {
+            document.getElementById("background").play();
+            this.musicToggle = true;
+        }
+        else if (this.musicToggle == true) {
+            document.getElementById("background").pause();
+            this.musicToggle = false;
+        }
+    }
+
     if (this.key_H.isDown) {
     	this.helpMenu();
     }
