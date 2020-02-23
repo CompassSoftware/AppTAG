@@ -39,6 +39,7 @@ Info Panels like these contain important information and lessons that help you p
   update(delta) {
     //TEMPORARY FOR TESTING
     //vvvvvvvvvvvvvvvvvvv//
+
     if (Phaser.Input.Keyboard.JustDown(this.key_N)) {
 
         document.getElementById("background").play();
@@ -52,8 +53,13 @@ Info Panels like these contain important information and lessons that help you p
         }
     }
 
-    if (this.key_H.isDown) {
-    	this.helpMenu();
+
+    if (Phaser.Input.Keyboard.JustDown(this.key_H)) {
+    	if (this.help_menu.alpha == 0.0)
+            this.helpMenu();
+        else
+            this.quitInteraction();
+
     }
 
     if (this.activityOneOpened) {
@@ -70,22 +76,32 @@ Info Panels like these contain important information and lessons that help you p
       this.unlocked = true;
     }
 
-    if (this.key_M.isDown) {
-      this.map.alpha = 1.0;
-      this.characterMoveable = false;
-      this.character_north.alpha = 0.0;
-      this.character_east.alpha = 0.0;
-      this.character_south.alpha = 0.0;
-      this.character_west.alpha = 0.0;
+    if (Phaser.Input.Keyboard.JustDown(this.key_M)) {
+      if (this.map.alpha == 0.0) {
+        this.map.alpha = 1.0;
+        this.characterMoveable = false;
+        this.character_north.alpha = 0.0;
+        this.character_east.alpha = 0.0;
+        this.character_south.alpha = 0.0;
+        this.character_west.alpha = 0.0;
+      }
+      else {
+        this.quitInteraction();
+      }
     }
 
-    if (this.key_B.isDown) {
-      this.notebook.alpha = 1.0;
-      this.characterMoveable = false;
-      this.character_north.alpha = 0.0;
-      this.character_east.alpha = 0.0;
-      this.character_south.alpha = 0.0;
-      this.character_west.alpha = 0.0;
+    if (Phaser.Input.Keyboard.JustDown(this.key_B)) {
+      if (this.notebook.alpha == 0.0) {
+        this.notebook.alpha = 1.0;
+        this.characterMoveable = false;
+        this.character_north.alpha = 0.0;
+        this.character_east.alpha = 0.0;
+        this.character_south.alpha = 0.0;
+        this.character_west.alpha = 0.0;
+      }
+      else {
+          this.quitInteraction();
+      }
     }
 
 
@@ -143,7 +159,7 @@ Info Panels like these contain important information and lessons that help you p
 	  this.load.image('approachImg', 'assets/Room0/R0_tutorial.png');
 	  this.load.image('tut1', 'assets/Room0/tut1.PNG');
 	  this.load.image('hole', 'assets/hole.png');
-
+    this.load.image('featNotAvail', 'assets/featNotAvail.png');
   }
 
   createImages() {
@@ -158,8 +174,8 @@ Info Panels like these contain important information and lessons that help you p
 	  this.approachImg = this.add.image(this.character_north.x+40, this.character_north.y+40, 'approachImg');
     this.wall_info_2 = this.add.image(768, 75, 'wall_info_2');
     this.floor = this.add.image(769, 433, 'floor');
-    this.map = this.add.image(768, 432, 'map');
-    this.notebook = this.add.image(768, 432, 'notebook');
+    this.map = this.add.image(768, 432, 'featNotAvail');
+    this.notebook = this.add.image(768, 432, 'featNotAvail');
     this.activityLocked = this.add.image(768, 432, 'activityLocked');
     this.help_menu = this.add.image(768, 432, 'help_menu');
 	  this.tut1 = this.add.image(768, 432, 'tut1');
