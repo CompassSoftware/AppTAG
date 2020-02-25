@@ -31,6 +31,13 @@ Info Panels like these contain important information and lessons that help you p
     this.createInteractionZones();
     this.assignKeybinds();
     this.imagesDraggable();
+
+    this.roomLabel = this.add.text(650, 6, "Game Intro Room", {
+        font: "24px arial",
+        color: "#FFFFFF",
+        align: 'left',
+        fontWeight:'bold',
+    });
   }
 
   update(delta) {

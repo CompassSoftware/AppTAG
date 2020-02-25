@@ -23,7 +23,13 @@ class buildBlockAct2 extends Phaser.Scene {
         this.setRotations();
         this.createInteractionZones();
         this.assignKeybinds();
-	//        this.imagesDraggable();
+    
+        this.roomLabel = this.add.text(650, 6, "Building Blocks Parents Room", {
+            font: "24px arial",
+            color: "#FFFFFF",
+            align:'left',
+            fontWeight:'bold',
+        });
     }
 
     update(delta) {

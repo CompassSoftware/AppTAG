@@ -28,6 +28,13 @@ class buildBlockAct0 extends Phaser.Scene {
         this.createInteractionZones();
         this.assignKeybinds();
 	//        this.imagesDraggable();
+    
+        this.roomLabel = this.add.text(650, 6, "Building Blocks Sorting Room", {
+            font: "24px arial",
+            color: "#FFFFFF",
+            align: 'left',
+            fontWeight: 'bold',
+        });
     }
 
     update(delta) {

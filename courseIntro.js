@@ -27,6 +27,13 @@ class courseIntro extends Phaser.Scene {
         this.createInteractionZones();
         this.assignKeybinds();
         this.imagesDraggable();
+
+        this.roomLabel = this.add.text(650, 6, "Course Intro Room", {
+            font: "24px arial", 
+            color: "#FFFFFF",
+            align: 'left',
+            fontWeight: 'bold',
+        });
     }
 
     update(delta) {

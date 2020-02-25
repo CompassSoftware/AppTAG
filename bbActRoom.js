@@ -24,6 +24,13 @@ class bbActRoom extends Phaser.Scene {
     this.createInteractionZones();
     this.assignKeybinds();
     this.setCharacterAlpha(0,0,1,0);
+  
+    this.roomLabel = this.add.text(650, 6, "Building Blocks Activity Center", {
+        font: "24px arial",
+        color: "#FFFFFF",
+        align: 'left',
+        fontWeight: 'bold',
+    });
   }
 
   update(delta) {
