@@ -58,7 +58,7 @@ class buildingBlocks extends Phaser.Scene {
             if (this.room2_help_menu.alpha == 0.0)
                 this.helpMenu();
             else
-                this.quit
+                this.quitInteraction();
         }
 
         if (this.room2_activityOneOpened) {

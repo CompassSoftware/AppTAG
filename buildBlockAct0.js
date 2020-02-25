@@ -10,6 +10,7 @@ class buildBlockAct0 extends Phaser.Scene {
         this.paperCount = 1;
         this.maxPaper = 3;
         this.counter = 0;
+        this.musicToggle = false;
         document.getElementById("background").volume = 0.8;
     }
     //load assets in preload()
@@ -34,6 +35,20 @@ class buildBlockAct0 extends Phaser.Scene {
 	// This runs all the time in a game loop!!
 
 	//	console.log("update: roomProgress="+ roomProgress);
+
+    if (Phaser.Input.Keyboard.JustDown(this.key_N)) {
+        
+        document.getElementById("background").play();
+        if (this.musicToggle == false) {
+            document.getElementById("background").play();
+            this.musicToggle = true;
+        }
+        else if (this.musicToggle == true) {
+            document.getElementById("background").pause();
+            this.musicToggle = false;
+        }
+    }
+
 	if (roomProgress <= 2200) { 
 	    this.quizActive = true; 
 	    //	    this.paperCount = 1;
@@ -367,7 +382,7 @@ class buildBlockAct0 extends Phaser.Scene {
         this.key_3 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.THREE);
         this.key_R = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
         this.key_H = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.H);
-
+        this.key_N = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.N);
 
         this.key_Right = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
         this.key_Left = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);

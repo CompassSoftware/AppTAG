@@ -21,7 +21,7 @@ class winners_room extends Phaser.Scene {
     this.winnerRoom_activity5Complete = false;
     this.winnerRoom_helpOpen = false;
     this.winnerRoom_counter = 0;
-    
+    this.musicToggle = false;   
   }
   //load assets in preload()
 
@@ -43,6 +43,7 @@ class winners_room extends Phaser.Scene {
   }
 
   update(delta) {
+
     if (this.winnerRoom_key_U.isDown && this.winnerRoom_unlocked == false) {
       this.winnerRoom_activity1Locked = false;
       this.winnerRoom_activity2Locked = false;
@@ -53,6 +54,19 @@ class winners_room extends Phaser.Scene {
       this.winnerRoom_activity5Complete = true;
       this.winnerRoom_unlocked = true;
     }
+
+    if (Phaser.Input.Keyboard.JustDown(this.winnerRoom_key_N)) {
+        document.getElementById("background").play();
+        if (this.musicToggle == false) {
+            document.getElementById("background").play();
+            this.musicToggle = true;
+        }
+        else if (this.musicToggle == true) {
+            document.getElementById("background").pause();
+            this.musicToggle = false;
+        }
+    }
+          
 
     if (Phaser.Input.Keyboard.JustDown(this.winnerRoom_key_M)) {
         if (this.winnerRoom_map.alpha == 0.0) {
@@ -345,6 +359,7 @@ class winners_room extends Phaser.Scene {
     this.winnerRoom_key_6 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SIX);
     this.winnerRoom_key_R = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
     this.winnerRoom_key_H = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.H);
+    this.winnerRoom_key_N = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.N);
     this.winnerRoom_key_Right = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
     this.winnerRoom_key_Left = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
 
