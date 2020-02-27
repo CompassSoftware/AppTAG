@@ -9,6 +9,7 @@ class courseIntro extends Phaser.Scene {
         this.helpOpen = false;
         this.holeOpened = false;
         this.counter = 0;
+        this.musicToggle = false;
         document.getElementById("background").volume = 0.8;
     }
     //load assets in preload()
@@ -32,6 +33,18 @@ class courseIntro extends Phaser.Scene {
     update(delta) {
         //TEMPORARY FOR TESTING
         //vvvvvvvvvvvvvvvvvvv//
+
+        if (Phaser.Input.Keyboard.JustDown(this.key_N)) {
+            document.getElementById("background").play();
+            if (this.musicToggle == false) {
+                document.getElementById("background").play();
+                this.musicToggle = true;
+            }
+            else if (this.musicToggle == true) {
+                document.getElementById("background").pause();
+                this.musicToggle = false;
+            }
+        }
 
         if (this.activityOneOpened) {
             this.checkNextPage();
@@ -449,6 +462,7 @@ class courseIntro extends Phaser.Scene {
         this.key_3 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.THREE);
         this.key_R = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
         this.key_H = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.H);
+        this.key_N = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.N);
 
 
         this.key_Right = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);

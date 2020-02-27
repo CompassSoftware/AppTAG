@@ -13,6 +13,7 @@ class buildingBlocks extends Phaser.Scene {
         this.room2_activitySixOpened = false;
         this.room2_helpOpen = false;
         this.counter = 0;
+        this.musicToggle = false;
         document.getElementById("background").volume = 0.8;
 
     }
@@ -40,6 +41,19 @@ class buildingBlocks extends Phaser.Scene {
     update(delta) {
         //TEMPORARY FOR TESTING
         //vvvvvvvvvvvvvvvvvvv//
+
+        if (Phaser.Input.Keyboard.JustDown(this.room2_key_N)) {
+            document.getElementById("background").play();
+            if (this.musicToggle == false) {
+                document.getElementById("background").play();
+                this.musicToggle = true;
+            }
+            else if (this.musicToggle == true) {
+                document.getElementById("background").pause();
+                this.musicToggle = false;
+            }
+        }
+
         if (Phaser.Input.Keyboard.JustDown(this.room2_key_H)) {
             if (this.room2_help_menu.alpha == 0.0)
                 this.helpMenu();
@@ -438,6 +452,7 @@ class buildingBlocks extends Phaser.Scene {
         this.room2_key_H = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.H);
         this.key_Right = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
         this.key_Left = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+        this.room2_key_N = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.N);
     }
 
 

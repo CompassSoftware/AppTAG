@@ -6,6 +6,7 @@ class bbActRoom extends Phaser.Scene {
     super("BB_ActRoom");
     this.room2a_helpOpen = false;
     this.room2a_characterMoveable = true;
+    this.musicToggle = false;
   }
   //load assets in preload()
 
@@ -29,11 +30,27 @@ class bbActRoom extends Phaser.Scene {
   update(delta) {
     //TEMPORARY FOR TESTING
     //vvvvvvvvvvvvvvvvvvv//
+
+
+    if (Phaser.Input.Keyboard.JustDown(this.room2a_key_N)) {
+        document.getElementById("background").play();
+        if (this.musicToggle == false) {
+            document.getElementById("background").play();
+            this.musicToggle = true;
+        }
+        else if (this.musicToggle == true) {
+            document.getElementById("background").pause();
+            this.musicToggle = false;
+        }
+    }
+    
+
     if (Phaser.Input.Keyboard.JustDown(this.room2a_key_H)) {
         if (this.room2a_help_menu.alpha == 0.0)
             this.helpMenu();
         else
             this.quitInteraction();
+
     }
 
     if (this.room2a_key_U.isDown) {
@@ -212,6 +229,7 @@ class bbActRoom extends Phaser.Scene {
     this.room2a_key_5 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.FIVE);
     this.room2a_key_R = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
     this.room2a_key_H = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.H);
+    this.room2a_key_N = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.N);
 
   }
 

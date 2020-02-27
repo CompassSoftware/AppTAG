@@ -19,4 +19,5 @@ var activity6Complete = false;
 var characterMoveable = true;
 var roomProgress = 0;
 var wallAlpha = 0.5;
+var musicToggle = false;
 var game = new Phaser.Game(config);

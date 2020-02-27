@@ -1,5 +1,6 @@
 class tagIntro extends Phaser.Scene {
 
+    
   constructor() {
     super("TAG_Intro");
     this.quizActive = false;
@@ -8,12 +9,14 @@ class tagIntro extends Phaser.Scene {
     this.paperMoveable = false;
     this.activityOneOpened = false;
     this.helpOpen = false;
+    this.musicToggle = false;
   }
   //load assets in preload()
 
   preload() {
     this.loadAssets();
     this.createImages();
+
   }
   /*
   Welcome to The Accounting Game(TAG) Tutorial!
@@ -32,15 +35,31 @@ Info Panels like these contain important information and lessons that help you p
     this.assignKeybinds();
     this.imagesDraggable();
   }
-
+    
   update(delta) {
     //TEMPORARY FOR TESTING
     //vvvvvvvvvvvvvvvvvvv//
+
+    if (Phaser.Input.Keyboard.JustDown(this.key_N)) {
+
+        document.getElementById("background").play();
+        if (this.musicToggle == false) {
+            document.getElementById("background").play();
+            this.musicToggle = true;
+        }
+        else if (this.musicToggle == true) {
+            document.getElementById("background").pause();
+            this.musicToggle = false;
+        }
+    }
+
+
     if (Phaser.Input.Keyboard.JustDown(this.key_H)) {
     	if (this.help_menu.alpha == 0.0)
             this.helpMenu();
         else
             this.quitInteraction();
+
     }
 
     if (this.activityOneOpened) {
@@ -240,6 +259,7 @@ Info Panels like these contain important information and lessons that help you p
     this.key_2 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TWO);
     this.key_R = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
     this.key_H = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.H);
+    this.key_N = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.N);
   }
 
   imagesDraggable() {
@@ -273,6 +293,7 @@ Info Panels like these contain important information and lessons that help you p
 
           if(roomProgress < 1000)
             roomProgress = 1000;
+            document.getElementById("background").play();
 
           this.scene.start("Course_Intro");
       }

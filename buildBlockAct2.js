@@ -6,7 +6,8 @@ class buildBlockAct2 extends Phaser.Scene {
         this.room2b_quizActive = true;
         this.room2b_unlocked = false;
         this.room2b_helpOpen = false;
-	this.room2b_count = 1;
+    	this.room2b_count = 1;
+        this.musicToggle = false;
     }
     //load assets in preload()
 
@@ -28,7 +29,21 @@ class buildBlockAct2 extends Phaser.Scene {
 
     update(delta) {
 	//	console.log("parents room: progress="+roomProgress);
-	if (roomProgress < 2440) { 
+	
+    if (Phaser.Input.Keyboard.JustDown(this.room2b_key_N)) {
+        
+        document.getElementById("background").play();
+        if (this.musicToggle == false) {
+            document.getElementById("background").play();
+            this.musicToggle = true;
+        }
+        else if (this.musicToggle == true) {
+            document.getElementById("background").pause();
+            this.musicToggle = false;
+        }
+    }
+    
+    if (roomProgress < 2440) { 
 	    this.room2b_quizActive = true; 
 	    this.qmark.alpha = 1;
 	    this.setCharacterAlpha(0,0,0,0);
@@ -490,7 +505,7 @@ class buildBlockAct2 extends Phaser.Scene {
         this.room2b_key_5 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.FIVE);
         this.room2b_key_R = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
         this.room2b_key_H = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.H);
-
+        this.room2b_key_N = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.N);
     }
 
     /* imagesDraggable
