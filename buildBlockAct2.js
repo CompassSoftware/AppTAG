@@ -633,10 +633,13 @@ class buildBlockAct2 extends Phaser.Scene {
 		}
 		else if (roomProgress == 2415 && this.room2b_count == 1) {
 		    this.r2a2_q1_scfW.alpha = 1.0;
+            document.getElementById("wrong").play();
 		} else if (this.room2b_count == 2) {
 		    this.r2a2_q2_scfW.alpha = 1.0;
+            document.getElementById("wrong").play();
 		} else if (this.room2b_count == 3) {
 		    this.r2a2_q3_scfW.alpha = 1.0;
+            document.getElementById("wrong").play();
 		}
 	    }
 	} else if (Phaser.Geom.Rectangle.ContainsPoint(this.r2a2_coin_zone, this.room2b_character_north)) {
