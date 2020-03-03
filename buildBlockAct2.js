@@ -577,11 +577,14 @@ class buildBlockAct2 extends Phaser.Scene {
 		}
 		else if (roomProgress == 2415 && this.room2b_count == 1) {
 		    this.r2a2_q1_incstmC.alpha = 1.0;
+            document.getElementById("correct").play();
 		    this.room2b_count = 2;
 		} else if (roomProgress == 2425 && this.room2b_count == 2) {
 		    this.r2a2_q2_incstmW.alpha = 1.0;
+            document.getElementById("wrong").play();
 		} else if (roomProgress == 2435 && this.room2b_count == 3) {
 		    this.r2a2_q3_incstmW.alpha = 1.0;
+            document.getElementById("wrong").play();
 		}
 	    }
 	} else if (Phaser.Geom.Rectangle.ContainsPoint(this.r2a2_balsht_zone, this.room2b_character_north)) {
@@ -594,11 +597,15 @@ class buildBlockAct2 extends Phaser.Scene {
 		}
 		else if (roomProgress == 2415 && this.room2b_count == 1) {
 		    this.r2a2_q1_balshtW.alpha = 1.0;
+            document.getElementById("wrong").play();
 		} else if (roomProgress == 2425 && this.room2b_count == 2) {
 		    this.r2a2_q2_balshtC.alpha = 1.0;
+            document.getElementById("correct").play();
 		    this.room2b_count = 3;
 		} else if (roomProgress == 2435 && this.room2b_count == 3) {
 		    this.r2a2_q3_balshtW.alpha = 1.0;
+            document.getElementById("wrong").play();
+
 		}
 	    }
 	} else if (Phaser.Geom.Rectangle.ContainsPoint(this.r2a2_sre_zone, this.room2b_character_north)) {
@@ -611,10 +618,13 @@ class buildBlockAct2 extends Phaser.Scene {
 		}
 		else if (roomProgress == 2415 && this.room2b_count == 1) {
 		    this.r2a2_q1_sreW.alpha = 1.0;
+            document.getElementById("wrong").play();
 		} else if (roomProgress == 2425 && this.room2b_count == 2) {
 		    this.r2a2_q2_sreW.alpha = 1.0;
+            document.getElementById("wrong").play();
 		} else if (roomProgress == 2435 && this.room2b_count == 3) {
 		    this.r2a2_q3_sreC.alpha = 1.0;
+            document.getElementById("correct").play();
 		    this.room2b_count = 4;
 		}
 	    }
@@ -629,10 +639,13 @@ class buildBlockAct2 extends Phaser.Scene {
 		}
 		else if (roomProgress == 2415 && this.room2b_count == 1) {
 		    this.r2a2_q1_scfW.alpha = 1.0;
+            document.getElementById("wrong").play();
 		} else if (this.room2b_count == 2) {
 		    this.r2a2_q2_scfW.alpha = 1.0;
+            document.getElementById("wrong").play();
 		} else if (this.room2b_count == 3) {
 		    this.r2a2_q3_scfW.alpha = 1.0;
+            document.getElementById("wrong").play();
 		}
 	    }
 	} else if (Phaser.Geom.Rectangle.ContainsPoint(this.r2a2_coin_zone, this.room2b_character_north)) {
