@@ -16,7 +16,7 @@ class tagIntro extends Phaser.Scene {
   preload() {
     this.loadAssets();
     this.createImages();
-
+    this.load.spritesheet('coin', 'assets/Coin/coin-sprite-png-2.png', {frameWidth: 200, frameHeight: 250, endFrame: 5});
   }
   /*
   Welcome to The Accounting Game(TAG) Tutorial!
@@ -27,6 +27,7 @@ Info Panels like these contain important information and lessons that help you p
   create() {
     this.loadAssets();
     this.createImages();
+    this.coinTest();
     this.setAlphas();
     this.setDepths();
     this.setScales();
@@ -34,7 +35,21 @@ Info Panels like these contain important information and lessons that help you p
     this.createInteractionZones();
     this.assignKeybinds();
     this.imagesDraggable();
+    
+    /*//Coin Test Start
+    this.coinfig = {
+        key: 'coinTurn',
+        frames: this.anims.generateFrameNumbers('coin', { start: 0, end: 5, first: 0}),
+        frameRate: 6,
+        repeat: -1
+    };
+    this.anims.create(this.coinfig);
+    this.coin = this.add.sprite(730, 599, 'coin');
+  
+    this.coin.anims.play('coinTurn');
 
+    //Coin Test End 
+    */
     this.roomLabel = this.add.text(650, 6, "Game Intro Room", {
         font: "24px arial",
         color: "#FFFFFF",
@@ -167,6 +182,7 @@ Info Panels like these contain important information and lessons that help you p
 	  this.load.image('tut1', 'assets/Room0/tut1.PNG');
 	  this.load.image('hole', 'assets/hole.png');
     this.load.image('featNotAvail', 'assets/featNotAvail.png');
+    
   }
 
   createImages() {
@@ -187,6 +203,7 @@ Info Panels like these contain important information and lessons that help you p
     this.help_menu = this.add.image(768, 432, 'help_menu');
 	  this.tut1 = this.add.image(768, 432, 'tut1');
 	  this.hole = this.add.image(768, 432, 'hole');
+      
   }
 
   setAlphas() {
@@ -202,6 +219,7 @@ Info Panels like these contain important information and lessons that help you p
 	    this.E_KeyImg.alpha = 1.0;
 	    this.hole.alpha = 1.0;
 	}
+    this.coin.alpha = 0.0;
     this.hideActivities();
   }
 
@@ -529,6 +547,20 @@ Info Panels like these contain important information and lessons that help you p
     }
   }
 
+  coinTest() {
+      this.coinfig = {
+        key: 'coinTurn',
+        frames: this.anims.generateFrameNumbers('coin', { start: 0, end: 5, first: 0}),
+        frameRate: 6,
+        repeat: -1
+        };
+        this.anims.create(this.coinfig);
+        this.coin = this.add.sprite(730, 599, 'coin');
+  
+       // this.coin.anims.play('coinTurn');
+
+
+  }
   helpMenu() {
       this.help_menu.alpha = 1.0;
       this.helpOpen = true;
