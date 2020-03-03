@@ -108,6 +108,8 @@ class buildingBlocks extends Phaser.Scene {
 
         if (roomProgress >= 2030) {
           this.room2_hole_activity.alpha = 1.0;
+          //coinCount = 2;
+          //console.log(coinCount);
         }
 
         if (roomProgress >= 2500) {
