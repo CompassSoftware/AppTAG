@@ -9,7 +9,9 @@
 # then you can run the script with this: ./adjustPerms
 
 # recursively adds read permssion for all users to all files
-chmod a+r -R *
+chmod -R a+r *
+chmod a+r .
+chmod a+x .
 
 # add search permission for all users on the folders
 chmod a+x assets
@@ -17,9 +19,11 @@ chmod a+x assets/Panels
 chmod a+x assets/Panels/RoomOne
 chmod a+x assets/Panels/RoomTwo
 chmod a+x assets/Panels/RoomThree
+chmod a+x assets/Documents
 chmod a+x assets/Room0
 chmod a+x assets/Room1
 chmod a+x assets/Room2
+chmod a+x assets/Room2Act0
 chmod a+x assets/Room2Act1
 chmod a+x assets/Room2Act1/Puzzle
 chmod a+x assets/Room2Act1/Puzzle/Puzzle

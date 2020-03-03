@@ -40,6 +40,13 @@ class winners_room extends Phaser.Scene {
     this.createInteractionZones();
     this.assignKeybinds();
     this.imagesDraggable();
+  
+    this.roomLabel = this.add.text(650, 6, "Winners Room", {
+        font: "24px arial",
+        color: "#FFFFFF",
+        align:'left',
+        fontWeight:'bold',
+    });
   }
 
   update(delta) {
