@@ -27,7 +27,7 @@ Info Panels like these contain important information and lessons that help you p
   create() {
     this.loadAssets();
     this.createImages();
-    this.coinTest();
+    this.createCoins();
     this.setAlphas();
     this.setDepths();
     this.setScales();
@@ -35,21 +35,6 @@ Info Panels like these contain important information and lessons that help you p
     this.createInteractionZones();
     this.assignKeybinds();
     this.imagesDraggable();
-    
-    /*//Coin Test Start
-    this.coinfig = {
-        key: 'coinTurn',
-        frames: this.anims.generateFrameNumbers('coin', { start: 0, end: 5, first: 0}),
-        frameRate: 6,
-        repeat: -1
-    };
-    this.anims.create(this.coinfig);
-    this.coin = this.add.sprite(730, 599, 'coin');
-  
-    this.coin.anims.play('coinTurn');
-
-    //Coin Test End 
-    */
     this.roomLabel = this.add.text(650, 6, "Game Intro Room", {
         font: "24px arial",
         color: "#FFFFFF",
@@ -219,7 +204,8 @@ Info Panels like these contain important information and lessons that help you p
 	    this.E_KeyImg.alpha = 1.0;
 	    this.hole.alpha = 1.0;
 	}
-    this.coin.alpha = 0.0;
+    this.coin0.alpha = 0.0;
+    this.coinHead.alpha = 0.0;
     this.hideActivities();
   }
 
@@ -250,6 +236,8 @@ Info Panels like these contain important information and lessons that help you p
     this.character_east.setScale(3);
     this.approachImg.setScale(0.4);
     this.tut1.setScale(0.5);
+    this.coin0.setScale(0.5);
+    this.coinHead.setScale(0.5);
   }
 
   setRotations() {
@@ -267,6 +255,11 @@ Info Panels like these contain important information and lessons that help you p
 
 	  this.middle_info = new Phaser.Geom.Rectangle(700,350,200,200);
     this.graphics.fillRectShape(this.middle_info);
+
+    //COIN ZONE
+    
+    this.coin_collect_zone = new Phaser.Geom.Rectangle(239, 346, 100, 100);
+    this.graphics.fillRectShape(this.coin_collect_zone);
   }
 
   assignKeybinds() {
@@ -304,8 +297,9 @@ Info Panels like these contain important information and lessons that help you p
       this.E_KeyImg.alpha = 1.0;
       if (this.key_E.isDown) {
         this.tut1.alpha = 1.0;
-		this.activityOneOpened = true;
-		this.hole.alpha = 1.0;
+        if(this.hole.alpha == 0.0) this.coin0.alpha = 1.0;
+//		this.activityOneOpened = true;
+//		this.hole.alpha = 1.0;
       }
     } else if (Phaser.Geom.Rectangle.ContainsPoint(this.middle_info, this.character_north))
 	{
@@ -321,7 +315,7 @@ Info Panels like these contain important information and lessons that help you p
             document.getElementById("background").play();
 
           this.scene.start("Course_Intro");
-      }
+          }
 			this.E_KeyImg.x = this.character_north.x;
 			this.E_KeyImg.y = this.character_north.y-75;
 			this.E_KeyImg.alpha = 1.0;
@@ -333,6 +327,18 @@ Info Panels like these contain important information and lessons that help you p
 			this.approachImg.alpha = 1.0;
 		}
 	}
+    else if(Phaser.Geom.Rectangle.ContainsPoint(this.coin_collect_zone, this.character_north)) {
+        this.E_KeyImg.x = this.character_north.x;
+        this.E_KeyImg.y = this.character_north.y-75;
+        if(this.coin0.alpha == 1.0) this.E_KeyImg.alpha = 1.0;
+        if(this.key_E.isDown) {
+            if(this.coin0.alpha == 1.0) this.collectCoin(0);
+            this.coin0.alpha = 0.0;
+            this.activityOneOpened = true;
+            //this.coinExplain.alpha = 1.0;
+            this.hole.alpha = 1.0;
+        }
+    }
     else {
       this.hideActivities();
       this.E_KeyImg.alpha = 0.0;
@@ -547,7 +553,7 @@ Info Panels like these contain important information and lessons that help you p
     }
   }
 
-  coinTest() {
+  createCoins() {
       this.coinfig = {
         key: 'coinTurn',
         frames: this.anims.generateFrameNumbers('coin', { start: 0, end: 5, first: 0}),
@@ -555,12 +561,37 @@ Info Panels like these contain important information and lessons that help you p
         repeat: -1
         };
         this.anims.create(this.coinfig);
-        this.coin = this.add.sprite(730, 599, 'coin');
-  
-       // this.coin.anims.play('coinTurn');
+        this.coinHead = this.add.sprite(this.character_north.x, this.character_north.y-75, 'coin');
+        //this.coinHead.anims.play('coinTurn');
+        this.coin0 = this.add.sprite(289, 446, 'coin');
+        this.coin0.anims.play('coinTurn');
 
 
   }
+
+  collectCoin(int) {
+      switch(int) {
+          case 0:
+            this.coin0.alpha = 0.0;
+            break;
+      }
+      
+      document.getElementById("collect").play();
+      //this.coinHead.alpha = 1.0;
+      //this.coinHead.anims.play('coinTurn');
+      //sleepy(60);
+      //this.coinHead.alpha = 0.0;
+      //this.coinHead.anims.pause('coinTurn');
+  }
+
+  sleepy(milliseconds) {
+      let timeStart = new Date().getTime();
+      while(true) {
+          let elapsedTime = new Date().getTime() - timeStart;
+          if (elapsedTime > milliseconds) break;
+      }
+  }
+
   helpMenu() {
       this.help_menu.alpha = 1.0;
       this.helpOpen = true;
