@@ -167,6 +167,7 @@ Info Panels like these contain important information and lessons that help you p
 	  this.load.image('tut1', 'assets/Room0/tut1.PNG');
 	  this.load.image('hole', 'assets/hole.png');
     this.load.image('featNotAvail', 'assets/featNotAvail.png');
+    this.load.image('coinExplain', 'assets/Coin/coinExplain.png');
     
   }
 
@@ -188,6 +189,7 @@ Info Panels like these contain important information and lessons that help you p
     this.help_menu = this.add.image(768, 432, 'help_menu');
 	  this.tut1 = this.add.image(768, 432, 'tut1');
 	  this.hole = this.add.image(768, 432, 'hole');
+      this.coinExplain = this.add.image(768, 432, 'coinExplain');
       
   }
 
@@ -206,6 +208,7 @@ Info Panels like these contain important information and lessons that help you p
 	}
     this.coin0.alpha = 0.0;
     this.coinHead.alpha = 0.0;
+    this.coinExplain.alpha = 0.0;
     this.hideActivities();
   }
 
@@ -223,6 +226,7 @@ Info Panels like these contain important information and lessons that help you p
     this.help_menu.setDepth(100);
 	this.tut1.setDepth(99);
 	this.hole.setDepth(1);
+    this.coinExplain.setDepth(2);
   }
 
   setScales() {
@@ -238,6 +242,7 @@ Info Panels like these contain important information and lessons that help you p
     this.tut1.setScale(0.5);
     this.coin0.setScale(0.5);
     this.coinHead.setScale(0.5);
+    this.coinExplain.setScale(2.0);
   }
 
   setRotations() {
@@ -335,8 +340,8 @@ Info Panels like these contain important information and lessons that help you p
             if(this.coin0.alpha == 1.0) this.collectCoin(0);
             this.coin0.alpha = 0.0;
             this.activityOneOpened = true;
-            //this.coinExplain.alpha = 1.0;
             this.hole.alpha = 1.0;
+            this.coinExplain.alpha = 1.0;
         }
     }
     else {
@@ -344,6 +349,7 @@ Info Panels like these contain important information and lessons that help you p
       this.E_KeyImg.alpha = 0.0;
 	  this.approachImg.alpha = 0.0;
 	  this.tut1.alpha = 0.0;
+      this.coinExplain.alpha = 0.0;
     }
   }
 
