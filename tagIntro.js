@@ -558,44 +558,81 @@ Info Panels like these contain important information and lessons that help you p
       this.activity1Page2.alpha = 0;
     }
   }
-
+    /*Author: Matthew Daniels
+     * Method createCoins() is called at the beginning of the page in
+     * the create() method. It creates the coins separately to distinguish
+     * itself from the regular images. This might later be called on by a
+     * createSprites() function if a more vast spritesheet is integrated.
+     */
   createCoins() {
-      this.coinfig = {
+      /* This is where you put your animation configurations.
+       * The configuration does not have to be named this.config,
+       * and can be named however you like.
+       * For example, I've named the configuration for the 2 animations
+       * implemented, "this.coinfig1" and "this.coinfig2".
+      */
+      this.coinfig1 = {
         key: 'coinTurn',
         frames: this.anims.generateFrameNumbers('coin', { start: 0, end: 5, first: 0}),
         frameRate: 6,
         repeat: -1
         };
-        this.anims.create(this.coinfig);
+      this.coinfig2 = {
+        key: 'coinCollect',
+        frames: this.anims.generateFrameNumbers('coin', { start: 0, end: 5, first: 0}),
+        frameRate: 30,
+        repeat: 1,
+        hideOnComplete: true
+        };
+        /* Here, you will create the animations using the configurations
+         * that you created.
+         */
+        this.anims.create(this.coinfig1);
+        this.anims.create(this.coinfig2);
+        /* Here, you add the sprite to the game space, just like adding a
+         * regular image. Note it is "this.add.sprite" in place of 
+         * "this.add.image"
+         */
         this.coinHead = this.add.sprite(this.character_north.x, this.character_north.y-75, 'coin');
-        //this.coinHead.anims.play('coinTurn');
         this.coin0 = this.add.sprite(289, 446, 'coin');
+        /* In the case of the coins that exist in the worldspace,
+         * set the animation to play here, and it can always be active,
+         * without having to remember to call it later. Note that 
+         * this.coinHead is not being called to play an animation.
+         */
         this.coin0.anims.play('coinTurn');
-
-
   }
-
+/*Author: Matthew Daniels
+ * collectCoin() is a function that can be universally called when a "coin"
+ * is interacted with by the game, whether that be directly by the player
+ * (ex: A coin a player can see and press 'e' to collect)
+ * or by an activity that rewards a player a coin.
+ */
   collectCoin(int) {
+      /* A switch statement is used here specifically for any physical
+       * coins (like this.coin0) that exist in the scene.
+       * If more coins were added (this.coin1, this.coin2, this.coin3, etc)
+       * then you can add cases for the switch to branch to.
+       */
       switch(int) {
           case 0:
             this.coin0.alpha = 0.0;
             break;
       }
-      
+      /* This is a sequence we play every time collectCoin is called.
+       * It does the following:
+       * Gets rid of messy 'e' leftover,
+       * moves this.coinHead above the player icon,
+       * plays a quick animation and sound,
+       * ***WILL ADD*** increases the global coin count variable ONCE.
+       */
+      this.E_KeyImg.alpha = 0.0; 
+      this.coinHead.x = this.character_north.x;
+      this.coinHead.y = this.character_north.y-125;
+      this.coinHead.alpha = 1.0;
+      this.coinHead.anims.play('coinCollect');
       document.getElementById("collect").play();
-      //this.coinHead.alpha = 1.0;
-      //this.coinHead.anims.play('coinTurn');
-      //sleepy(60);
-      //this.coinHead.alpha = 0.0;
-      //this.coinHead.anims.pause('coinTurn');
-  }
-
-  sleepy(milliseconds) {
-      let timeStart = new Date().getTime();
-      while(true) {
-          let elapsedTime = new Date().getTime() - timeStart;
-          if (elapsedTime > milliseconds) break;
-      }
+      //coinCount++
   }
 
   helpMenu() {
