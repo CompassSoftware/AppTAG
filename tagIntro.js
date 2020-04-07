@@ -632,7 +632,7 @@ Info Panels like these contain important information and lessons that help you p
       this.coinHead.alpha = 1.0;
       this.coinHead.anims.play('coinCollect');
       document.getElementById("collect").play();
-      //coinCount++
+      //coinCount++;
   }
 
   helpMenu() {
