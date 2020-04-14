@@ -900,7 +900,8 @@ class buildBlockAct2 extends Phaser.Scene {
         this.coinHead.alpha = 1.0;
         this.coinHead.anims.play('coinCollect');
         document.getElementById("collect").play();
-        //coinCount++;
+        coinCount++;
+        console.log(coinCount);
     }
 
     /*

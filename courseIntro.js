@@ -98,8 +98,6 @@ class courseIntro extends Phaser.Scene {
 	if (roomProgress >= 1030 && this.activity6.alpha == 0) {
 	    this.holeOpened == true;
             this.hole.alpha = 1;
-            //coinCount = 1;
-            //console.log(coinCount);
 	}
 
 
@@ -243,7 +241,6 @@ class courseIntro extends Phaser.Scene {
 	//        this.load.image('hole', 'assets/hole.png');
         this.load.image('leftArrow' , 'assets/leftArrow.png');
         this.load.image('rightArrow' , 'assets/rightArrowTest.png');
-        this.load.image('testCoin', 'assets/Room2Act2/goldcoin_t.png');
     }
 
     /* createImages
@@ -296,7 +293,6 @@ class courseIntro extends Phaser.Scene {
         //this.placements0.setVisible(false);
         //this.placements1.setVisible(false);
         //this.placements2.setVisible(false);
-        this.testCoin = this.add.image(768, 432, 'testCoin');
     }
 
     /* setAlphas
@@ -322,7 +318,6 @@ class courseIntro extends Phaser.Scene {
 	    //this.cardboard_box_2.alpha = 0;
 	    //this.cardboard_box_3.alpha = 0;
 	    //this.paper_stack.alpha = 0;
-        this.testCoin.alpha = 1;
     }
 
     /* setDepths
@@ -353,7 +348,6 @@ class courseIntro extends Phaser.Scene {
         this.help_menu.setDepth(100);
         this.hole.setDepth(1);
 	    this.returnDoor.setDepth(1);
-        this.testCoin.setDepth(50);
     }
 
     /* setScales
@@ -1299,7 +1293,8 @@ class courseIntro extends Phaser.Scene {
         this.coinHead.alpha = 1.0;
         this.coinHead.anims.play('coinCollect');
         document.getElementById("collect").play();
-        //coinCount++;
+        coinCount++;
+        console.log(coinCount);
     }
 
     /* helpMenu
