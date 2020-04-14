@@ -438,6 +438,8 @@ class buildBlockAct2 extends Phaser.Scene {
         this.couple.setScale(.4);
         this.qmark.setScale(.15);
         this.r2a2_q1.setScale(0.75);
+        this.r2a2_q2.setScale(1.75);
+        this.r2a2_q3.setScale(0.75);
         this.question1.setScale(.09);
         this.question2.setScale(.09);
         this.question3.setScale(.09);
