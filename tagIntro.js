@@ -16,7 +16,7 @@ class tagIntro extends Phaser.Scene {
   preload() {
     this.loadAssets();
     this.createImages();
-
+    this.load.spritesheet('coin', 'assets/Coin/coin-sprite-png-2.png', {frameWidth: 200, frameHeight: 250, endFrame: 5});
   }
   /*
   Welcome to The Accounting Game(TAG) Tutorial!
@@ -27,6 +27,7 @@ Info Panels like these contain important information and lessons that help you p
   create() {
     this.loadAssets();
     this.createImages();
+    this.createCoins();
     this.setAlphas();
     this.setDepths();
     this.setScales();
@@ -34,7 +35,6 @@ Info Panels like these contain important information and lessons that help you p
     this.createInteractionZones();
     this.assignKeybinds();
     this.imagesDraggable();
-
     this.roomLabel = this.add.text(650, 6, "Game Intro Room", {
         font: "24px arial",
         color: "#FFFFFF",
@@ -167,6 +167,8 @@ Info Panels like these contain important information and lessons that help you p
 	  this.load.image('tut1', 'assets/Room0/tut1.PNG');
 	  this.load.image('hole', 'assets/hole.png');
     this.load.image('featNotAvail', 'assets/featNotAvail.png');
+    this.load.image('coinExplain', 'assets/Coin/coinExplain.png');
+    
   }
 
   createImages() {
@@ -187,6 +189,8 @@ Info Panels like these contain important information and lessons that help you p
     this.help_menu = this.add.image(768, 432, 'help_menu');
 	  this.tut1 = this.add.image(768, 432, 'tut1');
 	  this.hole = this.add.image(768, 432, 'hole');
+      this.coinExplain = this.add.image(768, 432, 'coinExplain');
+      
   }
 
   setAlphas() {
@@ -202,6 +206,9 @@ Info Panels like these contain important information and lessons that help you p
 	    this.E_KeyImg.alpha = 1.0;
 	    this.hole.alpha = 1.0;
 	}
+    this.coin0.alpha = 0.0;
+    this.coinHead.alpha = 0.0;
+    this.coinExplain.alpha = 0.0;
     this.hideActivities();
   }
 
@@ -219,6 +226,7 @@ Info Panels like these contain important information and lessons that help you p
     this.help_menu.setDepth(100);
 	this.tut1.setDepth(99);
 	this.hole.setDepth(1);
+    this.coinExplain.setDepth(2);
   }
 
   setScales() {
@@ -232,6 +240,9 @@ Info Panels like these contain important information and lessons that help you p
     this.character_east.setScale(3);
     this.approachImg.setScale(0.4);
     this.tut1.setScale(0.5);
+    this.coin0.setScale(0.5);
+    this.coinHead.setScale(0.5);
+    this.coinExplain.setScale(2.0);
   }
 
   setRotations() {
@@ -249,6 +260,11 @@ Info Panels like these contain important information and lessons that help you p
 
 	  this.middle_info = new Phaser.Geom.Rectangle(700,350,200,200);
     this.graphics.fillRectShape(this.middle_info);
+
+    //COIN ZONE
+    
+    this.coin_collect_zone = new Phaser.Geom.Rectangle(239, 346, 100, 100);
+    this.graphics.fillRectShape(this.coin_collect_zone);
   }
 
   assignKeybinds() {
@@ -286,8 +302,9 @@ Info Panels like these contain important information and lessons that help you p
       this.E_KeyImg.alpha = 1.0;
       if (this.key_E.isDown) {
         this.tut1.alpha = 1.0;
-		this.activityOneOpened = true;
-		this.hole.alpha = 1.0;
+        if(this.hole.alpha == 0.0) this.coin0.alpha = 1.0;
+//		this.activityOneOpened = true;
+//		this.hole.alpha = 1.0;
       }
     } else if (Phaser.Geom.Rectangle.ContainsPoint(this.middle_info, this.character_north))
 	{
@@ -303,7 +320,7 @@ Info Panels like these contain important information and lessons that help you p
             document.getElementById("background").play();
 
           this.scene.start("Course_Intro");
-      }
+          }
 			this.E_KeyImg.x = this.character_north.x;
 			this.E_KeyImg.y = this.character_north.y-75;
 			this.E_KeyImg.alpha = 1.0;
@@ -315,11 +332,24 @@ Info Panels like these contain important information and lessons that help you p
 			this.approachImg.alpha = 1.0;
 		}
 	}
+    else if(Phaser.Geom.Rectangle.ContainsPoint(this.coin_collect_zone, this.character_north)) {
+        this.E_KeyImg.x = this.character_north.x;
+        this.E_KeyImg.y = this.character_north.y-75;
+        if(this.coin0.alpha == 1.0) this.E_KeyImg.alpha = 1.0;
+        if(this.key_E.isDown) {
+            if(this.coin0.alpha == 1.0) this.collectCoin(0);
+            this.coin0.alpha = 0.0;
+            this.activityOneOpened = true;
+            this.hole.alpha = 1.0;
+            this.coinExplain.alpha = 1.0;
+        }
+    }
     else {
       this.hideActivities();
       this.E_KeyImg.alpha = 0.0;
 	  this.approachImg.alpha = 0.0;
 	  this.tut1.alpha = 0.0;
+      this.coinExplain.alpha = 0.0;
     }
   }
 
@@ -527,6 +557,82 @@ Info Panels like these contain important information and lessons that help you p
       this.activity1.alpha = 1;
       this.activity1Page2.alpha = 0;
     }
+  }
+    /*Author: Matthew Daniels
+     * Method createCoins() is called at the beginning of the page in
+     * the create() method. It creates the coins separately to distinguish
+     * itself from the regular images. This might later be called on by a
+     * createSprites() function if a more vast spritesheet is integrated.
+     */
+  createCoins() {
+      /* This is where you put your animation configurations.
+       * The configuration does not have to be named this.config,
+       * and can be named however you like.
+       * For example, I've named the configuration for the 2 animations
+       * implemented, "this.coinfig1" and "this.coinfig2".
+      */
+      this.coinfig1 = {
+        key: 'coinTurn',
+        frames: this.anims.generateFrameNumbers('coin', { start: 0, end: 5, first: 0}),
+        frameRate: 6,
+        repeat: -1
+        };
+      this.coinfig2 = {
+        key: 'coinCollect',
+        frames: this.anims.generateFrameNumbers('coin', { start: 0, end: 5, first: 0}),
+        frameRate: 30,
+        repeat: 1,
+        hideOnComplete: true
+        };
+        /* Here, you will create the animations using the configurations
+         * that you created.
+         */
+        this.anims.create(this.coinfig1);
+        this.anims.create(this.coinfig2);
+        /* Here, you add the sprite to the game space, just like adding a
+         * regular image. Note it is "this.add.sprite" in place of 
+         * "this.add.image"
+         */
+        this.coinHead = this.add.sprite(this.character_north.x, this.character_north.y-75, 'coin');
+        this.coin0 = this.add.sprite(289, 446, 'coin');
+        /* In the case of the coins that exist in the worldspace,
+         * set the animation to play here, and it can always be active,
+         * without having to remember to call it later. Note that 
+         * this.coinHead is not being called to play an animation.
+         */
+        this.coin0.anims.play('coinTurn');
+  }
+/*Author: Matthew Daniels
+ * collectCoin() is a function that can be universally called when a "coin"
+ * is interacted with by the game, whether that be directly by the player
+ * (ex: A coin a player can see and press 'e' to collect)
+ * or by an activity that rewards a player a coin.
+ */
+  collectCoin(int) {
+      /* A switch statement is used here specifically for any physical
+       * coins (like this.coin0) that exist in the scene.
+       * If more coins were added (this.coin1, this.coin2, this.coin3, etc)
+       * then you can add cases for the switch to branch to.
+       */
+      switch(int) {
+          case 0:
+            this.coin0.alpha = 0.0;
+            break;
+      }
+      /* This is a sequence we play every time collectCoin is called.
+       * It does the following:
+       * Gets rid of messy 'e' leftover,
+       * moves this.coinHead above the player icon,
+       * plays a quick animation and sound,
+       * ***WILL ADD*** increases the global coin count variable ONCE.
+       */
+      this.E_KeyImg.alpha = 0.0; 
+      this.coinHead.x = this.character_north.x;
+      this.coinHead.y = this.character_north.y-125;
+      this.coinHead.alpha = 1.0;
+      this.coinHead.anims.play('coinCollect');
+      document.getElementById("collect").play();
+      //coinCount++;
   }
 
   helpMenu() {

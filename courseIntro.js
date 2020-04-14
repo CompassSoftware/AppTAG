@@ -16,11 +16,13 @@ class courseIntro extends Phaser.Scene {
 
     preload() {
         this.loadAssets();
+        this.load.spritesheet('coin', 'assets/Coin/coin-sprite-png-2.png', {frameWidth: 200, frameHeight: 250, endFrame: 5})
     }
 
     //when scene is created
     create() {
-        this.createImages();
+        this.createImages()
+        this.createCoins();
         this.setAlphas();
         this.setDepths();
         this.setScales();
@@ -313,6 +315,8 @@ class courseIntro extends Phaser.Scene {
         this.rightArrow.alpha = 0;
         //this.congrats.alpha = 0;
 	    this.returnDoor.alpha = 1;
+        this.coin0.alpha = 1.0;
+        this.coinHead.alpha = 0.0;
 	// FinStmt sorting activity w/ boxes is not in room1 anymore...
 	    //this.cardboard_box_1.alpha = 0;
 	    //this.cardboard_box_2.alpha = 0;
@@ -389,7 +393,8 @@ class courseIntro extends Phaser.Scene {
 	this.activity5B.setScale(0.67);
 	this.activity5C.setScale(0.67);
 	this.activity6.setScale(0.67);
-    this.testCoin.setScale(0.05);
+    this.coin0.setScale(0.5);
+    this.coinHead.setScale(0.5);
     }
 
     /* setRotations
@@ -454,6 +459,9 @@ class courseIntro extends Phaser.Scene {
 	// return door located at 113,385
 	this.exitDoor = new Phaser.Geom.Rectangle(113,320,100,100);
         this.graphics.fillRectShape(this.exitDoor);
+
+        this.coin0_zone = new Phaser.Geom.Rectangle(1150, 300, 100, 100);
+        this.graphics.fillRectShape(this.coin0_zone);
     }
 
     /* assignKeybinds
@@ -531,7 +539,14 @@ class courseIntro extends Phaser.Scene {
                 this.characterMoveable = false;
                 this.checkActivityOpened(true, false, false, false, false, false);
             }
-
+        } else if(Phaser.Geom.Rectangle.ContainsPoint(this.coin0_zone, this.character_north)) {
+                this.E_KeyImg.x = this.character_north.x;
+                this.E_KeyImg.y = this.character_north.y-75;
+                if(this.coin0.alpha == 1.0) this.E_KeyImg.alpha = 1.0;
+                if(this.key_E.isDown) {
+                    if(this.coin0.alpha == 1.0) this.collectCoin(0);
+                    this.coin0.alpha = 0.0;
+                }
         } else if(Phaser.Geom.Rectangle.ContainsPoint(this.middle_info, this.character_north)) {
             if(this.hole.alpha == 1) {
                 this.E_KeyImg.x = this.character_north.x;
@@ -1249,6 +1264,42 @@ class courseIntro extends Phaser.Scene {
         }
         this.loadArrows();
         this.counter++;
+    }
+
+    createCoins() {
+        this.coinfig1 = {
+            key: 'coinTurn',
+            frames: this.anims.generateFrameNumbers('coin', { start: 0, end: 5, first: 0}),
+            frameRate: 6,
+            repeat: -1
+        };
+        this.coinfig2 = {
+            key: 'coinCollect',
+            frames: this.anims.generateFrameNumbers('coin', { start: 0, end: 5, first: 0}),
+            frameRate: 30,
+            repeat: 1,
+            hideOnComplete: true
+        };
+        this.anims.create(this.coinfig1);
+        this.anims.create(this.coinfig2);
+        this.coinHead = this.add.sprite(this.character_north.x, this.character_north.y-75, 'coin');
+        this.coin0 = this.add.sprite(1200, 400, 'coin');
+        this.coin0.anims.play('coinTurn');
+    }
+
+    collectCoin(int) {
+        switch(int) {
+            case 0:
+            this.coin0.alpha = 0.0;
+            break;
+        }
+        this.E_KeyImg.alpha = 0.0;
+        this.coinHead.x = this.character_north.x;
+        this.coinHead.y = this.character_north.y-125;
+        this.coinHead.alpha = 1.0;
+        this.coinHead.anims.play('coinCollect');
+        document.getElementById("collect").play();
+        //coinCount++;
     }
 
     /* helpMenu
