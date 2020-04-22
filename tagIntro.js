@@ -261,8 +261,7 @@ Info Panels like these contain important information and lessons that help you p
 			    if(roomProgress < 1000)
 				roomProgress = 1000;
 
-			    //          this.scene.start("Course_Intro");
-			    this.scene.start("Account_Eqn");
+			    this.scene.start("Course_Intro");
 			}
 			this.E_KeyImg.x = this.character_north.x;
 			this.E_KeyImg.y = this.character_north.y-75;
