@@ -540,7 +540,12 @@ class bbActRoom extends Phaser.Scene {
         this.coinHead.alpha = 1.0;
         this.coinHead.anims.play('coinCollect');
         document.getElementById("collect").play();
-        //coinCount++;
+        coinCount++;
+        this.updateCoin();
+    }
+
+    updateCoin() {
+        this.count.setText('x ' + coinCount);
     }
 
   /* helpMenu
