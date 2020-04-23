@@ -38,7 +38,7 @@ class accountEqn extends Phaser.Scene {
         font: "24px arial",
         color: "#FFFFFF",
         align: 'left',
-        fontWeight;'bold',
+        fontWeight: 'bold',
     });
   }
 
