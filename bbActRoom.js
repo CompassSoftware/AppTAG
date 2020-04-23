@@ -17,7 +17,6 @@ class bbActRoom extends Phaser.Scene {
 
   //when scene is created
   create() {
-
     this.createImages();
     this.createCoins();
     this.setAlphas();
@@ -27,13 +26,13 @@ class bbActRoom extends Phaser.Scene {
     this.createInteractionZones();
     this.assignKeybinds();
     this.setCharacterAlpha(0,0,1,0);
-  
     this.roomLabel = this.add.text(650, 6, "Building Blocks Activity Center", {
         font: "24px arial",
         color: "#FFFFFF",
         align: 'left',
         fontWeight: 'bold',
     });
+    this.displayCoin();
   }
 
   update(delta) {
@@ -129,6 +128,7 @@ class bbActRoom extends Phaser.Scene {
     this.load.image('room2a_box', 'assets/Room2Act0/cardboard_box.png');
     //    this.load.image('room2a_puzzle1', 'assets/Room2Act1/Puzzle/Puzzle/Puzzle1A.png');
     this.load.image('room2a_parents', 'assets/Room2Act2/couple.png');
+    this.load.image('singleCoin', 'assets/Coin/singleCoin.png');
   }
 
   /* createImages
@@ -154,6 +154,7 @@ class bbActRoom extends Phaser.Scene {
     this.room2a_box = this.add.image(288, 232, 'room2a_box');
     //    this.room2a_puzzle1 = this.add.image(1168, 400, 'room2a_puzzle1');
     this.room2a_parents = this.add.image(868, 611, 'room2a_parents');
+    this.countCoin = this.add.image(40, 150, 'singleCoin');
   }
 
   /* setAlphas
@@ -170,8 +171,10 @@ class bbActRoom extends Phaser.Scene {
     this.room2a_box.alpha = 1.0;
     //    this.room2a_puzzle1.alpha = 1.0;
     this.room2a_parents.alpha = 1.0;
+    this.countCoin.alpha = 0.0;
     this.coin0.alpha = 1.0;
     this.coinHead.alpha = 0.0;
+
   }
 
   /* setDepths
@@ -188,6 +191,7 @@ class bbActRoom extends Phaser.Scene {
     this.room2a_map.setDepth(100);
     this.room2a_notebook.setDepth(100);
     this.room2a_help_menu.setDepth(100);
+    this.countCoin.setDepth(0);
   }
 
   /* setScales
@@ -208,6 +212,7 @@ class bbActRoom extends Phaser.Scene {
     this.room2a_floor.scaleY = .513;
     this.room2a_floor.scaleX = .791;
     this.room2a_returnDoor.setScale(1.5);
+    this.countCoin.setScale(0.25);
     this.coin0.setScale(0.5);
     this.coinHead.setScale(0.5);
   }
@@ -492,7 +497,18 @@ class bbActRoom extends Phaser.Scene {
 
   }
 
-    createCoins() {
+
+
+  displayCoin() {
+    this.countCoin.alpha = 1.0;
+    this.count = this.add.text(70, 140, "x " + coinCount, {
+        font: "24px arial", 
+        color: "#FFFFFF", 
+        align: 'left', 
+        fontweight: 'bold',
+    });
+  }
+  createCoins() {
       this.coinfig1 = {
         key: 'coinTurn',
         frames: this.anims.generateFrameNumbers('coin', { start: 0, end: 5, first: 0}),
@@ -526,7 +542,6 @@ class bbActRoom extends Phaser.Scene {
         document.getElementById("collect").play();
         //coinCount++;
     }
-
 
   /* helpMenu
    *
