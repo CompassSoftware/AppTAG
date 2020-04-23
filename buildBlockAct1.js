@@ -13,12 +13,14 @@ class buildBlockAct1 extends Phaser.Scene {
 
   preload() {
     this.loadAssets();
+    this.load.spritesheet('coin', 'assets/Coin/coin-sprite-png-2.png' {frameWidth: 200, frameHeight: 250, endFrame: 5});
   }
 
   //when scene is created
   create() {
 
     this.createImages();
+    this.createCoins();
     this.setAlphas();
     this.setDepths();
     this.setScales();
@@ -189,6 +191,8 @@ class buildBlockAct1 extends Phaser.Scene {
     this.room2a_Pfloor.alpha = 0.0;
     //this.room2a_puzz_backHole.alpha = 0.0;
     //this.room2a_puzz_holeText.alpha = 0.0;
+    this.coin0.alpha = 1.0;
+    this.coinHead.alpha = 0.0;
   }
 
   /* setDepths
@@ -206,6 +210,8 @@ class buildBlockAct1 extends Phaser.Scene {
     this.room2a_map.setDepth(100);
     this.room2a_notebook.setDepth(100);
     this.room2a_help_menu.setDepth(100);
+    this.coin0.setDepth(99);
+    this.coinHead.setDepth(99);
     //this.room2a_NOTREADY_text.setDepth(49);
   }
 
@@ -227,6 +233,8 @@ class buildBlockAct1 extends Phaser.Scene {
     this.room2a_Pfloor.scaleY = .8;
     this.room2a_Pfloor.scaleX = .8;
     this.room2a_returnDoor.setScale(1.5);
+    this.coin0.setScale(0.5);
+    this.coinHead.setScale(0.5);
   }
 
   /* setRotations
@@ -290,6 +298,9 @@ class buildBlockAct1 extends Phaser.Scene {
 
     this.room2a_P1A = new Phaser.Geom.Rectangle(1068, 332,160,110);
     this.room2a_graphics.fillRectShape(this.room2a_P1A);
+
+    this.coin0_zone = new Phaser.Geom.Rectangle(450, 200, 100, 100);
+    this.room2a_graphics.fillRectShape(this.coin0_zone);
   }
 
   /* checkInteractValidity
@@ -313,6 +324,9 @@ class buildBlockAct1 extends Phaser.Scene {
             console.log("Activated Quiz")
 			this.room2a_quizActive = true;
 		}
+    }
+    else if (Phaser.Geom.Rectangle.ContainsPoint(this.coin0_zone, this.room2a_character_north) {
+        f
     }
     else {
         this.hideActivities();
@@ -950,7 +964,40 @@ class buildBlockAct1 extends Phaser.Scene {
     }
 
   }
-
+  createCoins() {
+      this.coinfig1 = {
+        key: 'coinTurn',
+        frames: this.anims.generateFrameNumbers('coin', { start: 0, end: 5, first: 0}),
+        frameRate: 6,
+        repeat: -1
+        };
+      this.coinfig2 = {
+        key: 'coinCollect',
+        frames: this.anims.generateFrameNumbers('coin', { start: 0, end: 5, first: 0}),
+        frameRate: 30,
+        repeat: 1,
+        hideOnComplete: true
+        };
+        this.anims.create(this.coinfig1);
+        this.anims.create(this.coinfig2);
+        this.coinHead = this.add.sprite(this.room2a_character_north.x, this.room2a_character_north.y-75, 'coin');
+        this.coin0 = this.add.sprite(500, 200, 'coin');
+        this.coin0.anims.play('coinTurn');
+    }
+    collectCoin(int) {
+        switch(int) {
+            case 0:
+                this.coin0.alpha = 0.0;
+                break;
+        }
+        this.room2a_E_KeyImg.alpha = 0.0;
+        this.coinHead.x = this.room2a_character_north.x;
+        this.coinHead.y = this.room2a_character_north.y-125;
+        this.coinHead.alpha = 1.0;
+        this.coinHead.anims.play('coinCollect');
+        document.getElementById("collect").play();
+        //coinCount++;
+    }
   /* helpMenu
    *
    * Sets the alpha of the help menu to 1 so that it is visible

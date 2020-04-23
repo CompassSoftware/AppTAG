@@ -12,11 +12,13 @@ class bbActRoom extends Phaser.Scene {
 
   preload() {
     this.loadAssets();
+    this.load.spritesheet('coin', 'assets/Coin/coin-sprite-png-2.png', {frameWidth: 200, frameHeight: 250, endFrame: 5});
   }
 
   //when scene is created
   create() {
     this.createImages();
+    this.createCoins();
     this.setAlphas();
     this.setDepths();
     this.setScales();
@@ -170,6 +172,9 @@ class bbActRoom extends Phaser.Scene {
     //    this.room2a_puzzle1.alpha = 1.0;
     this.room2a_parents.alpha = 1.0;
     this.countCoin.alpha = 0.0;
+    this.coin0.alpha = 1.0;
+    this.coinHead.alpha = 0.0;
+
   }
 
   /* setDepths
@@ -208,6 +213,8 @@ class bbActRoom extends Phaser.Scene {
     this.room2a_floor.scaleX = .791;
     this.room2a_returnDoor.setScale(1.5);
     this.countCoin.setScale(0.25);
+    this.coin0.setScale(0.5);
+    this.coinHead.setScale(0.5);
   }
 
   /* setRotations
@@ -279,6 +286,9 @@ class bbActRoom extends Phaser.Scene {
     this.room2a_parents_zone = new Phaser.Geom.Rectangle(818,561,100,100);
     this.room2a_graphics.fillRectShape(this.room2a_parents_zone);
 
+    this.coin0_zone = new Phaser.Geom.Rectangle(450, 150, 100, 100);
+    this.room2a_graphics.fillRectShape(this.coin0_zone);
+
   }
 
   /* checkInteractValidity
@@ -335,6 +345,14 @@ class bbActRoom extends Phaser.Scene {
 			this.scene.start("BuildBlock_Act2");
 		    }
 		}
+    }
+    else if (Phaser.Geom.Rectangle.ContainsPoint(this.coin0_zone, this.room2a_character_north)) {
+        this.room2a_E_KeyImg.x = this.room2a_character_north.x;
+        this.room2a_E_KeyImg.y = this.room2a_character_north.y-75;
+        if(this.coin0.alpha == 1.0) this.room2a_E_KeyImg.alpha = 1.0;
+        if(this.room2a_key_E.isDown) {
+            if(this.coin0.alpha == 1.0) this.collectCoin(0);
+        }     
     }
     else {
         this.hideActivities();
@@ -480,6 +498,7 @@ class bbActRoom extends Phaser.Scene {
   }
 
 
+
   displayCoin() {
     this.countCoin.alpha = 1.0;
     this.count = this.add.text(70, 140, "x " + coinCount, {
@@ -489,6 +508,40 @@ class bbActRoom extends Phaser.Scene {
         fontweight: 'bold',
     });
   }
+  createCoins() {
+      this.coinfig1 = {
+        key: 'coinTurn',
+        frames: this.anims.generateFrameNumbers('coin', { start: 0, end: 5, first: 0}),
+        frameRate: 6,
+        repeat: -1
+        };
+      this.coinfig2 = {
+        key: 'coinCollect',
+        frames: this.anims.generateFrameNumbers('coin', { start: 0, end: 5, first: 0}),
+        frameRate: 30,
+        repeat: 1,
+        hideOnComplete: true
+        };
+        this.anims.create(this.coinfig1);
+        this.anims.create(this.coinfig2);
+        this.coinHead = this.add.sprite(this.room2a_character_north.x, this.room2a_character_north.y-75, 'coin');
+        this.coin0 = this.add.sprite(500, 250, 'coin');
+        this.coin0.anims.play('coinTurn');
+    }
+    collectCoin(int) {
+        switch(int) {
+            case 0:
+                this.coin0.alpha = 0.0;
+                break;
+        }
+        this.room2a_E_KeyImg.alpha = 0.0;
+        this.coinHead.x = this.room2a_character_north.x;
+        this.coinHead.y = this.room2a_character_north.y-125;
+        this.coinHead.alpha = 1.0;
+        this.coinHead.anims.play('coinCollect');
+        document.getElementById("collect").play();
+        //coinCount++;
+    }
 
   /* helpMenu
    *
