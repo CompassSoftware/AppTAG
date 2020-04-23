@@ -6,7 +6,8 @@ class buildBlockAct2 extends Phaser.Scene {
         this.room2b_quizActive = true;
         this.room2b_unlocked = false;
         this.room2b_helpOpen = false;
-	this.room2b_count = 1;
+    	this.room2b_count = 1;
+        this.musicToggle = false;
     }
     //load assets in preload()
 
@@ -23,12 +24,32 @@ class buildBlockAct2 extends Phaser.Scene {
         this.setRotations();
         this.createInteractionZones();
         this.assignKeybinds();
-	//        this.imagesDraggable();
+    
+        this.roomLabel = this.add.text(650, 6, "Building Blocks Parents Room", {
+            font: "24px arial",
+            color: "#FFFFFF",
+            align:'left',
+            fontWeight:'bold',
+        });
     }
 
     update(delta) {
 	//	console.log("parents room: progress="+roomProgress);
-	if (roomProgress < 2440) { 
+	
+    if (Phaser.Input.Keyboard.JustDown(this.room2b_key_N)) {
+        
+        document.getElementById("background").play();
+        if (this.musicToggle == false) {
+            document.getElementById("background").play();
+            this.musicToggle = true;
+        }
+        else if (this.musicToggle == true) {
+            document.getElementById("background").pause();
+            this.musicToggle = false;
+        }
+    }
+    
+    if (roomProgress < 2440) { 
 	    this.room2b_quizActive = true; 
 	    this.qmark.alpha = 1;
 	    this.setCharacterAlpha(0,0,0,0);
@@ -40,8 +61,11 @@ class buildBlockAct2 extends Phaser.Scene {
 	}
         //TEMPORARY FOR TESTING
         //vvvvvvvvvvvvvvvvvvv//
-        if (this.room2b_key_H.isDown) {
-            this.helpMenu();
+        if (Phaser.Input.Keyboard.JustDown(this.room2b_key_H)) {
+            if (this.room2b_help_menu.alpha == 0.0)
+                this.helpMenu();
+            else
+                this.quitInteraction();
         }
 
 	if (this.room2b_key_U.isDown) {
@@ -49,25 +73,31 @@ class buildBlockAct2 extends Phaser.Scene {
 	    roomProgress = 2440;
 	}
 
-	/*
-        if (this.room2b_key_M.isDown) {
-            this.room2b_map.alpha = 1.0;
-            characterMoveable = false;
-            this.room2b_character_north.alpha = 0.0;
-            this.room2b_character_east.alpha = 0.0;
-            this.room2b_character_south.alpha = 0.0;
-            this.room2b_character_west.alpha = 0.0;
+        if (Phaser.Input.Keyboard.JustDown(this.room2b_key_M)) {
+            if (this.room2b_map.alpha == 0.0) {
+                this.room2b_map.alpha = 1.0;
+                characterMoveable = false;
+                this.room2b_character_north.alpha = 0.0;
+                this.room2b_character_east.alpha = 0.0;
+                this.room2b_character_south.alpha = 0.0;
+                this.room2b_character_west.alpha = 0.0;
+            }
+            else 
+                this.quitInteraction();
         }
 
-        if (this.room2b_key_B.isDown) {
-            this.room2b_notebook.alpha = 1.0;
-            room2b_characterMoveable = false;
-            this.room2b_character_north.alpha = 0.0;
-            this.room2b_character_east.alpha = 0.0;
-            this.room2b_character_south.alpha = 0.0;
-            this.room2b_character_west.alpha = 0.0;
+        if (Phaser.Input.Keyboard.JustDown(this.room2b_key_B)) {
+            if (this.room2b_notebook.alpha == 0.0) {
+                this.room2b_notebook.alpha = 1.0;
+                room2b_characterMoveable = false;
+                this.room2b_character_north.alpha = 0.0;
+                this.room2b_character_east.alpha = 0.0;
+                this.room2b_character_south.alpha = 0.0;
+                this.room2b_character_west.alpha = 0.0;
+            }
+            else
+                this.quitInteraction();
         }
-	*/
 
         if (this.room2b_key_Q.isDown) {
 	    this.room2b_activityLocked.alpha = 0.0;
@@ -235,8 +265,8 @@ class buildBlockAct2 extends Phaser.Scene {
         this.load.image('room2b_floor', 'assets/Room2Act2/floor_two_activity_2.jpg');
         this.load.image('r2a2_UMpanel', 'assets/wall_art.png');
         this.load.image('r2a2_UMpanel_info', 'assets/Room2Act2/r2a2_UMpanel_t.png');
-        this.load.image('room2b_map', 'assets/map.png');
-        this.load.image('room2b_notebook', 'assets/notebook.png');
+        this.load.image('room2b_map', 'assets/featNotAvail.png');
+        this.load.image('room2b_notebook', 'assets/featNotAvail.png');
         this.load.image('room2b_activityLocked', 'assets/activityLocked.png');
         this.load.image('room2b_help_menu', 'assets/help_menu.png');
         this.load.image('couple', 'assets/Room2Act2/couple.png');
@@ -413,6 +443,8 @@ class buildBlockAct2 extends Phaser.Scene {
         this.couple.setScale(.4);
         this.qmark.setScale(.15);
         this.r2a2_q1.setScale(0.75);
+        this.r2a2_q2.setScale(1.75);
+        this.r2a2_q3.setScale(0.75);
         this.question1.setScale(.09);
         this.question2.setScale(.09);
         this.question3.setScale(.09);
@@ -486,7 +518,7 @@ class buildBlockAct2 extends Phaser.Scene {
         this.room2b_key_5 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.FIVE);
         this.room2b_key_R = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
         this.room2b_key_H = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.H);
-
+        this.room2b_key_N = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.N);
     }
 
     /* imagesDraggable
@@ -552,11 +584,14 @@ class buildBlockAct2 extends Phaser.Scene {
 		}
 		else if (roomProgress == 2415 && this.room2b_count == 1) {
 		    this.r2a2_q1_incstmC.alpha = 1.0;
+            document.getElementById("correct").play();
 		    this.room2b_count = 2;
 		} else if (roomProgress == 2425 && this.room2b_count == 2) {
 		    this.r2a2_q2_incstmW.alpha = 1.0;
+            document.getElementById("wrong").play();
 		} else if (roomProgress == 2435 && this.room2b_count == 3) {
 		    this.r2a2_q3_incstmW.alpha = 1.0;
+            document.getElementById("wrong").play();
 		}
 	    }
 	} else if (Phaser.Geom.Rectangle.ContainsPoint(this.r2a2_balsht_zone, this.room2b_character_north)) {
@@ -569,11 +604,15 @@ class buildBlockAct2 extends Phaser.Scene {
 		}
 		else if (roomProgress == 2415 && this.room2b_count == 1) {
 		    this.r2a2_q1_balshtW.alpha = 1.0;
+            document.getElementById("wrong").play();
 		} else if (roomProgress == 2425 && this.room2b_count == 2) {
 		    this.r2a2_q2_balshtC.alpha = 1.0;
+            document.getElementById("correct").play();
 		    this.room2b_count = 3;
 		} else if (roomProgress == 2435 && this.room2b_count == 3) {
 		    this.r2a2_q3_balshtW.alpha = 1.0;
+            document.getElementById("wrong").play();
+
 		}
 	    }
 	} else if (Phaser.Geom.Rectangle.ContainsPoint(this.r2a2_sre_zone, this.room2b_character_north)) {
@@ -586,10 +625,13 @@ class buildBlockAct2 extends Phaser.Scene {
 		}
 		else if (roomProgress == 2415 && this.room2b_count == 1) {
 		    this.r2a2_q1_sreW.alpha = 1.0;
+            document.getElementById("wrong").play();
 		} else if (roomProgress == 2425 && this.room2b_count == 2) {
 		    this.r2a2_q2_sreW.alpha = 1.0;
+            document.getElementById("wrong").play();
 		} else if (roomProgress == 2435 && this.room2b_count == 3) {
 		    this.r2a2_q3_sreC.alpha = 1.0;
+            document.getElementById("correct").play();
 		    this.room2b_count = 4;
 		}
 	    }
@@ -604,10 +646,13 @@ class buildBlockAct2 extends Phaser.Scene {
 		}
 		else if (roomProgress == 2415 && this.room2b_count == 1) {
 		    this.r2a2_q1_scfW.alpha = 1.0;
+            document.getElementById("wrong").play();
 		} else if (this.room2b_count == 2) {
 		    this.r2a2_q2_scfW.alpha = 1.0;
+            document.getElementById("wrong").play();
 		} else if (this.room2b_count == 3) {
 		    this.r2a2_q3_scfW.alpha = 1.0;
+            document.getElementById("wrong").play();
 		}
 	    }
 	} else if (Phaser.Geom.Rectangle.ContainsPoint(this.r2a2_coin_zone, this.room2b_character_north)) {
@@ -773,7 +818,6 @@ class buildBlockAct2 extends Phaser.Scene {
      *
      * Sets the alphas to 0 so that the interaction is quit.
      */
-    /*
     quitInteraction() {
         this.room2b_map.alpha = 0.0;
         this.room2b_notebook.alpha = 0.0;
@@ -785,7 +829,6 @@ class buildBlockAct2 extends Phaser.Scene {
             this.quitQuiz();
         }
     }
-    */
 
     hideInteractionBoxes() {
 

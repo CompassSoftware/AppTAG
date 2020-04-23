@@ -6,6 +6,7 @@ class bbActRoom extends Phaser.Scene {
     super("BB_ActRoom");
     this.room2a_helpOpen = false;
     this.room2a_characterMoveable = true;
+    this.musicToggle = false;
   }
   //load assets in preload()
 
@@ -24,13 +25,39 @@ class bbActRoom extends Phaser.Scene {
     this.createInteractionZones();
     this.assignKeybinds();
     this.setCharacterAlpha(0,0,1,0);
+  
+    this.roomLabel = this.add.text(650, 6, "Building Blocks Activity Center", {
+        font: "24px arial",
+        color: "#FFFFFF",
+        align: 'left',
+        fontWeight: 'bold',
+    });
   }
 
   update(delta) {
     //TEMPORARY FOR TESTING
     //vvvvvvvvvvvvvvvvvvv//
-    if (this.room2a_key_H.isDown) {
-      this.helpMenu();
+
+
+    if (Phaser.Input.Keyboard.JustDown(this.room2a_key_N)) {
+        document.getElementById("background").play();
+        if (this.musicToggle == false) {
+            document.getElementById("background").play();
+            this.musicToggle = true;
+        }
+        else if (this.musicToggle == true) {
+            document.getElementById("background").pause();
+            this.musicToggle = false;
+        }
+    }
+    
+
+    if (Phaser.Input.Keyboard.JustDown(this.room2a_key_H)) {
+        if (this.room2a_help_menu.alpha == 0.0)
+            this.helpMenu();
+        else
+            this.quitInteraction();
+
     }
 
     if (this.room2a_key_U.isDown) {
@@ -40,22 +67,32 @@ class bbActRoom extends Phaser.Scene {
 	roomProgress = 2500;
     }
 
-    if (this.room2a_key_M.isDown) {
-      this.room2a_map.alpha = 1.0;
-      characterMoveable = false;
-      this.room2a_character_north.alpha = 0.0;
-      this.room2a_character_east.alpha = 0.0;
-      this.room2a_character_south.alpha = 0.0;
-      this.room2a_character_west.alpha = 0.0;
+    if (Phaser.Input.Keyboard.JustDown(this.room2a_key_M)) {
+      if (this.room2a_map.alpha == 0.0) {
+        this.room2a_map.alpha = 1.0;
+        characterMoveable = false;
+        this.room2a_character_north.alpha = 0.0;
+        this.room2a_character_east.alpha = 0.0;
+        this.room2a_character_south.alpha = 0.0;
+        this.room2a_character_west.alpha = 0.0;
+      }
+      else {
+        this.quitInteraction();
+      }
     }
 
-    if (this.room2a_key_B.isDown) {
-      this.room2a_notebook.alpha = 1.0;
-      room2a_characterMoveable = false;
-      this.room2a_character_north.alpha = 0.0;
-      this.room2a_character_east.alpha = 0.0;
-      this.room2a_character_south.alpha = 0.0;
-      this.room2a_character_west.alpha = 0.0;
+    if (Phaser.Input.Keyboard.JustDown(this.room2a_key_B)) {
+      if (this.room2a_notebook.alpha == 0.0) {
+        this.room2a_notebook.alpha = 1.0;
+        this.room2a_characterMoveable = false;
+        this.room2a_character_north.alpha = 0.0;
+        this.room2a_character_east.alpha = 0.0;
+        this.room2a_character_south.alpha = 0.0;
+        this.room2a_character_west.alpha = 0.0;
+      }
+      else {
+          this.quitInteraction();
+      }
     }
 
     if (this.room2a_key_Q.isDown) {
@@ -84,8 +121,8 @@ class bbActRoom extends Phaser.Scene {
     this.load.image('room2a_character_west', 'assets/character_west.png');
     this.load.image('room2a_E_KeyImg', 'assets/E_Key.png');
     this.load.image('room2a_floor', 'assets/Room2Act1/floor_room2_act1.jpg');
-    this.load.image('room2a_map', 'assets/Map/room3act1inprogress.png');
-    this.load.image('room2a_notebook', 'assets/notebook.png');
+    this.load.image('room2a_map', 'assets/featNotAvail.png');
+    this.load.image('room2a_notebook', 'assets/featNotAvail.png');
     this.load.image('room2a_activityLocked', 'assets/activityLocked.png');
     this.load.image('room2a_help_menu', 'assets/help_menu.png');
 
@@ -201,6 +238,7 @@ class bbActRoom extends Phaser.Scene {
     this.room2a_key_5 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.FIVE);
     this.room2a_key_R = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
     this.room2a_key_H = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.H);
+    this.room2a_key_N = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.N);
 
   }
 

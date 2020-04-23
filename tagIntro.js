@@ -1,5 +1,6 @@
 class tagIntro extends Phaser.Scene {
 
+    
   constructor() {
     super("TAG_Intro");
     this.quizActive = false;
@@ -8,12 +9,14 @@ class tagIntro extends Phaser.Scene {
     this.paperMoveable = false;
     this.activityOneOpened = false;
     this.helpOpen = false;
+    this.musicToggle = false;
   }
   //load assets in preload()
 
   preload() {
     this.loadAssets();
     this.createImages();
+
   }
   /*
   Welcome to The Accounting Game(TAG) Tutorial!
@@ -31,13 +34,39 @@ Info Panels like these contain important information and lessons that help you p
     this.createInteractionZones();
     this.assignKeybinds();
     this.imagesDraggable();
-  }
 
+    this.roomLabel = this.add.text(650, 6, "Game Intro Room", {
+        font: "24px arial",
+        color: "#FFFFFF",
+        align: 'left',
+        fontWeight:'bold',
+    });
+  }
+    
   update(delta) {
     //TEMPORARY FOR TESTING
     //vvvvvvvvvvvvvvvvvvv//
-    if (this.key_H.isDown) {
-    	this.helpMenu();
+
+    if (Phaser.Input.Keyboard.JustDown(this.key_N)) {
+
+        document.getElementById("background").play();
+        if (this.musicToggle == false) {
+            document.getElementById("background").play();
+            this.musicToggle = true;
+        }
+        else if (this.musicToggle == true) {
+            document.getElementById("background").pause();
+            this.musicToggle = false;
+        }
+    }
+
+
+    if (Phaser.Input.Keyboard.JustDown(this.key_H)) {
+    	if (this.help_menu.alpha == 0.0)
+            this.helpMenu();
+        else
+            this.quitInteraction();
+
     }
 
     if (this.activityOneOpened) {
@@ -54,22 +83,32 @@ Info Panels like these contain important information and lessons that help you p
       this.unlocked = true;
     }
 
-    if (this.key_M.isDown) {
-      this.map.alpha = 1.0;
-      this.characterMoveable = false;
-      this.character_north.alpha = 0.0;
-      this.character_east.alpha = 0.0;
-      this.character_south.alpha = 0.0;
-      this.character_west.alpha = 0.0;
+    if (Phaser.Input.Keyboard.JustDown(this.key_M)) {
+      if (this.map.alpha == 0.0) {
+        this.map.alpha = 1.0;
+        this.characterMoveable = false;
+        this.character_north.alpha = 0.0;
+        this.character_east.alpha = 0.0;
+        this.character_south.alpha = 0.0;
+        this.character_west.alpha = 0.0;
+      }
+      else {
+        this.quitInteraction();
+      }
     }
 
-    if (this.key_B.isDown) {
-      this.notebook.alpha = 1.0;
-      this.characterMoveable = false;
-      this.character_north.alpha = 0.0;
-      this.character_east.alpha = 0.0;
-      this.character_south.alpha = 0.0;
-      this.character_west.alpha = 0.0;
+    if (Phaser.Input.Keyboard.JustDown(this.key_B)) {
+      if (this.notebook.alpha == 0.0) {
+        this.notebook.alpha = 1.0;
+        this.characterMoveable = false;
+        this.character_north.alpha = 0.0;
+        this.character_east.alpha = 0.0;
+        this.character_south.alpha = 0.0;
+        this.character_west.alpha = 0.0;
+      }
+      else {
+          this.quitInteraction();
+      }
     }
 
 
@@ -127,7 +166,7 @@ Info Panels like these contain important information and lessons that help you p
 	  this.load.image('approachImg', 'assets/Room0/R0_tutorial.png');
 	  this.load.image('tut1', 'assets/Room0/tut1.PNG');
 	  this.load.image('hole', 'assets/hole.png');
-
+    this.load.image('featNotAvail', 'assets/featNotAvail.png');
   }
 
   createImages() {
@@ -142,8 +181,8 @@ Info Panels like these contain important information and lessons that help you p
 	  this.approachImg = this.add.image(this.character_north.x+40, this.character_north.y+40, 'approachImg');
     this.wall_info_2 = this.add.image(768, 75, 'wall_info_2');
     this.floor = this.add.image(769, 433, 'floor');
-    this.map = this.add.image(768, 432, 'map');
-    this.notebook = this.add.image(768, 432, 'notebook');
+    this.map = this.add.image(768, 432, 'featNotAvail');
+    this.notebook = this.add.image(768, 432, 'featNotAvail');
     this.activityLocked = this.add.image(768, 432, 'activityLocked');
     this.help_menu = this.add.image(768, 432, 'help_menu');
 	  this.tut1 = this.add.image(768, 432, 'tut1');
@@ -227,6 +266,7 @@ Info Panels like these contain important information and lessons that help you p
     this.key_2 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TWO);
     this.key_R = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
     this.key_H = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.H);
+    this.key_N = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.N);
   }
 
   imagesDraggable() {
@@ -254,14 +294,12 @@ Info Panels like these contain important information and lessons that help you p
 		if (this.activityOneOpened == true)
 		{
 			if(this.key_E.isDown){
-			    // Normal sequence: roomProgress was 0 and is going to 1.
-			    // BUT
-			    //   if coming back from further on, the max remembers there.
+          			if(roomProgress < 1000) {
+            				roomProgress = 1000;
+            				document.getElementById("background").play();
+				}	
 
-			    if(roomProgress < 1000)
-				roomProgress = 1000;
-
-			    this.scene.start("Course_Intro");
+			    	this.scene.start("Course_Intro");
 			}
 			this.E_KeyImg.x = this.character_north.x;
 			this.E_KeyImg.y = this.character_north.y-75;

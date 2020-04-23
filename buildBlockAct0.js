@@ -10,6 +10,7 @@ class buildBlockAct0 extends Phaser.Scene {
         this.paperCount = 1;
         this.maxPaper = 3;
         this.counter = 0;
+        this.musicToggle = false;
         document.getElementById("background").volume = 0.8;
     }
     //load assets in preload()
@@ -28,12 +29,33 @@ class buildBlockAct0 extends Phaser.Scene {
         this.createInteractionZones();
         this.assignKeybinds();
 	//        this.imagesDraggable();
+    
+        this.roomLabel = this.add.text(650, 6, "Building Blocks Sorting Room", {
+            font: "24px arial",
+            color: "#FFFFFF",
+            align: 'left',
+            fontWeight: 'bold',
+        });
     }
 
     update(delta) {
 	// This runs all the time in a game loop!!
 
 	//	console.log("update: roomProgress="+ roomProgress);
+
+    if (Phaser.Input.Keyboard.JustDown(this.key_N)) {
+        
+        document.getElementById("background").play();
+        if (this.musicToggle == false) {
+            document.getElementById("background").play();
+            this.musicToggle = true;
+        }
+        else if (this.musicToggle == true) {
+            document.getElementById("background").pause();
+            this.musicToggle = false;
+        }
+    }
+
 	if (roomProgress <= 2200) { 
 	    this.quizActive = true; 
 	    //	    this.paperCount = 1;
@@ -64,7 +86,7 @@ class buildBlockAct0 extends Phaser.Scene {
 		    this.balanceSheet.alpha = 1; 
 		    this.retainedEarnings.alpha = 0; 
 		}
-            }
+        }
 	    else {
 		    this.incomeStatement.alpha = 0; 
 		    this.balanceSheet.alpha = 0; 
@@ -75,39 +97,69 @@ class buildBlockAct0 extends Phaser.Scene {
 	    this.activityLocked.alpha = 0.0;
 	    this.top_mid_panel.alpha = 0.0;
 	    this.r1_map.alpha = 0;
-	    this.notebook.alpha = 0;
+	    this.r1_notebook.alpha = 0;
 	    this.help_menu.alpha = 0.0;
 	    this.helpOpen = false;
 	}
 
-        if (this.key_M.isDown) {
-            this.r1_map.alpha = 1.0;
-            this.characterMoveable = false;
-            this.character_north.alpha = 0.0;
-            this.character_east.alpha = 0.0;
-            this.character_south.alpha = 0.0;
-            this.character_west.alpha = 0.0;
-	    this.paper.alpha = 0.0;
+        if (Phaser.Input.Keyboard.JustDown(this.key_M)) {
+            if (this.r1_map.alpha == 0.0) {
+                this.r1_map.alpha = 1.0;
+                this.characterMoveable = false;
+                this.character_north.alpha = 0.0;
+                this.character_east.alpha = 0.0;
+                this.character_south.alpha = 0.0;
+                this.character_west.alpha = 0.0;
+	            this.paper.alpha = 0.0;
+            }
+            else {
+                this.activityLocked.alpha = 0.0;
+                this.top_mid_panel.alpha = 0.0;
+                this.r1_map.alpha = 0.0;
+                this.r1_notebook.alpha = 0.0;
+                this.help_menu.alpha = 0.0;
+                this.helpOpen = false;   
+            }
         }
 
-        if (this.key_B.isDown) {
-            this.notebook.alpha = 1.0;
-            this.characterMoveable = false;
-            this.character_north.alpha = 0.0;
-            this.character_east.alpha = 0.0;
-            this.character_south.alpha = 0.0;
-            this.character_west.alpha = 0.0;
-	    this.paper.alpha = 0.0;
+        if (Phaser.Input.Keyboard.JustDown(this.key_B)) {
+            if (this.r1_notebook.alpha == 0.0) {
+                this.r1_notebook.alpha = 1.0;
+                this.characterMoveable = false;
+                this.character_north.alpha = 0.0;
+                this.character_east.alpha = 0.0;
+                this.character_south.alpha = 0.0;
+                this.character_west.alpha = 0.0;
+	            this.paper.alpha = 0.0;
+            }
+            else {
+                this.activityLocked.alpha = 0.0;
+                this.top_mid_panel.alpha = 0.0;
+                this.r1_map.alpha = 0.0;
+                this.r1_notebook.alpha = 0.0;
+                this.help_menu.alpha = 0.0;
+                this.helpOpen = false;
+            }
         }
 
-        if (this.key_H.isDown) {
-            helpMenu();
-            this.characterMoveable = false;
-            this.character_north.alpha = 0.0;
-            this.character_east.alpha = 0.0;
-            this.character_south.alpha = 0.0;
-            this.character_west.alpha = 0.0;
-	    this.paper.alpha = 0.0;
+        if (Phaser.Input.Keyboard.JustDown(this.key_H)) {
+            if (this.help_menu.alpha == 0.0) {
+                this.helpMenu();
+                this.characterMoveable = false;
+                this.character_north.alpha = 0.0;
+                this.character_east.alpha = 0.0;
+                this.character_south.alpha = 0.0;
+                this.character_west.alpha = 0.0;
+	            this.paper.alpha = 0.0;
+            }
+            else {
+                this.activityLocked.alpha = 0.0;
+                this.top_mid_panel.alpha = 0.0;
+                this.r1_map.alpha = 0.0;
+                this.r1_notebook.alpha = 0.0;
+                this.help_menu.alpha = 0.0;
+                this.helpOpen = false;
+            }
         }
 
         if (this.quizActive == false) {
@@ -154,8 +206,8 @@ class buildBlockAct0 extends Phaser.Scene {
         this.load.image('ScfBox', 'assets/Room2Act0/ScfBox.png');
         this.load.image('paper_stack', 'assets/Room2Act0/paper_stack.png');
         this.load.image('paper', 'assets/Room2Act0/single_paper.png');
-        this.load.image('r1_map', 'assets/Map/room2inprogress.png');
-        this.load.image('notebook', 'assets/notebook.png');
+        this.load.image('r1_map', 'assets/featNotAvail.png');
+        this.load.image('r1_notebook', 'assets/featNotAvail.png');
         this.load.image('activityLocked', 'assets/activityLocked.png');
         this.load.image('help_menu', 'assets/help_menu.png');
         this.load.image('incomeStatement' , 'assets/Documents/incomeStatement.png');
@@ -187,7 +239,7 @@ class buildBlockAct0 extends Phaser.Scene {
         this.IncStmBox = this.add.image(1250, 630, 'IncStmBox');
         this.BalShtBox = this.add.image(300, 630, 'BalShtBox');
         this.r1_map = this.add.image(768, 432, 'r1_map');
-        this.notebook = this.add.image(768, 432, 'notebook');
+        this.r1_notebook = this.add.image(768, 432, 'r1_notebook');
         this.activityLocked = this.add.image(768, 432, 'activityLocked');
         this.help_menu = this.add.image(768, 432, 'help_menu');
         this.hole = this.add.image(768, 432, 'hole');
@@ -203,7 +255,7 @@ class buildBlockAct0 extends Phaser.Scene {
     setAlphas() {
         this.top_mid_panel.alpha = 0.0;
         this.r1_map.alpha = 0.0;
-        this.notebook.alpha = 0.0;
+        this.r1_notebook.alpha = 0.0;
         this.activityLocked.alpha = 0.0;
         this.E_KeyImg.alpha = 0.0;
         this.help_menu.alpha = 0.0;
@@ -240,7 +292,7 @@ class buildBlockAct0 extends Phaser.Scene {
         this.E_KeyImg.setDepth(50);
         this.r1_map.setDepth(100);
 	//        this.paper_stack.setDepth(2);
-        this.notebook.setDepth(100);
+        this.r1_notebook.setDepth(100);
         this.help_menu.setDepth(100);
         this.top_mid_panel.setDepth(100);
         this.activityLocked.setDepth(100);
@@ -263,7 +315,7 @@ class buildBlockAct0 extends Phaser.Scene {
         this.r2a0_floor.scaleY = 0.95;
         this.wall_info_2.setScale(0.75);
         this.E_KeyImg.setScale(0.4);
-        this.notebook.setScale(0.75);
+        this.r1_notebook.setScale(0.75);
         this.r1_map.setScale(0.75);
 	//        this.paper_stack.setScale(1.1);
         this.SreBox.setScale(0.9);
@@ -337,7 +389,7 @@ class buildBlockAct0 extends Phaser.Scene {
         this.key_3 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.THREE);
         this.key_R = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
         this.key_H = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.H);
-
+        this.key_N = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.N);
 
         this.key_Right = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
         this.key_Left = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
@@ -531,10 +583,10 @@ class buildBlockAct0 extends Phaser.Scene {
     hideActivities() {
 	    this.activityLocked.alpha = 0.0;
 	    this.top_mid_panel.alpha = 0.0;
-	    this.r1_map.alpha = 0;
-	    this.notebook.alpha = 0;
+	    /*this.r1_map.alpha = 0;
+	    this.r1_notebook.alpha = 0;
 	    this.help_menu.alpha = 0.0;
-	    this.helpOpen = false;
+	    this.helpOpen = false;*/
     }
 
     centerSprite() {

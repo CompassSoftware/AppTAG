@@ -9,6 +9,7 @@ class courseIntro extends Phaser.Scene {
         this.helpOpen = false;
         this.holeOpened = false;
         this.counter = 0;
+        this.musicToggle = false;
         document.getElementById("background").volume = 0.8;
     }
     //load assets in preload()
@@ -27,11 +28,30 @@ class courseIntro extends Phaser.Scene {
         this.createInteractionZones();
         this.assignKeybinds();
         this.imagesDraggable();
+
+        this.roomLabel = this.add.text(650, 6, "Course Intro Room", {
+            font: "24px arial", 
+            color: "#FFFFFF",
+            align: 'left',
+            fontWeight: 'bold',
+        });
     }
 
     update(delta) {
         //TEMPORARY FOR TESTING
         //vvvvvvvvvvvvvvvvvvv//
+
+        if (Phaser.Input.Keyboard.JustDown(this.key_N)) {
+            document.getElementById("background").play();
+            if (this.musicToggle == false) {
+                document.getElementById("background").play();
+                this.musicToggle = true;
+            }
+            else if (this.musicToggle == true) {
+                document.getElementById("background").pause();
+                this.musicToggle = false;
+            }
+        }
 
         if (this.activityOneOpened) {
             this.checkNextPage();
@@ -79,31 +99,46 @@ class courseIntro extends Phaser.Scene {
 	}
 
 
-        if (this.key_M.isDown) {
-            this.r1_map.alpha = 1.0;
-            this.characterMoveable = false;
-            this.character_north.alpha = 0.0;
-            this.character_east.alpha = 0.0;
-            this.character_south.alpha = 0.0;
-            this.character_west.alpha = 0.0;
+        if (Phaser.Input.Keyboard.JustDown(this.key_M)) {
+            if (this.r1_map.alpha == 0.0) {
+                this.r1_map.alpha = 1.0;
+                this.characterMoveable = false;
+                this.character_north.alpha = 0.0;
+                this.character_east.alpha = 0.0;
+                this.character_south.alpha = 0.0;
+                this.character_west.alpha = 0.0;
+            }
+            else {
+                this.quitInteraction();
+            }
         }
 
-        if (this.key_B.isDown) {
-            this.notebook.alpha = 1.0;
-            this.characterMoveable = false;
-            this.character_north.alpha = 0.0;
-            this.character_east.alpha = 0.0;
-            this.character_south.alpha = 0.0;
-            this.character_west.alpha = 0.0;
+        if (Phaser.Input.Keyboard.JustDown(this.key_B)) {
+            if (this.notebook.alpha == 0.0) {
+                this.notebook.alpha = 1.0;
+                this.characterMoveable = false;
+                this.character_north.alpha = 0.0;
+                this.character_east.alpha = 0.0;
+                this.character_south.alpha = 0.0;
+                this.character_west.alpha = 0.0;
+            }
+            else {
+                this.quitInteraction();
+            }
         }
 
-        if (this.key_H.isDown) {
-            helpMenu();
-            this.characterMoveable = false;
-            this.character_north.alpha = 0.0;
-            this.character_east.alpha = 0.0;
-            this.character_south.alpha = 0.0;
-            this.character_west.alpha = 0.0;
+        if (Phaser.Input.Keyboard.JustDown(this.key_H)) {
+            if (this.help_menu.alpha == 0.0) { 
+                this.helpMenu();
+                this.characterMoveable = false;
+                this.character_north.alpha = 0.0;
+                this.character_east.alpha = 0.0;
+                this.character_south.alpha = 0.0;
+                this.character_west.alpha = 0.0;
+            }
+            else {
+                this.quitInteraction();
+            }
         }
 
 
@@ -185,8 +220,9 @@ class courseIntro extends Phaser.Scene {
         //this.load.image('cardboard_box', 'assets/Room1/cardboard_box.png');
         //this.load.image('paper_stack', 'assets/Room1/paper_stack.png');
         //this.load.image('paper', 'assets/single_paper.png');
-        this.load.image('r1_map', 'assets/Map/room2inprogress.png');
-        this.load.image('notebook', 'assets/notebook.png');
+        //this.load.image('r1_map', 'assets/Map/room2inprogress.png');
+        //this.load.image('notebook', 'assets/notebook.png');
+        this.load.image('featNotAvail', 'assets/featNotAvail.png');
         this.load.image('activityLocked', 'assets/activityLocked.png');
         this.load.image('help_menu', 'assets/help_menu.png');
         //this.load.image('correctPlacements0', 'assets/Room1/placements0.png');
@@ -241,8 +277,8 @@ class courseIntro extends Phaser.Scene {
         //this.cardboard_box_1 = this.add.image(1310, 320, 'cardboard_box');
         //this.cardboard_box_2 = this.add.image(1310, 432, 'cardboard_box');
         //this.cardboard_box_3 = this.add.image(1310, 530, 'cardboard_box');
-        this.r1_map = this.add.image(768, 432, 'r1_map');
-        this.notebook = this.add.image(768, 432, 'notebook');
+        this.r1_map = this.add.image(768, 432, 'featNotAvail');
+        this.notebook = this.add.image(768, 432, 'featNotAvail');
         this.activityLocked = this.add.image(768, 432, 'activityLocked');
         this.help_menu = this.add.image(768, 432, 'help_menu');
         this.hole = this.add.image(768, 432, 'hole');
@@ -433,6 +469,7 @@ class courseIntro extends Phaser.Scene {
         this.key_3 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.THREE);
         this.key_R = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
         this.key_H = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.H);
+        this.key_N = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.N);
 
 
         this.key_Right = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
