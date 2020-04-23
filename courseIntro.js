@@ -30,13 +30,13 @@ class courseIntro extends Phaser.Scene {
         this.createInteractionZones();
         this.assignKeybinds();
         this.imagesDraggable();
-
         this.roomLabel = this.add.text(650, 6, "Course Intro Room", {
             font: "24px arial", 
             color: "#FFFFFF",
             align: 'left',
             fontWeight: 'bold',
         });
+        this.displayCoin();
     }
 
     update(delta) {
@@ -150,9 +150,8 @@ class courseIntro extends Phaser.Scene {
 	        if (roomProgress >= 1030) {
 		        this.hole.alpha = 1.0;
 		        this.holeOpened = true;
-	    }
+	        }
         }
-
         //if (this.quizActive == true && this.activatedQuiz == false && this.key_E.isDown) {
 	    //            this.activateQuiz();
 	    //            this.activatedQuiz = true;
@@ -241,6 +240,7 @@ class courseIntro extends Phaser.Scene {
 	//        this.load.image('hole', 'assets/hole.png');
         this.load.image('leftArrow' , 'assets/leftArrow.png');
         this.load.image('rightArrow' , 'assets/rightArrowTest.png');
+        this.load.image('singleCoin', 'assets/Coin/singleCoin.png');
     }
 
     /* createImages
@@ -287,6 +287,7 @@ class courseIntro extends Phaser.Scene {
         //this.congrats = this.add.image(810, 400, 'congrats');
         this.rightArrow = this.add.image(1000, 650, 'rightArrow');
         this.leftArrow = this.add.image(600, 650, 'rightArrow');
+        this.countCoin = this.add.image(40, 150, 'singleCoin');
         //this.placements0 = this.add.image(240, 800, 'correctPlacements0');
         //this.placements1 = this.add.image(240, 800, 'correctPlacements1');
         //this.placements2 = this.add.image(240, 800, 'correctPlacements2');
@@ -313,6 +314,7 @@ class courseIntro extends Phaser.Scene {
 	    this.returnDoor.alpha = 1;
         this.coin0.alpha = 1.0;
         this.coinHead.alpha = 0.0;
+        this.countCoin.alpha = 0.0;
 	// FinStmt sorting activity w/ boxes is not in room1 anymore...
 	    //this.cardboard_box_1.alpha = 0;
 	    //this.cardboard_box_2.alpha = 0;
@@ -348,6 +350,7 @@ class courseIntro extends Phaser.Scene {
         this.help_menu.setDepth(100);
         this.hole.setDepth(1);
 	    this.returnDoor.setDepth(1);
+        this.countCoin.setDepth(0);
     }
 
     /* setScales
@@ -389,6 +392,7 @@ class courseIntro extends Phaser.Scene {
 	this.activity6.setScale(0.67);
     this.coin0.setScale(0.5);
     this.coinHead.setScale(0.5);
+    this.countCoin.setScale(0.25);
     }
 
     /* setRotations
@@ -1295,6 +1299,21 @@ class courseIntro extends Phaser.Scene {
         document.getElementById("collect").play();
         coinCount++;
         console.log(coinCount);
+        this.updateCoin();
+    }
+
+    displayCoin() {
+        this.countCoin.alpha = 1.0;
+        this.count = this.add.text(70, 140, "x " + coinCount, {
+            font: "24px arial",
+            color: "#FFFFFF",
+            align: 'left',
+            fontweight: 'bold',
+        });
+    }
+
+    updateCoin() {
+        this.count.setText('x ' + coinCount);
     }
 
     /* helpMenu

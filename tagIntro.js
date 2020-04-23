@@ -41,6 +41,7 @@ Info Panels like these contain important information and lessons that help you p
         align: 'left',
         fontWeight:'bold',
     });
+    this.displayCoin();
   }
     
   update(delta) {
@@ -168,7 +169,7 @@ Info Panels like these contain important information and lessons that help you p
 	  this.load.image('hole', 'assets/hole.png');
     this.load.image('featNotAvail', 'assets/featNotAvail.png');
     this.load.image('coinExplain', 'assets/Coin/coinExplain.png');
-    
+    this.load.image('singleCoin', 'assets/Coin/singleCoin.png');    
   }
 
   createImages() {
@@ -190,6 +191,7 @@ Info Panels like these contain important information and lessons that help you p
 	  this.tut1 = this.add.image(768, 432, 'tut1');
 	  this.hole = this.add.image(768, 432, 'hole');
       this.coinExplain = this.add.image(768, 432, 'coinExplain');
+      this.countCoin = this.add.image(40, 150, 'singleCoin');
       
   }
 
@@ -210,6 +212,7 @@ Info Panels like these contain important information and lessons that help you p
     this.coinHead.alpha = 0.0;
     this.coinExplain.alpha = 0.0;
     this.hideActivities();
+    this.countCoin.alpha = 0.0;
   }
 
   setDepths() {
@@ -227,6 +230,7 @@ Info Panels like these contain important information and lessons that help you p
 	this.tut1.setDepth(99);
 	this.hole.setDepth(1);
     this.coinExplain.setDepth(2);
+    this.countCoin.setDepth(0);
   }
 
   setScales() {
@@ -243,6 +247,7 @@ Info Panels like these contain important information and lessons that help you p
     this.coin0.setScale(0.5);
     this.coinHead.setScale(0.5);
     this.coinExplain.setScale(2.0);
+    this.countCoin.setScale(0.25);
   }
 
   setRotations() {
@@ -634,6 +639,22 @@ Info Panels like these contain important information and lessons that help you p
       document.getElementById("collect").play();
       coinCount++;
       console.log(coinCount);
+      this.updateCoin();
+  }
+
+  //author: @Zoe
+  displayCoin() {
+    this.countCoin.alpha = 1.0;
+    this.count = this.add.text(70, 140, "x " + coinCount, {
+        font: "24px arial",
+        color: "#FFFFFF",
+        align: 'left', 
+        fontweight: 'bold',
+        });
+  }
+
+  updateCoin() {
+    this.count.setText('x ' + coinCount);
   }
 
   helpMenu() {
