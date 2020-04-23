@@ -294,16 +294,13 @@ Info Panels like these contain important information and lessons that help you p
 		if (this.activityOneOpened == true)
 		{
 			if(this.key_E.isDown){
-			    // Normal sequence: roomProgress was 0 and is going to 1.
-			    // BUT
-          //   if coming back from further on, the max remembers there.
+          			if(roomProgress < 1000) {
+            				roomProgress = 1000;
+            				document.getElementById("background").play();
+				}	
 
-          if(roomProgress < 1000)
-            roomProgress = 1000;
-            document.getElementById("background").play();
-
-          this.scene.start("Course_Intro");
-      }
+			    	this.scene.start("Course_Intro");
+			}
 			this.E_KeyImg.x = this.character_north.x;
 			this.E_KeyImg.y = this.character_north.y-75;
 			this.E_KeyImg.alpha = 1.0;
