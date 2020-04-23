@@ -13,11 +13,13 @@ class buildBlockAct2 extends Phaser.Scene {
 
     preload() {
         this.loadAssets();
+        this.load.spritesheet('coin', 'assets/Coin/coin-sprite-png-2.png', {frameWidth: 200, frameHeight: 250, endFrame: 5});
     }
 
     //when scene is created
     create() {
         this.createImages();
+        this.createCoins();
         this.setAlphas();
         this.setDepths();
         this.setScales();
@@ -31,6 +33,7 @@ class buildBlockAct2 extends Phaser.Scene {
             align:'left',
             fontWeight:'bold',
         });
+        this.displayCoin();
     }
 
     update(delta) {
@@ -280,6 +283,7 @@ class buildBlockAct2 extends Phaser.Scene {
 	//        this.load.image('retainedEarnings' , 'assets/Documents/retainedEarnings.png')
 	//        this.load.image('cashFlows' , 'assets/Documents/cashFlows.jpg');
 	//        this.load.image('room2b_hole', 'assets/hole.png');
+        this.load.image('singleCoin', 'assets/Coin/singleCoin.png');
     }
 
     /* createImages
@@ -332,6 +336,7 @@ class buildBlockAct2 extends Phaser.Scene {
         this.question3 = this.add.image(1060, 310, 'question');
         this.questionStack = this.add.image(100, 100, 'questionStack');
 	//        this.room2b_hole = this.add.image(268, 432, 'room2b_hole');
+        this.countCoin = this.add.image(40, 150, 'singleCoin');
     }
 
     /* setAlphas
@@ -371,7 +376,10 @@ class buildBlockAct2 extends Phaser.Scene {
         this.room2b_E_KeyImg.alpha = 0.0;
         this.room2b_help_menu.alpha = 0.0;
         this.questionStack.alpha = 0.0;
+        this.coinHead.alpha = 0.0;
+        this.coin0.alpha = 0.0;
         this.hideActivities();
+        this.countCoin.alpha = 0.0;
     }
 
     /* setDepths
@@ -379,7 +387,7 @@ class buildBlockAct2 extends Phaser.Scene {
      * Sets the depth of each object on the screen.
      */
     setDepths() {
-        this.room2b_walls.setDepth(1);
+        this.room2b_walls.setDepth(0);
         this.room2b_floor.setDepth(2);
 	this.r2a2_returnDoor.setDepth(2);
 	this.r2a2_UMpanel.setDepth(2);
@@ -394,6 +402,8 @@ class buildBlockAct2 extends Phaser.Scene {
 	this.qmark.setDepth(50);
 	this.couple.setDepth(49);
 	this.r2a2_goldcoin.setDepth(49);
+    this.coinHead.setDepth(49);
+    this.coin0.setDepth(49);
         this.room2b_E_KeyImg.setDepth(100);
         this.room2b_map.setDepth(100);
         this.room2b_notebook.setDepth(100);
@@ -416,6 +426,7 @@ class buildBlockAct2 extends Phaser.Scene {
         this.r2a2_q3_balshtW.setDepth(100);
         this.r2a2_q3_incstmW.setDepth(100);
         this.r2a2_congrats.setDepth(100);
+        this.countCoin.setDepth(0);
     }
 
     /* setScales
@@ -448,6 +459,9 @@ class buildBlockAct2 extends Phaser.Scene {
         this.question1.setScale(.09);
         this.question2.setScale(.09);
         this.question3.setScale(.09);
+        this.coinHead.setScale(0.5);
+        this.coin0.setScale(0.5);
+        this.countCoin.setScale(0.25);
     }
 
     /* setRotations
@@ -663,7 +677,8 @@ class buildBlockAct2 extends Phaser.Scene {
 		//		console.log("coinzone E down: progress="+roomProgress);
 		if (roomProgress == 2440) {
 		    this.r2a2_congrats.alpha = 1.0;
-		    this.r2a2_goldcoin.alpha = 0;
+            this.collectCoin(0);
+		    //this.r2a2_goldcoin.alpha = 0;
 		    if (roomProgress < 2500) { roomProgress = 2500; }
 		}
 	    }
@@ -698,7 +713,8 @@ class buildBlockAct2 extends Phaser.Scene {
 	    if (this.room2b_count == 4 && roomProgress < 2440) {
 		if (roomProgress < 2440) { roomProgress = 2440; }
 		this.room2b_centerSprite();
-		this.r2a2_goldcoin.alpha = 1;
+        this.coin0.alpha = 1;
+		//this.r2a2_goldcoin.alpha = 1;
 	    }
 	    else if (this.room2b_count == 3 && roomProgress < 2430) {
 		if (roomProgress < 2430) { roomProgress = 2430; }
@@ -858,6 +874,61 @@ class buildBlockAct2 extends Phaser.Scene {
 	this.r2a2_q3_scfW.alpha = 0;
 	this.r2a2_congrats.alpha = 0;
 
+    }
+
+    createCoins() {
+        this.coinfig1 = {
+            key: 'coinTurn',
+            frames: this.anims.generateFrameNumbers('coin', { start: 0, end: 5, first: 0}),
+            frameRate: 6,
+            repeat: -1
+        };
+        this.coinfig2 = {
+            key: 'coinCollect',
+            frames: this.anims.generateFrameNumbers('coin', { start: 0, end: 5, first: 0}),
+            frameRate: 30,
+            repeat: 1,
+            hideOnComplete: true
+            };
+
+            this.anims.create(this.coinfig1);
+            this.anims.create(this.coinfig2);
+
+            this.coinHead = this.add.sprite(this.room2b_character_north.x, this.room2b_character_north.y-75, 'coin');
+            this.coin0 = this.add.sprite(300, 480, 'coin');
+            this.coin0.anims.play('coinTurn');
+            
+    }
+
+    collectCoin(int) {
+        switch(int) {
+            case 0:
+              this.coin0.alpha = 0.0;
+              break;
+        }
+
+        this.room2b_E_KeyImg.alpha = 0.0;
+        this.coinHead.x = this.room2b_character_north.x;
+        this.coinHead.y = this.room2b_character_north.y-125;
+        this.coinHead.alpha = 1.0;
+        this.coinHead.anims.play('coinCollect');
+        document.getElementById("collect").play();
+        coinCount++;
+        this.updateCoin();
+    }
+
+    displayCoin() {
+        this.countCoin.alpha = 1.0;
+        this.count = this.add.text(70, 140, "x " + coinCount, {
+            font: "24px arial",
+            color: "#FFFFFF",
+            align: 'left', 
+            fontweight: 'bold',
+        });
+    }
+
+    updateCoin() {
+        this.count.setText('x ' + coinCount);
     }
 
     /*
