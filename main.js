@@ -22,3 +22,4 @@ var wallAlpha = 0.5;
 var musicToggle = false;
 var game = new Phaser.Game(config);
 var coinCount = 0;
+var musicToggle = false;
