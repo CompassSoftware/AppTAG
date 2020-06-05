@@ -2,19 +2,20 @@ class accountEqnAct extends Phaser.Scene {
 
   constructor() {
     super("AccountEqn_Act");
-    this.actOne_quizActive = false;
-    this.actOne_activatedQuiz = false;
-    this.actOne_unlocked = false;
-    this.actOne_paperMoveable = false;
-    this.actOne_activityOneOpened = false;
-    this.actOne_activityTwoOpened = false;
-    this.actOne_activityThreeOpened = false;
-    this.actOne_activityFourOpened = false;
-    this.actOne_activityFiveOpened = false;
-    this.actOne_activitySixOpened = false;
-    this.actOne_helpOpen = false;
+    //this.r3a1_quizActive = true;
+    //this.r3a1_activatedQuiz = true;
+    this.r3a1_unlocked = false;
+    this.r3a1_paperMoveable = true;
+    //this.r3a1_activityOneOpened = false;
+    //this.r3a1_activityTwoOpened = false;
+    //this.r3a1_activityThreeOpened = false;
+    //this.r3a1_activityFourOpened = false;
+    //this.r3a1_activityFiveOpened = false;
+    //this.r3a1_activitySixOpened = false;
+    this.r3a1_helpOpen = false;
     this.assetCorrect = false;
     this.revenueCorrect = false;
+    this.r3a1_characterMoveable = true;
   }
   //load assets in preload()
 
@@ -33,69 +34,103 @@ class accountEqnAct extends Phaser.Scene {
     this.createInteractionZones();
     this.assignKeybinds();
     this.imagesDraggable();
+
+    //this.activateQuiz();
+    this.roomLabel = this.add.text(600, 6, "Accounting Equation Activity Room", {
+      font: "24px arial",
+      color: "#FFFFFF",
+      align: 'left',
+      fontWeight: 'bold',
+    });
+    this.instructionsLabel = this.add.text(400, 200, "Drag the receipt to increase or decrease the 2 correct equation components", {
+      font: "24px arial",
+      color: "#000000",
+      align: 'left',
+      fontWeight: 'bold',
+    });
   }
 
   update(delta) {
     //TEMPORARY FOR TESTING
     //vvvvvvvvvvvvvvvvvvv//
-    if (this.actOne_key_H.isDown) {
+    if (this.r3a1_key_H.isDown) {
       this.helpMenu();
     }
     document.getElementById("background").volume = 0.2;
 
-    if (this.actOne_activityOneOpened) {
+/*
+    if (this.r3a1_activityOneOpened) {
       this.checkNextPage();
     }
-    if (this.actOne_activityTwoOpened) {
+    if (this.r3a1_activityTwoOpened) {
       this.checkNextPage();
     }
-    if (this.actOne_activityThreeOpened) {
+    if (this.r3a1_activityThreeOpened) {
       this.checkNextPage();
     }
-    if (this.actOne_activityFourOpened) {
+    if (this.r3a1_activityFourOpened) {
       this.checkNextPage();
     }
-    if (this.actOne_activityFiveOpened) {
+    if (this.r3a1_activityFiveOpened) {
       this.checkNextPage();
     }
+*/
 
-    if (this.actOne_key_M.isDown) {
-      this.actOne_map.alpha = 1.0;
-      actOne_characterMoveable = false;
-      this.character.alpha = 0;
-    }
+        if (Phaser.Input.Keyboard.JustDown(this.r3a1_key_M)) {
+            if (this.r3a1_map.alpha == 0.0) {
+                this.r3a1_map.alpha = 1.0;
+                this.characterMoveable = false;
+                this.character.alpha = 0.0;
+            }
+            else {
+                this.quitInteraction();
+            }
+        }
 
-    if (this.actOne_key_B.isDown) {
-      this.actOne_notebook.alpha = 1.0;
-      actOne_characterMoveable = false;
-      this.character.alpha = 0;
-    }
+        if (Phaser.Input.Keyboard.JustDown(this.r3a1_key_B)) {
+            if (this.notebook.alpha == 0.0) {
+                this.notebook.alpha = 1.0;
+                this.characterMoveable = false;
+                this.character.alpha = 0.0;
+            }
+            else {
+                this.quitInteraction();
+            }
+        }
 
 
-    if (this.actOne_key_Q.isDown && this.actOne_activatedQuiz == false) {
+    //if (this.r3a1_key_Q.isDown && this.r3a1_activatedQuiz == true) {
+      //this.quitInteraction();
+    //}
+
+    //if (this.r3a1_quizActive == true && this.r3a1_activatedQuiz == false && this.r3a1_key_E.isDown) {
+      //this.activateQuiz();
+      //this.r3a1_activatedQuiz = true;
+    //}
+
+    //if (this.r3a1_quizActive == true && this.r3a1_key_Q.isDown && this.r3a1_activatedQuiz == true) {
+    if (Phaser.Input.Keyboard.JustDown(this.r3a1_key_Q)) {
       this.quitInteraction();
+      //this.quitQuiz();
+      //this.r3a1_activatedQuiz = false;
     }
 
-    if (this.actOne_quizActive == true && this.actOne_activatedQuiz == false && this.actOne_key_E.isDown) {
-      this.activateQuiz();
-      this.actOne_activatedQuiz = true;
-    }
-
-    if (this.actOne_quizActive == true && this.actOne_key_Q.isDown && this.actOne_activatedQuiz == true) {
-      this.quitQuiz();
-      this.actOne_activatedQuiz = false;
-    }
-
-    if (this.actOne_activatedQuiz == false) {
+    //if (this.r3a1_activatedQuiz == false) {
         this.movePlayer();
         this.checkInteractValidity();
-      }
-    if (this.actOne_activatedQuiz == false) {
-      this.actOne_characterMoveable = true;
-    }
+     // }
+    //if (this.r3a1_activatedQuiz == false) {
+      //this.r3a1_characterMoveable = true;
+    //}
 
-    if(this.assetCorrect == true && this.revenueCorrect == true) {
-      this.actOne_hole.alpha = true;
+    if(this.assetCorrect == true && this.revenueCorrect == true && roomProgress < 3500) {
+      if (roomProgress < 3500) { roomProgress = 3500; }
+      this.character.alpha = 0.0;
+      this.r3a1_char_north.alpha = 0.0;
+      this.r3a1_char_south.alpha = 1.0;
+      this.r3a1_char_west.alpha = 0.0;
+      this.r3a1_char_east.alpha = 0.0;
+      //this.r3a1_hole.alpha = true;
     }
   }
 
@@ -108,18 +143,18 @@ class accountEqnAct extends Phaser.Scene {
    * Loads images to be used and sets them into a variable name.
   */
   loadAssets() {
-    this.load.image('actOne_one_lesson_BG', 'assets/one_lesson_BG.png');
+    this.load.image('r3a1_one_lesson_BG', 'assets/one_lesson_BG.png');
     this.load.image('character', 'assets/Panels/RoomThree/activityOneCharacter.png');
-    this.load.image('actOne_E_KeyImg', 'assets/E_Key.png');
-    this.load.image('actOne_floor', 'assets/Room3Act1/floor_two_activity_2.jpg');
-    this.load.image('actOne_map', 'assets/map.png');
-    this.load.image('actOne_notebook', 'assets/notebook.png');
-    this.load.image('actOne_activityLocked', 'assets/activityLocked.png');
-    this.load.image('actOne_help_menu', 'assets/help_menu.png');
-    this.load.image('actOne_Activity', 'assets/Room3Act1/equation.png');
-    this.load.image('actOne_redX', 'assets/Room3Act1/redX.jpg');
-    this.load.image('actOne_greenCheck', 'assets/Room3Act1/green_check.jpg');
-    this.load.image('actOne_hole', 'assets/hole.png');
+    this.load.image('r3a1_E_KeyImg', 'assets/E_Key.png');
+    this.load.image('r3a1_floor', 'assets/Room3Act1/floor_two_activity_2.jpg');
+    this.load.image('r3a1_map', 'assets/map.png');
+    this.load.image('r3a1_notebook', 'assets/notebook.png');
+    this.load.image('r3a1_activityLocked', 'assets/activityLocked.png');
+    this.load.image('r3a1_help_menu', 'assets/help_menu.png');
+    this.load.image('r3a1_Activity', 'assets/Room3Act1/equation.png');
+    this.load.image('r3a1_redX', 'assets/Room3Act1/redX.jpg');
+    this.load.image('r3a1_greenCheck', 'assets/Room3Act1/green_check.jpg');
+    //this.load.image('r3a1_hole', 'assets/hole.png');
 
   }
 
@@ -128,38 +163,45 @@ class accountEqnAct extends Phaser.Scene {
    * Adds the image to the game board
   */
   createImages() {
-    this.actOne_e_pressed = false;
-    this.actOne_papers_moved = false;
-    this.actOne_background = this.add.image(768, 432, 'actOne_one_lesson_BG');
+    this.r3a1_e_pressed = false;
+    this.r3a1_papers_moved = false;
+    this.r3a1_background = this.add.image(768, 432, 'r3a1_one_lesson_BG');
     this.character = this.add.image(768, 432, 'character');
-    this.actOne_E_KeyImg = this.add.image(this.character.x+40, this.character.y+40, 'actOne_E_KeyImg');
-    this.actOne_activity1A = this.add.image(768, 432, 'actOne_activity1A');
-    this.actOne_activity1B = this.add.image(768, 432, 'actOne_activity1B');
-    this.actOne_activity1C = this.add.image(768, 432, 'actOne_activity1C');
-    this.actOne_activity1D = this.add.image(768, 432, 'actOne_activity1D');
-    this.actOne_activity2A = this.add.image(768, 432, 'actOne_activity2A');
-    this.actOne_activity2B = this.add.image(768, 432, 'actOne_activity2B');
-    this.actOne_activity2C = this.add.image(768, 432, 'actOne_activity2C');
-    this.actOne_activity2D = this.add.image(768, 432, 'actOne_activity2D');
-    this.actOne_activity3A = this.add.image(768, 432, 'actOne_activity3A');
-    this.actOne_activity3B = this.add.image(768, 432, 'actOne_activity3B');
-    this.actOne_activity4A = this.add.image(768, 432, 'actOne_activity4A');
-    this.actOne_activity4B = this.add.image(768, 432, 'actOne_activity4B');
-    this.actOne_activity4C = this.add.image(768, 432, 'actOne_activity4C');
-    this.actOne_activity4D = this.add.image(768, 432, 'actOne_activity4D');
-    this.actOne_activity4E = this.add.image(768, 432, 'actOne_activity4E');
-    this.actOne_activity5A = this.add.image(768, 432, 'actOne_activity5A');
-    this.actOne_activity5B = this.add.image(768, 432, 'actOne_activity5B');
-    this.actOne_activity5C = this.add.image(768, 432, 'actOne_activity5C');
-    this.actOne_floor = this.add.image(769, 433, 'actOne_floor');
-    this.actOne_map = this.add.image(768, 432, 'actOne_map');
-    this.actOne_notebook = this.add.image(768, 432, 'actOne_notebook');
-    this.actOne_activityLocked = this.add.image(768, 432, 'actOne_activityLocked');
-    this.actOne_help_menu = this.add.image(768, 432, 'actOne_help_menu');
-    this.actOne_hole = this.add.image(1300, 432, 'actOne_hole');
-    this.actOne_Activity = this.add.image(768, 432, 'actOne_Activity');
-    this.actOne_redX = this.add.image(768, 432, 'actOne_redX');
-    this.actOne_greenCheck = this.add.image(768, 432, 'actOne_greenCheck');
+    this.r3a1_E_KeyImg = this.add.image(this.character.x+40, this.character.y+40, 'r3a1_E_KeyImg');
+    //this.r3a1_activity1A = this.add.image(768, 432, 'r3a1_activity1A');
+    //this.r3a1_activity1B = this.add.image(768, 432, 'r3a1_activity1B');
+    //this.r3a1_activity1C = this.add.image(768, 432, 'r3a1_activity1C');
+    //this.r3a1_activity1D = this.add.image(768, 432, 'r3a1_activity1D');
+    //this.r3a1_activity2A = this.add.image(768, 432, 'r3a1_activity2A');
+    //this.r3a1_activity2B = this.add.image(768, 432, 'r3a1_activity2B');
+    //this.r3a1_activity2C = this.add.image(768, 432, 'r3a1_activity2C');
+    //this.r3a1_activity2D = this.add.image(768, 432, 'r3a1_activity2D');
+    //this.r3a1_activity3A = this.add.image(768, 432, 'r3a1_activity3A');
+    //this.r3a1_activity3B = this.add.image(768, 432, 'r3a1_activity3B');
+    //this.r3a1_activity4A = this.add.image(768, 432, 'r3a1_activity4A');
+    //this.r3a1_activity4B = this.add.image(768, 432, 'r3a1_activity4B');
+    //this.r3a1_activity4C = this.add.image(768, 432, 'r3a1_activity4C');
+    //this.r3a1_activity4D = this.add.image(768, 432, 'r3a1_activity4D');
+    //this.r3a1_activity4E = this.add.image(768, 432, 'r3a1_activity4E');
+    //this.r3a1_activity5A = this.add.image(768, 432, 'r3a1_activity5A');
+    //this.r3a1_activity5B = this.add.image(768, 432, 'r3a1_activity5B');
+    //this.r3a1_activity5C = this.add.image(768, 432, 'r3a1_activity5C');
+    this.r3a1_floor = this.add.image(769, 433, 'r3a1_floor');
+    this.r3a1_map = this.add.image(768, 432, 'r3a1_map');
+    this.r3a1_notebook = this.add.image(768, 432, 'r3a1_notebook');
+    this.r3a1_activityLocked = this.add.image(768, 432, 'r3a1_activityLocked');
+    this.r3a1_help_menu = this.add.image(768, 432, 'r3a1_help_menu');
+    //this.r3a1_hole = this.add.image(1300, 432, 'r3a1_hole');
+    this.r3a1_Activity = this.add.image(768, 432, 'r3a1_Activity');
+    this.r3a1_redX = this.add.image(768, 432, 'r3a1_redX');
+    this.r3a1_greenCheck = this.add.image(768, 432, 'r3a1_greenCheck');
+
+    // trying to reuse asset!
+    this.r3a1_exitDoor = this.add.image(113, 385, 'returnDoor');
+    this.r3a1_char_north = this.add.image(768, 432, 'room3_character_north');
+    this.r3a1_char_south = this.add.image(768, 432, 'room3_character_south');
+    this.r3a1_char_west = this.add.image(768, 432, 'room3_character_west');
+    this.r3a1_char_east = this.add.image(768, 432, 'room3_character_east');
   }
 
   /* setAlphas
@@ -167,14 +209,20 @@ class accountEqnAct extends Phaser.Scene {
    * sets the alphas to to items in the game to zero so they are not visible at the beginning.
   */
   setAlphas() {
-    this.actOne_map.alpha = 0.0;
-    this.actOne_notebook.alpha = 0.0;
-    this.actOne_activityLocked.alpha = 0.0;
-    this.actOne_E_KeyImg.alpha = 0.0;
-    this.actOne_help_menu.alpha = 0.0;
-    this.actOne_redX.alpha = 0.0;
-    this.actOne_greenCheck.alpha = 0.0;
-    this.actOne_hole.alpha = 0.0;
+    this.r3a1_exitDoor.alpha = 1.0;
+    this.character.alpha = 1.0;
+    this.r3a1_char_north.alpha = 0.0;
+    this.r3a1_char_south.alpha = 0.0;
+    this.r3a1_char_west.alpha = 0.0;
+    this.r3a1_char_east.alpha = 0.0;
+    this.r3a1_map.alpha = 0.0;
+    this.r3a1_notebook.alpha = 0.0;
+    this.r3a1_activityLocked.alpha = 0.0;
+    this.r3a1_E_KeyImg.alpha = 0.0;
+    this.r3a1_help_menu.alpha = 0.0;
+    this.r3a1_redX.alpha = 0.0;
+    this.r3a1_greenCheck.alpha = 0.0;
+    //this.r3a1_hole.alpha = 0.0;
     this.hideActivities();
   }
 
@@ -183,16 +231,21 @@ class accountEqnAct extends Phaser.Scene {
    * Sets the depth of each object on the screen.
   */
   setDepths() {
-    this.actOne_floor.setDepth(0);
-    this.actOne_hole.setDepth(1);
-    this.actOne_Activity.setDepth(1);
+    this.r3a1_char_north.setDepth(50);
+    this.r3a1_char_south.setDepth(50);
+    this.r3a1_char_west.setDepth(50);
+    this.r3a1_char_east.setDepth(50);
+    this.r3a1_floor.setDepth(0);
+    this.r3a1_exitDoor.setDepth(1);
+    //this.r3a1_hole.setDepth(1);
+    this.r3a1_Activity.setDepth(1);
     this.character.setDepth(50);
-    this.actOne_E_KeyImg.setDepth(49);
-    this.actOne_map.setDepth(100);
-    this.actOne_notebook.setDepth(100);
-    this.actOne_help_menu.setDepth(100);
-    this.actOne_redX.setDepth(49);
-    this.actOne_greenCheck.setDepth(49);
+    this.r3a1_E_KeyImg.setDepth(49);
+    this.r3a1_map.setDepth(100);
+    this.r3a1_notebook.setDepth(100);
+    this.r3a1_help_menu.setDepth(100);
+    this.r3a1_redX.setDepth(49);
+    this.r3a1_greenCheck.setDepth(49);
   }
 
   /* setScales
@@ -200,12 +253,17 @@ class accountEqnAct extends Phaser.Scene {
    * Scales the size of each object.
   */
   setScales() {
-    this.actOne_E_KeyImg.setScale(0.4);
-    this.actOne_notebook.setScale(0.75);
-    this.actOne_map.setScale(0.75);
+    this.r3a1_char_north.setScale(3);
+    this.r3a1_char_south.setScale(3);
+    this.r3a1_char_west.setScale(3);
+    this.r3a1_char_east.setScale(3);
+    this.r3a1_exitDoor.setScale(1.5);
+    this.r3a1_E_KeyImg.setScale(0.4);
+    this.r3a1_notebook.setScale(0.75);
+    this.r3a1_map.setScale(0.75);
     this.character.setScale(1);
-    this.actOne_floor.scaleY = 1.185;
-    this.actOne_floor.scaleX = 1.395;
+    this.r3a1_floor.scaleY = 1.185;
+    this.r3a1_floor.scaleX = 1.395;
 
   }
 
@@ -214,6 +272,7 @@ class accountEqnAct extends Phaser.Scene {
    * Sets the rotation that each object sits at.
   */
   setRotations() {
+    this.r3a1_exitDoor.angle = 270;
    }
 
   /* createInteractionZones
@@ -221,49 +280,51 @@ class accountEqnAct extends Phaser.Scene {
    * Sets the area that you can interact with each object
   */
   createInteractionZones() {
-    this.actOne_graphics = this.add.graphics({fillStyle: {color: 0xFFFFFF, alpha: 0.0}});
+    this.r3a1_graphics = this.add.graphics({fillStyle: {color: 0xFFFFFF, alpha: 0.0}});
     //this.graphicsTest = this.add.graphics({fillStyle: {color: 0x4F4F4F, alpha: 1.0}});
     //TOP ZONES
                                                 //xpos ypos x   y
-    this.actOne_increaseAssets = new Phaser.Geom.Rectangle(425,300,100,100);
-    this.actOne_graphics.fillRectShape(this.actOne_increaseAssets);
+    this.r3a1_increaseAssets = new Phaser.Geom.Rectangle(425,300,100,100);
+    this.r3a1_graphics.fillRectShape(this.r3a1_increaseAssets);
 
-    this.actOne_decreaseAssets = new Phaser.Geom.Rectangle(425,500,100,100);
-    this.actOne_graphics.fillRectShape(this.actOne_decreaseAssets);
+    this.r3a1_decreaseAssets = new Phaser.Geom.Rectangle(425,500,100,100);
+    this.r3a1_graphics.fillRectShape(this.r3a1_decreaseAssets);
 
-    this.actOne_increaseLiabilities = new Phaser.Geom.Rectangle(525,300,100,100);
-    this.actOne_graphics.fillRectShape(this.actOne_increaseLiabilities);
+    this.r3a1_increaseLiabilities = new Phaser.Geom.Rectangle(525,300,100,100);
+    this.r3a1_graphics.fillRectShape(this.r3a1_increaseLiabilities);
 
-    this.actOne_decreaseLiabilities = new Phaser.Geom.Rectangle(525,500,100,100);
-    this.actOne_graphics.fillRectShape(this.actOne_decreaseLiabilities);
+    this.r3a1_decreaseLiabilities = new Phaser.Geom.Rectangle(525,500,100,100);
+    this.r3a1_graphics.fillRectShape(this.r3a1_decreaseLiabilities);
 
-    this.actOne_increaseStock = new Phaser.Geom.Rectangle(625,300,100,100);
-    this.actOne_graphics.fillRectShape(this.actOne_increaseStock);
+    this.r3a1_increaseStock = new Phaser.Geom.Rectangle(625,300,100,100);
+    this.r3a1_graphics.fillRectShape(this.r3a1_increaseStock);
 
-    this.actOne_decreaseStock = new Phaser.Geom.Rectangle(625,500,100,100);
-    this.actOne_graphics.fillRectShape(this.actOne_decreaseStock);
+    this.r3a1_decreaseStock = new Phaser.Geom.Rectangle(625,500,100,100);
+    this.r3a1_graphics.fillRectShape(this.r3a1_decreaseStock);
 
-    this.actOne_increaseRevenue = new Phaser.Geom.Rectangle(725,300,100,100);
-    this.actOne_graphics.fillRectShape(this.actOne_increaseRevenue);
+    this.r3a1_increaseRevenue = new Phaser.Geom.Rectangle(725,300,100,100);
+    this.r3a1_graphics.fillRectShape(this.r3a1_increaseRevenue);
 
-    this.actOne_decreaseRevenue = new Phaser.Geom.Rectangle(725,500,100,100);
-    this.actOne_graphics.fillRectShape(this.actOne_decreaseRevenue);
+    this.r3a1_decreaseRevenue = new Phaser.Geom.Rectangle(725,500,100,100);
+    this.r3a1_graphics.fillRectShape(this.r3a1_decreaseRevenue);
 
-    this.actOne_increaseExpenses = new Phaser.Geom.Rectangle(825,300,100,100);
-    this.actOne_graphics.fillRectShape(this.actOne_increaseExpenses);
+    this.r3a1_increaseExpenses = new Phaser.Geom.Rectangle(825,300,100,100);
+    this.r3a1_graphics.fillRectShape(this.r3a1_increaseExpenses);
 
-    this.actOne_decreaseExpenses = new Phaser.Geom.Rectangle(825,500,100,100);
-    this.actOne_graphics.fillRectShape(this.actOne_decreaseExpenses);
+    this.r3a1_decreaseExpenses = new Phaser.Geom.Rectangle(825,500,100,100);
+    this.r3a1_graphics.fillRectShape(this.r3a1_decreaseExpenses);
 
-    this.actOne_increaseDividend = new Phaser.Geom.Rectangle(925,300,100,100);
-    this.actOne_graphics.fillRectShape(this.actOne_increaseDividend);
+    this.r3a1_increaseDividend = new Phaser.Geom.Rectangle(925,300,100,100);
+    this.r3a1_graphics.fillRectShape(this.r3a1_increaseDividend);
 
-    this.actOne_decreaseDividend = new Phaser.Geom.Rectangle(925,500,100,100);
-    this.actOne_graphics.fillRectShape(this.actOne_decreaseDividend);
+    this.r3a1_decreaseDividend = new Phaser.Geom.Rectangle(925,500,100,100);
+    this.r3a1_graphics.fillRectShape(this.r3a1_decreaseDividend);
 
-    this.actOne_holeInteract = new Phaser.Geom.Rectangle(1300, 400, 100, 100);
-    this.actOne_graphics.fillRectShape(this.actOne_holeInteract);
+    //this.r3a1_holeInteract = new Phaser.Geom.Rectangle(1300, 400, 100, 100);
+    //this.r3a1_graphics.fillRectShape(this.r3a1_holeInteract);
 
+    this.r3a1_exitDoor_zone = new Phaser.Geom.Rectangle(113,320,100,100);
+    this.r3a1_graphics.fillRectShape(this.r3a1_exitDoor_zone);
   }
 
   /* assignKeybinds
@@ -272,22 +333,22 @@ class accountEqnAct extends Phaser.Scene {
   */
   assignKeybinds() {
         //KEYBOARD INPUT
-    this.actOne_key_W = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
-    this.actOne_key_A = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
-    this.actOne_key_S = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
-    this.actOne_key_D = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
-    this.actOne_key_E = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
-    this.actOne_key_Q = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
-    this.actOne_key_M = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.M);
-    this.actOne_key_B = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B);
-    this.actOne_key_U = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.U);
-    this.actOne_key_1 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE);
-    this.actOne_key_2 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TWO);
-    this.actOne_key_3 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.THREE);
-    this.actOne_key_4 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.FOUR);
-    this.actOne_key_5 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.FIVE);
-    this.actOne_key_R = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
-    this.actOne_key_H = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.H);
+    this.r3a1_key_W = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+    this.r3a1_key_A = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+    this.r3a1_key_S = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+    this.r3a1_key_D = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+    this.r3a1_key_E = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
+    this.r3a1_key_Q = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
+    this.r3a1_key_M = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.M);
+    this.r3a1_key_B = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.B);
+    this.r3a1_key_U = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.U);
+    this.r3a1_key_1 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ONE);
+    this.r3a1_key_2 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.TWO);
+    this.r3a1_key_3 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.THREE);
+    this.r3a1_key_4 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.FOUR);
+    this.r3a1_key_5 = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.FIVE);
+    this.r3a1_key_R = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
+    this.r3a1_key_H = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.H);
 
   }
 
@@ -309,13 +370,13 @@ class accountEqnAct extends Phaser.Scene {
 * helper method to set the activities to opened or closed
 */
 
-  checkActivityOpened(actOne_one, actOne_two, actOne_three, actOne_four, actOne_five, actOne_six) {
-    this.actOne_activityOneOpened = actOne_one;
-    this.actOne_activityTwoOpened = actOne_two;
-    this.actOne_activityThreeOpened = actOne_three;
-    this.actOne_activityFourOpened = actOne_four;
-    this.actOne_activityFiveOpened = actOne_five;
-    this.actOne_activitySixOpened = actOne_six;
+  checkActivityOpened(r3a1_one, r3a1_two, r3a1_three, r3a1_four, r3a1_five, r3a1_six) {
+    //this.r3a1_activityOneOpened = r3a1_one;
+    //this.r3a1_activityTwoOpened = r3a1_two;
+    //this.r3a1_activityThreeOpened = r3a1_three;
+    //this.r3a1_activityFourOpened = r3a1_four;
+    //this.r3a1_activityFiveOpened = r3a1_five;
+    //this.r3a1_activitySixOpened = r3a1_six;
 
   }
 
@@ -326,66 +387,147 @@ class accountEqnAct extends Phaser.Scene {
 
   checkInteractValidity() {
 
-        if (Phaser.Geom.Rectangle.ContainsPoint(this.actOne_increaseAssets, this.character)) {
-          this.actOne_E_KeyImg.x = this.character.x;
-          this.actOne_E_KeyImg.y = this.character.y-75;
-          this.actOne_E_KeyImg.alpha = 1.0;
-          if(this.actOne_key_E.isDown) {
+        if (roomProgress < 3500 && Phaser.Geom.Rectangle.ContainsPoint(this.r3a1_increaseAssets, this.character)) {
+          this.r3a1_E_KeyImg.x = this.character.x;
+          this.r3a1_E_KeyImg.y = this.character.y-75;
+          this.r3a1_E_KeyImg.alpha = 1.0;
+          if(this.r3a1_key_E.isDown) {
             document.getElementById("correct").play();
-            this.actOne_greenCheck.alpha = 1.0;
+            this.r3a1_greenCheck.alpha = 1.0;
             this.assetCorrect = true;
           }
         }
-        else if(Phaser.Geom.Rectangle.ContainsPoint(this.actOne_decreaseAssets, this.character)) {
-          this.actOne_E_KeyImg.x = this.character.x;
-          this.actOne_E_KeyImg.y = this.character.y-75;
-          this.actOne_E_KeyImg.alpha = 1.0;
-          if(this.actOne_key_E.isDown) {
+        else if(roomProgress < 3500 && Phaser.Geom.Rectangle.ContainsPoint(this.r3a1_decreaseAssets, this.character)) {
+          this.r3a1_E_KeyImg.x = this.character.x;
+          this.r3a1_E_KeyImg.y = this.character.y-75;
+          this.r3a1_E_KeyImg.alpha = 1.0;
+          if(this.r3a1_key_E.isDown) {
             document.getElementById("wrong").play();
-            this.actOne_redX.alpha = 1.0;
+            this.r3a1_redX.alpha = 1.0;
           }
 
         }
-        else if(Phaser.Geom.Rectangle.ContainsPoint(this.actOne_increaseRevenue, this.character)) {
-          this.actOne_E_KeyImg.x = this.character.x;
-          this.actOne_E_KeyImg.y = this.character.y-75;
-          this.actOne_E_KeyImg.alpha = 1.0;
-          if(this.actOne_key_E.isDown) {
+        else if(roomProgress < 3500 && Phaser.Geom.Rectangle.ContainsPoint(this.r3a1_increaseRevenue, this.character)) {
+          this.r3a1_E_KeyImg.x = this.character.x;
+          this.r3a1_E_KeyImg.y = this.character.y-75;
+          this.r3a1_E_KeyImg.alpha = 1.0;
+          if(this.r3a1_key_E.isDown) {
             document.getElementById("correct").play();
-            this.actOne_greenCheck.alpha = 1.0;
+            this.r3a1_greenCheck.alpha = 1.0;
             this.revenueCorrect = true;
-            this.setHoleAlpha();
+            //this.setHoleAlpha();
           }
         }
-        else if(Phaser.Geom.Rectangle.ContainsPoint(this.actOne_decreaseRevenue, this.character)) {
-          this.actOne_E_KeyImg.x = this.character.x;
-          this.actOne_E_KeyImg.y = this.character.y-75;
-          this.actOne_E_KeyImg.alpha = 1.0;
-          if(this.actOne_key_E.isDown) {
+        else if(roomProgress < 3500 && Phaser.Geom.Rectangle.ContainsPoint(this.r3a1_decreaseRevenue, this.character)) {
+          this.r3a1_E_KeyImg.x = this.character.x;
+          this.r3a1_E_KeyImg.y = this.character.y-75;
+          this.r3a1_E_KeyImg.alpha = 1.0;
+          if(this.r3a1_key_E.isDown) {
             document.getElementById("wrong").play();
-            this.actOne_redX.alpha = 1.0;
+            this.r3a1_redX.alpha = 1.0;
           }
         }
-        else if(Phaser.Geom.Rectangle.ContainsPoint(this.actOne_holeInteract, this.character)) {
-          this.actOne_E_KeyImg.x = this.character.x;
-          this.actOne_E_KeyImg.y = this.character.y-75;
-          this.actOne_E_KeyImg.alpha = 1.0;
+        else if(roomProgress < 3500 && Phaser.Geom.Rectangle.ContainsPoint(this.r3a1_increaseLiabilities, this.character)) {
+          this.r3a1_E_KeyImg.x = this.character.x;
+          this.r3a1_E_KeyImg.y = this.character.y-75;
+          this.r3a1_E_KeyImg.alpha = 1.0;
+          if(this.r3a1_key_E.isDown) {
+            document.getElementById("wrong").play();
+            this.r3a1_redX.alpha = 1.0;
+          }
+        }
+        else if(roomProgress < 3500 && Phaser.Geom.Rectangle.ContainsPoint(this.r3a1_decreaseLiabilities, this.character)) {
+          this.r3a1_E_KeyImg.x = this.character.x;
+          this.r3a1_E_KeyImg.y = this.character.y-75;
+          this.r3a1_E_KeyImg.alpha = 1.0;
+          if(this.r3a1_key_E.isDown) {
+            document.getElementById("wrong").play();
+            this.r3a1_redX.alpha = 1.0;
+          }
+        }
+        else if(roomProgress < 3500 && Phaser.Geom.Rectangle.ContainsPoint(this.r3a1_increaseStock, this.character)) {
+          this.r3a1_E_KeyImg.x = this.character.x;
+          this.r3a1_E_KeyImg.y = this.character.y-75;
+          this.r3a1_E_KeyImg.alpha = 1.0;
+          if(this.r3a1_key_E.isDown) {
+            document.getElementById("wrong").play();
+            this.r3a1_redX.alpha = 1.0;
+          }
+        }
+        else if(roomProgress < 3500 && Phaser.Geom.Rectangle.ContainsPoint(this.r3a1_decreaseStock, this.character)) {
+          this.r3a1_E_KeyImg.x = this.character.x;
+          this.r3a1_E_KeyImg.y = this.character.y-75;
+          this.r3a1_E_KeyImg.alpha = 1.0;
+          if(this.r3a1_key_E.isDown) {
+            document.getElementById("wrong").play();
+            this.r3a1_redX.alpha = 1.0;
+          }
+        }
+        else if(roomProgress < 3500 && Phaser.Geom.Rectangle.ContainsPoint(this.r3a1_increaseExpenses, this.character)) {
+          this.r3a1_E_KeyImg.x = this.character.x;
+          this.r3a1_E_KeyImg.y = this.character.y-75;
+          this.r3a1_E_KeyImg.alpha = 1.0;
+          if(this.r3a1_key_E.isDown) {
+            document.getElementById("wrong").play();
+            this.r3a1_redX.alpha = 1.0;
+          }
+        }
+        else if(roomProgress < 3500 && Phaser.Geom.Rectangle.ContainsPoint(this.r3a1_decreaseExpenses, this.character)) {
+          this.r3a1_E_KeyImg.x = this.character.x;
+          this.r3a1_E_KeyImg.y = this.character.y-75;
+          this.r3a1_E_KeyImg.alpha = 1.0;
+          if(this.r3a1_key_E.isDown) {
+            document.getElementById("wrong").play();
+            this.r3a1_redX.alpha = 1.0;
+          }
+        }
+        else if(roomProgress < 3500 && Phaser.Geom.Rectangle.ContainsPoint(this.r3a1_increaseDividend, this.character)) {
+          this.r3a1_E_KeyImg.x = this.character.x;
+          this.r3a1_E_KeyImg.y = this.character.y-75;
+          this.r3a1_E_KeyImg.alpha = 1.0;
+          if(this.r3a1_key_E.isDown) {
+            document.getElementById("wrong").play();
+            this.r3a1_redX.alpha = 1.0;
+          }
+        }
+        else if(roomProgress < 3500 && Phaser.Geom.Rectangle.ContainsPoint(this.r3a1_decreaseDividend, this.character)) {
+          this.r3a1_E_KeyImg.x = this.character.x;
+          this.r3a1_E_KeyImg.y = this.character.y-75;
+          this.r3a1_E_KeyImg.alpha = 1.0;
+          if(this.r3a1_key_E.isDown) {
+            document.getElementById("wrong").play();
+            this.r3a1_redX.alpha = 1.0;
+          }
+        }
+        else if(Phaser.Geom.Rectangle.ContainsPoint(this.r3a1_exitDoor_zone, this.character)) {
+          this.r3a1_E_KeyImg.x = this.character.x;
+          this.r3a1_E_KeyImg.y = this.character.y-75;
+          this.r3a1_E_KeyImg.alpha = 1.0;
 
-          if(this.actOne_key_E.isDown) {
+          if(this.r3a1_key_E.isDown) {
             this.scene.start("Account_Eqn");
           }
         }
         else {
           this.hideActivities();
-          this.actOne_E_KeyImg.alpha = 0;
+          this.r3a1_E_KeyImg.alpha = 0;
+        }
+
+    if(this.assetCorrect == true && this.revenueCorrect == true && roomProgress < 3500) {
+           if (roomProgress < 3500) { roomProgress = 3500; }
+           this.character.alpha = 0.0;
+           this.r3a1_char_north.alpha = 0.0;
+           this.r3a1_char_south.alpha = 1.0;
+           this.r3a1_char_west.alpha = 0.0;
+           this.r3a1_char_east.alpha = 0.0;
         }
   }
 
-  setHoleAlpha() {
-    if(this.assetCorrect == true && this.revenueCorrect == true) {
-      this.actOne_hole.alpha = true;
-    }
-  }
+  //setHoleAlpha() {
+    //if(this.assetCorrect == true && this.revenueCorrect == true) {
+      //this.r3a1_hole.alpha = true;
+    //}
+  //}
 
   /* movePlayer
    *
@@ -394,29 +536,103 @@ class accountEqnAct extends Phaser.Scene {
   movePlayer() {
     //setCharacterAlpha is in helper.js and arguments go N,E,S,W
     //Character moves up
-    if(this.actOne_key_W.isDown && this.actOne_characterMoveable == true) {
-  if(this.character.y > 185){
+    if(this.r3a1_key_W.isDown && this.r3a1_characterMoveable == true) {
+       if(this.character.y > 185){
+          this.r3a1_char_north.y -= 5;
+          this.r3a1_char_south.y -= 5;
+          this.r3a1_char_west.y -= 5;
+          this.r3a1_char_east.y -= 5;
           this.character.y -= 5;
+       }
+       if (roomProgress < 3500) {
+	this.character.alpha = 1.0;
+        this.r3a1_char_north.alpha = 0.0;
+        this.r3a1_char_south.alpha = 0.0;
+        this.r3a1_char_west.alpha = 0.0;
+        this.r3a1_char_east.alpha = 0.0;
+       }
+       else if (roomProgress >= 3500) {
+	this.character.alpha = 0.0;
+        this.r3a1_char_north.alpha = 1.0;
+        this.r3a1_char_south.alpha = 0.0;
+        this.r3a1_char_west.alpha = 0.0;
+        this.r3a1_char_east.alpha = 0.0;
+       }
     }
+
     //Character moves left
-  } if (this.actOne_key_A.isDown && this.actOne_characterMoveable == true) {
+    if (this.r3a1_key_A.isDown && this.r3a1_characterMoveable == true) {
         if(this.character.x > 210){
+          this.r3a1_char_north.x -= 5;
+          this.r3a1_char_south.x -= 5;
+         this.r3a1_char_west.x -= 5;
+          this.r3a1_char_east.x -= 5;
           this.character.x -= 5;
           }
-
+       if (roomProgress < 3500) {
+	this.character.alpha = 1.0;
+        this.r3a1_char_north.alpha = 0.0;
+        this.r3a1_char_south.alpha = 0.0;
+        this.r3a1_char_west.alpha = 0.0;
+        this.r3a1_char_east.alpha = 0.0;
+       }
+       else if (roomProgress >= 3500) {
+	this.character.alpha = 0.0;
+        this.r3a1_char_north.alpha = 0.0;
+        this.r3a1_char_south.alpha = 0.0;
+        this.r3a1_char_west.alpha = 1.0;
+        this.r3a1_char_east.alpha = 0.0;
+       }
     }
+
     //Character moves down
-     if (this.actOne_key_S.isDown && this.actOne_characterMoveable == true) {
-  if(this.character.y < 680){
+     if (this.r3a1_key_S.isDown && this.r3a1_characterMoveable == true) {
+        if(this.character.y < 680){
+          this.r3a1_char_north.y += 5;
+          this.r3a1_char_south.y += 5;
+          this.r3a1_char_west.y += 5;
+          this.r3a1_char_east.y += 5;
           this.character.y += 5;
+        }
+       if (roomProgress < 3500) {
+	this.character.alpha = 1.0;
+        this.r3a1_char_north.alpha = 0.0;
+        this.r3a1_char_south.alpha = 0.0;
+        this.r3a1_char_west.alpha = 0.0;
+        this.r3a1_char_east.alpha = 0.0;
+       }
+       else if (roomProgress >= 3500) {
+	this.character.alpha = 0.0;
+        this.r3a1_char_north.alpha = 0.0;
+        this.r3a1_char_south.alpha = 1.0;
+        this.r3a1_char_west.alpha = 0.0;
+        this.r3a1_char_east.alpha = 0.0;
+       }
     }
 
-    }
     //Character moves right
-    if (this.actOne_key_D.isDown && this.actOne_characterMoveable == true) {
+    if (this.r3a1_key_D.isDown && this.r3a1_characterMoveable == true) {
         if(this.character.x < 1325){
+          this.r3a1_char_north.x += 5;
+          this.r3a1_char_south.x += 5;
+          this.r3a1_char_west.x += 5;
+          this.r3a1_char_east.x += 5;
           this.character.x += 5;
-    }
+        }
+       if (roomProgress < 3500) {
+	this.character.alpha = 1.0;
+        this.r3a1_char_north.alpha = 0.0;
+        this.r3a1_char_south.alpha = 0.0;
+        this.r3a1_char_west.alpha = 0.0;
+        this.r3a1_char_east.alpha = 0.0;
+       }
+       else if (roomProgress >= 3500) {
+	this.character.alpha = 0.0;
+        this.r3a1_char_north.alpha = 0.0;
+        this.r3a1_char_south.alpha = 0.0;
+        this.r3a1_char_west.alpha = 0.0;
+        this.r3a1_char_east.alpha = 1.0;
+       }
     }
   }
 
@@ -425,14 +641,14 @@ class accountEqnAct extends Phaser.Scene {
    * makes the paper moveable in the test activity
   */
   movePaper(moveThisPaper) {
-    if(this.actOne_key_W.isDown && this.actOne_paperMoveable == true) {
-      actOne_moveThisPaper.y -= 7;
-    } if (this.actOne_key_A.isDown && this.actOne_paperMoveable == true) {
-      actOne_moveThisPaper.x -= 7;
-    } if (this.actOne_key_S.isDown && this.actOne_paperMoveable == true) {
-      actOne_moveThisPaper.y += 7;
-    } if (this.actOne_key_D.isDown && this.actOne_paperMoveable == true) {
-      actOne_moveThisPaper.x += 7;
+    if(this.r3a1_key_W.isDown && this.r3a1_paperMoveable == true) {
+      r3a1_moveThisPaper.y -= 7;
+    } if (this.r3a1_key_A.isDown && this.r3a1_paperMoveable == true) {
+      r3a1_moveThisPaper.x -= 7;
+    } if (this.r3a1_key_S.isDown && this.r3a1_paperMoveable == true) {
+      r3a1_moveThisPaper.y += 7;
+    } if (this.r3a1_key_D.isDown && this.r3a1_paperMoveable == true) {
+      r3a1_moveThisPaper.x += 7;
     }
   }
 
@@ -441,20 +657,20 @@ class accountEqnAct extends Phaser.Scene {
    * Sets the alphas to 0 so that the interaction is quit.
   */
   quitInteraction() {
-    this.actOne_map.alpha = 0.0;
-    this.actOne_notebook.alpha = 0.0;
+    this.r3a1_map.alpha = 0.0;
+    this.r3a1_notebook.alpha = 0.0;
     this.hideActivities();
-    this.actOne_activityLocked.alpha = 0.0;
+    this.r3a1_activityLocked.alpha = 0.0;
     this.character.alpha = 1;
-    this.actOne_characterMoveable = true;
-    this.actOne_activityOneOpened = false;
-    this.actOne_activityTwoOpened = false;
-    this.actOne_activityThreeOpened = false;
-    this.actOne_activityFourOpened = false;
-    this.actOne_activityFiveOpened = false;
-    this.actOne_activitySixOpened = false;
-    this.actOne_help_menu.alpha = 0.0;
-  this.actOne_activatedQuiz = false;
+    this.r3a1_characterMoveable = true;
+    //this.r3a1_activityOneOpened = false;
+    //this.r3a1_activityTwoOpened = false;
+    //this.r3a1_activityThreeOpened = false;
+    //this.r3a1_activityFourOpened = false;
+    //this.r3a1_activityFiveOpened = false;
+    //this.r3a1_activitySixOpened = false;
+    this.r3a1_help_menu.alpha = 0.0;
+  this.r3a1_activatedQuiz = false;
   }
 
 
@@ -467,26 +683,26 @@ class accountEqnAct extends Phaser.Scene {
    * Sets the alphas to the activities to 0 so that they are hidden.
   */
   hideActivities() {
-    this.actOne_activity1A.alpha = 0.0;
-    this.actOne_activity1B.alpha = 0.0;
-    this.actOne_activity1C.alpha = 0.0;
-    this.actOne_activity1D.alpha = 0.0;
-    this.actOne_activity2A.alpha = 0.0;
-    this.actOne_activity2B.alpha = 0.0;
-    this.actOne_activity2C.alpha = 0.0;
-    this.actOne_activity2D.alpha = 0.0;
-    this.actOne_activity3A.alpha = 0.0;
-    this.actOne_activity3B.alpha = 0.0;
-    this.actOne_activity4A.alpha = 0.0;
-    this.actOne_activity4B.alpha = 0.0;
-    this.actOne_activity4C.alpha = 0.0;
-    this.actOne_activity4D.alpha = 0.0;
-    this.actOne_activity4E.alpha = 0.0;
-    this.actOne_activity5A.alpha = 0.0;
-    this.actOne_activity5B.alpha = 0.0;
-    this.actOne_activity5C.alpha = 0.0;
-    this.actOne_redX.alpha = 0.0;
-    this.actOne_greenCheck.alpha = 0.0;
+    //this.r3a1_activity1A.alpha = 0.0;
+    //this.r3a1_activity1B.alpha = 0.0;
+    //this.r3a1_activity1C.alpha = 0.0;
+    //this.r3a1_activity1D.alpha = 0.0;
+    //this.r3a1_activity2A.alpha = 0.0;
+    //this.r3a1_activity2B.alpha = 0.0;
+    //this.r3a1_activity2C.alpha = 0.0;
+    //this.r3a1_activity2D.alpha = 0.0;
+    //this.r3a1_activity3A.alpha = 0.0;
+    //this.r3a1_activity3B.alpha = 0.0;
+    //this.r3a1_activity4A.alpha = 0.0;
+    //this.r3a1_activity4B.alpha = 0.0;
+    //this.r3a1_activity4C.alpha = 0.0;
+    //this.r3a1_activity4D.alpha = 0.0;
+    //this.r3a1_activity4E.alpha = 0.0;
+    //this.r3a1_activity5A.alpha = 0.0;
+    //this.r3a1_activity5B.alpha = 0.0;
+    //this.r3a1_activity5C.alpha = 0.0;
+    this.r3a1_redX.alpha = 0.0;
+    this.r3a1_greenCheck.alpha = 0.0;
 
 
   }
@@ -496,7 +712,7 @@ class accountEqnAct extends Phaser.Scene {
    * Sets the alpha of the help menu to 1 so that it is visible
   */
   helpMenu() {
-      this.actOne_help_menu.alpha = 1.0;
-      this.actOne_helpOpen = true;
+      this.r3a1_help_menu.alpha = 1.0;
+      this.r3a1_helpOpen = true;
   }
 }

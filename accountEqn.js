@@ -103,6 +103,10 @@ class accountEqn extends Phaser.Scene {
       this.room3_wall_info_3.alpha = wallAlpha;
 
     if(roomProgress >= 3030 && this.room3_unlocked) {
+      this.room3_activity_hole.alpha = 1.0;
+    }
+
+    if(roomProgress >= 3500 && this.room3_unlocked) {
       this.room3_hole.alpha = 1.0;
     }
 
@@ -110,6 +114,7 @@ class accountEqn extends Phaser.Scene {
     if (this.room3_key_U.isDown) {
       roomProgress = 3030;
       this.room3_hole.alpha = 1.0;
+      this.room3_activity_hole.alpha = 1.0;
       this.room3_unlocked = true;
     }
 
@@ -214,6 +219,7 @@ class accountEqn extends Phaser.Scene {
     this.load.image('room3_rightArrow' , 'assets/rightArrowTest.png');
     this.load.image('room3_hole', 'assets/hole.png');
 
+    this.load.image('room3_hole_activity', 'assets/Room3/activity_hole.png');
   }
 
   /* createImages
@@ -266,6 +272,11 @@ class accountEqn extends Phaser.Scene {
     this.room3_leftArrow = this.add.image(600, 650, 'room3_rightArrow');
     this.room3_hole = this.add.image(768,432, 'room3_hole');
     this.room3_returnDoor = this.add.image(113, 385, 'returnDoor');
+
+    // Seeing if I can reuse asset created in another room!!
+    // But making my own image
+    this.room3_activity_hole = this.add.image(350, 540, 'room3_hole_activity');
+
   }
 
   /* setAlphas
@@ -273,6 +284,7 @@ class accountEqn extends Phaser.Scene {
    * sets the alphas to to items in the game to zero so they are not visible at the beginning.
   */
   setAlphas() {
+    this.room3_activity_hole.alpha = 0.0;
       this.room3_returnDoor.alpha = 1.0;
     this.room3_map.alpha = 0.0;
     this.room3_notebook.alpha = 0.0;
@@ -292,6 +304,7 @@ class accountEqn extends Phaser.Scene {
   setDepths() {
     this.room3_floor.setDepth(0);
     this.room3_returnDoor.setDepth(1);
+    this.room3_activity_hole.setDepth(1);
     this.room3_character_north.setDepth(50);
     this.room3_character_east.setDepth(50);
     this.room3_character_south.setDepth(50);
@@ -327,6 +340,7 @@ class accountEqn extends Phaser.Scene {
    * Scales the size of each object.
   */
   setScales() {
+    this.room3_activity_hole.setScale(1.25);
     this.room3_E_KeyImg.setScale(0.4);
     this.room3_wall_info_1.setScale(0.75);
     this.room3_wall_info_2.setScale(0.75);
@@ -409,10 +423,18 @@ class accountEqn extends Phaser.Scene {
     this.room3_bot_right_info = new Phaser.Geom.Rectangle(1120,565,240,150);
     this.room3_graphics.fillRectShape(this.room3_bot_right_info);
 
+
+    // next room
     this.room3_hole_info = new Phaser.Geom.Rectangle(700,350,200,200);
     this.room3_graphics.fillRectShape(this.room3_hole_info);
+
+    // prev room
     this.room3_exitDoor = new Phaser.Geom.Rectangle(113, 320, 100, 100);
     this.room3_graphics.fillRectShape(this.room3_exitDoor);
+
+    // activity room
+    this.room3_acthole_zone = new Phaser.Geom.Rectangle(220, 450, 220, 150);
+    this.room3_graphics.fillRectShape(this.room3_acthole_zone);
   }
 
   /* assignKeybinds
@@ -567,17 +589,24 @@ class accountEqn extends Phaser.Scene {
         this.room3_activityLocked.alpha = 1.0;
         this.room3_characterMoveable = false;
       }
-	//        this.scene.start("AccountEqn_Act");
-	//        this.checkActivityOpened(false, false, false, true, false, false);
-	//        this.room3_activity5Locked = false;
-    }
+
+   } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room3_acthole_zone, this.room3_character_north)) {
+      this.room3_E_KeyImg.x = this.room3_character_north.x;
+      this.room3_E_KeyImg.y = this.room3_character_north.y+75;
+      this.room3_E_KeyImg.alpha = 1.0;
+      if (this.room3_key_E.isDown && roomProgress >= 3030) {
+	        this.scene.start("AccountEqn_Act");
+	        //this.checkActivityOpened(false, false, false, true, false, false);
+	        //this.room3_activity5Locked = false;
+      }
+   } 
 
     else if (Phaser.Geom.Rectangle.ContainsPoint(this.room3_hole_info, this.room3_character_north)) {
-	if (roomProgress >= 3030) {
+	if (roomProgress >= 3500) {
 	    this.room3_E_KeyImg.x = this.room3_character_north.x;
 	    this.room3_E_KeyImg.y = this.room3_character_north.y-75;
 	    this.room3_E_KeyImg.alpha = 1.0;
-	    if (this.room3_key_E.isDown && roomProgress >= 3030) {
+	    if (this.room3_key_E.isDown && roomProgress >= 3500) {
 		this.scene.start("winners_Room");
 	    }
 	}

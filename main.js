@@ -3,7 +3,7 @@ var config = {
   width: 1536,
   height: 864,
 
-  scene: [tagIntro, courseIntro, buildingBlocks, bbActRoom, buildBlockAct0, buildBlockAct2, accountEqn, winners_room]
+  scene: [tagIntro, courseIntro, buildingBlocks, bbActRoom, buildBlockAct0, buildBlockAct2, accountEqn, accountEqnAct, winners_room]
 	  
 
 };
