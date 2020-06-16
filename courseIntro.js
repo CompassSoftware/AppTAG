@@ -312,6 +312,7 @@ class courseIntro extends Phaser.Scene {
         //this.congrats.alpha = 0;
 	    this.returnDoor.alpha = 1;
         this.coin0.alpha = 1.0;
+        if(roomProgress > 1000) this.coin0.alpha = 0.0;
         this.coinHead.alpha = 0.0;
         this.countCoin.alpha = 0.0;
 	// FinStmt sorting activity w/ boxes is not in room1 anymore...
@@ -543,6 +544,7 @@ class courseIntro extends Phaser.Scene {
                 if(this.key_E.isDown) {
                     if(this.coin0.alpha == 1.0) this.collectCoin(0);
                     this.coin0.alpha = 0.0;
+                    if(roomProgress <= 1000) roomProgress = 1001;
                 }
         } else if(Phaser.Geom.Rectangle.ContainsPoint(this.middle_info, this.character_north)) {
             if(this.hole.alpha == 1) {

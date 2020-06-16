@@ -172,6 +172,7 @@ class bbActRoom extends Phaser.Scene {
     this.room2a_parents.alpha = 1.0;
     this.countCoin.alpha = 0.0;
     this.coin0.alpha = 1.0;
+    if(roomProgress > 2100) this.coin0.alpha = 0.0;
     this.coinHead.alpha = 0.0;
 
   }
@@ -350,7 +351,10 @@ class bbActRoom extends Phaser.Scene {
         this.room2a_E_KeyImg.y = this.room2a_character_north.y-75;
         if(this.coin0.alpha == 1.0) this.room2a_E_KeyImg.alpha = 1.0;
         if(this.room2a_key_E.isDown) {
-            if(this.coin0.alpha == 1.0) this.collectCoin(0);
+            if(this.coin0.alpha == 1.0) {
+                if(roomProgress <= 2105) roomProgress = 2105;
+                 this.collectCoin(0);
+            }
         }     
     }
     else {
