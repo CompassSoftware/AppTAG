@@ -10,12 +10,14 @@ class tagIntro extends Phaser.Scene {
     this.activityOneOpened = false;
     this.helpOpen = false;
     this.musicToggle = false;
+    var player = prompt("Please enter your name", "name");
+    localStorage.setItem("playerName", player);
+
   }
   //load assets in preload()
 
   preload() {
     this.loadAssets();
-    this.createImages();
     this.load.spritesheet('coin', 'assets/Coin/coin-sprite-png-2.png', {frameWidth: 200, frameHeight: 250, endFrame: 5});
   }
   /*
@@ -25,7 +27,6 @@ Info Panels like these contain important information and lessons that help you p
 
   //when scene is created
   create() {
-    this.loadAssets();
     this.createImages();
     this.createCoins();
     this.setAlphas();
@@ -42,6 +43,7 @@ Info Panels like these contain important information and lessons that help you p
         fontWeight:'bold',
     });
     this.displayCoin();
+    this.displayProfile();
   }
     
   update(delta) {
@@ -169,7 +171,8 @@ Info Panels like these contain important information and lessons that help you p
 	  this.load.image('hole', 'assets/hole.png');
     this.load.image('featNotAvail', 'assets/featNotAvail.png');
     this.load.image('coinExplain', 'assets/Coin/coinExplain.png');
-    this.load.image('singleCoin', 'assets/Coin/singleCoin.png');    
+    this.load.image('singleCoin', 'assets/Coin/singleCoin.png');
+    this.load.image('profile','assets/character_south.png');
   }
 
   createImages() {
@@ -192,6 +195,7 @@ Info Panels like these contain important information and lessons that help you p
 	  this.hole = this.add.image(768, 432, 'hole');
       this.coinExplain = this.add.image(768, 432, 'coinExplain');
       this.countCoin = this.add.image(40, 150, 'singleCoin');
+      this.profile = this.add.image(40,230,'profile');
       
   }
 
@@ -213,6 +217,7 @@ Info Panels like these contain important information and lessons that help you p
     this.coinExplain.alpha = 0.0;
     this.hideActivities();
     this.countCoin.alpha = 0.0;
+    this.profile.alpha = 0.0;
   }
 
   setDepths() {
@@ -231,6 +236,7 @@ Info Panels like these contain important information and lessons that help you p
 	this.hole.setDepth(1);
     this.coinExplain.setDepth(2);
     this.countCoin.setDepth(0);
+    this.profile.setDepth(0);
   }
 
   setScales() {
@@ -248,6 +254,7 @@ Info Panels like these contain important information and lessons that help you p
     this.coinHead.setScale(0.5);
     this.coinExplain.setScale(2.0);
     this.countCoin.setScale(0.25);
+    this.profile.setScale(1.5);
   }
 
   setRotations() {
@@ -655,6 +662,17 @@ Info Panels like these contain important information and lessons that help you p
         fontweight: 'bold',
         });
   }
+
+  //author: @Zack
+displayProfile() {
+  this.profile.alpha = 1.0;
+  this.userName = this.add.text(70,220, localStorage.getItem("playerName"), {
+      font: "24px arial",
+      color:'#FFFFFF',
+      align:'left',
+      fontweight: 'bold',
+  });
+}
 
   updateCoin() {
     this.count.setText('x ' + coinCount);

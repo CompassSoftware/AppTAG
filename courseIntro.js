@@ -37,6 +37,7 @@ class courseIntro extends Phaser.Scene {
             fontWeight: 'bold',
         });
         this.displayCoin();
+        this.displayProfile();
     }
 
     update(delta) {
@@ -241,6 +242,7 @@ class courseIntro extends Phaser.Scene {
         this.load.image('leftArrow' , 'assets/leftArrow.png');
         this.load.image('rightArrow' , 'assets/rightArrowTest.png');
         this.load.image('singleCoin', 'assets/Coin/singleCoin.png');
+        this.load.image('profile','assets/character/south.png');
     }
 
     /* createImages
@@ -288,6 +290,7 @@ class courseIntro extends Phaser.Scene {
         this.rightArrow = this.add.image(1000, 650, 'rightArrow');
         this.leftArrow = this.add.image(600, 650, 'rightArrow');
         this.countCoin = this.add.image(40, 150, 'singleCoin');
+        this.profile = this.add.image(40,230,'profile');
         //this.placements0 = this.add.image(240, 800, 'correctPlacements0');
         //this.placements1 = this.add.image(240, 800, 'correctPlacements1');
         //this.placements2 = this.add.image(240, 800, 'correctPlacements2');
@@ -315,6 +318,7 @@ class courseIntro extends Phaser.Scene {
         this.coin0.alpha = 1.0;
         this.coinHead.alpha = 0.0;
         this.countCoin.alpha = 0.0;
+        this.profile.alpha = 0.0;
 	// FinStmt sorting activity w/ boxes is not in room1 anymore...
 	    //this.cardboard_box_1.alpha = 0;
 	    //this.cardboard_box_2.alpha = 0;
@@ -351,6 +355,7 @@ class courseIntro extends Phaser.Scene {
         this.hole.setDepth(1);
 	    this.returnDoor.setDepth(1);
         this.countCoin.setDepth(0);
+        this.profile.setDepth(0);
     }
 
     /* setScales
@@ -393,6 +398,7 @@ class courseIntro extends Phaser.Scene {
     this.coin0.setScale(0.5);
     this.coinHead.setScale(0.5);
     this.countCoin.setScale(0.25);
+    this.profile.setScale(1.5);
     }
 
     /* setRotations
@@ -1314,6 +1320,17 @@ class courseIntro extends Phaser.Scene {
 
     updateCoin() {
         this.count.setText('x ' + coinCount);
+    }
+
+    //author: @Zack
+    displayProfile() {
+        this.profile.alpha = 1.0;
+        this.userName = this.add.text(70,220, localStorage.getItem("playerName"), {
+            font: "24px arial",
+            color:'#FFFFFF',
+            align:'left',
+            fontweight: 'bold',
+        });
     }
 
     /* helpMenu
