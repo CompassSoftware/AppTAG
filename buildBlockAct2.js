@@ -70,6 +70,11 @@ class buildBlockAct2 extends Phaser.Scene {
                 this.quitInteraction();
         }
 
+	if (this.room2b_key_U.isDown) {
+	    this.r2a2_goldcoin.alpha = 1;
+	    roomProgress = 2440;
+	}
+
         if (Phaser.Input.Keyboard.JustDown(this.room2b_key_M)) {
             if (this.room2b_map.alpha == 0.0) {
                 this.room2b_map.alpha = 1.0;
@@ -448,6 +453,8 @@ class buildBlockAct2 extends Phaser.Scene {
         this.couple.setScale(.4);
         this.qmark.setScale(.15);
         this.r2a2_q1.setScale(0.75);
+        this.r2a2_q2.setScale(1.75);
+        this.r2a2_q3.setScale(0.75);
         this.question1.setScale(.09);
         this.question2.setScale(.09);
         this.question3.setScale(.09);
@@ -666,7 +673,7 @@ class buildBlockAct2 extends Phaser.Scene {
 	    this.room2b_E_KeyImg.y = this.room2b_character_north.y-75;
 	    if (roomProgress == 2440) { this.room2b_E_KeyImg.alpha = 1.0; }
 	    if (this.room2b_key_E.isDown) {
-		console.log("coinzone E down: progress="+roomProgress);
+		//		console.log("coinzone E down: progress="+roomProgress);
 		if (roomProgress == 2440) {
 		    this.r2a2_congrats.alpha = 1.0;
             this.collectCoin(0);

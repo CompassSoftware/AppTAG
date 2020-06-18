@@ -62,7 +62,9 @@ class bbActRoom extends Phaser.Scene {
 
     if (this.room2a_key_U.isDown) {
 	// let's us jump into parents activity
-	roomProgress = 2400;
+	//roomProgress = 2400;
+	// let's us jump through parents activity now
+	roomProgress = 2500;
     }
 
     if (Phaser.Input.Keyboard.JustDown(this.room2a_key_M)) {

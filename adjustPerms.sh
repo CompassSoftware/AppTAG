@@ -32,4 +32,5 @@ chmod a+x assets/Room3
 chmod a+x assets/Room3Act1
 chmod a+x assets/WinnersRoom
 chmod a+x assets/Sounds
+chmod a+x assets/Coin
 chmod a+x assets/Map
