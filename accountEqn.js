@@ -13,7 +13,6 @@ class accountEqn extends Phaser.Scene {
     this.room3_activityFiveOpened = false;
     this.room3_helpOpen = false;
     this.room3_counter = 0;
-    this.musicToggle = false;
     document.getElementById("background").volume = 0.8;
   }
   //load assets in preload()
@@ -48,13 +47,13 @@ class accountEqn extends Phaser.Scene {
     
     if (Phaser.Input.Keyboard.JustDown(this.room3_key_N)) {
             document.getElementById("background").play();
-            if (this.musicToggle == false) {
+            if (musicToggle == false) {
                 document.getElementById("background").play();
-                this.musicToggle = true;
+                musicToggle = true;
             }
-            else if (this.musicToggle == true) {
+            else if (musicToggle == true) {
                 document.getElementById("background").pause();
-                this.musicToggle = false;
+                musicToggle = false;
             }
     }
 

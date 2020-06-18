@@ -6,7 +6,6 @@ class bbActRoom extends Phaser.Scene {
     super("BB_ActRoom");
     this.room2a_helpOpen = false;
     this.room2a_characterMoveable = true;
-    this.musicToggle = false;
   }
   //load assets in preload()
 
@@ -42,13 +41,13 @@ class bbActRoom extends Phaser.Scene {
 
     if (Phaser.Input.Keyboard.JustDown(this.room2a_key_N)) {
         document.getElementById("background").play();
-        if (this.musicToggle == false) {
+        if (musicToggle == false) {
             document.getElementById("background").play();
-            this.musicToggle = true;
+            musicToggle = true;
         }
-        else if (this.musicToggle == true) {
+        else if (musicToggle == true) {
             document.getElementById("background").pause();
-            this.musicToggle = false;
+            musicToggle = false;
         }
     }
     
@@ -175,6 +174,7 @@ class bbActRoom extends Phaser.Scene {
     this.room2a_parents.alpha = 1.0;
     this.countCoin.alpha = 0.0;
     this.coin0.alpha = 1.0;
+    if(roomProgress > 2100) this.coin0.alpha = 0.0;
     this.coinHead.alpha = 0.0;
 
   }
@@ -353,7 +353,10 @@ class bbActRoom extends Phaser.Scene {
         this.room2a_E_KeyImg.y = this.room2a_character_north.y-75;
         if(this.coin0.alpha == 1.0) this.room2a_E_KeyImg.alpha = 1.0;
         if(this.room2a_key_E.isDown) {
-            if(this.coin0.alpha == 1.0) this.collectCoin(0);
+            if(this.coin0.alpha == 1.0) {
+                if(roomProgress <= 2105) roomProgress = 2105;
+                 this.collectCoin(0);
+            }
         }     
     }
     else {

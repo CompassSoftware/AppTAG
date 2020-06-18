@@ -13,7 +13,6 @@ class buildingBlocks extends Phaser.Scene {
         this.room2_activitySixOpened = false;
         this.room2_helpOpen = false;
         this.counter = 0;
-        this.musicToggle = false;
         document.getElementById("background").volume = 0.8;
 
     }
@@ -52,13 +51,13 @@ class buildingBlocks extends Phaser.Scene {
 
         if (Phaser.Input.Keyboard.JustDown(this.room2_key_N)) {
             document.getElementById("background").play();
-            if (this.musicToggle == false) {
+            if (musicToggle == false) {
                 document.getElementById("background").play();
-                this.musicToggle = true;
+                musicToggle = true;
             }
-            else if (this.musicToggle == true) {
+            else if (musicToggle == true) {
                 document.getElementById("background").pause();
-                this.musicToggle = false;
+                musicToggle = false;
             }
         }
 
@@ -516,9 +515,12 @@ class buildingBlocks extends Phaser.Scene {
             this.room2_E_KeyImg.y = this.room2_character_north.y-75;
             this.room2_E_KeyImg.alpha = 1.0;
             if (this.room2_key_E.isDown) {
+                
                 if(roomProgress <= 2000)
+                    this.coin0.alpha = 1.0;
                     roomProgress = 2005;
-                this.coin0.alpha = 1.0;
+                    
+                //this.coin0.alpha = 1.0;
                 this.room2_activity1A.alpha = 1.0;
 		//                this.resetArrows();
                 this.room2_characterMoveable = false;
