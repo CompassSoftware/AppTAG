@@ -194,8 +194,8 @@ Info Panels like these contain important information and lessons that help you p
 	  this.tut1 = this.add.image(768, 432, 'tut1');
 	  this.hole = this.add.image(768, 432, 'hole');
       this.coinExplain = this.add.image(768, 432, 'coinExplain');
-      this.countCoin = this.add.image(40, 150, 'singleCoin');
-      this.profile = this.add.image(40,230,'profile');
+      this.countCoin = this.add.image(40, 230, 'singleCoin');
+      this.profile = this.add.image(40,150,'profile');
       
   }
 
@@ -655,7 +655,7 @@ Info Panels like these contain important information and lessons that help you p
   //author: @Zoe
   displayCoin() {
     this.countCoin.alpha = 1.0;
-    this.count = this.add.text(70, 140, "x " + coinCount, {
+    this.count = this.add.text(70, 220, "x " + coinCount, {
         font: "24px arial",
         color: "#FFFFFF",
         align: 'left', 
@@ -666,7 +666,7 @@ Info Panels like these contain important information and lessons that help you p
   //author: @Zack
 displayProfile() {
   this.profile.alpha = 1.0;
-  this.userName = this.add.text(70,220, localStorage.getItem("playerName"), {
+  this.userName = this.add.text(70,140, localStorage.getItem("playerName"), {
       font: "24px arial",
       color:'#FFFFFF',
       align:'left',

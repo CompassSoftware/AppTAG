@@ -282,8 +282,8 @@ class buildingBlocks extends Phaser.Scene {
         this.room2_hole_nextRoom = this.add.image(768, 432, 'room2_hole_nextRoom');
         this.rightArrow = this.add.image(1000, 650, 'rightArrow');
         this.leftArrow = this.add.image(600, 650, 'rightArrow');
-        this.countCoin = this.add.image(40, 150, 'singleCoin');
-        this.profile = this.add.image(40,230,'profile');
+        this.countCoin = this.add.image(40, 230, 'singleCoin');
+        this.profile = this.add.image(40,150,'profile');
     }
 
     /* setAlphas
@@ -1182,7 +1182,7 @@ class buildingBlocks extends Phaser.Scene {
 
     displayCoin() {
         this.countCoin.alpha = 1.0;
-        this.count = this.add.text(70, 140, "x " + coinCount, {
+        this.count = this.add.text(70, 220, "x " + coinCount, {
             font: "24px arial",
             color: "#FFFFFF",
             align: 'left',
@@ -1196,7 +1196,7 @@ class buildingBlocks extends Phaser.Scene {
 
     displayProfile() {
         this.profile.alpha = 1.0;
-        this.userName = this.add.text(70,220, localStorage.getItem("playerName"), {
+        this.userName = this.add.text(70,140, localStorage.getItem("playerName"), {
             font: "24px arial",
             color:'#FFFFFF',
             align:'left',

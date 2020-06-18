@@ -289,8 +289,8 @@ class courseIntro extends Phaser.Scene {
         //this.congrats = this.add.image(810, 400, 'congrats');
         this.rightArrow = this.add.image(1000, 650, 'rightArrow');
         this.leftArrow = this.add.image(600, 650, 'rightArrow');
-        this.countCoin = this.add.image(40, 150, 'singleCoin');
-        this.profile = this.add.image(40,230,'profile');
+        this.countCoin = this.add.image(40, 230, 'singleCoin');
+        this.profile = this.add.image(40,150,'profile');
         //this.placements0 = this.add.image(240, 800, 'correctPlacements0');
         //this.placements1 = this.add.image(240, 800, 'correctPlacements1');
         //this.placements2 = this.add.image(240, 800, 'correctPlacements2');
@@ -1310,7 +1310,7 @@ class courseIntro extends Phaser.Scene {
 
     displayCoin() {
         this.countCoin.alpha = 1.0;
-        this.count = this.add.text(70, 140, "x " + coinCount, {
+        this.count = this.add.text(70, 220, "x " + coinCount, {
             font: "24px arial",
             color: "#FFFFFF",
             align: 'left',
@@ -1325,7 +1325,7 @@ class courseIntro extends Phaser.Scene {
     //author: @Zack
     displayProfile() {
         this.profile.alpha = 1.0;
-        this.userName = this.add.text(70,220, localStorage.getItem("playerName"), {
+        this.userName = this.add.text(70,140, localStorage.getItem("playerName"), {
             font: "24px arial",
             color:'#FFFFFF',
             align:'left',

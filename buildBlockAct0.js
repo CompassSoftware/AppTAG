@@ -252,8 +252,8 @@ class buildBlockAct0 extends Phaser.Scene {
         this.incomeStatement = this.add.image(768, 432, 'incomeStatement');
         this.balanceSheet = this.add.image(768, 432, 'balanceSheet');
         this.retainedEarnings = this.add.image(768, 432, 'retainedEarnings');
-        this.countCoin = this.add.image(40, 150, 'singleCoin');
-        this.profile = this.add.image(40,230,'profile');
+        this.countCoin = this.add.image(40, 230, 'singleCoin');
+        this.profile = this.add.image(40,150,'profile');
     }
 
     /* setAlphas
@@ -664,7 +664,7 @@ class buildBlockAct0 extends Phaser.Scene {
 
     displayCoin() {
         this.countCoin.alpha = 1.0;
-        this.count = this.add.text(70, 140, "x " + coinCount, {
+        this.count = this.add.text(70, 220, "x " + coinCount, {
             font: "24px arial",
             color: "#FFFFFF",
             align: 'left',
@@ -678,7 +678,7 @@ class buildBlockAct0 extends Phaser.Scene {
 
     displayProfile() {
         this.profile.alpha = 1.0;
-        this.userName = this.add.text(70,220, localStorage.getItem("playerName"), {
+        this.userName = this.add.text(70,140, localStorage.getItem("playerName"), {
             font: "24px arial",
             color:'#FFFFFF',
             align:'left',

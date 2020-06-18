@@ -158,8 +158,8 @@ class bbActRoom extends Phaser.Scene {
     this.room2a_box = this.add.image(288, 232, 'room2a_box');
     //    this.room2a_puzzle1 = this.add.image(1168, 400, 'room2a_puzzle1');
     this.room2a_parents = this.add.image(868, 611, 'room2a_parents');
-    this.countCoin = this.add.image(40, 150, 'singleCoin');
-    this.profile = this.add.image(40,230,'profile');
+    this.countCoin = this.add.image(40, 230, 'singleCoin');
+    this.profile = this.add.image(40,150,'profile');
   }
 
   /* setAlphas
@@ -509,7 +509,7 @@ class bbActRoom extends Phaser.Scene {
 
   displayCoin() {
     this.countCoin.alpha = 1.0;
-    this.count = this.add.text(70, 140, "x " + coinCount, {
+    this.count = this.add.text(70, 220, "x " + coinCount, {
         font: "24px arial", 
         color: "#FFFFFF", 
         align: 'left', 
@@ -558,7 +558,7 @@ class bbActRoom extends Phaser.Scene {
 
   displayProfile() {
     this.profile.alpha = 1.0;
-    this.userName = this.add.text(70,220, localStorage.getItem("playerName"), {
+    this.userName = this.add.text(70,140, localStorage.getItem("playerName"), {
       font: "24px arial",
       color:'#FFFFFF',
       align:'left',
