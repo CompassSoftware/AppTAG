@@ -1198,7 +1198,11 @@ class buildingBlocks extends Phaser.Scene {
 
     displayProfile() {
         this.profile.alpha = 1.0;
-        this.userName = this.add.text(70,140, localStorage.getItem("playerName"), {
+        this.name = localStorage.getItem("playerName");
+        if(this.name.length > 7) {
+            this.name = this.name.slice(0,7) + "...";
+        }
+        this.userName = this.add.text(70,140, this.name, {
             font: "24px arial",
             color:'#FFFFFF',
             align:'left',
