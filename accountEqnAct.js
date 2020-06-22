@@ -34,7 +34,7 @@ class accountEqnAct extends Phaser.Scene {
     this.createInteractionZones();
     this.assignKeybinds();
     this.imagesDraggable();
-
+    this.displayProfile();
     //this.activateQuiz();
     this.roomLabel = this.add.text(600, 6, "Accounting Equation Activity Room", {
       font: "24px arial",
@@ -155,6 +155,7 @@ class accountEqnAct extends Phaser.Scene {
     this.load.image('r3a1_redX', 'assets/Room3Act1/redX.jpg');
     this.load.image('r3a1_greenCheck', 'assets/Room3Act1/green_check.jpg');
     //this.load.image('r3a1_hole', 'assets/hole.png');
+      this.load.image('profile','assets/character_south.png');
 
   }
 
@@ -202,6 +203,7 @@ class accountEqnAct extends Phaser.Scene {
     this.r3a1_char_south = this.add.image(768, 432, 'room3_character_south');
     this.r3a1_char_west = this.add.image(768, 432, 'room3_character_west');
     this.r3a1_char_east = this.add.image(768, 432, 'room3_character_east');
+    this.profile = this.add.image(40,150,'profile');
   }
 
   /* setAlphas
@@ -224,6 +226,7 @@ class accountEqnAct extends Phaser.Scene {
     this.r3a1_greenCheck.alpha = 0.0;
     //this.r3a1_hole.alpha = 0.0;
     this.hideActivities();
+    this.profile.alpha = 0.0;
   }
 
   /* setDepths
@@ -246,6 +249,7 @@ class accountEqnAct extends Phaser.Scene {
     this.r3a1_help_menu.setDepth(100);
     this.r3a1_redX.setDepth(49);
     this.r3a1_greenCheck.setDepth(49);
+    this.profile.setDepth(0);
   }
 
   /* setScales
@@ -264,6 +268,7 @@ class accountEqnAct extends Phaser.Scene {
     this.character.setScale(1);
     this.r3a1_floor.scaleY = 1.185;
     this.r3a1_floor.scaleX = 1.395;
+    this.profile.setScale(1.5);
 
   }
 
@@ -707,6 +712,19 @@ class accountEqnAct extends Phaser.Scene {
 
   }
 
+    displayProfile() {
+        this.profile.alpha = 1.0;
+        this.name = localStorage.getItem("playerName");
+        if(this.name.length > 7) {
+            this.name = this.name.slice(0,7) + "...";
+        }
+        this.userName = this.add.text(70,140, this.name, {
+            font: "24px arial",
+            color:'#FFFFFF',
+            align:'left',
+            fontweight: 'bold',
+        });
+    }
   /* helpMenu
    *
    * Sets the alpha of the help menu to 1 so that it is visible

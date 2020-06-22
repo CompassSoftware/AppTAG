@@ -32,6 +32,7 @@ class bbActRoom extends Phaser.Scene {
         fontWeight: 'bold',
     });
     this.displayCoin();
+    this.displayProfile();
   }
 
   update(delta) {
@@ -130,6 +131,7 @@ class bbActRoom extends Phaser.Scene {
     //    this.load.image('room2a_puzzle1', 'assets/Room2Act1/Puzzle/Puzzle/Puzzle1A.png');
     this.load.image('room2a_parents', 'assets/Room2Act2/couple.png');
     this.load.image('singleCoin', 'assets/Coin/singleCoin.png');
+    this.load.image('profile','assets/character_south.png');
   }
 
   /* createImages
@@ -155,7 +157,8 @@ class bbActRoom extends Phaser.Scene {
     this.room2a_box = this.add.image(288, 232, 'room2a_box');
     //    this.room2a_puzzle1 = this.add.image(1168, 400, 'room2a_puzzle1');
     this.room2a_parents = this.add.image(868, 611, 'room2a_parents');
-    this.countCoin = this.add.image(40, 150, 'singleCoin');
+    this.countCoin = this.add.image(40, 230, 'singleCoin');
+    this.profile = this.add.image(40,150,'profile');
   }
 
   /* setAlphas
@@ -176,6 +179,7 @@ class bbActRoom extends Phaser.Scene {
     this.coin0.alpha = 1.0;
     if(roomProgress > 2100) this.coin0.alpha = 0.0;
     this.coinHead.alpha = 0.0;
+    this.profile.alpha = 0.0;
 
   }
 
@@ -194,6 +198,7 @@ class bbActRoom extends Phaser.Scene {
     this.room2a_notebook.setDepth(100);
     this.room2a_help_menu.setDepth(100);
     this.countCoin.setDepth(0);
+    this.profile.setDepth(0);
   }
 
   /* setScales
@@ -217,6 +222,7 @@ class bbActRoom extends Phaser.Scene {
     this.countCoin.setScale(0.25);
     this.coin0.setScale(0.5);
     this.coinHead.setScale(0.5);
+    this.profile.setScale(1.5);
   }
 
   /* setRotations
@@ -506,7 +512,7 @@ class bbActRoom extends Phaser.Scene {
 
   displayCoin() {
     this.countCoin.alpha = 1.0;
-    this.count = this.add.text(70, 140, "x " + coinCount, {
+    this.count = this.add.text(70, 220, "x " + coinCount, {
         font: "24px arial", 
         color: "#FFFFFF", 
         align: 'left', 
@@ -552,6 +558,21 @@ class bbActRoom extends Phaser.Scene {
     updateCoin() {
         this.count.setText('x ' + coinCount);
     }
+
+  displayProfile() {
+    this.profile.alpha = 1.0;
+    this.name = localStorage.getItem("playerName");
+    if(this.name.length > 7) {
+      this.name = this.name.slice(0,7) + "...";
+    }
+    this.userName = this.add.text(70,140, this.name, {
+      font: "24px arial",
+      color:'#FFFFFF',
+      align:'left',
+      fontweight: 'bold',
+    });
+  }
+
 
   /* helpMenu
    *

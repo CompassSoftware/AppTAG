@@ -38,6 +38,7 @@ class buildBlockAct0 extends Phaser.Scene {
             fontWeight: 'bold',
         });
         this.displayCoin();
+        this.displayProfile();
     }
 
     update(delta) {
@@ -216,6 +217,7 @@ class buildBlockAct0 extends Phaser.Scene {
         this.load.image('balanceSheet', 'assets/Documents/balanceSheet.png');
         this.load.image('retainedEarnings' , 'assets/Documents/retainedEarnings.png');
         this.load.image('singleCoin', 'assets/Coin/singleCoin.png');
+        this.load.image('profile','assets/character_south.png');
     }
 
     /* createImages
@@ -249,7 +251,8 @@ class buildBlockAct0 extends Phaser.Scene {
         this.incomeStatement = this.add.image(768, 432, 'incomeStatement');
         this.balanceSheet = this.add.image(768, 432, 'balanceSheet');
         this.retainedEarnings = this.add.image(768, 432, 'retainedEarnings');
-        this.countCoin = this.add.image(40, 150, 'singleCoin');
+        this.countCoin = this.add.image(40, 230, 'singleCoin');
+        this.profile = this.add.image(40,150,'profile');
     }
 
     /* setAlphas
@@ -281,6 +284,7 @@ class buildBlockAct0 extends Phaser.Scene {
         //this.coin0.alpha = 0.0;
         this.coinHead.alpha = 0.0;
         this.countCoin.alpha = 1.0;
+    this.profile.alpha = 0.0;
     }
 
     /* setDepths
@@ -312,6 +316,7 @@ class buildBlockAct0 extends Phaser.Scene {
         this.BalShtBox.setDepth(2);
 	this.returnDoor.setDepth(2);
         this.countCoin.setDepth(0);
+    this.profile.setDepth(0);
     }
 
     /* setScales
@@ -339,6 +344,7 @@ class buildBlockAct0 extends Phaser.Scene {
         //this.coin0.setScale(0.5);
         this.coinHead.setScale(0.5);
         this.countCoin.setScale(0.25);
+        this.profile.setScale(1.5);
     }
 
     /* setRotations
@@ -657,7 +663,7 @@ class buildBlockAct0 extends Phaser.Scene {
 
     displayCoin() {
         this.countCoin.alpha = 1.0;
-        this.count = this.add.text(70, 140, "x " + coinCount, {
+        this.count = this.add.text(70, 220, "x " + coinCount, {
             font: "24px arial",
             color: "#FFFFFF",
             align: 'left',
@@ -667,6 +673,20 @@ class buildBlockAct0 extends Phaser.Scene {
     
     updateCoin() {
         this.count.setText('x ' + coinCount);
+    }
+
+    displayProfile() {
+        this.profile.alpha = 1.0;
+        this.name = localStorage.getItem("playerName");
+        if(this.name.length > 7) {
+            this.name = this.name.slice(0,7) + "...";
+        }
+        this.userName = this.add.text(70,140, this.name, {
+            font: "24px arial",
+            color:'#FFFFFF',
+            align:'left',
+            fontweight: 'bold',
+        });
     }
 
     /* helpMenu
