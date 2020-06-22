@@ -52,6 +52,7 @@ class courseIntro extends Phaser.Scene {
                 document.getElementById("background").pause();
                 musicToggle = false;
             }
+            this.musicToggled();
         }
 
         if (this.activityOneOpened) {
@@ -240,6 +241,8 @@ class courseIntro extends Phaser.Scene {
         this.load.image('leftArrow' , 'assets/leftArrow.png');
         this.load.image('rightArrow' , 'assets/rightArrowTest.png');
         this.load.image('singleCoin', 'assets/Coin/singleCoin.png');
+        this.load.image('MTOn', 'assets/MTOnTransparent.png');
+        this.load.image('MTOff', 'assets/MTOffTransparent.png');
     }
 
     /* createImages
@@ -293,6 +296,8 @@ class courseIntro extends Phaser.Scene {
         //this.placements0.setVisible(false);
         //this.placements1.setVisible(false);
         //this.placements2.setVisible(false);
+        this.MTOn = this.add.image(50, 750, 'MTOn');
+        this.MTOff = this.add.image(50, 750, 'MTOff');
     }
 
     /* setAlphas
@@ -319,6 +324,14 @@ class courseIntro extends Phaser.Scene {
 	    //this.cardboard_box_2.alpha = 0;
 	    //this.cardboard_box_3.alpha = 0;
 	    //this.paper_stack.alpha = 0;
+        if (musicToggle == false) {
+            this.MTOff.alpha = 1.0;
+            this.MTOn.alpha = 0.0;
+        }
+        if (musicToggle == true) {
+            this.MTOn.alpha = 1.0;
+            this.MTOff.alpha = 0.0;
+        }
     }
 
     /* setDepths
@@ -350,6 +363,8 @@ class courseIntro extends Phaser.Scene {
         this.hole.setDepth(1);
 	    this.returnDoor.setDepth(1);
         this.countCoin.setDepth(0);
+        this.MTOn.setDepth(0);
+        this.MTOff.setDepth(0);
     }
 
     /* setScales
@@ -392,6 +407,8 @@ class courseIntro extends Phaser.Scene {
     this.coin0.setScale(0.5);
     this.coinHead.setScale(0.5);
     this.countCoin.setScale(0.25);
+        this.MTOn.setScale(0.2);
+        this.MTOff.setScale(0.2);
     }
 
     /* setRotations
@@ -1313,6 +1330,17 @@ class courseIntro extends Phaser.Scene {
 
     updateCoin() {
         this.count.setText('x ' + coinCount);
+    }
+
+    musicToggled() {
+        if (musicToggle == false) {
+            this.MTOn.alpha = 0.0;
+            this.MTOff.alpha = 1.0;
+        }
+        else if (musicToggle == true) {
+            this.MTOff.alpha = 0.0;
+            this.MTOn.alpha = 1.0;
+        }
     }
 
     /* helpMenu

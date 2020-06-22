@@ -56,6 +56,7 @@ class buildBlockAct0 extends Phaser.Scene {
             document.getElementById("background").pause();
             musicToggle = false;
         }
+        this.musicToggled();
     }
 
 	if (roomProgress <= 2200) { 
@@ -216,6 +217,8 @@ class buildBlockAct0 extends Phaser.Scene {
         this.load.image('balanceSheet', 'assets/Documents/balanceSheet.png');
         this.load.image('retainedEarnings' , 'assets/Documents/retainedEarnings.png');
         this.load.image('singleCoin', 'assets/Coin/singleCoin.png');
+        this.load.image('MTOn', 'assets/MTOnTransparent.png');
+        this.load.image('MTOff', 'assets/MTOffTransparent.png');
     }
 
     /* createImages
@@ -250,6 +253,8 @@ class buildBlockAct0 extends Phaser.Scene {
         this.balanceSheet = this.add.image(768, 432, 'balanceSheet');
         this.retainedEarnings = this.add.image(768, 432, 'retainedEarnings');
         this.countCoin = this.add.image(40, 150, 'singleCoin');
+        this.MTOn = this.add.image(50, 750, 'MTOn');
+        this.MTOff = this.add.image(50, 750, 'MTOff');
     }
 
     /* setAlphas
@@ -265,22 +270,30 @@ class buildBlockAct0 extends Phaser.Scene {
         this.help_menu.alpha = 0.0;
         this.r2a0_walls.alpha = 1;
         this.r2a0_floor.alpha = 1;
-	this.returnDoor.alpha = 1;
-	// FinStmt sorting activity w/ boxes is not in room1 anymore...
-	this.SreBox.alpha = 1;
-	this.ScfBox.alpha = 1;
-	this.BalShtBox.alpha = 1;
-	this.IncStmBox.alpha = 1;
-	this.paper.alpha = 1;
-	//	this.paper_stack.alpha = 1;
+	    this.returnDoor.alpha = 1;
+	    // FinStmt sorting activity w/ boxes is not in room1 anymore...
+	    this.SreBox.alpha = 1;
+	    this.ScfBox.alpha = 1;
+	    this.BalShtBox.alpha = 1;
+	    this.IncStmBox.alpha = 1;
+	    this.paper.alpha = 1;
+	    //	this.paper_stack.alpha = 1;
 
-	this.wall_info_2.alpha = 1;
+	    this.wall_info_2.alpha = 1;
         this.incomeStatement.alpha = 0;
         this.balanceSheet.alpha = 0;
         this.retainedEarnings.alpha = 0;
         //this.coin0.alpha = 0.0;
         this.coinHead.alpha = 0.0;
         this.countCoin.alpha = 1.0;
+        if (musicToggle == false) {
+            this.MTOff.alpha = 1.0;
+            this.MTOn.alpha = 0.0;
+        }
+        if (musicToggle == true) {
+            this.MTOn.alpha = 1.0;
+            this.MTOff.alpha = 0.0;
+        }
     }
 
     /* setDepths
@@ -312,6 +325,8 @@ class buildBlockAct0 extends Phaser.Scene {
         this.BalShtBox.setDepth(2);
 	this.returnDoor.setDepth(2);
         this.countCoin.setDepth(0);
+        this.MTOn.setDepth(0);
+        this.MTOff.setDepth(0);
     }
 
     /* setScales
@@ -339,6 +354,8 @@ class buildBlockAct0 extends Phaser.Scene {
         //this.coin0.setScale(0.5);
         this.coinHead.setScale(0.5);
         this.countCoin.setScale(0.25);
+        this.MTOn.setScale(0.2);
+        this.MTOff.setScale(0.2);
     }
 
     /* setRotations
@@ -667,6 +684,17 @@ class buildBlockAct0 extends Phaser.Scene {
     
     updateCoin() {
         this.count.setText('x ' + coinCount);
+    }
+
+    musicToggled() {
+        if (musicToggle == false) {
+            this.MTOn.alpha = 0.0;
+            this.MTOff.alpha = 1.0;
+        }
+        else if (musicToggle == true) {
+            this.MTOff.alpha = 0.0;
+            this.MTOn.alpha = 1.0;
+        }
     }
 
     /* helpMenu

@@ -278,6 +278,8 @@ class buildBlockAct2 extends Phaser.Scene {
 	//        this.load.image('cashFlows' , 'assets/Documents/cashFlows.jpg');
 	//        this.load.image('room2b_hole', 'assets/hole.png');
         this.load.image('singleCoin', 'assets/Coin/singleCoin.png');
+        this.load.image('MTOn', 'assets/MTOnTransparent.png');
+        this.load.image('MTOff', 'assets/MTOffTransparent.png');
     }
 
     /* createImages
@@ -331,6 +333,8 @@ class buildBlockAct2 extends Phaser.Scene {
         this.questionStack = this.add.image(100, 100, 'questionStack');
 	//        this.room2b_hole = this.add.image(268, 432, 'room2b_hole');
         this.countCoin = this.add.image(40, 150, 'singleCoin');
+        this.MTOn = this.add.image(50, 750, 'MTOn');
+        this.MTOff = this.add.image(50, 750, 'MTOff');
     }
 
     /* setAlphas
@@ -374,6 +378,14 @@ class buildBlockAct2 extends Phaser.Scene {
         this.coin0.alpha = 0.0;
         this.hideActivities();
         this.countCoin.alpha = 0.0;
+        if (musicToggle == false) {
+            this.MTOn.alpha = 0.0;
+            this.MTOff.alpha = 1.0;
+        }
+        if (musicToggle == true) {
+            this.MTOff.alpha = 0.0;
+            this.MTOn.alpha = 1.0;
+        }
     }
 
     /* setDepths
@@ -421,6 +433,8 @@ class buildBlockAct2 extends Phaser.Scene {
         this.r2a2_q3_incstmW.setDepth(100);
         this.r2a2_congrats.setDepth(100);
         this.countCoin.setDepth(0);
+        this.MTOn.setDepth(0);
+        this.MTOff.setDepth(0);
     }
 
     /* setScales
@@ -454,6 +468,8 @@ class buildBlockAct2 extends Phaser.Scene {
         this.coinHead.setScale(0.5);
         this.coin0.setScale(0.5);
         this.countCoin.setScale(0.25);
+        this.MTOn.setScale(0.2);
+        this.MTOff.setScale(0.2);
     }
 
     /* setRotations
@@ -1217,6 +1233,17 @@ class buildBlockAct2 extends Phaser.Scene {
         }
     }
     */
+
+    musicToggled() {
+        if (musicToggle == false) {
+            this.MTOn.alpha = 0.0;
+            this.MTOff.alpha = 1.0;
+        }
+        else if (musicToggle == true) {
+            this.MTOff.alpha = 0.0;
+            this.MTOn.alpha = 1.0;
+        }
+    }
 
 
     /* helpMenu

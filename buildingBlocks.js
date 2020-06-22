@@ -59,6 +59,7 @@ class buildingBlocks extends Phaser.Scene {
                 document.getElementById("background").pause();
                 musicToggle = false;
             }
+            this.musicToggled();
         }
 
         if (Phaser.Input.Keyboard.JustDown(this.room2_key_H)) {
@@ -222,6 +223,8 @@ class buildingBlocks extends Phaser.Scene {
         this.load.image('rightArrow' , 'assets/rightArrowTest.png');
 	this.load.image('returnDoor', 'assets/dooropen_100x100.png');
         this.load.image('singleCoin', 'assets/Coin/singleCoin.png');
+        this.load.image('MTOn', 'assets/MTOnTransparent.png');
+        this.load.image('MTOff', 'assets/MTOffTransparent.png'); 
     }
 
     /* createImages
@@ -280,6 +283,8 @@ class buildingBlocks extends Phaser.Scene {
         this.rightArrow = this.add.image(1000, 650, 'rightArrow');
         this.leftArrow = this.add.image(600, 650, 'rightArrow');
         this.countCoin = this.add.image(40, 150, 'singleCoin');
+        this.MTOn = this.add.image(50, 750, 'MTOn');
+        this.MTOff = this.add.image(50, 750, 'MTOff');
     }
 
     /* setAlphas
@@ -301,6 +306,14 @@ class buildingBlocks extends Phaser.Scene {
         this.countCoin.alpha = 0.0;
         this.coin0.alpha = 0.0;
         this.coinHead.alpha = 0.0;
+        if (musicToggle == false) {
+            this.MTOff.alpha = 1.0;
+            this.MTOn.alpha = 0.0;
+        }
+        if (musicToggle == true) {
+            this.MTOn.alpha = 1.0;
+            this.MTOff.alpha = 0.0;
+        }
     }
 
     /* setDepths
@@ -345,7 +358,8 @@ class buildingBlocks extends Phaser.Scene {
         this.room2_help_menu.setDepth(100);
         this.countCoin.setDepth(0);
 	      this.returnDoor.setDepth(1);
-
+        this.MTOn.setDepth(0);
+        this.MTOff.setDepth(0);
     }
 
     /* setScales
@@ -390,6 +404,8 @@ class buildingBlocks extends Phaser.Scene {
         this.countCoin.setScale(0.25);
         this.coin0.setScale(0.5);
         this.coinHead.setScale(0.5);
+        this.MTOn.setScale(0.2);
+        this.MTOff.setScale(0.2);
     }
 
     /* setRotations
@@ -1184,6 +1200,17 @@ class buildingBlocks extends Phaser.Scene {
 
     updateCoin() {
         this.count.setText('x ' + coinCount);
+    }
+
+    musicToggled() {
+        if (musicToggle == false) {
+            this.MTOn.alpha = 0.0;
+            this.MTOff.alpha = 1.0;
+        }
+        else if (musicToggle == true) {
+            this.MTOff.alpha = 0.0;
+            this.MTOn.alpha = 1.0;
+        }
     }
 
     /* helpMenu

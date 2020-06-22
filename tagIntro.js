@@ -58,6 +58,7 @@ Info Panels like these contain important information and lessons that help you p
             document.getElementById("background").pause();
             musicToggle = false;
         }
+        this.musicToggled();
     }
 
 
@@ -169,6 +170,8 @@ Info Panels like these contain important information and lessons that help you p
     this.load.image('featNotAvail', 'assets/featNotAvail.png');
     this.load.image('coinExplain', 'assets/Coin/coinExplain.png');
     this.load.image('singleCoin', 'assets/Coin/singleCoin.png');    
+    this.load.image('MTOn', 'assets/MTOnTransparent.png');
+    this.load.image('MTOff', 'assets/MTOffTransparent.png');
   }
 
   createImages() {
@@ -191,7 +194,8 @@ Info Panels like these contain important information and lessons that help you p
 	  this.hole = this.add.image(768, 432, 'hole');
       this.coinExplain = this.add.image(768, 432, 'coinExplain');
       this.countCoin = this.add.image(40, 150, 'singleCoin');
-      
+      this.MTOn = this.add.image(50, 750, 'MTOn');
+      this.MTOff = this.add.image(50, 750, 'MTOff');   
   }
 
   setAlphas() {
@@ -212,6 +216,14 @@ Info Panels like these contain important information and lessons that help you p
     this.coinExplain.alpha = 0.0;
     this.hideActivities();
     this.countCoin.alpha = 0.0;
+    if (musicToggle == false) {
+        this.MTOff.alpha = 1.0;
+        this.MTOn.alpha = 0.0;
+    }
+    if (musicToggle == true) {
+        this.MTOn.alpha = 1.0;
+        this.MTOff.alpha = 0.0;
+    }
   }
 
   setDepths() {
@@ -230,6 +242,8 @@ Info Panels like these contain important information and lessons that help you p
 	this.hole.setDepth(1);
     this.coinExplain.setDepth(2);
     this.countCoin.setDepth(0);
+    this.MTOn.setDepth(0);
+    this.MTOff.setDepth(0);
   }
 
   setScales() {
@@ -247,6 +261,8 @@ Info Panels like these contain important information and lessons that help you p
     this.coinHead.setScale(0.5);
     this.coinExplain.setScale(2.0);
     this.countCoin.setScale(0.25);
+    this.MTOn.setScale(0.2);
+    this.MTOff.setScale(0.2);
   }
 
   setRotations() {
@@ -323,6 +339,7 @@ Info Panels like these contain important information and lessons that help you p
             roomProgress = 1000;
             document.getElementById("background").play();
             musicToggle = true;
+            
 
           this.scene.start("Course_Intro");
           }
@@ -655,6 +672,18 @@ Info Panels like these contain important information and lessons that help you p
 
   updateCoin() {
     this.count.setText('x ' + coinCount);
+  }
+
+    //@author: Zoe U.
+  musicToggled() {
+    if (musicToggle == false) {
+        this.MTOn.alpha = 0.0;
+        this.MTOff.alpha = 1.0;
+    }
+    else if (musicToggle == true) {
+        this.MTOff.alpha = 0.0;
+        this.MTOn.alpha = 1.0;
+    }
   }
 
   helpMenu() {
