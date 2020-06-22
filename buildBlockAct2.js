@@ -7,7 +7,6 @@ class buildBlockAct2 extends Phaser.Scene {
         this.room2b_unlocked = false;
         this.room2b_helpOpen = false;
     	this.room2b_count = 1;
-        this.musicToggle = false;
     }
     //load assets in preload()
 
@@ -43,13 +42,13 @@ class buildBlockAct2 extends Phaser.Scene {
     if (Phaser.Input.Keyboard.JustDown(this.room2b_key_N)) {
         
         document.getElementById("background").play();
-        if (this.musicToggle == false) {
+        if (musicToggle == false) {
             document.getElementById("background").play();
-            this.musicToggle = true;
+            musicToggle = true;
         }
-        else if (this.musicToggle == true) {
+        else if (musicToggle == true) {
             document.getElementById("background").pause();
-            this.musicToggle = false;
+            musicToggle = false;
         }
     }
     

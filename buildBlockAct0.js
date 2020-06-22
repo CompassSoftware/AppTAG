@@ -10,7 +10,6 @@ class buildBlockAct0 extends Phaser.Scene {
         this.paperCount = 1;
         this.maxPaper = 3;
         this.counter = 0;
-        this.musicToggle = false;
         document.getElementById("background").volume = 0.8;
     }
     //load assets in preload()
@@ -50,13 +49,13 @@ class buildBlockAct0 extends Phaser.Scene {
     if (Phaser.Input.Keyboard.JustDown(this.key_N)) {
         
         document.getElementById("background").play();
-        if (this.musicToggle == false) {
+        if (musicToggle == false) {
             document.getElementById("background").play();
-            this.musicToggle = true;
+            musicToggle = true;
         }
-        else if (this.musicToggle == true) {
+        else if (musicToggle == true) {
             document.getElementById("background").pause();
-            this.musicToggle = false;
+            musicToggle = false;
         }
     }
 

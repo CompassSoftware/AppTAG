@@ -9,7 +9,6 @@ class courseIntro extends Phaser.Scene {
         this.helpOpen = false;
         this.holeOpened = false;
         this.counter = 0;
-        this.musicToggle = false;
         document.getElementById("background").volume = 0.8;
     }
     //load assets in preload()
@@ -46,13 +45,13 @@ class courseIntro extends Phaser.Scene {
 
         if (Phaser.Input.Keyboard.JustDown(this.key_N)) {
             document.getElementById("background").play();
-            if (this.musicToggle == false) {
+            if (musicToggle == false) {
                 document.getElementById("background").play();
-                this.musicToggle = true;
+                musicToggle = true;
             }
-            else if (this.musicToggle == true) {
+            else if (musicToggle == true) {
                 document.getElementById("background").pause();
-                this.musicToggle = false;
+                musicToggle = false;
             }
         }
 
@@ -315,7 +314,12 @@ class courseIntro extends Phaser.Scene {
         this.rightArrow.alpha = 0;
         //this.congrats.alpha = 0;
 	    this.returnDoor.alpha = 1;
-        this.coin0.alpha = 1.0;
+        if(roomProgress > 1000) {
+		this.coin0.alpha = 0.0;
+	}
+	else {
+		this.coin0.alpha = 1.0;
+	}
         this.coinHead.alpha = 0.0;
         this.countCoin.alpha = 0.0;
         this.profile.alpha = 0.0;
@@ -550,6 +554,7 @@ class courseIntro extends Phaser.Scene {
                 if(this.key_E.isDown) {
                     if(this.coin0.alpha == 1.0) this.collectCoin(0);
                     this.coin0.alpha = 0.0;
+                    if(roomProgress <= 1000) roomProgress = 1001;
                 }
         } else if(Phaser.Geom.Rectangle.ContainsPoint(this.middle_info, this.character_north)) {
             if(this.hole.alpha == 1) {

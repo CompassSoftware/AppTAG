@@ -53,13 +53,13 @@ Info Panels like these contain important information and lessons that help you p
     if (Phaser.Input.Keyboard.JustDown(this.key_N)) {
 
         document.getElementById("background").play();
-        if (this.musicToggle == false) {
+        if (musicToggle == false) {
             document.getElementById("background").play();
-            this.musicToggle = true;
+            musicToggle = true;
         }
-        else if (this.musicToggle == true) {
+        else if (musicToggle == true) {
             document.getElementById("background").pause();
-            this.musicToggle = false;
+            musicToggle = false;
         }
     }
 
@@ -323,19 +323,12 @@ Info Panels like these contain important information and lessons that help you p
 		if (this.activityOneOpened == true)
 		{
 			if(this.key_E.isDown){
-          			if(roomProgress < 1000) {
-            				roomProgress = 1000;
-            				document.getElementById("background").play();
-				}	
-
-				if(roomProgress < 1000) {
-				    roomProgress = 1000;
-				    document.getElementById("background").play();
-				}
-
+                if(roomProgress < 1000)
+                    roomProgress = 1000;
+                document.getElementById("background").play();
+                musicToggle = true;
 				this.scene.start("Course_Intro");
 			}
-
 			this.E_KeyImg.x = this.character_north.x;
 			this.E_KeyImg.y = this.character_north.y-75;
 			this.E_KeyImg.alpha = 1.0;
