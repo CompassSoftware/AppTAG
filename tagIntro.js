@@ -688,6 +688,10 @@ Info Panels like these contain important information and lessons that help you p
     }
   }
 
+  updateCoin() {
+    this.count.setText('x ' + coinCount);
+  }
+
   //author: @Zack
   displayProfile() {
   this.profile.alpha = 1.0;
@@ -707,10 +711,6 @@ Info Panels like these contain important information and lessons that help you p
     sessionStorage.setItem("answer",input);
     this.answer = sessionStorage.getItem("answer");
     console.log(this.answer);
-  }
-
-  updateCoin() {
-    this.count.setText('x ' + coinCount);
   }
 
   helpMenu() {
