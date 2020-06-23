@@ -10,8 +10,6 @@ class tagIntro extends Phaser.Scene {
     this.activityOneOpened = false;
     this.helpOpen = false;
     this.musicToggle = false;
-    //var player = prompt("Please enter your name", "name");
-    //localStorage.setItem("playerName", player);
     this.question1 = true; // To see if players have already answer the question or not.
     this.createProfile();
   }
