@@ -10,9 +10,10 @@ class tagIntro extends Phaser.Scene {
     this.activityOneOpened = false;
     this.helpOpen = false;
     this.musicToggle = false;
-    var player = prompt("Please enter your name", "name");
-    localStorage.setItem("playerName", player);
-
+    //var player = prompt("Please enter your name", "name");
+    //localStorage.setItem("playerName", player);
+    this.question1 = true; // To see if players have already answer the question or not.
+    this.createProfile();
   }
   //load assets in preload()
 
@@ -327,8 +328,29 @@ Info Panels like these contain important information and lessons that help you p
                     roomProgress = 1000;
                 document.getElementById("background").play();
                 musicToggle = true;
-				this.scene.start("Course_Intro");
+
+                /* Author: Zack
+                Codes below show a way that using prompt to let the player to answer the question.
+                When player want to enter the next room, they have to answer the question what's 1 plus 1
+                (of course is 2). If they enter the correct answer they will see 'Correct!' and then enter the next room.
+                Otherwise, they have to repeatedly enter the answer until they got the right answer.
+                 */
+                if(this.question1 == true) {
+                  this.quiz();
+                  if(this.answer == "2") {
+                    alert("Correct!");
+                    this.scene.start("Course_Intro");
+                    this.question1 = false;
+                  }  else {
+                    alert("Wrong answer, try again!");
+                  }
+                } else {
+                  alert("Question 1 has been already answered.")
+                  this.scene.start("Course_Intro");
+                }
+                //this.scene.start("Course_Intro");
 			}
+
 			this.E_KeyImg.x = this.character_north.x;
 			this.E_KeyImg.y = this.character_north.y-75;
 			this.E_KeyImg.alpha = 1.0;
@@ -657,19 +679,35 @@ Info Panels like these contain important information and lessons that help you p
   }
 
   //author: @Zack
-displayProfile() {
-  this.profile.alpha = 1.0;
-  this.name = localStorage.getItem("playerName");
-  if(this.name.length > 7) {
-    this.name = this.name.slice(0,7) + "...";
+  createProfile() {
+    var player = prompt("Please enter your name", "name");
+    localStorage.setItem("playerName", player);
+    this.name = localStorage.getItem("playerName");
+    if(this.name.length > 7) {
+      this.name = this.name.slice(0,7) + "...";
+    }
   }
-  this.userName = this.add.text(70,140, this.name, {
+
+  //author: @Zack
+  displayProfile() {
+  this.profile.alpha = 1.0;
+  this.add.text(70,140, this.name, {
       font: "24px arial",
       color:'#FFFFFF',
       align:'left',
       fontweight: 'bold',
   });
 }
+
+  /*author: @Zack
+  A way of using prompt to set a quiz.
+   */
+  quiz() {
+    var input = prompt("1 + 1 = ?","Enter your answer");
+    sessionStorage.setItem("answer",input);
+    this.answer = sessionStorage.getItem("answer");
+    console.log(this.answer);
+  }
 
   updateCoin() {
     this.count.setText('x ' + coinCount);
