@@ -705,9 +705,9 @@ Info Panels like these contain important information and lessons that help you p
   A way of using prompt to set a quiz.
    */
   quiz() {
-    var input = prompt("1 + 1 = ?","Enter your answer");
-    sessionStorage.setItem("answer",input);
-    this.answer = sessionStorage.getItem("answer");
+    this.answer = prompt("1 + 1 = ?","Enter your answer");
+    //sessionStorage.setItem("answer",input);
+    //this.answer = sessionStorage.getItem("answer");
     console.log(this.answer);
   }
 
