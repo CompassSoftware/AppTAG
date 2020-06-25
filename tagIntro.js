@@ -167,12 +167,18 @@ Info Panels like these contain important information and lessons that help you p
     this.load.image('activityLocked', 'assets/activityLocked.png');
     this.load.image('help_menu', 'assets/help_menu.png');
 	  this.load.image('approachImg', 'assets/Room0/R0_tutorial.png');
-	  this.load.image('tut1', 'assets/Room0/tut1.PNG');
+	  //this.load.image('tut1', 'assets/Room0/tut1.PNG');
 	  this.load.image('hole', 'assets/hole.png');
     this.load.image('featNotAvail', 'assets/featNotAvail.png');
     this.load.image('coinExplain', 'assets/Coin/coinExplain.png');
     this.load.image('singleCoin', 'assets/Coin/singleCoin.png');
     this.load.image('profile','assets/character_south.png');
+    this.load.image('tut_bg','assets/Room0/tut_bg.png');
+    this.line1 = "AppTAG: APPstate's The Accounting Game";
+    this.line2 = "Avatar Movement: A, W, S, D       Help: D";
+    this.line3 = "Object interaction: E                     Bookbag inventory: B";
+    this.line4 = "Hide info popups: Q                      Room map: M";
+    this.line5 = "Some objects/activities are invisible or \"locked\" until you interact\n with other objects in the proper order. So, walk up to things and\n interact with the E key.";
   }
 
   createImages() {
@@ -191,7 +197,39 @@ Info Panels like these contain important information and lessons that help you p
     this.notebook = this.add.image(768, 432, 'featNotAvail');
     this.activityLocked = this.add.image(768, 432, 'activityLocked');
     this.help_menu = this.add.image(768, 432, 'help_menu');
-	  this.tut1 = this.add.image(768, 432, 'tut1');
+    this.tut_bg = this.add.image(780,440,'tut_bg');
+	  //this.tut1 = this.add.image(768, 432, 'tut1');
+	  this.tut2 = this.add.text(580, 330, this.line1, {
+        font: "20px arial",
+        color: "#202020",
+        align: 'center',
+        fontWeight:'bold',
+      });
+    this.tut3 = this.add.text(540, 380, this.line2, {
+      font: "20px arial",
+      color: "#202020",
+      align: 'left',
+      fontWeight:'bold',
+    });
+    this.tut4 = this.add.text(540, 410, this.line3, {
+      font: "20px arial",
+      color: "#202020",
+      align: 'left',
+      fontWeight:'bold',
+    });
+    this.tut5 = this.add.text(540, 440, this.line4, {
+      font: "20px arial",
+      color: "#202020",
+      align: 'left',
+      fontWeight:'bold',
+    });
+    this.tut6 = this.add.text(500, 490, this.line5, {
+      font: "20px arial",
+      color: "#202020",
+      align: 'center',
+      fontWeight:'bold',
+      maxLines: '3',
+    });
 	  this.hole = this.add.image(768, 432, 'hole');
       this.coinExplain = this.add.image(768, 432, 'coinExplain');
       this.countCoin = this.add.image(40, 230, 'singleCoin');
@@ -205,7 +243,13 @@ Info Panels like these contain important information and lessons that help you p
     this.activityLocked.alpha = 0.0;
 	  this.approachImg.alpha = 0.0;
     this.help_menu.alpha = 0.0;
-	  this.tut1.alpha = 0.0;
+	  //this.tut1.alpha = 0.0;
+	  this.tut2.alpha = 0.0;
+    this.tut3.alpha = 0.0;
+    this.tut4.alpha = 0.0;
+    this.tut5.alpha = 0.0;
+    this.tut6.alpha = 0.0;
+    this.tut_bg.alpha = 0.0;
     this.E_KeyImg.alpha = 0.0;
 	  this.hole.alpha = 0.0;
 	if (roomProgress > 0) {
@@ -232,7 +276,13 @@ Info Panels like these contain important information and lessons that help you p
 
     this.notebook.setDepth(100);
     this.help_menu.setDepth(100);
-	this.tut1.setDepth(99);
+	//this.tut1.setDepth(99);
+	this.tut2.setDepth(99);
+    this.tut3.setDepth(99);
+    this.tut4.setDepth(99);
+    this.tut5.setDepth(99);
+    this.tut6.setDepth(99);
+    this.tut_bg.setDepth(3);
 	this.hole.setDepth(1);
     this.coinExplain.setDepth(2);
     this.countCoin.setDepth(0);
@@ -249,7 +299,8 @@ Info Panels like these contain important information and lessons that help you p
     this.character_west.setScale(3);
     this.character_east.setScale(3);
     this.approachImg.setScale(0.4);
-    this.tut1.setScale(0.5);
+    //this.tut1.setScale(0.5);
+    this.tut_bg.setScale(0.55);
     this.coin0.setScale(0.5);
     this.coinHead.setScale(0.5);
     this.coinExplain.setScale(2.0);
@@ -313,7 +364,13 @@ Info Panels like these contain important information and lessons that help you p
       this.E_KeyImg.y = this.character_north.y-100;
       this.E_KeyImg.alpha = 1.0;
       if (this.key_E.isDown) {
-        this.tut1.alpha = 1.0;
+        //this.tut1.alpha = 1.0;
+        this.tut2.alpha = 1.0;
+        this.tut3.alpha = 1.0;
+        this.tut4.alpha = 1.0;
+        this.tut5.alpha = 1.0;
+        this.tut6.alpha = 1.0;
+        this.tut_bg.alpha = 1.0;
         if(this.hole.alpha == 0.0) this.coin0.alpha = 1.0;
 //		this.activityOneOpened = true;
 //		this.hole.alpha = 1.0;
@@ -356,7 +413,13 @@ Info Panels like these contain important information and lessons that help you p
       this.hideActivities();
       this.E_KeyImg.alpha = 0.0;
 	  this.approachImg.alpha = 0.0;
-	  this.tut1.alpha = 0.0;
+	  //this.tut1.alpha = 0.0;
+	  this.tut2.alpha = 0.0;
+      this.tut3.alpha = 0.0;
+      this.tut4.alpha = 0.0;
+      this.tut5.alpha = 0.0;
+      this.tut6.alpha = 0.0;
+      this.tut_bg.alpha = 0.0;
       this.coinExplain.alpha = 0.0;
     }
   }
@@ -504,7 +567,13 @@ Info Panels like these contain important information and lessons that help you p
     this.character_west.alpha = 1.0;
     this.characterMoveable = true;
     this.help_menu.alpha = 0.0;
-	  this.tut1.alpha = 0.0;
+	  //this.tut1.alpha = 0.0;
+	  this.tut2.alpha = 0.0;
+    this.tut3.alpha = 0.0;
+    this.tut4.alpha = 0.0;
+    this.tut5.alpha = 0.0;
+    this.tut6.alpha = 0.0;
+    this.tut_bg.alpha = 0.0;
     this.characterMoveable = true;
     this.movePlayer();
   }
