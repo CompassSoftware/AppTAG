@@ -1,6 +1,13 @@
+var character_south;
+var character_north;
+var character_east;
+var character_west;
+var target = new Phaser.Math.Vector2();
+//var debug;
+
 class tagIntro extends Phaser.Scene {
 
-    
+
   constructor() {
     super("TAG_Intro");
     this.quizActive = false;
@@ -44,12 +51,42 @@ Info Panels like these contain important information and lessons that help you p
     });
     this.displayCoin();
     this.displayProfile();
+
+    this.input.on('pointerup', function(pointer){
+      if(pointer.x < 210 ) pointer.x = 210;
+      if(pointer.x > 1325) pointer.x = 1325;
+      if(pointer.y < 185) pointer.y = 185;
+      if(pointer.y > 665) pointer.y = 665;
+      target.x = pointer.x;
+      target.y = pointer.y;
+      this.physics.moveTo(character_south, target.x, target.y,300);
+      characterMoveable = false;
+      //debug.clear().lineStyle(1, 0x00ff00);
+      //debug.lineBetween(0, target.y, 1536, target.y);
+      //debug.lineBetween(target.x, 0, target.x, 864);
+    },this);
   }
     
   update(delta) {
     //TEMPORARY FOR TESTING
     //vvvvvvvvvvvvvvvvvvv//
 
+    if (character_south.body.speed > 0)
+    {
+      //distanceText.setText('Distance: ' + distance);
+      var distance = Phaser.Math.Distance.Between(character_south.x, character_south.y, target.x, target.y);
+
+      //  4 is our distance tolerance, i.e. how close the source can get to the target
+      //  before it is considered as being there. The faster it moves, the more tolerance is required.
+      if (distance < 10)
+      {
+        character_south.body.reset(target.x, target.y);
+        character_north.body.reset(target.x, target.y);
+        character_east.body.reset(target.x, target.y);
+        character_west.body.reset(target.x, target.y);
+        characterMoveable = true;
+      }
+    }
     if (Phaser.Input.Keyboard.JustDown(this.key_N)) {
 
         document.getElementById("background").play();
@@ -90,10 +127,14 @@ Info Panels like these contain important information and lessons that help you p
       if (this.map.alpha == 0.0) {
         this.map.alpha = 1.0;
         this.characterMoveable = false;
-        this.character_north.alpha = 0.0;
-        this.character_east.alpha = 0.0;
-        this.character_south.alpha = 0.0;
-        this.character_west.alpha = 0.0;
+        //this.character_north.alpha = 0.0;
+        //this.character_east.alpha = 0.0;
+        //this.character_south.alpha = 0.0;
+        //this.character_west.alpha = 0.0;
+        character_south.alpha = 0.0;
+        character_north.alpha = 0.0;
+        character_east.alpha = 0.0;
+        character_west.alpha = 0.0;
       }
       else {
         this.quitInteraction();
@@ -104,10 +145,14 @@ Info Panels like these contain important information and lessons that help you p
       if (this.notebook.alpha == 0.0) {
         this.notebook.alpha = 1.0;
         this.characterMoveable = false;
-        this.character_north.alpha = 0.0;
-        this.character_east.alpha = 0.0;
-        this.character_south.alpha = 0.0;
-        this.character_west.alpha = 0.0;
+        //this.character_north.alpha = 0.0;
+        //this.character_east.alpha = 0.0;
+        //this.character_south.alpha = 0.0;
+        //this.character_west.alpha = 0.0;
+        character_south.alpha = 0.0;
+        character_north.alpha = 0.0;
+        character_east.alpha = 0.0;
+        character_west.alpha = 0.0;
       }
       else {
           this.quitInteraction();
@@ -166,9 +211,9 @@ Info Panels like these contain important information and lessons that help you p
     this.load.image('notebook', 'assets/notebook.png');
     this.load.image('activityLocked', 'assets/activityLocked.png');
     this.load.image('help_menu', 'assets/help_menu.png');
-	  this.load.image('approachImg', 'assets/Room0/R0_tutorial.png');
-	  this.load.image('tut1', 'assets/Room0/tut1.PNG');
-	  this.load.image('hole', 'assets/hole.png');
+    this.load.image('approachImg', 'assets/Room0/R0_tutorial.png');
+    this.load.image('tut1', 'assets/Room0/tut1.PNG');
+    this.load.image('hole', 'assets/hole.png');
     this.load.image('featNotAvail', 'assets/featNotAvail.png');
     this.load.image('coinExplain', 'assets/Coin/coinExplain.png');
     this.load.image('singleCoin', 'assets/Coin/singleCoin.png');
@@ -176,27 +221,32 @@ Info Panels like these contain important information and lessons that help you p
   }
 
   createImages() {
+    character_south = this.physics.add.image(768, 432, 'character_south').setScale(3).setDepth(50);
+    character_north = this.physics.add.image(768, 432, 'character_north').setScale(3).setDepth(50);
+    character_east = this.physics.add.image(768, 432, 'character_east').setScale(3).setDepth(50);
+    character_west = this.physics.add.image(768, 432, 'character_west').setScale(3).setDepth(50);
+    target = this.input.mousePointer;
     this.e_pressed = false;
     this.papers_moved = false;
     this.background = this.add.image(768, 432, 'one_lesson_BG');
-    this.character_north = this.add.image(768, 432, 'character_north');
-    this.character_east = this.add.image(768, 432, 'character_east');
-    this.character_south = this.add.image(768, 432, 'character_south');
-    this.character_west = this.add.image(768, 432, 'character_west');
-    this.E_KeyImg = this.add.image(this.character_north.x+40, this.character_north.y+40, 'E_KeyImg');
-	  this.approachImg = this.add.image(this.character_north.x+40, this.character_north.y+40, 'approachImg');
+    //this.character_north = this.add.image(768, 432, 'character_north');
+    //this.character_east = this.add.image(768, 432, 'character_east');
+    //this.character_south = this.add.image(768, 432, 'character_south');
+    //this.character_west = this.add.image(768, 432, 'character_west');
+    this.E_KeyImg = this.add.image(character_north.x+40, character_north.y+40, 'E_KeyImg');
+	  this.approachImg = this.add.image(character_north.x+40, character_north.y+40, 'approachImg');
     this.wall_info_2 = this.add.image(768, 75, 'wall_info_2');
     this.floor = this.add.image(769, 433, 'floor');
     this.map = this.add.image(768, 432, 'featNotAvail');
     this.notebook = this.add.image(768, 432, 'featNotAvail');
     this.activityLocked = this.add.image(768, 432, 'activityLocked');
     this.help_menu = this.add.image(768, 432, 'help_menu');
-	  this.tut1 = this.add.image(768, 432, 'tut1');
-	  this.hole = this.add.image(768, 432, 'hole');
-      this.coinExplain = this.add.image(768, 432, 'coinExplain');
-      this.countCoin = this.add.image(40, 230, 'singleCoin');
-      this.profile = this.add.image(40,150,'profile');
-      
+    this.tut1 = this.add.image(768, 432, 'tut1');
+    this.hole = this.add.image(768, 432, 'hole');
+    this.coinExplain = this.add.image(768, 432, 'coinExplain');
+    this.countCoin = this.add.image(40, 230, 'singleCoin');
+    this.profile = this.add.image(40,150,'profile');
+
   }
 
   setAlphas() {
@@ -222,10 +272,10 @@ Info Panels like these contain important information and lessons that help you p
 
   setDepths() {
     this.floor.setDepth(0);
-    this.character_north.setDepth(50);
-    this.character_east.setDepth(50);
-    this.character_south.setDepth(50);
-    this.character_west.setDepth(50);
+    //this.character_north.setDepth(50);
+    //this.character_east.setDepth(50);
+    //this.character_south.setDepth(50);
+    //this.character_west.setDepth(50);
     this.E_KeyImg.setDepth(49);
 	  this.approachImg.setDepth(48);
     this.map.setDepth(100);
@@ -244,10 +294,10 @@ Info Panels like these contain important information and lessons that help you p
     this.wall_info_2.setScale(0.75);
     this.notebook.setScale(0.75);
     this.map.setScale(0.75);
-    this.character_north.setScale(3);
-    this.character_south.setScale(3);
-    this.character_west.setScale(3);
-    this.character_east.setScale(3);
+    //this.character_north.setScale(3);
+    //this.character_south.setScale(3);
+    //this.character_west.setScale(3);
+    //this.character_east.setScale(3);
     this.approachImg.setScale(0.4);
     this.tut1.setScale(0.5);
     this.coin0.setScale(0.5);
@@ -308,9 +358,11 @@ Info Panels like these contain important information and lessons that help you p
   }
 
   checkInteractValidity() {
-    if (Phaser.Geom.Rectangle.ContainsPoint(this.top_mid_info, this.character_north)) {
-      this.E_KeyImg.x = this.character_north.x;
-      this.E_KeyImg.y = this.character_north.y-100;
+    if (Phaser.Geom.Rectangle.ContainsPoint(this.top_mid_info, character_north)) {
+      //this.E_KeyImg.x = this.character_north.x;
+      //this.E_KeyImg.y = this.character_north.y-100;
+      this.E_KeyImg.x = character_north.x;
+      this.E_KeyImg.y = character_north.y-100;
       this.E_KeyImg.alpha = 1.0;
       if (this.key_E.isDown) {
         this.tut1.alpha = 1.0;
@@ -318,7 +370,7 @@ Info Panels like these contain important information and lessons that help you p
 //		this.activityOneOpened = true;
 //		this.hole.alpha = 1.0;
       }
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.middle_info, this.character_north))
+    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.middle_info, character_north))
 	{
 		if (this.activityOneOpened == true)
 		{
@@ -329,20 +381,26 @@ Info Panels like these contain important information and lessons that help you p
                 musicToggle = true;
 				this.scene.start("Course_Intro");
 			}
-			this.E_KeyImg.x = this.character_north.x;
-			this.E_KeyImg.y = this.character_north.y-75;
+			//this.E_KeyImg.x = this.character_north.x;
+			//this.E_KeyImg.y = this.character_north.y-75;
+            this.E_KeyImg.x = character_north.x;
+            this.E_KeyImg.y = character_north.y-75;
 			this.E_KeyImg.alpha = 1.0;
 		}
 		else if(this.activityOneOpened == false)
 		{
-			this.approachImg.x = this.character_north.x;
-			this.approachImg.y = this.character_north.y-150;
+			//this.approachImg.x = this.character_north.x;
+			//this.approachImg.y = this.character_north.y-150;
+            this.approachImg.x = character_north.x;
+            this.approachImg.y = character_north.y-150;
 			this.approachImg.alpha = 1.0;
 		}
 	}
-    else if(Phaser.Geom.Rectangle.ContainsPoint(this.coin_collect_zone, this.character_north)) {
-        this.E_KeyImg.x = this.character_north.x;
-        this.E_KeyImg.y = this.character_north.y-75;
+    else if(Phaser.Geom.Rectangle.ContainsPoint(this.coin_collect_zone, character_north)) {
+        //this.E_KeyImg.x = this.character_north.x;
+        //this.E_KeyImg.y = this.character_north.y-75;
+        this.E_KeyImg.x = character_north.x;
+        this.E_KeyImg.y = character_north.y-75;
         if(this.coin0.alpha == 1.0) this.E_KeyImg.alpha = 1.0;
         if(this.key_E.isDown) {
             if(this.coin0.alpha == 1.0) this.collectCoin(0);
@@ -364,62 +422,64 @@ Info Panels like these contain important information and lessons that help you p
 
   movePlayer() {
 
-    this.character_north.alpha = 0;
-    this.character_east.alpha = 0;
-    this.character_west.alpha = 0;
-    this.character_south.alpha =1;
+    character_north.alpha = 0;
+    character_east.alpha = 0;
+    character_west.alpha = 0;
+    character_south.alpha =1;
+
 
     if(this.key_W.isDown && characterMoveable == true) {
-	if(this.character_north.y > 185){
-      		this.character_north.y -= 5;
-          this.character_east.y -= 5;
-          this.character_south.y -= 5;
-          this.character_west.y -= 5;
+	if(character_north.y > 185){
+      		character_north.y -= 5;
+            character_east.y -= 5;
+            character_south.y -= 5;
+            character_west.y -= 5;
 
-          this.character_north.alpha = 1;
-          this.character_east.alpha = 0;
-          this.character_west.alpha = 0;
-          this.character_south.alpha =0;
+            character_north.alpha = 1;
+            character_east.alpha = 0;
+            character_west.alpha = 0;
+            character_south.alpha =0;
+
 
 
 		}
     } if (this.key_A.isDown && characterMoveable == true) {
-      	if(this.character_west.x > 210){
-      		this.character_west.x -= 5;
-          this.character_east.x -= 5;
-          this.character_south.x -= 5;
-          this.character_north.x -= 5;
+      	if(character_west.x > 210){
+      		character_west.x -= 5;
+            character_east.x -= 5;
+            character_south.x -= 5;
+            character_north.x -= 5;
 
-          this.character_west.alpha = 1;
-          this.character_east.alpha = 0;
-          this.character_north.alpha = 0;
-          this.character_south.alpha =0;
+            character_west.alpha = 1;
+            character_east.alpha = 0;
+            character_north.alpha = 0;
+            character_south.alpha =0;
 	}
 
     } if (this.key_S.isDown && characterMoveable == true) {
-	if(this.character_south.y < 665){
-      		this.character_south.y += 5;
-          this.character_east.y += 5;
-          this.character_north.y += 5;
-          this.character_west.y += 5;
+      if(character_south.y < 665) {
+            character_south.y += 5;
+            character_east.y += 5;
+            character_north.y += 5;
+            character_west.y += 5;
 
-          this.character_south.alpha = 1;
-          this.character_east.alpha = 0;
-          this.character_west.alpha = 0;
-          this.character_north.alpha =0;
+            character_south.alpha = 1;
+            character_east.alpha = 0;
+            character_west.alpha = 0;
+            character_north.alpha =0;
 		}
 
     } if (this.key_D.isDown && characterMoveable == true) {
-      	if(this.character_east.x < 1325){
-      		this.character_east.x += 5;
-          this.character_north.x += 5;
-          this.character_south.x += 5;
-          this.character_west.x += 5;
+      	if(character_east.x < 1325){
+      		character_east.x += 5;
+            character_north.x += 5;
+            character_south.x += 5;
+            character_west.x += 5;
 
-          this.character_east.alpha = 1;
-          this.character_north.alpha = 0;
-          this.character_west.alpha = 0;
-          this.character_south.alpha =0;
+            character_east.alpha = 1;
+            character_north.alpha = 0;
+            character_west.alpha = 0;
+            character_south.alpha =0;
 		}
     }
   }
@@ -439,10 +499,10 @@ Info Panels like these contain important information and lessons that help you p
     this.papers_moved = false;
     this.quizActive = false;
     this.background.alpha = 1.0;
-    this.character_north.alpha = 1.0;
-    this.character_east.alpha = 1.0;
-    this.character_south.alpha = 1.0;
-    this.character_west.alpha = 1.0;
+    character_north.alpha = 1.0;
+    character_east.alpha = 1.0;
+    character_south.alpha = 1.0;
+    character_west.alpha = 1.0;
     this.E_KeyImg.alpha = 1.0;
 	this.approachImg.alpha = 1.0;
 
@@ -476,10 +536,10 @@ Info Panels like these contain important information and lessons that help you p
 
 
     this.background.alpha = 0.0;
-    this.character_north.alpha = 0.0;
-    this.character_east.alpha = 0.0;
-    this.character_south.alpha = 0.0;
-    this.character_west.alpha = 0.0;
+    character_north.alpha = 0.0;
+    character_east.alpha = 0.0;
+    character_south.alpha = 0.0;
+    character_west.alpha = 0.0;
     this.E_KeyImg.alpha = 0.0;
 	this.approachImg.alpha = 0.0;
     this.wall_info_2.alpha = 0.0;
@@ -498,10 +558,10 @@ Info Panels like these contain important information and lessons that help you p
     this.notebook.alpha = 0.0;
     this.hideActivities();
     this.activityLocked.alpha = 0.0;
-    this.character_north.alpha = 1.0;
-    this.character_east.alpha = 1.0;
-    this.character_south.alpha = 1.0;
-    this.character_west.alpha = 1.0;
+    character_north.alpha = 1.0;
+    character_east.alpha = 1.0;
+    character_south.alpha = 1.0;
+    character_west.alpha = 1.0;
     this.characterMoveable = true;
     this.help_menu.alpha = 0.0;
 	  this.tut1.alpha = 0.0;
@@ -601,7 +661,7 @@ Info Panels like these contain important information and lessons that help you p
          * regular image. Note it is "this.add.sprite" in place of 
          * "this.add.image"
          */
-        this.coinHead = this.add.sprite(this.character_north.x, this.character_north.y-75, 'coin');
+        this.coinHead = this.add.sprite(character_north.x, character_north.y-75, 'coin');
         this.coin0 = this.add.sprite(289, 446, 'coin');
         /* In the case of the coins that exist in the worldspace,
          * set the animation to play here, and it can always be active,
@@ -635,8 +695,8 @@ Info Panels like these contain important information and lessons that help you p
        * ***WILL ADD*** increases the global coin count variable ONCE.
        */
       this.E_KeyImg.alpha = 0.0; 
-      this.coinHead.x = this.character_north.x;
-      this.coinHead.y = this.character_north.y-125;
+      this.coinHead.x = character_north.x;
+      this.coinHead.y = character_north.y-125;
       this.coinHead.alpha = 1.0;
       this.coinHead.anims.play('coinCollect');
       document.getElementById("collect").play();

@@ -2,7 +2,10 @@ var config = {
   type: Phaser.AUTO,
   width: 1536,
   height: 864,
-
+  physics: {
+    default: 'arcade',
+    arcade: { debug: false },
+  },
   scene: [tagIntro, courseIntro, buildingBlocks, bbActRoom, buildBlockAct0, buildBlockAct2, accountEqn, accountEqnAct, winners_room]
 	  
 
@@ -23,3 +26,4 @@ var musicToggle = false;
 var game = new Phaser.Game(config);
 var coinCount = 0;
 var musicToggle = false;
+var platforms;
