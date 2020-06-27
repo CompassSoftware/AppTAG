@@ -139,10 +139,6 @@ Info Panels like these contain important information and lessons that help you p
       if (this.map.alpha == 0.0) {
         this.map.alpha = 1.0;
         this.characterMoveable = false;
-        //this.character_north.alpha = 0.0;
-        //this.character_east.alpha = 0.0;
-        //this.character_south.alpha = 0.0;
-        //this.character_west.alpha = 0.0;
         character_south.alpha = 0.0;
         character_north.alpha = 0.0;
         character_east.alpha = 0.0;
@@ -157,10 +153,6 @@ Info Panels like these contain important information and lessons that help you p
       if (this.notebook.alpha == 0.0) {
         this.notebook.alpha = 1.0;
         this.characterMoveable = false;
-        //this.character_north.alpha = 0.0;
-        //this.character_east.alpha = 0.0;
-        //this.character_south.alpha = 0.0;
-        //this.character_west.alpha = 0.0;
         character_south.alpha = 0.0;
         character_north.alpha = 0.0;
         character_east.alpha = 0.0;
