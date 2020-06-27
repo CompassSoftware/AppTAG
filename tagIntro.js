@@ -56,7 +56,7 @@ Info Panels like these contain important information and lessons that help you p
       if((pointer.x > 210 && pointer.x < 1325) && (pointer.y > 185 && pointer.y < 665)) {
         target.x = pointer.x;
         target.y = pointer.y;
-        this.physics.moveTo(character_south, target.x, target.y,300);
+        this.physics.moveTo(character_south, target.x, target.y,350);
         characterMoveable = false;
       }
 
