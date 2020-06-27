@@ -3,7 +3,6 @@ var character_north;
 var character_east;
 var character_west;
 var target = new Phaser.Math.Vector2();
-//var debug;
 
 class tagIntro extends Phaser.Scene {
 
@@ -53,7 +52,16 @@ Info Panels like these contain important information and lessons that help you p
     this.displayProfile();
 
     this.input.on('pointerup', function(pointer){
-      if(pointer.x < 210 ) pointer.x = 210;
+      // If the pointer beyond the border, the character won't move.
+      if((pointer.x > 210 && pointer.x < 1325) && (pointer.y > 185 && pointer.y < 665)) {
+        target.x = pointer.x;
+        target.y = pointer.y;
+        this.physics.moveTo(character_south, target.x, target.y,300);
+        characterMoveable = false;
+      }
+
+      /* If the pointer beyond the border, the character will move to the edge.
+      if(pointer.x < 210) pointer.x = 210;
       if(pointer.x > 1325) pointer.x = 1325;
       if(pointer.y < 185) pointer.y = 185;
       if(pointer.y > 665) pointer.y = 665;
@@ -61,9 +69,7 @@ Info Panels like these contain important information and lessons that help you p
       target.y = pointer.y;
       this.physics.moveTo(character_south, target.x, target.y,300);
       characterMoveable = false;
-      //debug.clear().lineStyle(1, 0x00ff00);
-      //debug.lineBetween(0, target.y, 1536, target.y);
-      //debug.lineBetween(target.x, 0, target.x, 864);
+       */
     },this);
   }
     
@@ -71,6 +77,11 @@ Info Panels like these contain important information and lessons that help you p
     //TEMPORARY FOR TESTING
     //vvvvvvvvvvvvvvvvvvv//
 
+    /* author: @Zack
+      The coordinates of the character are not exactly equals to the coordinates of the input.
+      This method use the @variable distance to help the character positioning.
+      @Variable distance        The distance between the character and the input.
+     */
     if (character_south.body.speed > 0)
     {
       //distanceText.setText('Distance: ' + distance);
@@ -78,7 +89,7 @@ Info Panels like these contain important information and lessons that help you p
 
       //  4 is our distance tolerance, i.e. how close the source can get to the target
       //  before it is considered as being there. The faster it moves, the more tolerance is required.
-      if (distance < 10)
+      if (distance < 4)
       {
         character_south.body.reset(target.x, target.y);
         character_north.body.reset(target.x, target.y);
@@ -87,6 +98,7 @@ Info Panels like these contain important information and lessons that help you p
         characterMoveable = true;
       }
     }
+
     if (Phaser.Input.Keyboard.JustDown(this.key_N)) {
 
         document.getElementById("background").play();
@@ -225,14 +237,9 @@ Info Panels like these contain important information and lessons that help you p
     character_north = this.physics.add.image(768, 432, 'character_north').setScale(3).setDepth(50);
     character_east = this.physics.add.image(768, 432, 'character_east').setScale(3).setDepth(50);
     character_west = this.physics.add.image(768, 432, 'character_west').setScale(3).setDepth(50);
-    target = this.input.mousePointer;
     this.e_pressed = false;
     this.papers_moved = false;
     this.background = this.add.image(768, 432, 'one_lesson_BG');
-    //this.character_north = this.add.image(768, 432, 'character_north');
-    //this.character_east = this.add.image(768, 432, 'character_east');
-    //this.character_south = this.add.image(768, 432, 'character_south');
-    //this.character_west = this.add.image(768, 432, 'character_west');
     this.E_KeyImg = this.add.image(character_north.x+40, character_north.y+40, 'E_KeyImg');
 	  this.approachImg = this.add.image(character_north.x+40, character_north.y+40, 'approachImg');
     this.wall_info_2 = this.add.image(768, 75, 'wall_info_2');
@@ -272,14 +279,9 @@ Info Panels like these contain important information and lessons that help you p
 
   setDepths() {
     this.floor.setDepth(0);
-    //this.character_north.setDepth(50);
-    //this.character_east.setDepth(50);
-    //this.character_south.setDepth(50);
-    //this.character_west.setDepth(50);
     this.E_KeyImg.setDepth(49);
 	  this.approachImg.setDepth(48);
     this.map.setDepth(100);
-
     this.notebook.setDepth(100);
     this.help_menu.setDepth(100);
 	this.tut1.setDepth(99);
@@ -294,10 +296,6 @@ Info Panels like these contain important information and lessons that help you p
     this.wall_info_2.setScale(0.75);
     this.notebook.setScale(0.75);
     this.map.setScale(0.75);
-    //this.character_north.setScale(3);
-    //this.character_south.setScale(3);
-    //this.character_west.setScale(3);
-    //this.character_east.setScale(3);
     this.approachImg.setScale(0.4);
     this.tut1.setScale(0.5);
     this.coin0.setScale(0.5);
@@ -359,18 +357,17 @@ Info Panels like these contain important information and lessons that help you p
 
   checkInteractValidity() {
     if (Phaser.Geom.Rectangle.ContainsPoint(this.top_mid_info, character_north)) {
-      //this.E_KeyImg.x = this.character_north.x;
-      //this.E_KeyImg.y = this.character_north.y-100;
       this.E_KeyImg.x = character_north.x;
       this.E_KeyImg.y = character_north.y-100;
       this.E_KeyImg.alpha = 1.0;
+      this.approachImg.alpha = 0.0;
       if (this.key_E.isDown) {
         this.tut1.alpha = 1.0;
         if(this.hole.alpha == 0.0) this.coin0.alpha = 1.0;
 //		this.activityOneOpened = true;
 //		this.hole.alpha = 1.0;
       }
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.middle_info, character_north))
+    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.middle_info, character_south))
 	{
 		if (this.activityOneOpened == true)
 		{
@@ -381,24 +378,18 @@ Info Panels like these contain important information and lessons that help you p
                 musicToggle = true;
 				this.scene.start("Course_Intro");
 			}
-			//this.E_KeyImg.x = this.character_north.x;
-			//this.E_KeyImg.y = this.character_north.y-75;
             this.E_KeyImg.x = character_north.x;
             this.E_KeyImg.y = character_north.y-75;
 			this.E_KeyImg.alpha = 1.0;
 		}
 		else if(this.activityOneOpened == false)
 		{
-			//this.approachImg.x = this.character_north.x;
-			//this.approachImg.y = this.character_north.y-150;
             this.approachImg.x = character_north.x;
             this.approachImg.y = character_north.y-150;
 			this.approachImg.alpha = 1.0;
 		}
 	}
     else if(Phaser.Geom.Rectangle.ContainsPoint(this.coin_collect_zone, character_north)) {
-        //this.E_KeyImg.x = this.character_north.x;
-        //this.E_KeyImg.y = this.character_north.y-75;
         this.E_KeyImg.x = character_north.x;
         this.E_KeyImg.y = character_north.y-75;
         if(this.coin0.alpha == 1.0) this.E_KeyImg.alpha = 1.0;
