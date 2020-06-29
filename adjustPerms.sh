@@ -19,6 +19,7 @@ chmod a+x assets/Panels
 chmod a+x assets/Panels/RoomOne
 chmod a+x assets/Panels/RoomTwo
 chmod a+x assets/Panels/RoomThree
+chmod a+x assets/Panels/Journal_Room4
 chmod a+x assets/Documents
 chmod a+x assets/Room0
 chmod a+x assets/Room1
