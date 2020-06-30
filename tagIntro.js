@@ -222,7 +222,7 @@ Info Panels like these contain important information and lessons that help you p
       fontWeight:'bold',
       maxLines: '3',
     }).setDepth(99);
-    this.tut3.lineSpacing = 10;
+    this.tut3.lineSpacing = 20;
 
 	  this.hole = this.add.image(768, 432, 'hole');
       this.coinExplain = this.add.image(768, 432, 'coinExplain');
