@@ -615,7 +615,7 @@ class journalRoom extends Phaser.Scene {
   */
 
   checkInteractValidity() {
-    if (Phaser.Geom.Rectangle.ContainsPoint(this.room4_top_mid_info, this.room4_character_north)) {
+    if (Phaser.Geom.Rectangle.ContainsPoint(this.room4_bot_mid_info, this.room4_character_north)) {
       this.room4_E_KeyImg.x = this.room4_character_north.x;
       this.room4_E_KeyImg.y = this.room4_character_north.y - 75;
       this.room4_E_KeyImg.alpha = 1.0;
@@ -629,7 +629,7 @@ class journalRoom extends Phaser.Scene {
         this.room4_activity1Locked = false;
       }
 
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room4_bot_left_info, this.room4_character_north)) {
+    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room4_top_right_info, this.room4_character_north)) {
       this.room4_E_KeyImg.x = this.room4_character_north.x;
       this.room4_E_KeyImg.y = this.room4_character_north.y + 75;
       this.room4_E_KeyImg.alpha = 1.0;
@@ -644,7 +644,7 @@ class journalRoom extends Phaser.Scene {
         this.room4_characterMoveable = false;
       }
 
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room4_top_left_info, this.room4_character_north)) {
+    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room4_bot_left_info, this.room4_character_north)) {
       this.room4_E_KeyImg.x = this.room4_character_north.x;
       this.room4_E_KeyImg.y = this.room4_character_north.y - 75;
       this.room4_E_KeyImg.alpha = 1.0;
@@ -660,7 +660,7 @@ class journalRoom extends Phaser.Scene {
         this.room4_characterMoveable = false;
       }
 
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room4_bot_mid_info, this.room4_character_north)) {
+    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room4_top_mid_info, this.room4_character_north)) {
       this.room4_E_KeyImg.x = this.room4_character_north.x;
       this.room4_E_KeyImg.y = this.room4_character_north.y + 75;
       this.room4_E_KeyImg.alpha = 1.0;
@@ -675,7 +675,7 @@ class journalRoom extends Phaser.Scene {
         this.room4_characterMoveable = false;
       }
 
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room4_bot_right_info, this.room4_character_north)) {
+    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room4_top_left_info, this.room4_character_north)) {
       this.room4_E_KeyImg.x = this.room4_character_north.x;
       this.room4_E_KeyImg.y = this.room4_character_north.y + 75;
       this.room4_E_KeyImg.alpha = 1.0;
@@ -690,7 +690,7 @@ class journalRoom extends Phaser.Scene {
         this.room4_characterMoveable = false;
       }
 
-    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room4_top_right_info, this.room4_character_north)) {
+    } else if (Phaser.Geom.Rectangle.ContainsPoint(this.room4_bot_right_info, this.room4_character_north)) {
       this.room4_E_KeyImg.x = this.room4_character_north.x;
       this.room4_E_KeyImg.y = this.room4_character_north.y + 75;
       this.room4_E_KeyImg.alpha = 1.0;
