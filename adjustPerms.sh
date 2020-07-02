@@ -31,6 +31,7 @@ chmod a+x assets/Room2Act1/Puzzle/Puzzle
 chmod a+x assets/Room2Act2
 chmod a+x assets/Room3
 chmod a+x assets/Room3Act1
+chmod a+x assets/Room4
 chmod a+x assets/WinnersRoom
 chmod a+x assets/Sounds
 chmod a+x assets/Coin
